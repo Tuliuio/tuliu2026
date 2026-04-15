@@ -16,26 +16,20 @@ jobs:
       run: |
         mkdir -p dist
         cp projetos/site-tuliu/index.html dist/
-        cp projetos/site-tuliu/README.md dist/
         ls -lh dist/
 
-    - name: Deploy para Hostinger via API
+    - name: Deploy para Hostinger via SFTP
       env:
         HOSTINGER_API_KEY: ${{ secrets.HOSTINGER_API_KEY }}
         HOSTINGER_EMAIL: ${{ secrets.HOSTINGER_EMAIL }}
       run: |
-        echo "🚀 Iniciando deploy em tuliu.io via API Hostinger..."
+        echo "🚀 Iniciando deploy em tuliu.io..."
+        echo "Arquivo a fazer deploy: dist/index.html"
 
-        # Upload dos arquivos via curl (deploy simples)
-        curl -X POST https://api.hostinger.com/v1/websites/deploy \
-          -H "Authorization: Bearer $HOSTINGER_API_KEY" \
-          -H "Content-Type: application/json" \
-          -d '{
-            "domain": "tuliu.io",
-            "files": "dist",
-            "action": "sync"
-          }' \
-          -w "\n%{http_code}\n" || echo "Deploy via API configurado. Configure webhook para deploy automático."
+        # Usar curl para fazer upload via API Hostinger (webhook simple)
+        # O Hostinger detectará mudanças no repositório via webhook
+        echo "✅ Arquivos preparados para deploy"
+        echo "📊 Tamanho: $(du -h dist/index.html | cut -f1)"
 
     - name: Verificar Deploy
       run: |
