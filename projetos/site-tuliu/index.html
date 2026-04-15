@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuliu — Infraestrutura Digital para Empresas</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-EvVYHZuDtf5C1tKGQga0mnOStzng7/FewwbFxQnRhat2YYKR8NzxCQXdrB4QJMwmO0VBSZtIIGxbzoknn4Q7xQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #1A1A1A;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =============================================
+       UTILITIES
+    ============================================= */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 48px;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F3F3F3;
+      color: #555;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+    }
+
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #2a2a2a;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #111111;
+      border: 1.5px solid #111111;
+    }
+
+    .btn-outline:hover {
+      background: #111111;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-white {
+      background: #ffffff;
+      color: #111111;
+    }
+
+    .btn-white:hover {
+      background: #f3f3f3;
+      transform: translateY(-1px);
+    }
+
+    /* =============================================
+       FADE-IN ANIMATION (Intersection Observer)
+    ============================================= */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.05);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .navbar-links a {
+      color: #444;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .navbar-links a:hover {
+      color: #111;
+    }
+
+    .navbar-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #111;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      background: #fff;
+      border-top: 1px solid #f0f0f0;
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: #444;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    @media (max-width: 767px) {
+      .navbar-links,
+      .navbar-cta {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      margin-bottom: 20px;
+    }
+
+    .hero-title .line1 {
+      display: block;
+      font-size: clamp(42px, 6vw, 64px);
+      font-weight: 800;
+      color: #1A1A1A;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .hero-title .line2 {
+      display: block;
+      font-size: clamp(42px, 6vw, 64px);
+      font-weight: 600;
+      color: #9A9A9A;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .hero-subtitle {
+      max-width: 580px;
+      margin: 0 auto 12px;
+      font-size: 18px;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    .hero-microcopy {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 48px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-video-wrapper {
+      max-width: 780px;
+      margin: 0 auto 36px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.14);
+      position: relative;
+    }
+
+    .hero-video-placeholder {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+      aspect-ratio: 16 / 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .hero-video-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.15) 0%, transparent 70%);
+    }
+
+    .play-button {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .play-button:hover {
+      background: rgba(255,255,255,0.22);
+      transform: scale(1.08);
+    }
+
+    .play-button svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+
+    .video-label {
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Grid lines decoration on video */
+    .hero-video-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* =============================================
+       FEATURES SECTION
+    ============================================= */
+    .features {
+      padding: 100px 0;
+      background: #FAFAFA;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header .badge {
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 700;
+      color: #1A1A1A;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      max-width: 540px;
+      margin: 0 auto;
+      font-size: 17px;
+      color: #6B6B6B;
+      line-height: 1.65;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid #EBEBEB;
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #F3F3F3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1A1A1A;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: #6B6B6B;
+      line-height: 1.6;
+    }
+
+    .features-cta {
+      text-align: center;
+    }
+
+    /* =============================================
+       INTEGRATIONS SECTION
+    ============================================= */
+    .integrations {
+      padding: 100px 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .integrations-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .integrations-header h2 {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 700;
+      color: #1A1A1A;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+    }
+
+    .integrations-header p {
+      max-width: 520px;
+      margin: 0 auto 28px;
+      font-size: 17px;
+      color: #6B6B6B;
+    }
+
+    /* Marquee / Scroll infinito */
+    .marquee-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+      mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+    }
+
+    .marquee-row {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+    }
+
+    .marquee-row-1 {
+      animation: marquee-left 30s linear infinite;
+    }
+
+    .marquee-row-2 {
+      animation: marquee-right 25s linear infinite;
+    }
+
+    @keyframes marquee-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes marquee-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .logo-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid #E8E8E8;
+      border-radius: 100px;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      white-space: nowrap;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    .logo-chip-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .integrations-cta {
+      text-align: center;
+    }
+
+    /* =============================================
+       PRICING SECTION
+    ============================================= */
+    .pricing {
+      padding: 100px 0;
+      background: #FAFAFA;
+    }
+
+    /* Pricing Toggle */
+    .pricing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-toggle-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #888;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      background: #E8E8E8;
+      border-radius: 20px;
+      padding: 3px;
+      width: 140px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-switch.active {
+      background: #E8E8E8;
+    }
+
+    .toggle-option {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 0;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .toggle-option.active {
+      color: #ffffff;
+      background: #111111;
+    }
+
+    .toggle-switch:not(.active) .toggle-option:first-child {
+      color: #ffffff;
+      background: #111111;
+    }
+
+    .toggle-switch:not(.active) .toggle-option:last-child {
+      color: #666;
+      background: transparent;
+    }
+
+    .toggle-switch.active .toggle-option:first-child {
+      color: #666;
+      background: transparent;
+    }
+
+    .toggle-switch.active .toggle-option:last-child {
+      color: #ffffff;
+      background: #111111;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 960px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+    }
+
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid #E8E8E8;
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      background: #111111;
+      border-color: #111111;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+    }
+
+    /* Enterprise card — premium */
+    .pricing-card.enterprise {
+      background: #0d0d1a;
+      border: 1.5px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 8px 48px rgba(99,102,241,0.18);
+      position: relative;
+    }
+
+    .pricing-card.enterprise::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 21.5px;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      z-index: 0;
+    }
+
+    .pricing-card.enterprise > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pricing-card.enterprise .plan-name {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .pricing-card.enterprise .plan-price .currency,
+    .pricing-card.enterprise .plan-price .amount {
+      color: #ffffff;
+    }
+
+    .pricing-card.enterprise .plan-price .period {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .pricing-card.enterprise .plan-subtitle {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .pricing-card.enterprise .plan-divider {
+      border-top-color: rgba(255,255,255,0.1);
+    }
+
+    .pricing-card.enterprise .plan-features li {
+      color: rgba(255,255,255,0.78);
+    }
+
+
+    .plan-price-consult {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .plan-price-consult span {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.03em;
+      margin-top: 4px;
+    }
+
+    .enterprise-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    .btn-enterprise {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-enterprise:hover {
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #888;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .pricing-card.featured .plan-name {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .plan-price {
+      margin-bottom: 4px;
+    }
+
+    .plan-price .currency {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1A1A1A;
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .plan-price .amount {
+      font-size: 58px;
+      font-weight: 800;
+      color: #1A1A1A;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .plan-price .period {
+      font-size: 16px;
+      color: #888;
+      font-weight: 500;
+    }
+
+    .pricing-card.featured .plan-price .currency,
+    .pricing-card.featured .plan-price .amount {
+      color: #ffffff;
+    }
+
+    .pricing-card.featured .plan-price .period {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .plan-subtitle {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 28px;
+      margin-top: 4px;
+    }
+
+    .pricing-card.featured .plan-subtitle {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .plan-divider {
+      border: none;
+      border-top: 1px solid #EBEBEB;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card.featured .plan-divider {
+      border-top-color: rgba(255,255,255,0.12);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: #444;
+    }
+
+    .pricing-card.featured .plan-features li {
+      color: rgba(255,255,255,0.8);
+    }
+
+
+    .plan-btn {
+      width: 100%;
+    }
+
+    /* =============================================
+       CTA FINAL SECTION
+    ============================================= */
+    .cta-final {
+      padding: 100px 0;
+      background: #ffffff;
+    }
+
+    .cta-final-inner {
+      background: linear-gradient(135deg, #111111 0%, #1f1f3a 100%);
+      border-radius: 24px;
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final-inner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final-inner h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
+      line-height: 1.25;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-final-inner p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-final-inner .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      .cta-final-inner {
+        padding: 56px 28px;
+      }
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: #F9F9F9;
+      border-top: 1px solid #EBEBEB;
+      padding: 48px 0 36px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .footer-contact {
+      font-size: 15px;
+      color: #6B6B6B;
+    }
+
+    .footer-contact a {
+      color: #1A1A1A;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #F0F0F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .social-link:hover {
+      background: #E0E0E0;
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: #444;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    /* =============================================
+       MODAL DE LOGIN
+    ============================================= */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 7, 26, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .login-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 48px 44px 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+      position: relative;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+      opacity: 0;
+    }
+
+    .login-overlay.open .login-card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .login-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #F3F3F3;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      color: #555;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .login-close:hover {
+      background: #E8E8E8;
+    }
+
+    .login-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .login-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1A1A1A;
+      text-align: center;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+    }
+
+    .login-subtitle {
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .btn-google {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 13px 20px;
+      border-radius: 100px;
+      border: 1.5px solid #E0E0E0;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1A1A1A;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .btn-google:hover {
+      background: #FAFAFA;
+      border-color: #bbb;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .btn-google svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: #C8C8C8;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #EBEBEB;
+    }
+
+    .login-field {
+      margin-bottom: 14px;
+    }
+
+    .login-field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .login-field input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #E8E8E8;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #1A1A1A;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #FAFAFA;
+    }
+
+    .login-field input:focus {
+      border-color: #111;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(17,17,17,0.06);
+    }
+
+    .login-field input::placeholder {
+      color: #bbb;
+    }
+
+    .login-forgot {
+      display: block;
+      text-align: right;
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+      margin-top: -6px;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+
+    .login-forgot:hover {
+      color: #111;
+    }
+
+    .btn-login-submit {
+      width: 100%;
+      padding: 13px;
+      border-radius: 100px;
+      background: #111111;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .btn-login-submit:hover {
+      background: #2a2a2a;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    .login-footer {
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .login-footer a {
+      color: #111;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 40px 28px 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <header class="navbar" role="banner">
+    <div class="container">
+      <nav class="navbar-inner" aria-label="Navegação principal">
+        <a href="#" class="navbar-logo" aria-label="Tuliu — início">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1350.75 662.25" height="46" aria-hidden="true" focusable="false"><defs><clipPath id="n-322f0f8eda"><path d="M 130.769531 302.832031 L 243.363281 302.832031 L 243.363281 415.425781 L 130.769531 415.425781 Z M 130.769531 302.832031 " clip-rule="nonzero"/></clipPath><clipPath id="n-3528949e71"><path d="M 130.769531 359.128906 C 130.769531 390.21875 155.976562 415.425781 187.066406 415.425781 C 218.160156 415.425781 243.363281 390.21875 243.363281 359.128906 C 243.363281 328.035156 218.160156 302.832031 187.066406 302.832031 C 155.976562 302.832031 130.769531 328.035156 130.769531 359.128906 Z M 130.769531 359.128906 " clip-rule="nonzero"/></clipPath><clipPath id="n-2e6d516ddf"><path d="M 0.769531 0.832031 L 113.363281 0.832031 L 113.363281 113.425781 L 0.769531 113.425781 Z M 0.769531 0.832031 " clip-rule="nonzero"/></clipPath><clipPath id="n-ba672c14f2"><path d="M 0.769531 57.128906 C 0.769531 88.21875 25.976562 113.425781 57.066406 113.425781 C 88.160156 113.425781 113.363281 88.21875 113.363281 57.128906 C 113.363281 26.035156 88.160156 0.832031 57.066406 0.832031 C 25.976562 0.832031 0.769531 26.035156 0.769531 57.128906 Z M 0.769531 57.128906 " clip-rule="nonzero"/></clipPath><clipPath id="n-2075bd4751"><rect x="0" width="114" y="0" height="114"/></clipPath><clipPath id="n-b874628567"><path d="M 0.640625 237.777344 L 243.363281 237.777344 L 243.363281 480.5 L 0.640625 480.5 Z M 0.640625 237.777344 " clip-rule="nonzero"/></clipPath><clipPath id="n-b55822e460"><path d="M 0.640625 359.136719 C 0.640625 426.164062 54.976562 480.5 122 480.5 C 189.027344 480.5 243.363281 426.164062 243.363281 359.136719 C 243.363281 292.113281 189.027344 237.777344 122 237.777344 C 54.976562 237.777344 0.640625 292.113281 0.640625 359.136719 Z M 0.640625 359.136719 " clip-rule="nonzero"/></clipPath></defs><g fill="#0a071a" fill-opacity="1"><g transform="translate(269.81416, 468.198927)"><g><path d="M 115.03125 -73.921875 L 115.03125 -122.203125 L 160.671875 -122.203125 L 160.671875 -69.40625 C 160.671875 -56.320312 158.03125 -44.125 152.75 -32.8125 C 147.46875 -21.5 139.359375 -12.382812 128.421875 -5.46875 C 117.484375 1.445312 103.21875 4.90625 85.625 4.90625 C 67.519531 4.90625 52.929688 1.445312 41.859375 -5.46875 C 30.796875 -12.382812 22.6875 -21.5 17.53125 -32.8125 C 12.382812 -44.125 9.8125 -56.445312 9.8125 -69.78125 L 9.8125 -235.734375 L 58.078125 -235.734375 L 58.078125 -185.5625 L 160.671875 -185.5625 L 160.671875 -150.875 L 58.078125 -150.875 L 58.078125 -74.6875 C 58.078125 -63.113281 60.273438 -54.054688 64.671875 -47.515625 C 69.078125 -40.984375 76.3125 -37.71875 86.375 -37.71875 C 96.175781 -37.71875 103.398438 -40.859375 108.046875 -47.140625 C 112.703125 -53.429688 115.03125 -62.359375 115.03125 -73.921875 Z M 115.03125 -73.921875 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(444.442573, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(636.79786, 468.198927)"><g><path d="M 58.84375 0 L 9.8125 0 L 9.8125 -253.453125 L 58.84375 -253.453125 Z M 58.84375 0 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(710.345529, 468.198927)"><g><path d="M 59.96875 0 L 10.9375 0 L 10.9375 -185.5625 L 59.96875 -185.5625 Z M 59.96875 -207.828125 L 10.9375 -207.828125 L 10.9375 -253.453125 L 59.96875 -253.453125 Z M 59.96875 -207.828125 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(786.533335, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g><g clip-path="url(#n-322f0f8eda)"><g clip-path="url(#n-3528949e71)"><g transform="matrix(1, 0, 0, 1, 130, 302)"><g clip-path="url(#n-2075bd4751)"><g clip-path="url(#n-2e6d516ddf)"><g clip-path="url(#n-ba672c14f2)"><path fill="#000000" d="M 0.769531 113.425781 L 0.769531 0.832031 L 113.363281 0.832031 L 113.363281 113.425781 Z M 0.769531 113.425781 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#n-b874628567)"><g clip-path="url(#n-b55822e460)"><path stroke-linecap="butt" transform="matrix(0, -0.749152, 0.749152, 0, 0.639156, 480.500784)" fill="none" stroke-linejoin="miter" d="M 162.002025 0.00196066 C 72.531016 0.00196066 0.00104669 72.53193 0.00104669 161.997724 C 0.00104669 251.468733 72.531016 323.998702 162.002025 323.998702 C 251.467819 323.998702 323.997788 251.468733 323.997788 161.997724 C 323.997788 72.53193 251.467819 0.00196066 162.002025 0.00196066 Z M 162.002025 0.00196066 " stroke="#09071a" stroke-width="114" stroke-opacity="1" stroke-miterlimit="4"/></g></g></svg>
+        </a>
+
+        <ul class="navbar-links" role="list">
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#solucoes">Soluções</a></li>
+          <li><a href="#precos">Preços</a></li>
+        </ul>
+
+        <div class="navbar-cta">
+          <button class="btn btn-primary" id="btn-minha-conta" aria-haspopup="dialog">Minha conta</button>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+      <a href="#servicos">Serviços</a>
+      <a href="#solucoes">Soluções</a>
+      <a href="#precos">Preços</a>
+      <button class="btn btn-primary" id="btn-minha-conta-mobile" style="margin-top:8px; text-align:center; width:100%; border:none; cursor:pointer;" aria-haspopup="dialog">Minha conta</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =============================================
+         HERO SECTION
+    ============================================= -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+
+        <div class="hero-badge fade-in">
+          <span class="badge">
+            <i class="fas fa-circle" style="font-size: 6px; margin-right: 8px; vertical-align: middle;"></i>
+            Feito por nós, rodando para você
+          </span>
+        </div>
+
+        <h1 class="hero-title fade-in fade-in-delay-1" id="hero-heading">
+          <span class="line1">A sua empresa no digital,</span>
+          <span class="line2">entregue e mantida por nós.</span>
+        </h1>
+
+        <p class="hero-subtitle fade-in fade-in-delay-2">
+          A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.
+        </p>
+
+        <p class="hero-microcopy fade-in fade-in-delay-2">Sem equipe de TI. Sem fidelidade. Sem complicação.</p>
+
+        <!-- Área de vídeo temporariamente oculta — conteúdo ainda não disponível -->
+        <div class="hero-video-wrapper fade-in fade-in-delay-3" style="display:none;" aria-hidden="true">
+          <div class="hero-video-placeholder">
+            <button class="play-button" tabindex="-1">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="video-label">Veja o que entregamos</span>
+          </div>
+        </div>
+
+        <div class="fade-in fade-in-delay-3">
+          <a href="#precos" class="btn btn-primary" style="font-size:16px; padding:14px 36px;">Quero minha infraestrutura</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         FEATURES SECTION
+    ============================================= -->
+    <section class="features" id="servicos" aria-labelledby="features-heading">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="badge fade-in">
+            <i class="fas fa-circle" style="font-size: 6px; margin-right: 8px; vertical-align: middle;"></i>
+            Feito por nós, para você
+          </div>
+          <h2 class="fade-in fade-in-delay-1" id="features-heading">
+            Fazemos tudo. Você só colhe os resultados.
+          </h2>
+          <p class="fade-in fade-in-delay-2">
+            Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa — construída, configurada e mantida por nós, do início ao fim.
+          </p>
+        </div>
+
+        <div class="features-grid" id="solucoes">
+
+          <article class="feature-card fade-in fade-in-delay-1">
+            <div class="feature-icon" aria-hidden="true">🌐</div>
+            <h3>Domínios e DNS</h3>
+            <p>Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.</p>
+          </article>
+
+          <article class="feature-card fade-in fade-in-delay-2">
+            <div class="feature-icon" aria-hidden="true">🤖</div>
+            <h3>Agentes de IA</h3>
+            <p>Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos — prontos para atender, vender e automatizar.</p>
+          </article>
+
+          <article class="feature-card fade-in fade-in-delay-3">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <h3>Automações</h3>
+            <p>Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam sem depender de você.</p>
+          </article>
+
+        </div>
+
+        <div class="features-cta fade-in">
+          <a href="#" class="btn btn-outline">Ver como funciona na prática</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         INTEGRATIONS SECTION
+    ============================================= -->
+    <section class="integrations" aria-labelledby="integrations-heading">
+      <div class="container">
+
+        <div class="integrations-header">
+          <h2 class="fade-in" id="integrations-heading">
+            Conectamos com as ferramentas que você já usa
+          </h2>
+          <p class="fade-in fade-in-delay-1">
+            Nós fazemos as integrações por você. Seu CRM, comunicação, pagamentos e produtividade — tudo conectado, configurado e funcionando sem que você precise abrir um manual.
+          </p>
+          <a href="#precos" class="btn btn-primary fade-in fade-in-delay-2">Quero minha infraestrutura</a>
+        </div>
+
+      </div>
+
+      <!-- Marquee — fora do container para largura total -->
+      <div class="marquee-wrapper" aria-hidden="true">
+
+        <!-- Fileira 1 (esquerda) -->
+        <div class="marquee-row marquee-row-1">
+          <!-- Duplicado para loop infinito -->
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#4A154B; color:#fff;">S</span>Slack</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#FF7A59; color:#fff;">H</span>HubSpot</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#6772E5; color:#fff;">$</span>Stripe</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#25D366; color:#fff;">W</span>WhatsApp</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#000; color:#fff;">N</span>Notion</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#FF4A00; color:#fff;">Z</span>Zapier</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#24292E; color:#fff;">G</span>GitHub</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#4285F4; color:#fff;">G</span>Google</span>
+          <!-- Duplicado -->
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#4A154B; color:#fff;">S</span>Slack</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#FF7A59; color:#fff;">H</span>HubSpot</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#6772E5; color:#fff;">$</span>Stripe</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#25D366; color:#fff;">W</span>WhatsApp</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#000; color:#fff;">N</span>Notion</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#FF4A00; color:#fff;">Z</span>Zapier</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#24292E; color:#fff;">G</span>GitHub</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#4285F4; color:#fff;">G</span>Google</span>
+        </div>
+
+        <!-- Fileira 2 (direita) -->
+        <div class="marquee-row marquee-row-2">
+          <!-- Duplicado para loop infinito -->
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#232F3E; color:#fff;">A</span>AWS</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#000; color:#fff;">V</span>Vercel</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#F48120; color:#fff;">C</span>Cloudflare</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#F22F46; color:#fff;">T</span>Twilio</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#0052CC; color:#fff;">J</span>Jira</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#EB5757; color:#fff;">A</span>Airtable</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#0F9D58; color:#fff;">G</span>Google Sheets</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#2F80ED; color:#fff;">M</span>Make</span>
+          <!-- Duplicado -->
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#232F3E; color:#fff;">A</span>AWS</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#000; color:#fff;">V</span>Vercel</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#F48120; color:#fff;">C</span>Cloudflare</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#F22F46; color:#fff;">T</span>Twilio</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#0052CC; color:#fff;">J</span>Jira</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#EB5757; color:#fff;">A</span>Airtable</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#0F9D58; color:#fff;">G</span>Google Sheets</span>
+          <span class="logo-chip"><span class="logo-chip-icon" style="background:#2F80ED; color:#fff;">M</span>Make</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =============================================
+         PRICING SECTION
+    ============================================= -->
+    <section class="pricing" id="precos" aria-labelledby="pricing-heading">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="badge fade-in">
+            <i class="fas fa-circle" style="font-size: 6px; margin-right: 8px; vertical-align: middle;"></i>
+            Planos e preços
+          </div>
+          <h2 class="fade-in fade-in-delay-1" id="pricing-heading">
+            Preços diretos, sem letras miúdas
+          </h2>
+        </div>
+
+        <!-- Pricing Toggle -->
+        <div class="pricing-toggle">
+          <span class="pricing-toggle-label">Mensal</span>
+          <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="Trocar entre faturamento mensal e anual">
+            <span class="toggle-option active">Mensal</span>
+            <span class="toggle-option">Anual</span>
+          </div>
+          <span class="pricing-toggle-label">Anual <strong style="color: #111; margin-left: 4px;">Economize 14%</strong></span>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- Card Starter -->
+          <article class="pricing-card fade-in fade-in-delay-1" data-plan="starter" data-monthly-price="97" data-annual-price="997" data-monthly-checkout="https://www.asaas.com/c/6tiddzmu54tk8ls4" data-annual-checkout="https://www.asaas.com/c/gtx6degtgke5m743">
+            <p class="plan-name">Starter</p>
+            <div class="plan-price">
+              <span class="currency">R$</span>
+              <span class="amount" data-price="monthly">97</span>
+              <span class="period" data-period="monthly">/mês</span>
+            </div>
+            <p class="plan-subtitle">A Tuliu cuida da sua base digital</p>
+            <hr class="plan-divider" />
+            <ul class="plan-features" role="list">
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                1 domínio registrado e configurado
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                1 site criado e publicado
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                10 contas de e-mail
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Rastreamento básico
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Suporte via WhatsApp
+              </li>
+            </ul>
+            <a href="https://www.asaas.com/c/6tiddzmu54tk8ls4" class="btn btn-outline plan-btn" target="_blank" rel="noopener noreferrer" data-btn-type="checkout">Começar agora</a>
+          </article>
+
+          <!-- Card Business (Destaque) -->
+          <article class="pricing-card featured fade-in fade-in-delay-2">
+            <span class="popular-badge" aria-label="Plano mais popular">Mais popular</span>
+            <p class="plan-name">Business</p>
+            <div class="plan-price">
+              <span class="currency">R$</span>
+              <span class="amount">497</span>
+              <span class="period">/mês</span>
+            </div>
+            <p class="plan-subtitle">Infraestrutura completa, sem depender de TI</p>
+            <hr class="plan-divider" />
+            <ul class="plan-features" role="list">
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Tudo do Starter, e mais:
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Até 3 domínios gerenciados
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Até 5 sites criados e mantidos
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                1 agente de IA desenvolvido e ativo
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Até 5 automações configuradas
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Integrações com ferramentas do seu stack
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Suporte prioritário via WhatsApp
+              </li>
+            </ul>
+            <a href="https://wa.me/554840426597" class="btn btn-white plan-btn" target="_blank" rel="noopener noreferrer">Fale com vendas</a>
+          </article>
+
+          <!-- Card Enterprise -->
+          <article class="pricing-card enterprise fade-in fade-in-delay-3">
+            <span class="enterprise-badge" aria-label="Plano Enterprise">Enterprise</span>
+            <p class="plan-name">Enterprise</p>
+            <div class="plan-price-consult">
+              Sob consulta
+              <span>Para operações digitais complexas</span>
+            </div>
+            <hr class="plan-divider" />
+            <ul class="plan-features" role="list">
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Tudo do Business, e mais:
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Domínios e sites sem limite definido
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Múltiplos agentes de IA evoluídos continuamente
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Automações avançadas e monitoradas
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Aplicações web desenvolvidas sob medida
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Integrações customizadas
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                Time dedicado ao projeto
+              </li>
+              <li>
+                <i class="fas fa-check" style="font-size: 14px; color: currentColor;"></i>
+                SLA com resposta garantida
+              </li>
+            </ul>
+            <a href="https://wa.me/554840426597" class="btn btn-enterprise plan-btn" target="_blank" rel="noopener noreferrer">Falar com especialista</a>
+          </article>
+
+        </div>
+
+        <p style="text-align:center; font-size:13px; color:#999; margin-top:28px; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.6;">
+          Todos os planos possuem um valor de implementação, que deve ser orçado de acordo com o projeto.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         CTA FINAL SECTION
+    ============================================= -->
+    <section class="cta-final" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-final-inner fade-in">
+          <h2 id="cta-heading">
+            Chega de resolver problema de tecnologia. Isso é com a gente.
+          </h2>
+          <p>
+            A Tuliu assume a infraestrutura digital da sua empresa — constrói, entrega, mantém e evolui. Você só precisa focar no que sabe fazer melhor: crescer o seu negócio.
+          </p>
+          <a href="https://wa.me/554840426597" class="btn btn-white" style="font-size:16px; padding:14px 36px;" target="_blank" rel="noopener noreferrer">Falar com a Tuliu</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <a href="#" class="footer-logo" aria-label="Tuliu — voltar ao topo">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1350.75 662.25" height="44" aria-hidden="true" focusable="false"><defs><clipPath id="f-322f0f8eda"><path d="M 130.769531 302.832031 L 243.363281 302.832031 L 243.363281 415.425781 L 130.769531 415.425781 Z M 130.769531 302.832031 " clip-rule="nonzero"/></clipPath><clipPath id="f-3528949e71"><path d="M 130.769531 359.128906 C 130.769531 390.21875 155.976562 415.425781 187.066406 415.425781 C 218.160156 415.425781 243.363281 390.21875 243.363281 359.128906 C 243.363281 328.035156 218.160156 302.832031 187.066406 302.832031 C 155.976562 302.832031 130.769531 328.035156 130.769531 359.128906 Z M 130.769531 359.128906 " clip-rule="nonzero"/></clipPath><clipPath id="f-2e6d516ddf"><path d="M 0.769531 0.832031 L 113.363281 0.832031 L 113.363281 113.425781 L 0.769531 113.425781 Z M 0.769531 0.832031 " clip-rule="nonzero"/></clipPath><clipPath id="f-ba672c14f2"><path d="M 0.769531 57.128906 C 0.769531 88.21875 25.976562 113.425781 57.066406 113.425781 C 88.160156 113.425781 113.363281 88.21875 113.363281 57.128906 C 113.363281 26.035156 88.160156 0.832031 57.066406 0.832031 C 25.976562 0.832031 0.769531 26.035156 0.769531 57.128906 Z M 0.769531 57.128906 " clip-rule="nonzero"/></clipPath><clipPath id="f-2075bd4751"><rect x="0" width="114" y="0" height="114"/></clipPath><clipPath id="f-b874628567"><path d="M 0.640625 237.777344 L 243.363281 237.777344 L 243.363281 480.5 L 0.640625 480.5 Z M 0.640625 237.777344 " clip-rule="nonzero"/></clipPath><clipPath id="f-b55822e460"><path d="M 0.640625 359.136719 C 0.640625 426.164062 54.976562 480.5 122 480.5 C 189.027344 480.5 243.363281 426.164062 243.363281 359.136719 C 243.363281 292.113281 189.027344 237.777344 122 237.777344 C 54.976562 237.777344 0.640625 292.113281 0.640625 359.136719 Z M 0.640625 359.136719 " clip-rule="nonzero"/></clipPath></defs><g fill="#0a071a" fill-opacity="1"><g transform="translate(269.81416, 468.198927)"><g><path d="M 115.03125 -73.921875 L 115.03125 -122.203125 L 160.671875 -122.203125 L 160.671875 -69.40625 C 160.671875 -56.320312 158.03125 -44.125 152.75 -32.8125 C 147.46875 -21.5 139.359375 -12.382812 128.421875 -5.46875 C 117.484375 1.445312 103.21875 4.90625 85.625 4.90625 C 67.519531 4.90625 52.929688 1.445312 41.859375 -5.46875 C 30.796875 -12.382812 22.6875 -21.5 17.53125 -32.8125 C 12.382812 -44.125 9.8125 -56.445312 9.8125 -69.78125 L 9.8125 -235.734375 L 58.078125 -235.734375 L 58.078125 -185.5625 L 160.671875 -185.5625 L 160.671875 -150.875 L 58.078125 -150.875 L 58.078125 -74.6875 C 58.078125 -63.113281 60.273438 -54.054688 64.671875 -47.515625 C 69.078125 -40.984375 76.3125 -37.71875 86.375 -37.71875 C 96.175781 -37.71875 103.398438 -40.859375 108.046875 -47.140625 C 112.703125 -53.429688 115.03125 -62.359375 115.03125 -73.921875 Z M 115.03125 -73.921875 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(444.442573, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(636.79786, 468.198927)"><g><path d="M 58.84375 0 L 9.8125 0 L 9.8125 -253.453125 L 58.84375 -253.453125 Z M 58.84375 0 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(710.345529, 468.198927)"><g><path d="M 59.96875 0 L 10.9375 0 L 10.9375 -185.5625 L 59.96875 -185.5625 Z M 59.96875 -207.828125 L 10.9375 -207.828125 L 10.9375 -253.453125 L 59.96875 -253.453125 Z M 59.96875 -207.828125 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(786.533335, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g><g clip-path="url(#f-322f0f8eda)"><g clip-path="url(#f-3528949e71)"><g transform="matrix(1, 0, 0, 1, 130, 302)"><g clip-path="url(#f-2075bd4751)"><g clip-path="url(#f-2e6d516ddf)"><g clip-path="url(#f-ba672c14f2)"><path fill="#000000" d="M 0.769531 113.425781 L 0.769531 0.832031 L 113.363281 0.832031 L 113.363281 113.425781 Z M 0.769531 113.425781 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#f-b874628567)"><g clip-path="url(#f-b55822e460)"><path stroke-linecap="butt" transform="matrix(0, -0.749152, 0.749152, 0, 0.639156, 480.500784)" fill="none" stroke-linejoin="miter" d="M 162.002025 0.00196066 C 72.531016 0.00196066 0.00104669 72.53193 0.00104669 161.997724 C 0.00104669 251.468733 72.531016 323.998702 162.002025 323.998702 C 251.467819 323.998702 323.997788 251.468733 323.997788 161.997724 C 323.997788 72.53193 251.467819 0.00196066 162.002025 0.00196066 Z M 162.002025 0.00196066 " stroke="#09071a" stroke-width="114" stroke-opacity="1" stroke-miterlimit="4"/></g></g></svg>
+        </a>
+
+        <p class="footer-contact">
+          Contato: <a href="mailto:tuliu@tuliu.io">tuliu@tuliu.io</a>
+        </p>
+
+        <div class="footer-socials" aria-label="Redes sociais">
+          <!-- LinkedIn -->
+          <a href="#" class="social-link" aria-label="LinkedIn da Tuliu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="social-link" aria-label="Instagram da Tuliu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+        </div>
+
+        <p class="footer-copy">© 2025 Tuliu. Todos os direitos reservados.</p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       MODAL DE LOGIN
+  ============================================= -->
+  <div class="login-overlay" id="login-overlay" role="dialog" aria-modal="true" aria-labelledby="login-title">
+    <div class="login-card">
+
+      <button class="login-close" id="login-close" aria-label="Fechar">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="1" y1="1" x2="13" y2="13"/>
+          <line x1="13" y1="1" x2="1" y2="13"/>
+        </svg>
+      </button>
+
+      <!-- Logo -->
+      <div class="login-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1350.75 662.25" height="38" aria-label="Tuliu"><defs><clipPath id="m-322f0f8eda"><path d="M 130.769531 302.832031 L 243.363281 302.832031 L 243.363281 415.425781 L 130.769531 415.425781 Z M 130.769531 302.832031 " clip-rule="nonzero"/></clipPath><clipPath id="m-3528949e71"><path d="M 130.769531 359.128906 C 130.769531 390.21875 155.976562 415.425781 187.066406 415.425781 C 218.160156 415.425781 243.363281 390.21875 243.363281 359.128906 C 243.363281 328.035156 218.160156 302.832031 187.066406 302.832031 C 155.976562 302.832031 130.769531 328.035156 130.769531 359.128906 Z M 130.769531 359.128906 " clip-rule="nonzero"/></clipPath><clipPath id="m-2e6d516ddf"><path d="M 0.769531 0.832031 L 113.363281 0.832031 L 113.363281 113.425781 L 0.769531 113.425781 Z M 0.769531 0.832031 " clip-rule="nonzero"/></clipPath><clipPath id="m-ba672c14f2"><path d="M 0.769531 57.128906 C 0.769531 88.21875 25.976562 113.425781 57.066406 113.425781 C 88.160156 113.425781 113.363281 88.21875 113.363281 57.128906 C 113.363281 26.035156 88.160156 0.832031 57.066406 0.832031 C 25.976562 0.832031 0.769531 26.035156 0.769531 57.128906 Z M 0.769531 57.128906 " clip-rule="nonzero"/></clipPath><clipPath id="m-2075bd4751"><rect x="0" width="114" y="0" height="114"/></clipPath><clipPath id="m-b874628567"><path d="M 0.640625 237.777344 L 243.363281 237.777344 L 243.363281 480.5 L 0.640625 480.5 Z M 0.640625 237.777344 " clip-rule="nonzero"/></clipPath><clipPath id="m-b55822e460"><path d="M 0.640625 359.136719 C 0.640625 426.164062 54.976562 480.5 122 480.5 C 189.027344 480.5 243.363281 426.164062 243.363281 359.136719 C 243.363281 292.113281 189.027344 237.777344 122 237.777344 C 54.976562 237.777344 0.640625 292.113281 0.640625 359.136719 Z M 0.640625 359.136719 " clip-rule="nonzero"/></clipPath></defs><g fill="#0a071a" fill-opacity="1"><g transform="translate(269.81416, 468.198927)"><g><path d="M 115.03125 -73.921875 L 115.03125 -122.203125 L 160.671875 -122.203125 L 160.671875 -69.40625 C 160.671875 -56.320312 158.03125 -44.125 152.75 -32.8125 C 147.46875 -21.5 139.359375 -12.382812 128.421875 -5.46875 C 117.484375 1.445312 103.21875 4.90625 85.625 4.90625 C 67.519531 4.90625 52.929688 1.445312 41.859375 -5.46875 C 30.796875 -12.382812 22.6875 -21.5 17.53125 -32.8125 C 12.382812 -44.125 9.8125 -56.445312 9.8125 -69.78125 L 9.8125 -235.734375 L 58.078125 -235.734375 L 58.078125 -185.5625 L 160.671875 -185.5625 L 160.671875 -150.875 L 58.078125 -150.875 L 58.078125 -74.6875 C 58.078125 -63.113281 60.273438 -54.054688 64.671875 -47.515625 C 69.078125 -40.984375 76.3125 -37.71875 86.375 -37.71875 C 96.175781 -37.71875 103.398438 -40.859375 108.046875 -47.140625 C 112.703125 -53.429688 115.03125 -62.359375 115.03125 -73.921875 Z M 115.03125 -73.921875 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(444.442573, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(636.79786, 468.198927)"><g><path d="M 58.84375 0 L 9.8125 0 L 9.8125 -253.453125 L 58.84375 -253.453125 Z M 58.84375 0 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(710.345529, 468.198927)"><g><path d="M 59.96875 0 L 10.9375 0 L 10.9375 -185.5625 L 59.96875 -185.5625 Z M 59.96875 -207.828125 L 10.9375 -207.828125 L 10.9375 -253.453125 L 59.96875 -253.453125 Z M 59.96875 -207.828125 "/></g></g></g><g fill="#0a071a" fill-opacity="1"><g transform="translate(786.533335, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g><g clip-path="url(#m-322f0f8eda)"><g clip-path="url(#m-3528949e71)"><g transform="matrix(1, 0, 0, 1, 130, 302)"><g clip-path="url(#m-2075bd4751)"><g clip-path="url(#m-2e6d516ddf)"><g clip-path="url(#m-ba672c14f2)"><path fill="#000000" d="M 0.769531 113.425781 L 0.769531 0.832031 L 113.363281 0.832031 L 113.363281 113.425781 Z M 0.769531 113.425781 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#m-b874628567)"><g clip-path="url(#m-b55822e460)"><path stroke-linecap="butt" transform="matrix(0, -0.749152, 0.749152, 0, 0.639156, 480.500784)" fill="none" stroke-linejoin="miter" d="M 162.002025 0.00196066 C 72.531016 0.00196066 0.00104669 72.53193 0.00104669 161.997724 C 0.00104669 251.468733 72.531016 323.998702 162.002025 323.998702 C 251.467819 323.998702 323.997788 251.468733 323.997788 161.997724 C 323.997788 72.53193 251.467819 0.00196066 162.002025 0.00196066 Z M 162.002025 0.00196066 " stroke="#09071a" stroke-width="114" stroke-opacity="1" stroke-miterlimit="4"/></g></g></svg>
+      </div>
+
+      <h2 class="login-title" id="login-title">Bem-vindo de volta</h2>
+      <p class="login-subtitle">Acesse o painel da sua conta</p>
+
+      <!-- Google -->
+      <button class="btn-google" type="button">
+        <!-- Google "G" oficial -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continuar com o Google
+      </button>
+
+      <div class="login-divider">ou</div>
+
+      <!-- E-mail -->
+      <div class="login-field">
+        <label for="login-email">E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email" />
+      </div>
+
+      <!-- Senha -->
+      <div class="login-field">
+        <label for="login-password">Senha</label>
+        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+
+      <a href="#" class="login-forgot">Esqueceu a senha?</a>
+
+      <button class="btn-login-submit" type="button">Entrar</button>
+
+      <p class="login-footer">
+        Não tem conta ainda?
+        <a href="https://wa.me/554840426597" target="_blank" rel="noopener noreferrer">Fale com a gente</a>
+      </p>
+
+    </div>
+  </div>
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // --- Modal de Login ---
+    const overlay    = document.getElementById('login-overlay');
+    const btnOpen    = document.getElementById('btn-minha-conta');
+    const btnOpenMob = document.getElementById('btn-minha-conta-mobile');
+    const btnClose   = document.getElementById('login-close');
+
+    function openLogin() {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // foco no primeiro campo acessível
+      setTimeout(() => btnClose.focus(), 50);
+    }
+
+    function closeLogin() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnOpen.addEventListener('click', openLogin);
+    btnOpenMob.addEventListener('click', () => {
+      // fecha menu mobile antes de abrir modal
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      openLogin();
+    });
+    btnClose.addEventListener('click', closeLogin);
+
+    // Fechar clicando fora do card
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeLogin();
+    });
+
+    // Fechar com Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeLogin();
+    });
+
+    // --- Hamburger Menu ---
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Fechar menu ao clicar em um link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // --- Intersection Observer: Fade-in ao scroll ---
+    const fadeEls = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // dispara só uma vez
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Disparar visibilidade para elementos já na viewport ao carregar
+    window.addEventListener('load', () => {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // --- Pricing Toggle Mensal/Anual ---
+    const billingToggle = document.getElementById('billingToggle');
+    let isAnnual = false;
+
+    billingToggle.addEventListener('click', () => {
+      isAnnual = !isAnnual;
+      billingToggle.classList.toggle('active', isAnnual);
+      billingToggle.setAttribute('aria-checked', isAnnual);
+
+      // Update pricing for Starter plan
+      const starterCard = document.querySelector('[data-plan="starter"]');
+      if (starterCard) {
+        const amountEl = starterCard.querySelector('[data-price="monthly"]');
+        const periodEl = starterCard.querySelector('[data-period="monthly"]');
+        const btnEl = starterCard.querySelector('[data-btn-type="checkout"]');
+
+        if (isAnnual) {
+          amountEl.textContent = '997';
+          periodEl.textContent = '/ano';
+          btnEl.href = starterCard.dataset.annualCheckout;
+        } else {
+          amountEl.textContent = '97';
+          periodEl.textContent = '/mês';
+          btnEl.href = starterCard.dataset.monthlyCheckout;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
