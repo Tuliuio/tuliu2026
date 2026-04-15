@@ -1,11 +1,14 @@
-# Site Tuliu.io — Backup Local
+# Site Tuliu.io
+
+🚀 **Deploy automático via GitHub Actions + Hostinger**
 
 ## 📋 Informações
 
-- **URL Original:** https://tuliu.io
-- **Data do Download:** 13 de abril de 2026
+- **URL:** https://tuliu.io
+- **Repositório:** https://github.com/Tuliuio/tuliu2026
 - **Tipo:** Single Page Application (SPA)
 - **Estrutura:** Arquivo HTML único com CSS e JavaScript inline
+- **Deployment:** GitHub Actions → Hostinger API (automático a cada push)
 
 ## 📁 Conteúdo
 
