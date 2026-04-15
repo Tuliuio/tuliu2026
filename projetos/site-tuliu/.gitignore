@@ -1,0 +1,15 @@
+# Arquivos ocultos (começam com .)
+.*
+!.gitignore
+!.github
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Pastas de desenvolvimento
+node_modules/
+.venv/
