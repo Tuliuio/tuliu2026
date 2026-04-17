@@ -230,6 +230,31 @@
       border-bottom: 1px solid #f5f5f5;
     }
 
+    /* Language Selector */
+    .language-selector {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      background: transparent;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    .language-selector:hover {
+      color: #111;
+    }
+
+    .language-selector:focus {
+      outline: none;
+    }
+
     @media (max-width: 767px) {
       .navbar-links,
       .navbar-cta {
@@ -1267,6 +1292,10 @@
         </ul>
 
         <div class="navbar-cta">
+          <select class="language-selector" id="language-selector" aria-label="Seletor de idioma">
+            <option value="pt-BR">PT</option>
+            <option value="en">EN</option>
+          </select>
           <button class="btn btn-primary" id="btn-minha-conta" aria-haspopup="dialog">Minha conta</button>
         </div>
 
@@ -1352,10 +1381,7 @@
 
           <article class="feature-card fade-in fade-in-delay-1">
             <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                <circle cx="12" cy="12" r="1"/>
-                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm3.5-9c.8 0 1.5-.7 1.5-1.5S16.3 8 15.5 8 14 8.7 14 9.5s.7 1.5 1.5 1.5zm-7 0c.8 0 1.5-.7 1.5-1.5S9.3 8 8.5 8 7 8.7 7 9.5 7.7 11 8.5 11z"/>
-              </svg>
+              <i class="fas fa-globe"></i>
             </div>
             <h3>Domínios e DNS</h3>
             <p>Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.</p>
@@ -1363,9 +1389,7 @@
 
           <article class="feature-card fade-in fade-in-delay-2">
             <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                <path d="M17 16h-1V4h1c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2v12h-2V2c0-1.1-.9-2-2-2s-2 .9-2 2v14H8V6c0-1.1-.9-2-2-2s-2 .9-2 2v10H3c-1.1 0-2 .9-2 2s.9 2 2 2h1v2c0 1.1.9 2 2 2s2-.9 2-2v-2h2v4c0 1.1.9 2 2 2s2-.9 2-2v-4h2v2c0 1.1.9 2 2 2s2-.9 2-2v-2h1c1.1 0 2-.9 2-2s-.9-2-2-2z"/>
-              </svg>
+              <i class="fas fa-robot"></i>
             </div>
             <h3>Agentes de IA</h3>
             <p>Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos — prontos para atender, vender e automatizar.</p>
@@ -1373,9 +1397,7 @@
 
           <article class="feature-card fade-in fade-in-delay-3">
             <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                <path d="M12 15.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm0-9c.83 0 1.5.67 1.5 1.5S12.83 9.5 12 9.5s-1.5-.67-1.5-1.5S11.17 6.5 12 6.5zm7.43-2.53c.04-.32-.04-.64-.25-.89-.21-.25-.52-.41-.85-.41-.32 0-.63.16-.85.41-.21.25-.29.57-.25.89.32 1.73.32 3.48 0 5.21-.04.32.04.64.25.89.21.25.52.41.85.41.32 0 .63-.16.85-.41.21-.25.29-.57.25-.89-.32-1.73-.32-3.48 0-5.21zm-14.86 5.21c-.32-1.73-.32-3.48 0-5.21.04-.32-.04-.64-.25-.89-.21-.25-.52-.41-.85-.41-.32 0-.63.16-.85.41-.21.25-.29.57-.25.89-.32 1.73-.32 3.48 0 5.21-.04.32.04.64.25.89.21.25.52.41.85.41.32 0 .63-.16.85-.41.21-.25.29-.57.25-.89z"/>
-              </svg>
+              <i class="fas fa-cogs"></i>
             </div>
             <h3>Automações</h3>
             <p>Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam sem depender de você.</p>
@@ -1846,6 +1868,227 @@
         }
       }
     });
+
+    // --- Language Translation System ---
+    const translations = {
+      'pt-BR': {
+        // Header & Navigation
+        'Serviços': 'Serviços',
+        'Soluções': 'Soluções',
+        'Preços': 'Preços',
+        'Minha conta': 'Minha conta',
+        'Abrir menu': 'Abrir menu',
+        'Fechar menu': 'Fechar menu',
+        'Seletor de idioma': 'Seletor de idioma',
+
+        // Hero
+        'A sua empresa no digital,': 'A sua empresa no digital,',
+        'entregue e mantida por nós.': 'entregue e mantida por nós.',
+        'A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.': 'A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.',
+        'Sem equipe de TI. Sem fidelidade. Sem complicação.': 'Sem equipe de TI. Sem fidelidade. Sem complicação.',
+        'Veja o que entregamos': 'Veja o que entregamos',
+        'Quero minha infraestrutura': 'Quero minha infraestrutura',
+
+        // Features
+        'Feito por nós, para você': 'Feito por nós, para você',
+        'Feito por nós, rodando para você': 'Feito por nós, rodando para você',
+        'Fazemos tudo. Você só colhe os resultados.': 'Fazemos tudo. Você só colhe os resultados.',
+        'Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa — construída, configurada e mantida por nós, do início ao fim.': 'Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa — construída, configurada e mantida por nós, do início ao fim.',
+        'Domínios e DNS': 'Domínios e DNS',
+        'Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.': 'Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.',
+        'Agentes de IA': 'Agentes de IA',
+        'Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos — prontos para atender, vender e automatizar.': 'Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos — prontos para atender, vender e automatizar.',
+        'Automações': 'Automações',
+        'Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam sem depender de você.': 'Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam sem depender de você.',
+        'Ver como funciona na prática': 'Ver como funciona na prática',
+
+        // Integrations
+        'Conectamos com as ferramentas que você já usa': 'Conectamos com as ferramentas que você já usa',
+
+        // Pricing
+        'Planos e preços': 'Planos e preços',
+        'Escolha o plano ideal para sua empresa': 'Escolha o plano ideal para sua empresa',
+        'Starter': 'Starter',
+        'Ideal para pequenas empresas': 'Ideal para pequenas empresas',
+        'R$': 'R$',
+        '/mês': '/mês',
+        '/ano': '/ano',
+        'Contratação mensal, sem fidelidade': 'Contratação mensal, sem fidelidade',
+        'Começar agora': 'Começar agora',
+        'Business': 'Business',
+        'Para empresas em crescimento': 'Para empresas em crescimento',
+        'Enterprise': 'Enterprise',
+        'Soluções personalizadas': 'Soluções personalizadas',
+        'Entre em contato': 'Entre em contato',
+
+        // Pricing (more)
+        'Mais popular': 'Mais popular',
+        'Anual': 'Anual',
+        'Mensal': 'Mensal',
+        'Economize 14%': 'Economize 14%',
+        'Infraestrutura completa, sem depender de TI': 'Infraestrutura completa, sem depender de TI',
+        'Fale com vendas': 'Fale com vendas',
+        'Para operações digitais complexas': 'Para operações digitais complexas',
+        'A Tuliu cuida da sua base digital': 'A Tuliu cuida da sua base digital',
+        'Falar com especialista': 'Falar com especialista',
+
+        // Footer
+        'Tuliu': 'Tuliu',
+        'Infraestrutura Digital para Empresas': 'Infraestrutura Digital para Empresas',
+        'Links úteis': 'Links úteis',
+        '© 2025 Tuliu. Todos os direitos reservados.': '© 2025 Tuliu. Todos os direitos reservados.',
+        'Bem-vindo de volta': 'Bem-vindo de volta',
+        'Acesse o painel da sua conta': 'Acesse o painel da sua conta',
+        'Entrar': 'Entrar',
+        'Esqueceu a senha?': 'Esqueceu a senha?',
+        'E-mail': 'E-mail',
+        'Senha': 'Senha',
+        'ou': 'ou',
+        'Fale com a Tuliu': 'Fale com a Tuliu',
+        'Fale com a gente': 'Fale com a gente',
+        'Contato: tuliu@tuliu.io': 'Contato: tuliu@tuliu.io',
+        'English': 'English',
+        'Português': 'Português',
+      },
+      'en': {
+        // Header & Navigation
+        'Serviços': 'Services',
+        'Soluções': 'Solutions',
+        'Preços': 'Pricing',
+        'Minha conta': 'My Account',
+        'Abrir menu': 'Open menu',
+        'Fechar menu': 'Close menu',
+        'Seletor de idioma': 'Language selector',
+
+        // Hero
+        'A sua empresa no digital,': 'Your business in the digital world,',
+        'entregue e mantida por nós.': 'built and maintained by us.',
+        'A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.': 'Tuliu builds, delivers, and maintains your entire digital infrastructure: domains, websites, AI agents, integrations, and automations. You focus on your business. We handle the rest.',
+        'Sem equipe de TI. Sem fidelidade. Sem complicação.': 'No IT team. No commitment. No complications.',
+        'Veja o que entregamos': 'See what we deliver',
+        'Quero minha infraestrutura': 'I want my infrastructure',
+
+        // Features
+        'Feito por nós, para você': 'Built by us, for you',
+        'Feito por nós, rodando para você': 'Built by us, running for you',
+        'Fazemos tudo. Você só colhe os resultados.': 'We do everything. You just get the results.',
+        'Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa — construída, configurada e mantida por nós, do início ao fim.': 'Stop relying on multiple vendors, tutorials, or internal IT teams. Tuliu takes over your entire digital infrastructure — built, configured, and maintained by us from start to finish.',
+        'Domínios e DNS': 'Domains & DNS',
+        'Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.': 'We handle registration, DNS configuration, and SSL renewal. You don\'t need to do anything.',
+        'Agentes de IA': 'AI Agents',
+        'Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos — prontos para atender, vender e automatizar.': 'We develop and deploy intelligent agents on your website and internal systems — ready to serve, sell, and automate.',
+        'Automações': 'Automations',
+        'Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam sem depender de você.': 'We map your processes, connect your systems, and deliver automations that run without depending on you.',
+        'Ver como funciona na prática': 'See how it works in practice',
+
+        // Integrations
+        'Conectamos com as ferramentas que você já usa': 'We connect with the tools you already use',
+
+        // Pricing
+        'Planos e preços': 'Plans and Pricing',
+        'Escolha o plano ideal para sua empresa': 'Choose the perfect plan for your company',
+        'Starter': 'Starter',
+        'Ideal para pequenas empresas': 'Ideal for small businesses',
+        'R$': 'R$',
+        '/mês': '/month',
+        '/ano': '/year',
+        'Contratação mensal, sem fidelidade': 'Monthly billing, no commitment',
+        'Começar agora': 'Get Started',
+        'Business': 'Business',
+        'Para empresas em crescimento': 'For growing companies',
+        'Enterprise': 'Enterprise',
+        'Soluções personalizadas': 'Custom solutions',
+        'Entre em contato': 'Get in touch',
+
+        // Pricing (more)
+        'Mais popular': 'Most Popular',
+        'Anual': 'Annual',
+        'Mensal': 'Monthly',
+        'Economize 14%': 'Save 14%',
+        'Infraestrutura completa, sem depender de TI': 'Complete infrastructure, no IT dependency',
+        'Fale com vendas': 'Talk to sales',
+        'Para operações digitais complexas': 'For complex digital operations',
+        'A Tuliu cuida da sua base digital': 'Tuliu takes care of your digital foundation',
+        'Falar com especialista': 'Talk to an expert',
+
+        // Footer
+        'Tuliu': 'Tuliu',
+        'Infraestrutura Digital para Empresas': 'Digital Infrastructure for Businesses',
+        'Links úteis': 'Useful Links',
+        '© 2025 Tuliu. Todos os direitos reservados.': '© 2025 Tuliu. All rights reserved.',
+        'Bem-vindo de volta': 'Welcome back',
+        'Acesse o painel da sua conta': 'Access your account dashboard',
+        'Entrar': 'Sign in',
+        'Esqueceu a senha?': 'Forgot password?',
+        'E-mail': 'Email',
+        'Senha': 'Password',
+        'ou': 'or',
+        'Fale com a Tuliu': 'Talk to Tuliu',
+        'Fale com a gente': 'Get in touch',
+        'Contato: tuliu@tuliu.io': 'Contact: tuliu@tuliu.io',
+        'English': 'English',
+        'Português': 'Português',
+      }
+    };
+
+    // Initialize language from localStorage or default to pt-BR
+    let currentLanguage = localStorage.getItem('site-language') || 'pt-BR';
+    const languageSelector = document.getElementById('language-selector');
+    languageSelector.value = currentLanguage;
+
+    // Function to translate page content
+    function translatePage(lang) {
+      const html = document.documentElement;
+
+      // Update lang attribute
+      html.setAttribute('lang', lang === 'en' ? 'en' : 'pt-BR');
+
+      // Update document title
+      if (lang === 'en') {
+        document.title = 'Tuliu — Digital Infrastructure for Businesses';
+      } else {
+        document.title = 'Tuliu — Infraestrutura Digital para Empresas';
+      }
+
+      // Walk through all text nodes and translate
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
+
+      let node;
+      const nodesToReplace = [];
+
+      while (node = walker.nextNode()) {
+        const text = node.textContent.trim();
+        if (text && translations[lang] && translations[lang][text]) {
+          nodesToReplace.push({
+            node: node,
+            newText: translations[lang][text]
+          });
+        }
+      }
+
+      // Replace all text nodes
+      nodesToReplace.forEach(({ node, newText }) => {
+        node.textContent = newText;
+      });
+
+      // Save language preference
+      localStorage.setItem('site-language', lang);
+      currentLanguage = lang;
+    }
+
+    // Listen for language changes
+    languageSelector.addEventListener('change', (e) => {
+      translatePage(e.target.value);
+    });
+
+    // Apply saved language on page load
+    if (currentLanguage !== 'pt-BR') {
+      translatePage(currentLanguage);
+    }
   </script>
 
 </body>
