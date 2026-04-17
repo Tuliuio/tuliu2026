@@ -11,13 +11,13 @@ export const translations = {
       titleLine1: "A sua empresa no digital,",
       titleLine2: "entregue e mantida por nós.",
       subtitle: "A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.",
-      microcopy: "Sem equipe de TI. Sem fidelidade. Sem complicação.",
+
       videoLabel: "Veja o que entregamos",
       cta: "Quero minha infraestrutura"
     },
     features: {
       badge: "Feito por nós, para você",
-      title: "Fazemos tudo. Você só colhe os resultados.",
+      title: "Fazemos tudo por você.",
       subtitle: "Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa — construída, configurada e mantida por nós, do início ao fim.",
       card1Title: "Domínios e DNS",
       card1Desc: "Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.",
