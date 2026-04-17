@@ -1,933 +1,1621 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposta Comercial — Codimagem × Tuliu</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  /* ─── DESIGN SYSTEM TULIU ─── */
-  :root {
-    --color-black:      #0A0A0A;
-    --color-white:      #FFFFFF;
-    --color-gray-900:   #1A1A1A;
-    --color-gray-700:   #4B4B4B;
-    --color-gray-400:   #9CA3AF;
-    --color-gray-100:   #F5F5F5;
-    --color-gray-50:    #FAFAFA;
-    --color-purple-800: #3B0E6E;
-    --color-purple-deep:#1E0A3C;
-    --border:           #E5E7EB;
-    --shadow-sm:  0 1px 3px rgba(0,0,0,0.06);
-    --shadow-md:  0 4px 16px rgba(0,0,0,0.08);
-    --shadow-lg:  0 8px 32px rgba(0,0,0,0.10);
-    --shadow-xl:  0 16px 48px rgba(0,0,0,0.12);
-    --radius-sm:   8px;
-    --radius-md:  12px;
-    --radius-lg:  16px;
-    --radius-xl:  20px;
-    --radius-full: 999px;
-  }
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta Comercial: Codimagem x Tuliu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ─── DESIGN SYSTEM TULIU ─── */
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FFFFFF;
+      --color-gray-900: #1A1A1A;
+      --color-gray-700: #4B4B4B;
+      --color-gray-400: #9CA3AF;
+      --color-gray-100: #F5F5F5;
+      --color-gray-50: #FAFAFA;
+      --color-purple-800: #3B0E6E;
+      --color-purple-deep: #1E0A3C;
+      --border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+      --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-full: 999px;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--color-white);
-    color: var(--color-black);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-  .section { padding: 96px 0; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* EYEBROW */
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px; background: #F0F0F0;
-    border-radius: var(--radius-full);
-    font-size: 14px; font-weight: 500; color: var(--color-black);
-    margin-bottom: 24px;
-  }
-  .eyebrow__dot { font-size: 8px; }
+    body {
+      background: var(--color-white);
+      color: var(--color-black);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* TYPOGRAPHY */
-  .headline-primary {
-    font-size: clamp(40px, 6vw, 72px); font-weight: 900;
-    line-height: 1.05; color: var(--color-black); letter-spacing: -0.03em;
-  }
-  .headline-muted {
-    font-size: clamp(40px, 6vw, 72px); font-weight: 900;
-    line-height: 1.05; color: var(--color-gray-400); letter-spacing: -0.03em;
-  }
-  .section-title {
-    font-size: clamp(28px, 4vw, 48px); font-weight: 800;
-    line-height: 1.15; color: var(--color-black);
-    letter-spacing: -0.02em; margin-bottom: 16px;
-  }
-  .body-text {
-    font-size: 18px; font-weight: 400; line-height: 1.65;
-    color: var(--color-gray-700); max-width: 620px;
-  }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-  /* BUTTONS */
-  .btn-primary {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 16px 32px; background: var(--color-black); color: var(--color-white);
-    font-size: 16px; font-weight: 600; border-radius: var(--radius-full);
-    border: none; cursor: pointer; transition: background 0.2s;
-    text-decoration: none; font-family: 'Inter', sans-serif;
-  }
-  .btn-primary:hover { background: #333; }
+    .section {
+      padding: 96px 0;
+    }
 
-  .btn-outline-dark {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 16px 32px; background: transparent; color: var(--color-white);
-    font-size: 16px; font-weight: 600; border-radius: var(--radius-full);
-    border: 2px solid rgba(255,255,255,0.4);
-    cursor: pointer; transition: border-color 0.2s;
-    text-decoration: none; font-family: 'Inter', sans-serif;
-  }
-  .btn-outline-dark:hover { border-color: white; }
+    /* EYEBROW */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #F0F0F0;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-black);
+      margin-bottom: 24px;
+    }
 
-  /* ══ COVER ══ */
-  .cover {
-    background: var(--color-gray-50);
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
+    .eyebrow__dot {
+      font-size: 8px;
+    }
 
-  .cover-topbar {
-    border-bottom: 1px solid var(--border);
-  }
+    /* TYPOGRAPHY */
+    .headline-primary {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-black);
+      letter-spacing: -0.03em;
+    }
 
-  .cover-nav {
-    max-width: 1100px; margin: 0 auto; width: 100%; padding: 20px 24px;
-    display: flex; justify-content: space-between; align-items: center; gap: 24px;
-  }
+    .headline-muted {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-gray-400);
+      letter-spacing: -0.03em;
+    }
 
-  .nav-actions {
-    display: flex; align-items: center; gap: 16px; margin-left: auto;
-  }
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
 
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    font-weight: 800; font-size: 18px; color: var(--color-black);
-    letter-spacing: -0.5px; text-decoration: none;
-  }
+    .body-text {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--color-gray-700);
+      max-width: 620px;
+    }
 
-  .nav-logo svg {
-    width: 140px; height: auto;
-  }
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
 
-  .nav-logo-mark {
-    width: 32px; height: 32px; background: var(--color-black);
-    border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 16px;
-  }
+    .btn-primary:hover {
+      background: #333;
+    }
 
-  .nav-badge {
-    font-size: 13px; font-weight: 500; color: var(--color-gray-400);
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius-full); padding: 6px 14px;
-  }
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: transparent;
+      color: var(--color-white);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
 
-  .cover-body {
-    max-width: 1100px; margin: 0 auto; width: 100%;
-    padding: 72px 24px 0;
-  }
+    .btn-outline-dark:hover {
+      border-color: white;
+    }
 
-  .cover-footer {
-    max-width: 1100px; margin: 0 auto; width: 100%; padding: 40px 24px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 24px; flex-wrap: wrap;
-  }
+    /* ══ COVER ══ */
+    .cover {
+      background: var(--color-gray-50);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
 
-  .meta-block label {
-    display: block; font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 1px;
-    color: var(--color-gray-400); margin-bottom: 4px;
-  }
-  .meta-block p { font-size: 14px; font-weight: 600; color: var(--color-black); }
+    .cover-topbar {
+      border-bottom: 1px solid var(--border);
+    }
 
-  .validity-pill {
-    font-size: 13px; font-weight: 700;
-    background: var(--color-black); color: white;
-    border-radius: var(--radius-full); padding: 8px 20px;
-    white-space: nowrap;
-  }
+    .cover-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
 
-  /* ══ PROBLEM ══ */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
 
-  .problem-list { display: flex; flex-direction: column; }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
 
-  .problem-item {
-    display: flex; align-items: flex-start; gap: 20px;
-    padding: 22px 0; border-bottom: 1px solid var(--border);
-  }
-  .problem-item:first-child { border-top: 1px solid var(--border); }
+    .nav-logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--color-black);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
 
-  .problem-num {
-    font-size: 12px; font-weight: 700; color: var(--color-gray-400);
-    min-width: 28px; padding-top: 3px;
-  }
+    .nav-badge {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-gray-400);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+    }
 
-  .problem-item strong {
-    display: block; font-size: 15px; font-weight: 700;
-    color: var(--color-black); margin-bottom: 4px; letter-spacing: -0.2px;
-  }
-  .problem-item span { font-size: 14px; color: var(--color-gray-700); line-height: 1.6; }
+    .cover-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 72px 24px 0;
+    }
 
-  /* ══ SERVICE CARDS ══ */
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .cover-footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
 
-  .service-card {
-    background: white; border-radius: var(--radius-lg);
-    padding: 40px 36px; border: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 16px;
-    transition: box-shadow 0.2s;
-  }
-  .service-card:hover { box-shadow: var(--shadow-lg); }
+    .meta-block label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-gray-400);
+      margin-bottom: 4px;
+    }
 
-  .service-card__icon {
-    width: 52px; height: 52px; background: #F0F0F0;
-    border-radius: var(--radius-md);
-    display: flex; align-items: center; justify-content: center; font-size: 22px;
-  }
+    .meta-block p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-black);
+    }
 
-  .service-card__title { font-size: 18px; font-weight: 700; color: var(--color-black); letter-spacing: -0.3px; }
-  .service-card__desc { font-size: 15px; color: var(--color-gray-700); line-height: 1.65; }
+    .validity-pill {
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--color-black);
+      color: white;
+      border-radius: var(--radius-full);
+      padding: 8px 20px;
+      white-space: nowrap;
+    }
 
-  /* ══ MOCKUP ══ */
-  .screens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+    /* ══ PROBLEM ══ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
 
-  .screen-mockup {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl);
-  }
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+    }
 
-  .screen-bar {
-    background: var(--color-gray-100); padding: 10px 16px;
-    display: flex; align-items: center; gap: 6px;
-    border-bottom: 1px solid var(--border);
-  }
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r { background: #FF5F57; }
-  .dot-y { background: #FFBD2E; }
-  .dot-g { background: #28C840; }
-  .screen-url { font-size: 11px; color: var(--color-gray-400); margin-left: 8px; font-weight: 500; }
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
 
-  .screen-body { display: flex; height: 360px; overflow: hidden; }
+    .problem-item:first-child {
+      border-top: 1px solid var(--border);
+    }
 
-  .mock-sidebar {
-    width: 192px; min-width: 192px;
-    background: var(--color-black); padding: 14px;
-    display: flex; flex-direction: column; gap: 2px;
-  }
+    .problem-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-gray-400);
+      min-width: 28px;
+      padding-top: 3px;
+    }
 
-  .mock-logo-box {
-    background: white; border-radius: var(--radius-md); padding: 12px;
-    text-align: center; margin-bottom: 14px;
-  }
-  .mock-logo-name { font-weight: 800; font-size: 12px; color: var(--color-black); margin-top: 4px; }
-  .mock-logo-sub { font-size: 9px; color: var(--color-gray-400); line-height: 1.3; margin-top: 2px; }
+    .problem-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
 
-  .mock-nav {
-    padding: 7px 10px; border-radius: var(--radius-sm);
-    font-size: 11px; color: rgba(255,255,255,0.4);
-    display: flex; align-items: center; gap: 8px; font-weight: 500;
-  }
-  .mock-nav--active { background: rgba(255,255,255,0.08); color: white; }
-  .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15); min-width: 6px; }
-  .mock-nav--active .nav-dot { background: white; }
+    .problem-item span {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      line-height: 1.6;
+    }
 
-  .mock-content { flex: 1; padding: 18px; background: #FAFAFA; overflow: hidden; }
-  .mock-sub-header {
-    background: var(--color-black); color: white;
-    padding: 8px 12px; font-size: 10px; font-weight: 700;
-    letter-spacing: 1.5px; border-radius: var(--radius-sm); margin-bottom: 14px;
-  }
+    /* ══ SERVICE CARDS ══ */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
-  .mock-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 7px; }
+    .service-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: box-shadow 0.2s;
+    }
 
-  .mock-field {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 8px 10px;
-  }
-  .mock-field.full { grid-column: 1/-1; }
-  .mock-field label { display: block; font-size: 8px; font-weight: 700; color: var(--color-gray-400); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px; }
-  .mock-field .ph { font-size: 10px; color: #C8CCD2; }
+    .service-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
 
-  .mock-sublabel { font-size: 8px; font-weight: 700; color: var(--color-gray-400); text-transform: uppercase; letter-spacing: 1px; margin: 8px 0 6px; }
+    .service-card__icon {
+      width: 52px;
+      height: 52px;
+      background: #F0F0F0;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
 
-  .mock-odonto {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 10px; margin-bottom: 8px;
-  }
-  .odonto-label { font-size: 8px; font-weight: 700; text-align: center; color: var(--color-gray-400); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 7px; }
-  .odonto-row { display: flex; justify-content: center; gap: 3px; margin-bottom: 4px; }
+    .service-card__title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-black);
+      letter-spacing: -0.3px;
+    }
 
-  .tooth {
-    width: 18px; height: 20px; border: 1px solid var(--border);
-    border-radius: 3px; display: flex; align-items: center; justify-content: center;
-    font-size: 7px; font-weight: 500; color: var(--color-gray-400); background: white;
-  }
-  .tooth--on { background: var(--color-black); color: white; border-color: var(--color-black); }
+    .service-card__desc {
+      font-size: 15px;
+      color: var(--color-gray-700);
+      line-height: 1.65;
+    }
 
-  .mock-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 14px; font-size: 10px; color: var(--color-gray-700); }
+    /* ══ MOCKUP ══ */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
 
-  .mock-summary {
-    width: 148px; min-width: 148px;
-    padding: 14px; background: white; border-left: 1px solid var(--border);
-  }
-  .mock-sum-title { font-size: 11px; font-weight: 700; color: var(--color-black); margin-bottom: 10px; }
-  .mock-chip {
-    background: #F0F0F0; border-radius: var(--radius-sm);
-    padding: 5px 8px; font-size: 10px; font-weight: 500;
-    color: var(--color-black); margin-bottom: 4px;
-  }
-  .mock-empty { font-size: 10px; color: var(--color-gray-400); }
+    .screen-mockup {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
 
-  /* ══ STATS ══ */
-  .stats-row {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0; border: 1px solid var(--border);
-    border-radius: var(--radius-lg); overflow: hidden; margin-top: 56px;
-  }
-  .stat-item {
-    padding: 40px 36px; border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-num { font-size: 52px; font-weight: 900; color: var(--color-black); letter-spacing: -3px; line-height: 1; }
-  .stat-label { font-size: 15px; font-weight: 700; color: var(--color-black); }
-  .stat-desc { font-size: 14px; color: var(--color-gray-700); line-height: 1.55; }
+    .screen-bar {
+      background: var(--color-gray-100);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--border);
+    }
 
-  /* ══ PRICING ══ */
-  .grid-pricing { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start; margin-top: 56px; }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
 
-  .pricing-card {
-    background: white; border-radius: var(--radius-xl);
-    padding: 40px 36px; border: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 20px;
-  }
-  .pricing-card--featured { border: 2px solid var(--color-black); box-shadow: var(--shadow-xl); }
+    .dot-r {
+      background: #FF5F57;
+    }
 
-  .pc-badge {
-    display: inline-block; font-size: 12px; font-weight: 700;
-    background: var(--color-black); color: white;
-    padding: 4px 14px; border-radius: var(--radius-full); width: fit-content;
-  }
+    .dot-y {
+      background: #FFBD2E;
+    }
 
-  .pc-name { font-size: 22px; font-weight: 800; color: var(--color-black); letter-spacing: -0.5px; }
+    .dot-g {
+      background: #28C840;
+    }
 
-  .pc-impl {
-    display: flex; flex-direction: column; gap: 6px;
-    padding-bottom: 20px; border-bottom: 1px solid var(--border);
-  }
-  .pc-impl-label, .pc-monthly-label {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; color: var(--color-gray-400);
-  }
-  .pc-impl-price { display: flex; align-items: baseline; gap: 2px; }
+    .screen-url {
+      font-size: 11px;
+      color: var(--color-gray-400);
+      margin-left: 8px;
+      font-weight: 500;
+    }
 
-  .price-currency { font-size: 20px; font-weight: 700; color: var(--color-gray-700); }
-  .price-value { font-size: 52px; font-weight: 900; color: var(--color-black); letter-spacing: -3px; line-height: 1; }
-  .price-period { font-size: 16px; font-weight: 500; color: var(--color-gray-700); margin-left: 2px; }
+    .screen-body {
+      display: flex;
+      height: 360px;
+      overflow: hidden;
+    }
 
-  .installment-pill {
-    font-size: 13px; font-weight: 500; color: var(--color-gray-700);
-    background: #F0F0F0; border-radius: var(--radius-full);
-    padding: 4px 12px; display: inline-block; width: fit-content;
-  }
+    .mock-sidebar {
+      width: 192px;
+      min-width: 192px;
+      background: var(--color-black);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-  .pc-monthly { display: flex; flex-direction: column; gap: 6px; }
-  .pc-monthly-price { display: flex; align-items: baseline; gap: 2px; }
-  .pc-monthly-price .price-value { font-size: 36px; }
+    .mock-logo-box {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
 
-  .pc-features { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-  .pc-features li { font-size: 14px; color: var(--color-gray-700); padding-left: 22px; position: relative; line-height: 1.5; }
-  .pc-features li::before { content: '✓'; position: absolute; left: 0; color: var(--color-black); font-weight: 700; font-size: 13px; }
-  .pc-features li.off { color: var(--color-gray-400); }
-  .pc-features li.off::before { content: '—'; color: var(--color-gray-400); font-weight: 400; }
-  .pc-features li.bold { font-weight: 700; color: var(--color-black); }
+    .mock-logo-name {
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--color-black);
+      margin-top: 4px;
+    }
 
-  /* ══ JOURNEY ══ */
-  .journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .mock-logo-sub {
+      font-size: 9px;
+      color: var(--color-gray-400);
+      line-height: 1.3;
+      margin-top: 2px;
+    }
 
-  .journey-card {
-    background: white; border-radius: var(--radius-lg);
-    padding: 36px 28px; border: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 12px; position: relative;
-  }
-  .journey-card--on { background: var(--color-black); border-color: var(--color-black); }
+    .mock-nav {
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
 
-  .jc-step { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-gray-400); }
-  .journey-card--on .jc-step { color: rgba(255,255,255,0.35); }
+    .mock-nav--active {
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+    }
 
-  .jc-icon { font-size: 28px; }
-  .jc-title { font-size: 17px; font-weight: 700; color: var(--color-black); letter-spacing: -0.3px; }
-  .journey-card--on .jc-title { color: white; }
-  .jc-desc { font-size: 14px; color: var(--color-gray-700); line-height: 1.6; }
-  .journey-card--on .jc-desc { color: rgba(255,255,255,0.45); }
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      min-width: 6px;
+    }
 
-  .here-pill {
-    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-    background: white; border: 2px solid var(--color-black);
-    border-radius: var(--radius-full);
-    font-size: 11px; font-weight: 700; padding: 3px 12px;
-    white-space: nowrap; color: var(--color-black);
-  }
+    .mock-nav--active .nav-dot {
+      background: white;
+    }
 
-  /* ══ NOTICE BOX ══ */
-  .notice-box {
-    background: var(--color-gray-50); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 24px 32px;
-    display: flex; align-items: center; gap: 20px; margin-top: 32px;
-  }
-  .notice-box__icon { font-size: 24px; min-width: 24px; }
-  .notice-box__title { font-size: 15px; font-weight: 700; color: var(--color-black); margin-bottom: 4px; }
-  .notice-box__desc { font-size: 13px; color: var(--color-gray-700); line-height: 1.6; }
+    .mock-content {
+      flex: 1;
+      padding: 18px;
+      background: #FAFAFA;
+      overflow: hidden;
+    }
 
-  .pricing-footer-note {
-    background: var(--color-gray-100); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 28px 32px;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 32px; margin-top: 24px;
-  }
-  .pfn-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-gray-400); margin-bottom: 4px; }
-  .pfn-val { font-size: 32px; font-weight: 900; color: var(--color-black); letter-spacing: -1.5px; }
+    .mock-sub-header {
+      background: var(--color-black);
+      color: white;
+      padding: 8px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+    }
 
-  /* ══ CTA DARK ══ */
-  .cta-dark-wrap { padding: 96px 0; }
-  .cta-dark {
-    background: linear-gradient(135deg, #1E0A3C 0%, #3B0E6E 50%, #1A1A2E 100%);
-    border-radius: var(--radius-xl); padding: 96px 48px;
-    text-align: center; color: white; margin: 0 24px;
-  }
-  .cta-dark__eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px; background: rgba(255,255,255,0.1);
-    border-radius: var(--radius-full); font-size: 14px; font-weight: 500;
-    color: white; margin-bottom: 24px;
-  }
-  .cta-dark__title {
-    font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: white;
-    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px;
-  }
-  .cta-dark__desc {
-    font-size: 18px; color: rgba(255,255,255,0.65);
-    max-width: 520px; margin: 0 auto 16px; line-height: 1.65;
-  }
-  .cta-urgency {
-    font-size: 12px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 2px; color: rgba(255,255,255,0.35);
-    margin-bottom: 36px;
-  }
-  .cta-btns { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .cta-note { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.25); }
+    .mock-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 7px;
+    }
 
-  /* ══ FOOTER ══ */
-  .footer {
-    background: var(--color-gray-100); padding: 48px 24px 32px;
-    display: flex; flex-direction: column; align-items: center; gap: 16px;
-    border-top: 1px solid var(--border);
-  }
-  .footer-brand { font-size: 18px; font-weight: 900; color: var(--color-black); letter-spacing: -0.5px; }
-  .footer-contact { font-size: 14px; color: var(--color-gray-700); text-align: center; }
-  .footer-contact a { color: var(--color-black); font-weight: 700; text-decoration: none; }
-  .footer-copy { font-size: 12px; color: var(--color-gray-400); text-align: center; }
+    .mock-field {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+    }
 
-  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-  .cover-body { animation: fadeUp 0.6s ease forwards; }
-</style>
+    .mock-field.full {
+      grid-column: 1/-1;
+    }
+
+    .mock-field label {
+      display: block;
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--color-gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 3px;
+    }
+
+    .mock-field .ph {
+      font-size: 10px;
+      color: #C8CCD2;
+    }
+
+    .mock-sublabel {
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--color-gray-400);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 8px 0 6px;
+    }
+
+    .mock-odonto {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .odonto-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--color-gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 7px;
+    }
+
+    .odonto-row {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+
+    .tooth {
+      width: 18px;
+      height: 20px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7px;
+      font-weight: 500;
+      color: var(--color-gray-400);
+      background: white;
+    }
+
+    .tooth--on {
+      background: var(--color-black);
+      color: white;
+      border-color: var(--color-black);
+    }
+
+    .mock-checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 14px;
+      font-size: 10px;
+      color: var(--color-gray-700);
+    }
+
+    .mock-summary {
+      width: 148px;
+      min-width: 148px;
+      padding: 14px;
+      background: white;
+      border-left: 1px solid var(--border);
+    }
+
+    .mock-sum-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: 10px;
+    }
+
+    .mock-chip {
+      background: #F0F0F0;
+      border-radius: var(--radius-sm);
+      padding: 5px 8px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--color-black);
+      margin-bottom: 4px;
+    }
+
+    .mock-empty {
+      font-size: 10px;
+      color: var(--color-gray-400);
+    }
+
+    /* ══ STATS ══ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 56px;
+    }
+
+    .stat-item {
+      padding: 40px 36px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-black);
+    }
+
+    .stat-desc {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      line-height: 1.55;
+    }
+
+    /* ══ PRICING ══ */
+    .grid-pricing {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-top: 56px;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .pricing-card--featured {
+      border: 2px solid var(--color-black);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .pc-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--color-black);
+      color: white;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      width: fit-content;
+    }
+
+    .pc-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+    }
+
+    .pc-impl {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pc-impl-label,
+    .pc-monthly-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-gray-400);
+    }
+
+    .pc-impl-price {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .price-currency {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-gray-700);
+    }
+
+    .price-value {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .price-period {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-gray-700);
+      margin-left: 2px;
+    }
+
+    .installment-pill {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-gray-700);
+      background: #F0F0F0;
+      border-radius: var(--radius-full);
+      padding: 4px 12px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .pc-monthly {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pc-monthly-price {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .pc-monthly-price .price-value {
+      font-size: 36px;
+    }
+
+    .pc-features {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pc-features li {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .pc-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-black);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .pc-features li.off {
+      color: var(--color-gray-400);
+    }
+
+    .pc-features li.off::before {
+      content: '-';
+      color: var(--color-gray-400);
+      font-weight: 400;
+    }
+
+    .pc-features li.bold {
+      font-weight: 700;
+      color: var(--color-black);
+    }
+
+    /* ══ JOURNEY ══ */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .journey-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .journey-card--on {
+      background: var(--color-black);
+      border-color: var(--color-black);
+    }
+
+    .jc-step {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-gray-400);
+    }
+
+    .journey-card--on .jc-step {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .jc-icon {
+      font-size: 28px;
+    }
+
+    .jc-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-black);
+      letter-spacing: -0.3px;
+    }
+
+    .journey-card--on .jc-title {
+      color: white;
+    }
+
+    .jc-desc {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      line-height: 1.6;
+    }
+
+    .journey-card--on .jc-desc {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .here-pill {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 2px solid var(--color-black);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      white-space: nowrap;
+      color: var(--color-black);
+    }
+
+    /* ══ NOTICE BOX ══ */
+    .notice-box {
+      background: var(--color-gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .notice-box__icon {
+      font-size: 24px;
+      min-width: 24px;
+    }
+
+    .notice-box__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: 4px;
+    }
+
+    .notice-box__desc {
+      font-size: 13px;
+      color: var(--color-gray-700);
+      line-height: 1.6;
+    }
+
+    .pricing-footer-note {
+      background: var(--color-gray-100);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .pfn-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-gray-400);
+      margin-bottom: 4px;
+    }
+
+    .pfn-val {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -1.5px;
+    }
+
+    /* ══ CTA DARK ══ */
+    .cta-dark-wrap {
+      padding: 96px 0;
+    }
+
+    .cta-dark {
+      background: linear-gradient(135deg, #1E0A3C 0%, #3B0E6E 50%, #1A1A2E 100%);
+      border-radius: var(--radius-xl);
+      padding: 96px 48px;
+      text-align: center;
+      color: white;
+      margin: 0 24px;
+    }
+
+    .cta-dark__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .cta-dark__title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cta-dark__desc {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 520px;
+      margin: 0 auto 16px;
+      line-height: 1.65;
+    }
+
+    .cta-urgency {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 36px;
+    }
+
+    .cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-note {
+      margin-top: 24px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ══ FOOTER ══ */
+    .footer {
+      background: var(--color-gray-100);
+      padding: 48px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-contact {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      text-align: center;
+    }
+
+    .footer-contact a {
+      color: var(--color-black);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      text-align: center;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cover-body {
+      animation: fadeUp 0.6s ease forwards;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ══════════ COVER ══════════ -->
-<div class="cover">
-  <div class="cover-topbar">
-    <div class="cover-nav">
-      <a class="nav-logo" href="/" title="Voltar ao site">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" zoomAndPan="magnify" viewBox="0 0 1350.75 662.249984" preserveAspectRatio="xMidYMid meet" version="1.0">
-          <g fill="#0a071a" fill-opacity="1"><g transform="translate(269.81416, 468.198927)"><g><path d="M 115.03125 -73.921875 L 115.03125 -122.203125 L 160.671875 -122.203125 L 160.671875 -69.40625 C 160.671875 -56.320312 158.03125 -44.125 152.75 -32.8125 C 147.46875 -21.5 139.359375 -12.382812 128.421875 -5.46875 C 117.484375 1.445312 103.21875 4.90625 85.625 4.90625 C 67.519531 4.90625 52.929688 1.445312 41.859375 -5.46875 C 30.796875 -12.382812 22.6875 -21.5 17.53125 -32.8125 C 12.382812 -44.125 9.8125 -56.445312 9.8125 -69.78125 L 9.8125 -235.734375 L 58.078125 -235.734375 L 58.078125 -185.5625 L 160.671875 -185.5625 L 160.671875 -150.875 L 58.078125 -150.875 L 58.078125 -74.6875 C 58.078125 -63.113281 60.273438 -54.054688 64.671875 -47.515625 C 69.078125 -40.984375 76.3125 -37.71875 86.375 -37.71875 C 96.175781 -37.71875 103.398438 -40.859375 108.046875 -47.140625 C 112.703125 -53.429688 115.03125 -62.359375 115.03125 -73.921875 Z M 115.03125 -73.921875 "/></g></g></g>
-          <g fill="#0a071a" fill-opacity="1"><g transform="translate(444.442573, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g>
-          <g fill="#0a071a" fill-opacity="1"><g transform="translate(636.79786, 468.198927)"><g><path d="M 58.84375 0 L 9.8125 0 L 9.8125 -253.453125 L 58.84375 -253.453125 Z M 58.84375 0 "/></g></g></g>
-          <g fill="#0a071a" fill-opacity="1"><g transform="translate(710.345529, 468.198927)"><g><path d="M 59.96875 0 L 10.9375 0 L 10.9375 -185.5625 L 59.96875 -185.5625 Z M 59.96875 -207.828125 L 10.9375 -207.828125 L 10.9375 -253.453125 L 59.96875 -253.453125 Z M 59.96875 -207.828125 "/></g></g></g>
-          <g fill="#0a071a" fill-opacity="1"><g transform="translate(786.533335, 468.198927)"><g><path d="M 176.890625 0 L 130.5 0 L 130.5 -26.03125 C 117.925781 -5.40625 98.691406 4.90625 72.796875 4.90625 C 60.472656 4.90625 49.597656 2.015625 40.171875 -3.765625 C 30.742188 -9.554688 23.328125 -17.539062 17.921875 -27.71875 C 12.515625 -37.90625 9.8125 -49.785156 9.8125 -63.359375 L 9.8125 -185.5625 L 58.84375 -185.5625 L 58.84375 -70.90625 C 58.84375 -47.769531 69.273438 -36.203125 90.140625 -36.203125 C 102.710938 -36.203125 112.203125 -40.160156 118.609375 -48.078125 C 125.023438 -56.003906 128.234375 -66.128906 128.234375 -78.453125 L 128.234375 -185.5625 L 176.890625 -185.5625 Z M 176.890625 0 "/></g></g></g>
-        </svg>
-      </a>
-      <div class="nav-actions">
-        <span class="nav-badge">Digital Infrastructure by Tuliu</span>
-        <a href="/" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">← Voltar ao site</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="cover-body">
-    <span class="eyebrow"><span class="eyebrow__dot">●</span> Proposta Comercial · Abril 2026</span>
-    <div class="headline-primary">Requisição Online</div>
-    <div class="headline-muted">para a Codimagem.</div>
-    <p class="body-text" style="margin-top:28px">
-      Uma plataforma digital sob medida para modernizar o fluxo de pedidos de exames —
-      reduzindo papel, agilizando o trabalho dos seus dentistas parceiros e posicionando
-      a Codimagem à frente da concorrência.
-    </p>
-  </div>
-
-  <div class="cover-footer">
-    <div class="meta-block">
-      <label>Preparado por</label>
-      <p>Tom · Tuliu Digital Infrastructure</p>
-    </div>
-    <div class="meta-block">
-      <label>Apresentado a</label>
-      <p>Codimagem — Centro Odontológico de Diagnóstico por Imagem</p>
-    </div>
-    <div class="meta-block">
-      <label>Data</label>
-      <p>Abril de 2026</p>
-    </div>
-    <span class="validity-pill">Válida por 15 dias</span>
-  </div>
-</div>
-
-
-<!-- ══════════ PROBLEMA ══════════ -->
-<div class="section" style="background:white">
-  <div class="container">
-    <div class="two-col">
-      <div>
-        <span class="eyebrow"><span class="eyebrow__dot">●</span> O cenário atual</span>
-        <h2 class="section-title">O papel ainda custa caro.</h2>
-        <p class="body-text">
-          Cada requisição em papel é um ponto de atrito — para o dentista que preenche,
-          para a recepcionista que digita, e para o paciente que espera. Com 14 tipos de
-          exame diferentes, a Codimagem merece um processo à altura da sua especialidade.
-        </p>
-      </div>
-      <div class="problem-list" style="padding-top:8px">
-        <div class="problem-item">
-          <span class="problem-num">01</span>
-          <div>
-            <strong>Perda de informação</strong>
-            <span>Formulários incompletos, caligrafia ilegível e dados faltando atrasam laudos e geram retrabalho.</span>
-          </div>
-        </div>
-        <div class="problem-item">
-          <span class="problem-num">02</span>
-          <div>
-            <strong>Custo logístico real</strong>
-            <span>Impressão, arquivo físico e transporte de requisições — custos invisíveis que se acumulam todo mês.</span>
-          </div>
-        </div>
-        <div class="problem-item">
-          <span class="problem-num">03</span>
-          <div>
-            <strong>Fricção para o dentista parceiro</strong>
-            <span>Quanto mais simples for o processo para quem indica, mais indicações a Codimagem recebe.</span>
-          </div>
-        </div>
-        <div class="problem-item">
-          <span class="problem-num">04</span>
-          <div>
-            <strong>Zero visibilidade de dados</strong>
-            <span>Sem registro digital, não há visibilidade sobre volume, tendências ou performance por tipo de exame.</span>
-          </div>
+  <!-- ══════════ COVER ══════════ -->
+  <div class="cover">
+    <div class="cover-topbar">
+      <div class="cover-nav">
+        <a class="nav-logo" href="/" title="Voltar ao site">
+          <img src="https://tuliu.io/assets/logo-Cd9A8hQ2.svg" alt="Tuliu Logo" style="width: 140px; height: auto;" />
+        </a>
+        <div class="nav-actions">
+          <span class="nav-badge">Digital Infrastructure by Tuliu</span>
+          <a href="/" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">← Voltar ao site</a>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-
-<!-- ══════════ FEATURES ══════════ -->
-<div class="section" style="background:var(--color-gray-50)">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:56px">
-      <span class="eyebrow"><span class="eyebrow__dot">●</span> A solução Tuliu</span>
-      <h2 class="section-title">Uma plataforma feita para a Codimagem.</h2>
-      <p class="body-text" style="margin:0 auto">
-        Implementamos todas as regras de negócio da Codimagem — totalmente customizável,
-        acessível de qualquer dispositivo, com sua identidade visual.
+    <div class="cover-body">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Proposta Comercial · Abril 2026</span>
+      <div class="headline-primary">Requisição Online</div>
+      <div class="headline-muted">para a Codimagem.</div>
+      <p class="body-text" style="margin-top:28px">
+        Uma plataforma digital sob medida para modernizar o fluxo de pedidos de exames -
+        reduzindo papel, agilizando o trabalho dos seus dentistas parceiros e posicionando
+        a Codimagem à frente da concorrência.
       </p>
     </div>
-    <div class="grid-3">
-      <div class="service-card">
-        <div class="service-card__icon">🦷</div>
-        <h3 class="service-card__title">Odontograma Digital Interativo</h3>
-        <p class="service-card__desc">Seleção visual clicável de dentes para Tomografia Cone Beam, radiografias intrabucais e extrabucais — exatamente como a Codimagem trabalha.</p>
+
+    <div class="cover-footer">
+      <div class="meta-block">
+        <label>Preparado por</label>
+        <p>Tom · Tuliu Digital Infrastructure</p>
       </div>
-      <div class="service-card">
-        <div class="service-card__icon">📋</div>
-        <h3 class="service-card__title">Fluxo de 14 Seções Guiado</h3>
-        <p class="service-card__desc">Tomografia Cone Beam, Cirurgia Guiada, DSD, Alinhadores, Análises Cefalométricas, Escaneamento Intraoral — tudo em etapas claras e objetivas.</p>
+      <div class="meta-block">
+        <label>Apresentado a</label>
+        <p>Codimagem: Centro Odontológico de Diagnóstico por Imagem</p>
       </div>
-      <div class="service-card">
-        <div class="service-card__icon">✅</div>
-        <h3 class="service-card__title">Resumo em Tempo Real</h3>
-        <p class="service-card__desc">Painel lateral atualizado com todos os exames selecionados antes de confirmar, eliminando erros e esquecimentos do dentista.</p>
+      <div class="meta-block">
+        <label>Data</label>
+        <p>Abril de 2026</p>
       </div>
-      <div class="service-card">
-        <div class="service-card__icon">💬</div>
-        <h3 class="service-card__title">Entrega Direta no WhatsApp</h3>
-        <p class="service-card__desc">A requisição é enviada com um clique para o número da Codimagem, com todas as informações organizadas e prontas para atendimento.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-card__icon">📱</div>
-        <h3 class="service-card__title">100% Responsivo — Mobile First</h3>
-        <p class="service-card__desc">O dentista preenche no consultório, no celular ou onde estiver. Experiência fluida em qualquer tela, sem instalação de app.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-card__icon">⚙️</div>
-        <h3 class="service-card__title">100% Customizável</h3>
-        <p class="service-card__desc">Cada regra de negócio da Codimagem é implementada: exames específicos, campos obrigatórios, fluxos especiais. Nada fica de fora.</p>
+      <span class="validity-pill">Válida por 15 dias</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PROBLEMA ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="eyebrow"><span class="eyebrow__dot">●</span> O cenário atual</span>
+          <h2 class="section-title">O papel ainda custa caro.</h2>
+          <p class="body-text">
+            Cada requisição em papel é um ponto de atrito: para o dentista que preenche,
+            para a recepcionista que digita, e para o paciente que espera. Com 14 tipos de
+            exame diferentes, a Codimagem merece um processo à altura da sua especialidade.
+          </p>
+        </div>
+        <div class="problem-list" style="padding-top:8px">
+          <div class="problem-item">
+            <span class="problem-num">01</span>
+            <div>
+              <strong>Perda de informação</strong>
+              <span>Formulários incompletos, caligrafia ilegível e dados faltando atrasam laudos e geram
+                retrabalho.</span>
+            </div>
+          </div>
+          <div class="problem-item">
+            <span class="problem-num">02</span>
+            <div>
+              <strong>Custo logístico real</strong>
+              <span>Impressão, arquivo físico e transporte de requisições: custos invisíveis que se acumulam todo
+                mês.</span>
+            </div>
+          </div>
+          <div class="problem-item">
+            <span class="problem-num">03</span>
+            <div>
+              <strong>Fricção para o dentista parceiro</strong>
+              <span>Quanto mais simples for o processo para quem indica, mais indicações a Codimagem recebe.</span>
+            </div>
+          </div>
+          <div class="problem-item">
+            <span class="problem-num">04</span>
+            <div>
+              <strong>Zero visibilidade de dados</strong>
+              <span>Sem registro digital, não há visibilidade sobre volume, tendências ou performance por tipo de
+                exame.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- ══════════ MOCKUPS ══════════ -->
-<div class="section" style="background:white">
-  <div class="container">
-    <span class="eyebrow"><span class="eyebrow__dot">●</span> O sistema em funcionamento</span>
-    <h2 class="section-title">Desenvolvido e validado na prática.</h2>
-    <p class="body-text">
-      O mesmo motor tecnológico já está em produção para a Oralrad — outro centro de radiologia
-      odontológica. Para a Codimagem, implementamos a mesma base com identidade e regras de negócio próprias.
-    </p>
-
-    <div class="screens-grid">
-      <!-- Mockup 1 -->
-      <div class="screen-mockup">
-        <div class="screen-bar">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
-          <span class="screen-url">requisicao.codimagem.com.br — Dados do Paciente 1/14</span>
-        </div>
-        <div class="screen-body">
-          <div class="mock-sidebar">
-            <div class="mock-logo-box">
-              <div style="font-size:18px">🦷</div>
-              <div class="mock-logo-name">Codimagem</div>
-              <div class="mock-logo-sub">Centro Odontológico<br>de Diagnóstico por Imagem</div>
-            </div>
-            <div class="mock-nav mock-nav--active"><div class="nav-dot"></div> Dados do Paciente</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Informações Clínicas</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Tomografia Cone Beam</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Motivo do Exame</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Cirurgia Guiada</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Doc. Ortodônticas</div>
-            <div class="mock-nav"><div class="nav-dot"></div> DSD</div>
-          </div>
-          <div class="mock-content">
-            <div class="mock-sub-header">DADOS DO PACIENTE E PROFISSIONAL</div>
-            <div class="mock-sublabel">Paciente</div>
-            <div class="mock-row">
-              <div class="mock-field full"><label>Nome *</label><div class="ph">Nome completo do paciente</div></div>
-            </div>
-            <div class="mock-row">
-              <div class="mock-field"><label>E-mail</label><div class="ph">email@paciente.com</div></div>
-              <div class="mock-field"><label>Data de nascimento *</label><div class="ph">DD/MM/AAAA</div></div>
-            </div>
-            <div class="mock-sublabel">Profissional</div>
-            <div class="mock-row">
-              <div class="mock-field"><label>Nome *</label><div class="ph">Nome do dentista</div></div>
-              <div class="mock-field"><label>CRO</label><div class="ph">SC 12345</div></div>
-            </div>
-          </div>
-          <div class="mock-summary">
-            <div class="mock-sum-title">Resumo da Requisição</div>
-            <div class="mock-empty">Nenhum item selecionado ainda.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mockup 2 -->
-      <div class="screen-mockup">
-        <div class="screen-bar">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
-          <span class="screen-url">requisicao.codimagem.com.br — Tomografia Cone Beam 3/14</span>
-        </div>
-        <div class="screen-body">
-          <div class="mock-sidebar">
-            <div class="mock-logo-box">
-              <div style="font-size:18px">🦷</div>
-              <div class="mock-logo-name">Codimagem</div>
-              <div class="mock-logo-sub">Centro Odontológico<br>de Diagnóstico por Imagem</div>
-            </div>
-            <div class="mock-nav"><div class="nav-dot"></div> Dados do Paciente</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Informações Clínicas</div>
-            <div class="mock-nav mock-nav--active"><div class="nav-dot"></div> Tomografia Cone Beam</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Motivo do Exame</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Cirurgia Guiada</div>
-            <div class="mock-nav"><div class="nav-dot"></div> DSD</div>
-            <div class="mock-nav"><div class="nav-dot"></div> Alinhadores</div>
-          </div>
-          <div class="mock-content">
-            <div class="mock-sub-header">TOMOGRAFIA CONE BEAM</div>
-            <div class="mock-odonto">
-              <div class="odonto-label">Permanentes Superiores — Clique para selecionar</div>
-              <div class="odonto-row">
-                <div class="tooth">18</div><div class="tooth">17</div>
-                <div class="tooth tooth--on">16</div><div class="tooth tooth--on">15</div>
-                <div class="tooth">14</div><div class="tooth">13</div>
-                <div class="tooth">12</div><div class="tooth">11</div>
-                <div class="tooth">21</div><div class="tooth">22</div>
-                <div class="tooth">23</div><div class="tooth">24</div>
-                <div class="tooth">25</div><div class="tooth">26</div>
-                <div class="tooth">27</div><div class="tooth">28</div>
-              </div>
-              <div class="odonto-label" style="margin-top:7px">Permanentes Inferiores</div>
-              <div class="odonto-row">
-                <div class="tooth">48</div><div class="tooth">47</div>
-                <div class="tooth">46</div><div class="tooth">45</div>
-                <div class="tooth">44</div><div class="tooth">43</div>
-                <div class="tooth">42</div><div class="tooth">41</div>
-                <div class="tooth">31</div><div class="tooth">32</div>
-                <div class="tooth">33</div><div class="tooth">34</div>
-                <div class="tooth">35</div><div class="tooth tooth--on">36</div>
-                <div class="tooth tooth--on">37</div><div class="tooth">38</div>
-              </div>
-            </div>
-            <div class="mock-checks">
-              <div>☐ Maxila &nbsp;☐ zigomático</div>
-              <div>☑ ATMs em oclusão</div>
-              <div>☐ Mandíbula</div>
-              <div>☐ Seios da face</div>
-              <div>☐ Total (maxila + mandíbula)</div>
-              <div>☐ Total Invisalign</div>
-            </div>
-          </div>
-          <div class="mock-summary">
-            <div class="mock-sum-title">Resumo</div>
-            <div class="mock-chip">🦷 Dentes 15, 16, 36, 37</div>
-            <div class="mock-chip">✅ ATMs em oclusão</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notice-box">
-      <div class="notice-box__icon">💡</div>
-      <div>
-        <div class="notice-box__title">Sistema testado e validado em produção</div>
-        <div class="notice-box__desc">O mesmo motor já roda para a Oralrad. Para a Codimagem, cada seção, exame e regra de negócio será implementada conforme a sua realidade clínica — sem adaptações genéricas.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════ STATS ══════════ -->
-<div class="section" style="background:var(--color-gray-50)">
-  <div class="container">
-    <span class="eyebrow"><span class="eyebrow__dot">●</span> Por que agora?</span>
-    <h2 class="section-title">Chegar na frente tem valor.</h2>
-    <p class="body-text">
-      Os dentistas parceiros da Codimagem avaliam constantemente com quais clínicas trabalham melhor.
-      Uma requisição digital fluida não é só comodidade — é fidelização e diferenciação que a concorrência ainda não tem.
-    </p>
-    <div class="stats-row">
-      <div class="stat-item">
-        <div class="stat-num">Zero</div>
-        <div class="stat-label">papel, impressão ou arquivo físico</div>
-        <div class="stat-desc">Redução imediata de custo operacional desde o primeiro dia de uso.</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">14</div>
-        <div class="stat-label">seções de exame mapeadas e digitalizadas</div>
-        <div class="stat-desc">De Tomografia Cone Beam a Análises Cefalométricas — tudo dentro da plataforma.</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">das regras de negócio implementadas</div>
-        <div class="stat-desc">Nenhuma adaptação genérica — o sistema funciona exatamente como você trabalha.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════ PRICING ══════════ -->
-<div class="section" style="background:white">
-  <div class="container">
-    <span class="eyebrow"><span class="eyebrow__dot">●</span> Investimento</span>
-    <h2 class="section-title">Simples, transparente e sem surpresas.</h2>
-    <p class="body-text">
-      Dois planos para diferentes momentos da jornada digital da Codimagem. Em qualquer um,
-      a implementação é idêntica — o que muda é o poder da infraestrutura de operação mensal.
-    </p>
-
-    <div class="grid-pricing">
-      <!-- ESSENCIAL -->
-      <div class="pricing-card">
-        <div class="pc-name">Essencial</div>
-        <div class="pc-impl">
-          <div class="pc-impl-label">Implementação única</div>
-          <div class="pc-impl-price">
-            <span class="price-currency">R$</span>
-            <span class="price-value">2.789</span>
-          </div>
-          <span class="installment-pill">ou 10× R$ 278,90 sem juros no cartão</span>
-        </div>
-        <div class="pc-monthly">
-          <div class="pc-monthly-label">Operação mensal</div>
-          <div class="pc-monthly-price">
-            <span class="price-currency">R$</span>
-            <span class="price-value">97</span>
-            <span class="price-period">/mês</span>
-          </div>
-        </div>
-        <ul class="pc-features">
-          <li>Plataforma com identidade visual Codimagem</li>
-          <li>Fluxo completo de 14 seções customizadas</li>
-          <li>Odontograma digital interativo</li>
-          <li>Envio direto via WhatsApp</li>
-          <li>Responsivo: desktop, tablet e mobile</li>
-          <li>Rascunho salvo automaticamente</li>
-          <li>Domínio próprio (ex: requisicao.codimagem.com.br)</li>
-          <li>Hospedagem e manutenção técnica inclusos</li>
-          <li class="off">Banco de dados de pacientes e dentistas</li>
-          <li class="off">Relatórios e métricas de exames</li>
-          <li class="off">Autocomplete de pacientes recorrentes</li>
-        </ul>
-        <a href="#cta" class="btn-primary" style="width:100%;justify-content:center">Começar com o Essencial</a>
-      </div>
-
-      <!-- PRO -->
-      <div class="pricing-card pricing-card--featured">
-        <span class="pc-badge">Recomendado</span>
-        <div class="pc-name">Pro</div>
-        <div class="pc-impl">
-          <div class="pc-impl-label">Implementação única</div>
-          <div class="pc-impl-price">
-            <span class="price-currency">R$</span>
-            <span class="price-value">2.789</span>
-          </div>
-          <span class="installment-pill">ou 10× R$ 278,90 sem juros no cartão</span>
-        </div>
-        <div class="pc-monthly">
-          <div class="pc-monthly-label">Operação mensal</div>
-          <div class="pc-monthly-price">
-            <span class="price-currency">R$</span>
-            <span class="price-value">197</span>
-            <span class="price-period">/mês</span>
-          </div>
-        </div>
-        <ul class="pc-features">
-          <li class="bold">Tudo do plano Essencial, e mais:</li>
-          <li class="bold">Banco de dados de pacientes e dentistas parceiros</li>
-          <li class="bold">Autocomplete inteligente para pacientes recorrentes</li>
-          <li class="bold">Relatórios de exames por tipo, período e dentista</li>
-          <li class="bold">Experiência mais fluida e interações avançadas</li>
-          <li class="bold">Base pronta para automações futuras</li>
-          <li>Suporte prioritário via WhatsApp</li>
-          <li>Atualizações e melhorias contínuas</li>
-          <li>Infraestrutura escalável — cresce com a Codimagem</li>
-        </ul>
-        <a href="#cta" class="btn-primary" style="width:100%;justify-content:center">Começar com o Pro</a>
-      </div>
-    </div>
-
-    <div class="pricing-footer-note">
-      <div>
-        <div class="pfn-label">Implementação idêntica nos dois planos</div>
-        <p style="font-size:14px;color:var(--color-gray-700);margin-top:4px;max-width:520px">
-          A diferença está apenas na infraestrutura de operação mensal. Você pode começar no Essencial e migrar para o Pro a qualquer momento, sem perda de dados.
+  <!-- ══════════ FEATURES ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px">
+        <span class="eyebrow"><span class="eyebrow__dot">●</span> A solução Tuliu</span>
+        <h2 class="section-title">Uma plataforma feita para a Codimagem.</h2>
+        <p class="body-text" style="margin:0 auto">
+          Implementamos todas as regras de negócio da Codimagem: totalmente customizável,
+          acessível de qualquer dispositivo, com sua identidade visual.
         </p>
       </div>
-      <div style="text-align:right;min-width:180px">
-        <div class="pfn-label">Prazo de implementação</div>
-        <div class="pfn-val">7–14 dias</div>
+      <div class="grid-3">
+        <div class="service-card">
+          <div class="service-card__icon">🦷</div>
+          <h3 class="service-card__title">Odontograma Digital Interativo</h3>
+          <p class="service-card__desc">Seleção visual clicável de dentes para Tomografia Cone Beam, radiografias
+            intrabucais e extrabucais: exatamente como a Codimagem trabalha.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">📋</div>
+          <h3 class="service-card__title">Fluxo de 14 Seções Guiado</h3>
+          <p class="service-card__desc">Tomografia Cone Beam, Cirurgia Guiada, DSD, Alinhadores, Análises
+            Cefalométricas, Escaneamento Intraoral: tudo em etapas claras e objetivas.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">✅</div>
+          <h3 class="service-card__title">Resumo em Tempo Real</h3>
+          <p class="service-card__desc">Painel lateral atualizado com todos os exames selecionados antes de confirmar,
+            eliminando erros e esquecimentos do dentista.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">💬</div>
+          <h3 class="service-card__title">Entrega Direta no WhatsApp</h3>
+          <p class="service-card__desc">A requisição é enviada com um clique para o número da Codimagem, com todas as
+            informações organizadas e prontas para atendimento.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">📱</div>
+          <h3 class="service-card__title">100% Responsivo: Mobile First</h3>
+          <p class="service-card__desc">O dentista preenche no consultório, no celular ou onde estiver. Experiência
+            fluida em qualquer tela, sem instalação de app.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">⚙️</div>
+          <h3 class="service-card__title">100% Customizável</h3>
+          <p class="service-card__desc">Cada regra de negócio da Codimagem é implementada: exames específicos, campos
+            obrigatórios, fluxos especiais. Nada fica de fora.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- ══════════ JORNADA TULIU ══════════ -->
-<div class="section" style="background:var(--color-gray-50)">
-  <div class="container">
-    <span class="eyebrow"><span class="eyebrow__dot">●</span> Sobre a Tuliu</span>
-    <h2 class="section-title">Infraestrutura digital que cresce com você.</h2>
-    <p class="body-text">
-      A Tuliu é especializada em transformar processos analógicos em operações modernas e escaláveis.
-      A Codimagem não está contratando um sistema isolado — está dando o primeiro passo de uma
-      jornada digital que pode evoluir continuamente.
-    </p>
-    <div class="journey-grid">
-      <div class="journey-card">
-        <div class="jc-step">Passo 1</div>
-        <div class="jc-icon">🌐</div>
-        <h3 class="jc-title">Infraestrutura Básica</h3>
-        <p class="jc-desc">Site, domínio, e-mail profissional. A fundação digital da Codimagem — estável, segura e gerenciada pela Tuliu.</p>
+  <!-- ══════════ MOCKUPS ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> O sistema em funcionamento</span>
+      <h2 class="section-title">Desenvolvido e validado na prática.</h2>
+      <p class="body-text">
+        O mesmo motor tecnológico já está em produção para a Oralrad: outro centro de radiologia
+        odontológica. Para a Codimagem, implementamos a mesma base com identidade e regras de negócio próprias.
+      </p>
+
+      <div class="screens-grid">
+        <!-- Mockup 1 -->
+        <div class="screen-mockup">
+          <div class="screen-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="screen-url">requisicao.codimagem.com.br: Dados do Paciente 1/14</span>
+          </div>
+          <div class="screen-body">
+            <div class="mock-sidebar">
+              <div class="mock-logo-box">
+                <div style="font-size:18px">🦷</div>
+                <div class="mock-logo-name">Codimagem</div>
+                <div class="mock-logo-sub">Centro Odontológico<br>de Diagnóstico por Imagem</div>
+              </div>
+              <div class="mock-nav mock-nav--active">
+                <div class="nav-dot"></div> Dados do Paciente
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Informações Clínicas
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Tomografia Cone Beam
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Motivo do Exame
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Cirurgia Guiada
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Doc. Ortodônticas
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> DSD
+              </div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-sub-header">DADOS DO PACIENTE E PROFISSIONAL</div>
+              <div class="mock-sublabel">Paciente</div>
+              <div class="mock-row">
+                <div class="mock-field full"><label>Nome *</label>
+                  <div class="ph">Nome completo do paciente</div>
+                </div>
+              </div>
+              <div class="mock-row">
+                <div class="mock-field"><label>E-mail</label>
+                  <div class="ph">email@paciente.com</div>
+                </div>
+                <div class="mock-field"><label>Data de nascimento *</label>
+                  <div class="ph">DD/MM/AAAA</div>
+                </div>
+              </div>
+              <div class="mock-sublabel">Profissional</div>
+              <div class="mock-row">
+                <div class="mock-field"><label>Nome *</label>
+                  <div class="ph">Nome do dentista</div>
+                </div>
+                <div class="mock-field"><label>CRO</label>
+                  <div class="ph">SC 12345</div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-summary">
+              <div class="mock-sum-title">Resumo da Requisição</div>
+              <div class="mock-empty">Nenhum item selecionado ainda.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mockup 2 -->
+        <div class="screen-mockup">
+          <div class="screen-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="screen-url">requisicao.codimagem.com.br: Tomografia Cone Beam 3/14</span>
+          </div>
+          <div class="screen-body">
+            <div class="mock-sidebar">
+              <div class="mock-logo-box">
+                <div style="font-size:18px">🦷</div>
+                <div class="mock-logo-name">Codimagem</div>
+                <div class="mock-logo-sub">Centro Odontológico<br>de Diagnóstico por Imagem</div>
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Dados do Paciente
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Informações Clínicas
+              </div>
+              <div class="mock-nav mock-nav--active">
+                <div class="nav-dot"></div> Tomografia Cone Beam
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Motivo do Exame
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Cirurgia Guiada
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> DSD
+              </div>
+              <div class="mock-nav">
+                <div class="nav-dot"></div> Alinhadores
+              </div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-sub-header">TOMOGRAFIA CONE BEAM</div>
+              <div class="mock-odonto">
+                <div class="odonto-label">Permanentes Superiores: Clique para selecionar</div>
+                <div class="odonto-row">
+                  <div class="tooth">18</div>
+                  <div class="tooth">17</div>
+                  <div class="tooth tooth--on">16</div>
+                  <div class="tooth tooth--on">15</div>
+                  <div class="tooth">14</div>
+                  <div class="tooth">13</div>
+                  <div class="tooth">12</div>
+                  <div class="tooth">11</div>
+                  <div class="tooth">21</div>
+                  <div class="tooth">22</div>
+                  <div class="tooth">23</div>
+                  <div class="tooth">24</div>
+                  <div class="tooth">25</div>
+                  <div class="tooth">26</div>
+                  <div class="tooth">27</div>
+                  <div class="tooth">28</div>
+                </div>
+                <div class="odonto-label" style="margin-top:7px">Permanentes Inferiores</div>
+                <div class="odonto-row">
+                  <div class="tooth">48</div>
+                  <div class="tooth">47</div>
+                  <div class="tooth">46</div>
+                  <div class="tooth">45</div>
+                  <div class="tooth">44</div>
+                  <div class="tooth">43</div>
+                  <div class="tooth">42</div>
+                  <div class="tooth">41</div>
+                  <div class="tooth">31</div>
+                  <div class="tooth">32</div>
+                  <div class="tooth">33</div>
+                  <div class="tooth">34</div>
+                  <div class="tooth">35</div>
+                  <div class="tooth tooth--on">36</div>
+                  <div class="tooth tooth--on">37</div>
+                  <div class="tooth">38</div>
+                </div>
+              </div>
+              <div class="mock-checks">
+                <div>☐ Maxila &nbsp;☐ zigomático</div>
+                <div>☑ ATMs em oclusão</div>
+                <div>☐ Mandíbula</div>
+                <div>☐ Seios da face</div>
+                <div>☐ Total (maxila + mandíbula)</div>
+                <div>☐ Total Invisalign</div>
+              </div>
+            </div>
+            <div class="mock-summary">
+              <div class="mock-sum-title">Resumo</div>
+              <div class="mock-chip">🦷 Dentes 15, 16, 36, 37</div>
+              <div class="mock-chip">✅ ATMs em oclusão</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="journey-card journey-card--on">
-        <div class="here-pill">← Você está aqui</div>
-        <div class="jc-step">Passo 2</div>
-        <div class="jc-icon">📋</div>
-        <h3 class="jc-title">Requisição Online</h3>
-        <p class="jc-desc">A plataforma de pedidos digitais. O passo mais importante para modernizar a relação com dentistas parceiros e pacientes.</p>
-      </div>
-      <div class="journey-card">
-        <div class="jc-step">Próximo →</div>
-        <div class="jc-icon">🤖</div>
-        <h3 class="jc-title">Automações e IA</h3>
-        <p class="jc-desc">Notificações automáticas, relatórios inteligentes, agentes de IA para atendimento — o futuro digital da Codimagem.</p>
+
+      <div class="notice-box">
+        <div class="notice-box__icon">💡</div>
+        <div>
+          <div class="notice-box__title">Sistema testado e validado em produção</div>
+          <div class="notice-box__desc">O mesmo motor já roda para a Oralrad. Para a Codimagem, cada seção, exame e
+            regra de negócio será implementada conforme a sua realidade clínica: sem adaptações genéricas.</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- ══════════ CTA ══════════ -->
-<div id="cta" class="cta-dark-wrap" style="background:white">
-  <div class="cta-dark">
-    <div class="cta-dark__eyebrow"><span style="font-size:8px">●</span> Próximo passo</div>
-    <h2 class="cta-dark__title">Vamos alinhar e começar.</h2>
-    <p class="cta-dark__desc">
-      Agende agora uma reunião rápida de alinhamento final. Em até 7 dias,
-      definimos os detalhes, assinamos e iniciamos a implementação.
-    </p>
-    <div class="cta-urgency">Reunião de alinhamento em até 7 dias</div>
-    <div class="cta-btns">
-      <a href="https://wa.me/5548999999999?text=Olá%2C%20tenho%20interesse%20na%20Requisição%20Online%20para%20a%20Codimagem%20e%20gostaria%20de%20agendar%20uma%20reunião%20de%20alinhamento."
-         class="btn-primary" target="_blank">
-        💬 Agendar reunião pelo WhatsApp
-      </a>
-      <a href="mailto:tom@tuliu.com.br?subject=Proposta%20Codimagem%20—%20Requisição%20Online"
-         class="btn-outline-dark">
-        Responder por e-mail
-      </a>
+  <!-- ══════════ STATS ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Por que agora?</span>
+      <h2 class="section-title">Chegar na frente tem valor.</h2>
+      <p class="body-text">
+        Os dentistas parceiros da Codimagem avaliam constantemente com quais clínicas trabalham melhor.
+        Uma requisição digital fluida não é só comodidade: é fidelização e diferenciação que a concorrência ainda não
+        tem.
+      </p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num">Zero</div>
+          <div class="stat-label">papel, impressão ou arquivo físico</div>
+          <div class="stat-desc">Redução imediata de custo operacional desde o primeiro dia de uso.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">14</div>
+          <div class="stat-label">seções de exame mapeadas e digitalizadas</div>
+          <div class="stat-desc">De Tomografia Cone Beam a Análises Cefalométricas: tudo dentro da plataforma.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">das regras de negócio implementadas</div>
+          <div class="stat-desc">Nenhuma adaptação genérica: o sistema funciona exatamente como você trabalha.</div>
+        </div>
+      </div>
     </div>
-    <p class="cta-note">Implementação em 7–14 dias após alinhamento · Proposta válida por 15 dias</p>
   </div>
-</div>
 
 
-<!-- ══════════ FOOTER ══════════ -->
-<div class="footer">
-  <div class="footer-brand">Tuliu</div>
-  <div class="footer-contact">
-    Digital Infrastructure for Business ·
-    <a href="https://tuliu.com.br">tuliu.com.br</a> ·
-    Florianópolis, SC
+  <!-- ══════════ PRICING ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Investimento</span>
+      <h2 class="section-title">Simples, transparente e sem surpresas.</h2>
+      <p class="body-text">
+        Dois planos para diferentes momentos da jornada digital da Codimagem. Em qualquer um,
+        a implementação é idêntica: o que muda é o poder da infraestrutura de operação mensal.
+      </p>
+
+      <div class="grid-pricing">
+        <!-- ESSENCIAL -->
+        <div class="pricing-card">
+          <div class="pc-name">Essencial</div>
+          <div class="pc-impl">
+            <div class="pc-impl-label">Implementação única</div>
+            <div class="pc-impl-price">
+              <span class="price-currency">R$</span>
+              <span class="price-value">1.989</span>
+            </div>
+            <span class="installment-pill">ou 10x R$ 278,90 sem juros no cartão</span>
+          </div>
+          <div class="pc-monthly">
+            <div class="pc-monthly-label">Operação mensal</div>
+            <div class="pc-monthly-price">
+              <span class="price-currency">R$</span>
+              <span class="price-value">97</span>
+              <span class="price-period">/mês</span>
+            </div>
+          </div>
+          <ul class="pc-features">
+            <li>Plataforma com identidade visual Codimagem</li>
+            <li>Fluxo completo de 14 seções customizadas</li>
+            <li>Odontograma digital interativo</li>
+            <li>Envio direto via WhatsApp</li>
+            <li>Responsivo: desktop, tablet e mobile</li>
+            <li>Rascunho salvo automaticamente</li>
+            <li>Domínio próprio (ex: requisicao.codimagem.com.br)</li>
+            <li>Hospedagem e manutenção técnica inclusos</li>
+            <li class="off">Banco de dados de pacientes e dentistas</li>
+            <li class="off">Relatórios e métricas de exames</li>
+            <li class="off">Autocomplete de pacientes recorrentes</li>
+          </ul>
+          <a href="#cta" class="btn-primary" style="width:100%;justify-content:center">Começar com o Essencial</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="pricing-card pricing-card--featured">
+          <span class="pc-badge">Recomendado</span>
+          <div class="pc-name">Pro</div>
+          <div class="pc-impl">
+            <div class="pc-impl-label">Implementação única</div>
+            <div class="pc-impl-price">
+              <span class="price-currency">R$</span>
+              <span class="price-value">2.789</span>
+            </div>
+            <span class="installment-pill">ou 10x R$ 278,90 sem juros no cartão</span>
+          </div>
+          <div class="pc-monthly">
+            <div class="pc-monthly-label">Operação mensal</div>
+            <div class="pc-monthly-price">
+              <span class="price-currency">R$</span>
+              <span class="price-value">197</span>
+              <span class="price-period">/mês</span>
+            </div>
+          </div>
+          <ul class="pc-features">
+            <li class="bold">Tudo do plano Essencial, e mais:</li>
+            <li class="bold">Banco de dados de pacientes e dentistas parceiros</li>
+            <li class="bold">Autocomplete inteligente para pacientes recorrentes</li>
+            <li class="bold">Relatórios de exames por tipo, período e dentista</li>
+            <li class="bold">Experiência mais fluida e interações avançadas</li>
+            <li class="bold">Base pronta para automações futuras</li>
+            <li>Suporte prioritário via WhatsApp</li>
+            <li>Atualizações e melhorias contínuas</li>
+            <li>Infraestrutura escalável: cresce com a Codimagem</li>
+          </ul>
+          <a href="#cta" class="btn-primary" style="width:100%;justify-content:center">Começar com o Pro</a>
+        </div>
+      </div>
+
+      <div class="pricing-footer-note">
+        <div>
+          <div class="pfn-label">Implementação idêntica nos dois planos</div>
+          <p style="font-size:14px;color:var(--color-gray-700);margin-top:4px;max-width:520px">
+            A diferença está apenas na infraestrutura de operação mensal. Você pode começar no Essencial e migrar para o
+            Pro a qualquer momento, sem perda de dados.
+          </p>
+        </div>
+        <div style="text-align:right;min-width:180px">
+          <div class="pfn-label">Prazo de implementação</div>
+          <div class="pfn-val">7–14 dias</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="footer-copy">
-    Proposta preparada exclusivamente para Codimagem · Confidencial · Abril 2026
+
+
+  <!-- ══════════ JORNADA TULIU ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Sobre a Tuliu</span>
+      <h2 class="section-title">Infraestrutura digital que cresce com você.</h2>
+      <p class="body-text">
+        A Tuliu é especializada em transformar processos analógicos em operações modernas e escaláveis.
+        A Codimagem não está contratando um sistema isolado: está dando o primeiro passo de uma
+        jornada digital que pode evoluir continuamente.
+      </p>
+      <div class="journey-grid">
+        <div class="journey-card">
+          <div class="jc-step">Passo 1</div>
+          <div class="jc-icon">🌐</div>
+          <h3 class="jc-title">Infraestrutura Básica</h3>
+          <p class="jc-desc">Site, domínio, e-mail profissional. A fundação digital da Codimagem: estável, segura e
+            gerenciada pela Tuliu.</p>
+        </div>
+        <div class="journey-card journey-card--on">
+          <div class="here-pill">← Você está aqui</div>
+          <div class="jc-step">Passo 2</div>
+          <div class="jc-icon">📋</div>
+          <h3 class="jc-title">Requisição Online</h3>
+          <p class="jc-desc">A plataforma de pedidos digitais. O passo mais importante para modernizar a relação com
+            dentistas parceiros e pacientes.</p>
+        </div>
+        <div class="journey-card">
+          <div class="jc-step">Próximo →</div>
+          <div class="jc-icon">🤖</div>
+          <h3 class="jc-title">Automações e IA</h3>
+          <p class="jc-desc">Notificações automáticas, relatórios inteligentes, agentes de IA para atendimento: o futuro
+            digital da Codimagem.</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+
+  <!-- ══════════ CTA ══════════ -->
+  <div id="cta" class="cta-dark-wrap" style="background:white">
+    <div class="cta-dark">
+      <div class="cta-dark__eyebrow"><span style="font-size:8px">●</span> Próximo passo</div>
+      <h2 class="cta-dark__title">Vamos alinhar e começar.</h2>
+      <p class="cta-dark__desc">
+        Agende agora uma reunião rápida de alinhamento final. Em até 7 dias,
+        definimos os detalhes, assinamos e iniciamos a implementação.
+      </p>
+      <div class="cta-urgency">Reunião de alinhamento em até 7 dias</div>
+      <div class="cta-btns">
+        <a href="https://wa.me/5548984699732?text=Olá%2C%20tenho%20interesse%20na%20Requisição%20Online%20para%20a%20Codimagem%20e%20gostaria%20de%20agendar%20uma%20reunião%20de%20alinhamento."
+          class="btn-primary" target="_blank">
+          💬 Agendar reunião pelo WhatsApp
+        </a>
+        <a href="mailto:tom@tuliu.com.br?subject=Proposta%20Codimagem%20-%20Requisição%20Online"
+          class="btn-outline-dark">
+          Responder por e-mail
+        </a>
+      </div>
+      <p class="cta-note">Implementação em 7–14 dias após alinhamento · Proposta válida por 15 dias</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <div class="footer-brand">Tuliu</div>
+    <div class="footer-contact">
+      Digital Infrastructure for Business ·
+      <a href="https://tuliu.com.br">tuliu.com.br</a> ·
+      Florianópolis, SC
+    </div>
+    <div class="footer-copy">
+      Proposta preparada exclusivamente para Codimagem · Confidencial · Abril 2026
+    </div>
+  </div>
 
 </body>
+
 </html>
