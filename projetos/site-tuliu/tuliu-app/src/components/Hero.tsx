@@ -21,10 +21,6 @@ export default function Hero() {
           {t.hero.subtitle}
         </p>
 
-        <p className="hero-microcopy fade-in fade-in-delay-2">
-          {t.hero.microcopy}
-        </p>
-
         <div className="hero-video-wrapper fade-in fade-in-delay-3" style={{ display: 'none' }} aria-hidden="true">
           <div className="hero-video-placeholder">
             <button className="play-button" tabIndex={-1}>
