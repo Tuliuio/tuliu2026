@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Required — Tuliu</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css?v=20260415" integrity="sha512-EvVYHZuDtf5C1tKGQga0mnOStzng7/FewwbFxQnRhat2YYKR8NzxCQXdrB4QJMwmO0VBSZtIIGxbzoknn4Q7xQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #ffffff;
+      color: #1A1A1A;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .error-container {
+      max-width: 600px;
+      text-align: center;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 32px;
+    }
+
+
+    h1 {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+
+    .error-code {
+      display: inline-block;
+      background: #F3F3F3;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .error-message {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .error-description {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .action-box {
+      background: #F9F9F9;
+      border: 1px solid #E8E8E8;
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 32px;
+    }
+
+    .action-box h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #111111;
+    }
+
+    .action-box p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #111111;
+      border: 1.5px solid #111111;
+    }
+
+    .btn-secondary:hover {
+      background: #111111;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    @media (min-width: 480px) {
+      .button-group {
+        flex-direction: row;
+      }
+
+      .btn {
+        padding: 12px 28px;
+      }
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #999;
+      margin-top: 24px;
+    }
+
+    .footer-text a {
+      color: #111111;
+      text-decoration: none;
+      border-bottom: 1px solid #111111;
+      transition: all 0.2s ease;
+    }
+
+    .footer-text a:hover {
+      color: #555;
+      border-bottom-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <img src="../../src/assets/logo.svg" alt="Tuliu Logo" class="logo" />
+
+    <div class="error-code">ERROR 402 — PAYMENT REQUIRED</div>
+
+    <h1>Payment Overdue</h1>
+
+    <p class="error-message">
+      We've detected that your account has a pending payment.
+    </p>
+
+    <p class="error-description">
+      To maintain uninterrupted access to your services, please regularize your account by updating your payment information.
+    </p>
+
+    <div class="action-box">
+      <h3><i class="fas fa-credit-card" style="margin-right: 8px;"></i> What you need to do</h3>
+      <p>Visit our main website to review your account status and settle your outstanding balance.</p>
+    </div>
+
+    <div class="button-group">
+      <a href="https://tuliu.io" class="btn btn-primary">
+        <i class="fas fa-arrow-right"></i> Return to Tuliu
+      </a>
+      <a href="https://wa.me/5548404265972" class="btn btn-secondary" target="_blank">
+        <i class="fas fa-whatsapp"></i> Get Support
+      </a>
+    </div>
+
+    <p class="footer-text">
+      If you have questions, please <a href="https://tuliu.io/contact">contact us</a>.
+    </p>
+  </div>
+</body>
+</html>
