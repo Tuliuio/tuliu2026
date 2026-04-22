@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angela Agro Aplicação - Consultoria em Defensivo Agrícola</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    @import url('https://rsms.me/inter/inter.css');
+
+    html {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Cores da logo */
+    :root {
+      --verde-limao: #CDDC39;
+      --verde-escuro: #2D5016;
+    }
+
+    /* Logo redonda */
+    .logo-redonda {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CTA com verde da logo */
+    .cta-primary {
+      background: var(--verde-limao);
+      color: var(--verde-escuro);
+    }
+
+    .cta-primary:hover {
+      background: #d4e157;
+      box-shadow: 0 4px 12px rgba(205, 220, 57, 0.3);
+    }
+
+    /* Accent com verde limão */
+    .accent-dot {
+      background: var(--verde-limao);
+    }
+
+    /* Smooth transitions */
+    * {
+      transition-property: border-color, background-color, color, box-shadow;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+  <div class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="border-b border-gray-100">
+      <div class="max-w-md mx-auto px-4 py-4 flex items-center justify-center">
+        <div class="logo-redonda">
+          <img
+            src="./assets/logo_AA.png"
+            alt="Angela Agro"
+            class="h-20 object-contain"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-md mx-auto w-full px-4 py-6 space-y-8 flex-grow">
+
+      <!-- Hero Section -->
+      <section class="space-y-4 pt-4">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 leading-tight">
+            Aprenda a aplicação correta de defensivo agrícola.
+          </h1>
+          <p class="text-lg text-gray-600 mt-2 font-medium">
+            Sem desperdício. Com máxima eficiência.
+          </p>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          Explico como fazer a aplicação certa, reduzindo custos, contaminação e perdas. Rendimento operacional com maior performance da sua aplicação.
+        </p>
+      </section>
+
+      <!-- Diferencial Card -->
+      <section class="relative overflow-hidden rounded-2xl p-6 text-white space-y-4" style="background: linear-gradient(135deg, #CDDC39 0%, #d4e157 100%);">
+        <div class="relative z-10 space-y-4">
+          <h2 class="font-bold text-2xl leading-tight" style="color: #2D5016;">
+            🎯 Atendimento personalizado
+          </h2>
+          <p class="text-sm leading-relaxed" style="color: #2D5016;">
+            Aqui é direcionado, prático e sem enrolação.
+          </p>
+          <p class="text-sm font-medium" style="color: #2D5016;">
+            Não é só uma aula. É um acompanhamento direcionado pra quem quer fazer certo.
+          </p>
+
+          <a
+            href="https://wa.me/5566999898625?text=Olá%20Angela!%20Vi%20seu%20perfil%20e%20gostaria%20de%20agendar%20um%20atendimento%20personalizado."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full mt-4 px-4 py-3 font-semibold rounded-lg text-white transition inline-block text-center hover:opacity-90"
+            style="background: #2D5016;"
+          >
+            Agendar agora via WhatsApp
+          </a>
+        </div>
+      </section>
+
+      <!-- Ebook Destaque -->
+      <section class="rounded-2xl p-5 border border-gray-100 space-y-3 bg-gray-50">
+        <div class="inline-block">
+          <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background: rgba(205, 220, 57, 0.2); color: #2D5016;">
+            📖 Em breve
+          </span>
+        </div>
+
+        <h3 class="text-lg font-bold leading-tight text-gray-900">
+          Guia completo de aplicação
+        </h3>
+
+        <p class="text-gray-700 text-sm leading-relaxed">
+          Tudo que você precisa saber sobre defensivo agrícola em um só lugar. Acesse quando estiver disponível.
+        </p>
+
+        <button
+          onclick="alert('Ebook em breve! Deixe seu email pra ser notificado.')"
+          class="w-full mt-4 px-4 py-3 font-semibold rounded-lg text-gray-900 transition border-2 border-gray-200 hover:border-gray-300"
+        >
+          Notificar quando lançar
+        </button>
+      </section>
+
+      <!-- Serviços -->
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold text-gray-900">
+          O que você aprende
+        </h2>
+
+        <div class="grid grid-cols-1 gap-3">
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Simulação de calda</span>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Ordem de mistura</span>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Ajuste de pH</span>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Adjuvantes</span>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Dimensionamento de bico</span>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Descontaminação de maquinário</span>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white border border-gray-200 hover:border-gray-300">
+            <div class="w-2 h-2 rounded-full accent-dot mt-2 flex-shrink-0"></div>
+            <span class="text-gray-800 font-medium text-sm">Formulação de produtos</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="space-y-3 pb-8">
+        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide text-center">
+          Vamos conversar
+        </p>
+
+        <!-- WhatsApp CTA - Primary -->
+        <a
+          href="https://wa.me/5566999898625?text=Olá%20Angela!%20Vi%20seu%20perfil%20e%20gostaria%20de%20saber%20mais%20sobre%20aplicação%20de%20defensivo%20agrícola."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full flex items-center justify-center gap-2 px-6 py-4 cta-primary font-semibold rounded-xl shadow-sm hover:shadow-lg"
+        >
+          <i class="bi bi-whatsapp text-lg"></i>
+          Conversar no WhatsApp
+        </a>
+
+        <!-- Secondary CTAs -->
+        <div class="grid grid-cols-2 gap-3">
+          <a
+            href="mailto:contato@agroaplicacao.com.br?subject=Consultoria%20em%20Aplicação%20Agrícola"
+            class="flex items-center justify-center gap-2 px-4 py-3 border-2 border-gray-200 text-gray-900 font-semibold rounded-xl hover:border-gray-400"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            Email
+          </a>
+
+          <button
+            onclick="alert('Agenda em breve')"
+            class="flex items-center justify-center gap-2 px-4 py-3 border-2 border-gray-200 text-gray-900 font-semibold rounded-xl hover:border-gray-400"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Agendar
+          </button>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center text-xs text-gray-500 pb-4 border-t border-gray-100 pt-4">
+        <p class="mb-3">
+          Criado e hospedado por
+        </p>
+        <a href="https://tuliu.io" target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition">
+          <img src="./assets/logo_tuliu.svg" alt="Tuliu" class="h-10 object-contain">
+        </a>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

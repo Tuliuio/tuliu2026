@@ -8,8 +8,8 @@ export const translations = {
     },
     hero: {
       badge: "Feito por nós, rodando para você",
-      titleLine1: "A sua empresa no digital,",
-      titleLine2: "entregue e mantida por nós.",
+      titleLine1: "Implementamos tecnologia",
+      titleLine2: "para te auxiliar nos desafios de marketing",
       subtitle: "A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.",
 
       videoLabel: "Veja o que entregamos",
@@ -17,19 +17,20 @@ export const translations = {
     },
     features: {
       badge: "Feito por nós, para você",
-      title: "Fazemos tudo por você.",
-      subtitle: "Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa — construída, configurada e mantida por nós, do início ao fim.",
-      card1Title: "Domínios e DNS",
-      card1Desc: "Cuidamos do registro, configuração de DNS e renovação de SSL. Você não precisa tocar em nada.",
-      card2Title: "Agentes de IA",
-      card2Desc: "Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos — prontos para atender, vender e automatizar.",
-      card3Title: "Automações",
-      card3Desc: "Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam sem depender de você.",
+      title: "Feito para você e não por você.",
+      subtitle: "Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa, construída, configurada e mantida por nós, do início ao fim.",
+      card1Title: "Domínios e Websites",
+      card1Desc: "Registramos e configuramos o domínio ideal para o seu negócio, gerenciamos o DNS e garantimos que o certificado SSL esteja sempre ativo. Você não precisa se preocupar com nada técnico.",
+      card2Title: "Automações",
+      card2Desc: "Mapeamos seus processos, conectamos seus sistemas e entregamos automações que rodam para ajudar na produção de conteúdo, tráfego pago e outras atividades de marketing.",
+      card3Title: "Agentes de IA",
+      card3Desc: "Desenvolvemos e publicamos agentes inteligentes no seu site e sistemas internos, prontos para atender, vender e automatizar.",
+
       cta: "Ver como funciona na prática"
     },
     integrations: {
       title: "Conectamos com as ferramentas que você já usa",
-      subtitle: "Nós fazemos as integrações por você. Seu CRM, comunicação, pagamentos e produtividade — tudo conectado, configurado e funcionando sem que você precise abrir um manual.",
+      subtitle: "Nós fazemos as integrações por você. Seu CRM, comunicação, pagamentos e produtividade tudo conectado, configurado e funcionando sem que você precise abrir um manual.",
       cta: "Quero minha infraestrutura"
     },
     pricing: {
@@ -106,8 +107,8 @@ export const translations = {
     },
     hero: {
       badge: "Built by us, running for you",
-      titleLine1: "Your digital business,",
-      titleLine2: "delivered and maintained by us.",
+      titleLine1: "We implement technology",
+      titleLine2: "to address your marketing challenges",
       subtitle: "Tuliu builds, delivers, and maintains your company's entire digital infrastructure: domains, websites, AI agents, integrations, and automations. You focus on the business. We handle the rest.",
       microcopy: "No IT team needed. No lock-in. No complications.",
       videoLabel: "See what we deliver",
@@ -115,19 +116,19 @@ export const translations = {
     },
     features: {
       badge: "Built by us, for you",
-      title: "We do it all. You just reap the results.",
-      subtitle: "Stop relying on multiple vendors, tutorials, or internal technical teams. Tuliu takes over your company's digital infrastructure — built, configured, and maintained by us, from start to finish.",
-      card1Title: "Domains and DNS",
-      card1Desc: "We handle registration, DNS configuration, and SSL renewals. You don't have to touch a thing.",
-      card2Title: "AI Agents",
-      card2Desc: "We develop and deploy intelligent agents on your website and internal systems — ready to support, sell, and automate.",
-      card3Title: "Automations",
-      card3Desc: "We map your processes, connect your systems, and deliver automations that run without depending on you.",
+      title: "Built for you, not by you.",
+      subtitle: "Stop relying on multiple vendors, tutorials, or internal technical teams. Tuliu takes over your company's digital infrastructure, built, configured, and maintained by us, from start to finish.",
+      card1Title: "Domains and Websites",
+      card1Desc: "We register and configure the ideal domain for your business, manage DNS and ensure your SSL certificate is always active. You don't need to worry about any technical details.",
+      card2Title: "Automations",
+      card2Desc: "We map your processes, connect your systems and deliver automations that run to help with content production, paid traffic and other marketing activities.",
+      card3Title: "AI Agents",
+      card3Desc: "We develop and deploy intelligent agents on your website and internal systems, ready to support, sell, and automate.",
       cta: "See how it works in practice"
     },
     integrations: {
       title: "We connect with the tools you already use",
-      subtitle: "We handle the integrations for you. Your CRM, communications, payments, and productivity — all connected, configured, and working without you needing to read a manual.",
+      subtitle: "We handle the integrations for you. Your CRM, communications, payments, and productivity all connected, configured, and working without you needing to read a manual.",
       cta: "Get my infrastructure"
     },
     pricing: {

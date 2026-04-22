@@ -60,17 +60,19 @@ export default function LearnPage() {
 
               {/* Card Footer */}
               <div className="learn-card-footer">
-                <span className="learn-platform-badge">
-                  {course.platform}
-                </span>
-                <a
-                  href={course.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <div className="learn-card-footer-left">
+                  <span className="learn-platform-badge">
+                    {course.platform}
+                  </span>
+                  <span className="learn-soon-badge">em breve</span>
+                </div>
+                <button
+                  disabled
                   className="btn btn-outline"
+                  title="Curso disponível em breve"
                 >
                   Acessar curso
-                </a>
+                </button>
               </div>
             </article>
           ))}

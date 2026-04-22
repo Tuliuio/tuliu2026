@@ -1866,13 +1866,41 @@ body {
 
 .learn-card-full .learn-card-footer {
   margin-top: 24px;
-  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
+}
+
+.learn-card-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.learn-soon-badge {
+  display: inline-block;
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .learn-card-full .btn {
   font-size: 14px;
   padding: 12px 24px;
+}
+
+.learn-card-full .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #F3F4F6;
+  color: #9CA3AF;
+  border-color: #E5E7EB;
 }
 
 @media (max-width: 768px) {
