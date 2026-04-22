@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { learnCategories } from "../data/learn";
+import { courses } from "../data/learn";
 
 export default function LearnPage() {
   useEffect(() => {
@@ -39,62 +39,43 @@ export default function LearnPage() {
         </div>
       </section>
 
-      {/* Category Sections */}
-      {learnCategories.map((category, idx) => (
-        <section
-          key={category.id}
-          className={`learn-section ${idx % 2 === 0 ? "light" : "lighter"}`}
-        >
-          <div className="container">
-            {/* Category Header */}
-            <div className="learn-section-header">
-              <div className="learn-section-icon">
-                <i className={category.icon}></i>
+      {/* Courses Section */}
+      <section className="learn-courses">
+        <div className="container">
+          {courses.map((course, idx) => (
+            <article
+              key={course.id}
+              className={`learn-card-full fade-in fade-in-delay-${(idx % 4) + 1}`}
+            >
+              {/* Card Icon */}
+              <div className="learn-card-icon">
+                <i className={course.icon}></i>
               </div>
-              <div className="learn-section-title-group">
-                <h2 className="learn-section-title">{category.title}</h2>
-                <p className="learn-section-subtitle">{category.subtitle}</p>
-              </div>
-            </div>
 
-            {/* Course Cards Grid */}
-            <div className="learn-grid">
-              {category.courses.map((course, courseIdx) => (
-                <article
-                  key={course.id}
-                  className={`learn-card fade-in fade-in-delay-${(courseIdx % 4) + 1}`}
+              {/* Card Body */}
+              <div className="learn-card-body">
+                <h2 className="learn-card-title">{course.title}</h2>
+                <p className="learn-card-desc">{course.description}</p>
+              </div>
+
+              {/* Card Footer */}
+              <div className="learn-card-footer">
+                <span className="learn-platform-badge">
+                  {course.platform}
+                </span>
+                <a
+                  href={course.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline"
                 >
-                  {/* Card Icon */}
-                  <div className="learn-card-icon">
-                    <i className={course.icon}></i>
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="learn-card-body">
-                    <h3 className="learn-card-title">{course.title}</h3>
-                    <p className="learn-card-desc">{course.description}</p>
-                  </div>
-
-                  {/* Card Footer */}
-                  <div className="learn-card-footer">
-                    <span className="learn-platform-badge">
-                      {course.platform}
-                    </span>
-                    <a
-                      href={course.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline"
-                    >
-                      Acessar curso
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+                  Acessar curso
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="cta-final">
