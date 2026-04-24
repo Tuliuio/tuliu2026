@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta Comercial: Mentoria Reviva x Tuliu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ─── DESIGN SYSTEM TULIU ─── */
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FFFFFF;
+      --color-gray-900: #1A1A1A;
+      --color-gray-700: #4B4B4B;
+      --color-gray-400: #9CA3AF;
+      --color-gray-100: #F5F5F5;
+      --color-gray-50: #FAFAFA;
+      --color-purple-800: #3B0E6E;
+      --color-purple-deep: #1E0A3C;
+      --border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+      --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-full: 999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--color-white);
+      color: var(--color-black);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    /* EYEBROW */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #F0F0F0;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-black);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow__dot {
+      font-size: 8px;
+    }
+
+    /* TYPOGRAPHY */
+    .headline-primary {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-black);
+      letter-spacing: -0.03em;
+    }
+
+    .headline-muted {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-gray-400);
+      letter-spacing: -0.03em;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .body-text {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--color-gray-700);
+      max-width: 620px;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: #333;
+    }
+
+    /* ══ COVER ══ */
+    .cover {
+      background: var(--color-gray-50);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .cover-topbar {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cover-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .nav-badge {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      font-weight: 500;
+    }
+
+    .cover-body {
+      padding: 96px 24px 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .cover-footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .meta-block label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-gray-400);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .meta-block p {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-black);
+    }
+
+    .validity-pill {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      display: inline-block;
+      padding: 6px 16px;
+      background: #FEF3C7;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      color: #92400E;
+      letter-spacing: 0.5px;
+    }
+
+    /* ══ TWO COLUMN ══ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* ══ PRICING ══ */
+    .pricing-container {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      border: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .pricing-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .pricing-row:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-black);
+    }
+
+    .pricing-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-black);
+      text-align: right;
+    }
+
+    .pricing-total {
+      background: var(--color-gray-50);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pricing-total-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-black);
+    }
+
+    .pricing-total-value {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--color-black);
+      text-align: right;
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--color-gray-400);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    .payment-link {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--color-gray-50);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    .payment-link-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .payment-link-text {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      margin-bottom: 12px;
+    }
+
+    .payment-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--color-black);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .payment-btn:hover {
+      background: #333;
+    }
+
+    /* ══ GRID 3 ══ */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 56px 0;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-black);
+      letter-spacing: -0.3px;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      color: var(--color-gray-700);
+      line-height: 1.6;
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .card-list li {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-list li::before {
+      content: '✓';
+      color: var(--color-black);
+      font-weight: 700;
+    }
+
+    /* ══ CHECKLIST ══ */
+    .checklist {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .checklist li {
+      font-size: 16px;
+      color: var(--color-black);
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .checklist li::before {
+      content: '→';
+      color: var(--color-black);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ══ CTA DARK ══ */
+    .cta-dark-wrap {
+      padding: 96px 0;
+    }
+
+    .cta-dark {
+      background: linear-gradient(135deg, #1E0A3C 0%, #3B0E6E 50%, #1A1A2E 100%);
+      border-radius: var(--radius-xl);
+      padding: 96px 48px;
+      text-align: center;
+      color: white;
+      margin: 0 24px;
+    }
+
+    .cta-dark__title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cta-dark__desc {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+
+    .cta-dark .btn-primary {
+      background: white;
+      color: var(--color-black);
+    }
+
+    .cta-dark .btn-primary:hover {
+      background: var(--color-gray-100);
+    }
+
+    /* ══ FOOTER ══ */
+    .footer {
+      background: var(--color-gray-100);
+      padding: 48px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-contact {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      text-align: center;
+    }
+
+    .footer-contact a {
+      color: var(--color-black);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      text-align: center;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ══ MOBILE RESPONSIVO ══ */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .cover-body {
+        padding: 36px 16px 0;
+      }
+
+      .cover-nav {
+        padding: 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav-logo {
+        font-size: 14px;
+      }
+
+      .nav-logo img {
+        width: 100px !important;
+      }
+
+      .nav-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        margin-left: 0;
+      }
+
+      .nav-badge {
+        display: none;
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .headline-primary {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .headline-muted {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .section-title {
+        font-size: clamp(20px, 5vw, 32px);
+      }
+
+      .body-text {
+        font-size: 15px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .cover-footer {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .cta-dark {
+        padding: 48px 24px;
+        margin: 0 16px;
+      }
+
+      .cta-dark__title {
+        font-size: clamp(24px, 6vw, 36px);
+      }
+
+      .cta-dark__desc {
+        font-size: 15px;
+      }
+
+      .pricing-container {
+        padding: 24px;
+      }
+
+      .pricing-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .pricing-value {
+        text-align: left;
+      }
+
+      .pricing-total {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .pricing-total-value {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      .cover-body {
+        padding: 24px 12px 0;
+      }
+
+      .cover-nav {
+        padding: 12px;
+      }
+
+      .nav-logo img {
+        width: 80px !important;
+      }
+
+      .headline-primary {
+        font-size: clamp(24px, 8vw, 36px);
+      }
+
+      .section-title {
+        font-size: clamp(18px, 6vw, 28px);
+      }
+
+      .body-text {
+        font-size: 14px;
+      }
+
+      .cta-dark {
+        padding: 32px 16px;
+        margin: 0 12px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        padding: 4px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ COVER ══════════ -->
+  <div class="cover">
+    <div class="cover-topbar">
+      <div class="cover-nav">
+        <a class="nav-logo" href="/" title="Voltar ao site">
+          <img src="https://tuliu.io/assets/logo-Cd9A8hQ2.svg" alt="Tuliu Logo" style="width: 140px; height: auto;" />
+        </a>
+        <div class="nav-actions">
+          <span class="nav-badge">Digital Infrastructure by Tuliu</span>
+          <a href="/" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">← Voltar ao site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-body">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Proposta Comercial · Abril 2026</span>
+      <div class="headline-primary">Landing page</div>
+      <div class="headline-muted">para Mentoria Reviva.</div>
+      <p class="body-text" style="margin-top:28px">
+        Uma presença digital sólida, rápida e preparada para crescer. A Mentoria Reviva
+        vai ganhar um site profissional, seguro e pronto para captar as primeiras alunas
+        — em 1 a 2 dias úteis.
+      </p>
+    </div>
+
+    <div class="cover-footer">
+      <div class="meta-block">
+        <label>Preparado por</label>
+        <p>Tom · Túlio Infraestrutura Digital</p>
+      </div>
+      <div class="meta-block">
+        <label>Apresentado a</label>
+        <p>Mentoria Reviva</p>
+      </div>
+      <div class="meta-block">
+        <label>Data</label>
+        <p>Abril de 2026</p>
+      </div>
+      <span class="validity-pill">Válida por 15 dias</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════ CONTEXTO ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="eyebrow"><span class="eyebrow__dot">●</span> Contexto e Objetivo</span>
+          <h2 class="section-title">Presença digital com propósito.</h2>
+          <p class="body-text">
+            A Mentoria Reviva é um programa focado em mulheres que enfrentam desafios relacionados
+            à dependência emocional. Com identidade visual e domínio próprios já definidos, o projeto
+            está pronto para ganhar presença digital — e para isso precisa de uma base sólida, ágil
+            e preparada para crescer.
+          </p>
+          <p class="body-text" style="margin-top: 20px;">
+            A Túlio foi escolhida para estruturar essa infraestrutura: uma entrega rápida, sem burocracia,
+            com o código já preparado com inteligência artificial para suportar evoluções futuras do projeto.
+          </p>
+        </div>
+        <div style="background: var(--color-gray-50); padding: 40px; border-radius: var(--radius-lg); height: fit-content;">
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--color-black);">
+            Entrega em 1–2 dias úteis
+          </h3>
+          <ul class="card-list">
+            <li>Domínio configurado</li>
+            <li>Hospedagem gerenciada</li>
+            <li>SSL seguro (HTTPS)</li>
+            <li>Landing page funcional</li>
+            <li>Formulário de captação</li>
+            <li>Código preparado para IA</li>
+            <li>Pronto para crescer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ O QUE ESTÁ INCLUÍDO ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto 56px;">
+        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__dot">●</span> O que está incluído</span>
+        <h2 class="section-title">Implementação completa</h2>
+        <p class="body-text">
+          Tudo o que a Mentoria Reviva precisa para sair do zero e estar pronta
+          para receber visitantes no dia 1.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">⚙️</div>
+          <h3 class="card-title">Configuração Completa</h3>
+          <p class="card-desc">
+            Domínio, DNS, hospedagem gerenciada, certificado SSL e segurança configurados.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+          <h3 class="card-title">Landing Page Profissional</h3>
+          <p class="card-desc">
+            Design moderno, responsivo e alinhado com a identidade visual da Reviva.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
+          <h3 class="card-title">Formulário de Captação</h3>
+          <p class="card-desc">
+            Integrado para captar leads de possíveis alunas — simples e eficaz.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">🤖</div>
+          <h3 class="card-title">Código com IA</h3>
+          <p class="card-desc">
+            Estrutura preparada com inteligência artificial para integração futura com Hotmart e mais.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">✅</div>
+          <h3 class="card-title">Testes e Publicação</h3>
+          <p class="card-desc">
+            Revisão completa e lançamento garantido — nada fica para depois.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">🛡️</div>
+          <h3 class="card-title">Infraestrutura Mensal</h3>
+          <p class="card-desc">
+            Hospedagem gerenciada, suporte técnico, monitoramento e renovação de SSL.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ O QUE A CLIENTE PRECISA ENTREGAR ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> O que a cliente precisa entregar</span>
+      <h2 class="section-title">Para entregar rápido, precisamos de:</h2>
+      <p class="body-text" style="margin-bottom: 32px;">
+        Com os materiais abaixo, a Túlio consegue executar a implementação dentro do prazo de 1–2 dias úteis.
+      </p>
+
+      <ul class="checklist">
+        <li><strong>Textos e copy da landing page</strong> — apresentação da mentoria, público-alvo, benefícios, chamada para ação</li>
+        <li><strong>Referências visuais ou identidade</strong> — direcionamento de cores, tipografia e estilo</li>
+        <li><strong>Logomarca em formato digital</strong> — PNG ou SVG de alta resolução</li>
+        <li><strong>Informações de contato</strong> — link do formulário de inscrição ou dados para integração</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ══════════ INVESTIMENTO ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Investimento</span>
+      <h2 class="section-title">Preços diretos, sem surpresas.</h2>
+
+      <div class="pricing-container">
+        <div class="pricing-row">
+          <div class="pricing-label">Implementação (pagamento único)</div>
+          <div class="pricing-value">R$ 990,00</div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-label">Infraestrutura mensal (hospedagem + suporte)</div>
+          <div class="pricing-value">R$ 97,00/mês</div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-label">Total no primeiro mês</div>
+          <div class="pricing-value">R$ 1.087,00</div>
+        </div>
+
+        <div class="payment-link">
+          <div class="payment-link-title">💳 Pagamento da Implementação</div>
+          <p class="payment-link-text">
+            Clique no botão abaixo para fazer o pagamento de R$ 990,00.
+            Você pode parcelar em até <strong>12 vezes</strong> (taxas de parcelamento podem ser adicionadas).
+          </p>
+          <a href="https://link.infinitepay.io/sooly/VC1DLTAtUg-1vgL7p51pl-990,00" class="payment-btn" target="_blank" rel="noopener noreferrer">
+            Fazer Pagamento
+          </a>
+          <p class="pricing-note">
+            Após o pagamento, entramos em contato para coletar os materiais e iniciar a implementação imediatamente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PRAZO ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Prazo de entrega</span>
+      <h2 class="section-title">Rápido, sem abrir mão da qualidade.</h2>
+      <p class="body-text" style="margin-bottom: 32px;">
+        Com os materiais recebidos pela cliente, a previsão de entrega é de <strong>1 a 2 dias úteis</strong>.
+        A Túlio prioriza velocidade sem abrir mão da qualidade — o site será entregue funcional, seguro e
+        pronto para receber visitantes desde o primeiro dia.
+      </p>
+
+      <div class="grid-3" style="margin-top: 40px;">
+        <div class="card">
+          <h3 class="card-title" style="font-size: 32px; margin-bottom: 4px;">1</h3>
+          <p class="card-desc"><strong>Recebimento</strong> de materiais</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="font-size: 32px; margin-bottom: 4px;">2–24h</h3>
+          <p class="card-desc"><strong>Implementação</strong> e testes</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="font-size: 32px; margin-bottom: 4px;">✓</h3>
+          <p class="card-desc"><strong>Publicação</strong> ao vivo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PRÓXIMOS PASSOS ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Próximos passos</span>
+      <h2 class="section-title">Como começamos?</h2>
+
+      <ul class="checklist" style="margin-top: 40px;">
+        <li><strong>Aprovação da proposta</strong> — confirma interesse</li>
+        <li><strong>Pagamento da implementação</strong> — R$ 990,00 (até 12x)</li>
+        <li><strong>Envio dos materiais</strong> — textos, logo, referências visuais</li>
+        <li><strong>Confirmação de recebimento</strong> — Túlio começa imediatamente</li>
+        <li><strong>Lançamento</strong> — site ao vivo em 1 a 2 dias úteis</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ══════════ CTA FINAL ══════════ -->
+  <div class="cta-dark-wrap">
+    <div class="cta-dark">
+      <h2 class="cta-dark__title">Pronto para começar?</h2>
+      <p class="cta-dark__desc">
+        A Mentoria Reviva merece estar na web. Rápido, seguro e pronto para crescer junto
+        com o projeto. Vamos começar?
+      </p>
+      <a href="https://link.infinitepay.io/sooly/VC1DLTAtUg-1vgL7p51pl-990,00" class="btn-primary" target="_blank" rel="noopener noreferrer">
+        Fazer Pagamento da Implementação
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <p class="footer-brand">Túlio · Infraestrutura Digital</p>
+    <p class="footer-contact">
+      Implementamos tecnologia do jeito certo — passo a passo.<br>
+      Qualquer dúvida, é só chamar: <a href="https://tuliu.io">tuliu.io</a>
+    </p>
+    <p class="footer-copy">Túlio. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+
+</html>

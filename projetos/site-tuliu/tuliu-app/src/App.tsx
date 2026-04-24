@@ -10,9 +10,11 @@ import Footer from './components/Footer';
 import LoginModal from './components/LoginModal';
 import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
+import DashboardPage from './components/dashboard/DashboardPage';
+import AdminPage from './components/admin/AdminPage';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn';
+type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -99,9 +101,13 @@ function App() {
           </>
         ) : currentPage === 'cases' ? (
           <CasesPage />
-        ) : (
+        ) : currentPage === 'learn' ? (
           <LearnPage />
-        )}
+        ) : currentPage === 'dashboard' ? (
+          <DashboardPage />
+        ) : currentPage === 'admin' ? (
+          <AdminPage />
+        ) : null}
       </main>
       <Footer />
       <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />

@@ -5,8 +5,8 @@ import logo from '../assets/logo.svg';
 
 interface NavbarProps {
   onOpenLogin: () => void;
-  currentPage: 'home' | 'cases' | 'learn';
-  onNavigate: (page: 'home' | 'cases' | 'learn', anchor?: string) => void;
+  currentPage: 'home' | 'cases' | 'learn' | 'dashboard' | 'admin';
+  onNavigate: (page: 'home' | 'cases' | 'learn' | 'dashboard' | 'admin', anchor?: string) => void;
 }
 
 export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarProps) {
