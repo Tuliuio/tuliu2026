@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { supabase } from '../../lib/supabase';
 
 interface DashboardSidebarProps {
   currentSection: string;
@@ -13,24 +15,64 @@ interface MenuItem {
   badge?: string;
 }
 
-const MENU_ITEMS: MenuItem[] = [
-  { id: 'overview', label: 'Dashboard', icon: 'fa-chart-line' },
-  { id: 'domains', label: 'Domínios', icon: 'fa-globe', count: 0 },
-  { id: 'websites', label: 'Websites', icon: 'fa-laptop-code', count: 0 },
-  { id: 'webapps', label: 'Web Apps', icon: 'fa-browser', count: 0 },
-  { id: 'emails', label: 'E-mails', icon: 'fa-envelope', count: 0 },
-  { id: 'integrations', label: 'Integrações', icon: 'fa-plug', count: 0 },
-  { id: 'automations', label: 'Automações', icon: 'fa-cogs', badge: 'Pro', count: 0 },
-  { id: 'agents', label: 'Agentes IA', icon: 'fa-robot', badge: 'Pro', count: 0 },
-];
-
-const SUPPORT_ITEMS: MenuItem[] = [
-  { id: 'support', label: 'Suporte', icon: 'fa-comment' },
-  { id: 'settings', label: 'Configurações', icon: 'fa-gear' },
-];
-
 export default function DashboardSidebar({ currentSection, onNavigate }: DashboardSidebarProps) {
   const { client } = useAuth();
+  const [assetCounts, setAssetCounts] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const fetchAssetCounts = async () => {
+      if (!client) return;
+      try {
+        const { data: assets } = await supabase
+          .from('assets')
+          .select('type')
+          .eq('client_id', client.id)
+          .in('status', ['active', 'pending']);
+
+        const counts: Record<string, number> = {
+          domains: 0,
+          websites: 0,
+          webapps: 0,
+          emails: 0,
+          integrations: 0,
+          automations: 0,
+          agents: 0,
+        };
+
+        (assets || []).forEach((a: any) => {
+          if (a.type === 'domain') counts.domains++;
+          else if (a.type === 'website') counts.websites++;
+          else if (a.type === 'webapp') counts.webapps++;
+          else if (a.type === 'email') counts.emails++;
+          else if (a.type === 'integration') counts.integrations++;
+          else if (a.type === 'automation') counts.automations++;
+          else if (a.type === 'agent') counts.agents++;
+        });
+
+        setAssetCounts(counts);
+      } catch (err) {
+        console.error('Erro ao contar ativos:', err);
+      }
+    };
+
+    fetchAssetCounts();
+  }, [client]);
+
+  const MENU_ITEMS: MenuItem[] = [
+    { id: 'overview', label: 'Dashboard', icon: 'fa-chart-line' },
+    { id: 'domains', label: 'Domínios', icon: 'fa-globe', count: assetCounts.domains || 0 },
+    { id: 'websites', label: 'Websites', icon: 'fa-laptop-code', count: assetCounts.websites || 0 },
+    { id: 'webapps', label: 'Web Apps', icon: 'fa-browser', count: assetCounts.webapps || 0 },
+    { id: 'emails', label: 'E-mails', icon: 'fa-envelope', count: assetCounts.emails || 0 },
+    { id: 'integrations', label: 'Integrações', icon: 'fa-plug', count: assetCounts.integrations || 0 },
+    { id: 'automations', label: 'Automações', icon: 'fa-cogs', badge: 'Pro', count: assetCounts.automations || 0 },
+    { id: 'agents', label: 'Agentes IA', icon: 'fa-robot', badge: 'Pro', count: assetCounts.agents || 0 },
+  ];
+
+  const SUPPORT_ITEMS: MenuItem[] = [
+    { id: 'support', label: 'Suporte', icon: 'fa-comment' },
+    { id: 'settings', label: 'Configurações', icon: 'fa-gear' },
+  ];
 
   const isProPlan = ['business', 'enterprise'].includes(client?.plan?.tier?.toLowerCase() || '');
 
