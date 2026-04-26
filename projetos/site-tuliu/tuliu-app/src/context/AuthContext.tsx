@@ -27,7 +27,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const getSession = async () => {
       try {
         console.log('[Auth] Starting session fetch...');
-        const { data: { session }, error } = await supabase.auth.getSession();
+
+        // Add timeout to prevent hanging
+        const sessionPromise = supabase.auth.getSession();
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Session fetch timeout')), 5000)
+        );
+
+        const { data: { session }, error } = await Promise.race([
+          sessionPromise,
+          timeoutPromise
+        ]) as any;
 
         if (error) {
           console.error('[Auth] Error from getSession:', error);
@@ -45,6 +55,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       } catch (error) {
         console.error('[Auth] Unexpected error in getSession:', error);
+        setSession(null);
+        setUser(null);
       } finally {
         console.log('[Auth] Session fetch complete, loading = false');
         setLoading(false);
@@ -71,10 +83,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const fetchClientData = async (userId: string) => {
     try {
       console.log('[Auth] Fetching client for userId:', userId);
-      const { data, error } = await supabase
+
+      // Add timeout to prevent hanging
+      const clientPromise = supabase
         .from('clients')
         .select('id, user_id, name, company, email, plan_id, status, role, created_at, updated_at')
         .eq('user_id', userId);
+
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Client fetch timeout')), 5000)
+      );
+
+      const { data, error } = await Promise.race([
+        clientPromise,
+        timeoutPromise
+      ]) as any;
 
       console.log('[Auth] Query result:', data);
       console.log('[Auth] Query error:', error);
@@ -86,25 +109,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (!data || data.length === 0) {
         console.warn('[Auth] No client found for user:', userId);
-        console.log('[Auth] Attempting raw query to see if table has any data...');
-        // Try without filter to see if table has data
-        const { data: allClients, error: allError } = await supabase
-          .from('clients')
-          .select('id, user_id, name, company')
-          .limit(10);
-        console.log('[Auth] All clients in table:', allClients);
-        console.log('[Auth] All clients error:', allError);
         return;
       }
 
       const clientData = data[0];
       console.log('[Auth] Client data found:', clientData);
 
-      // Fetch the plan separately
-      const { data: planData, error: planError } = await supabase
+      // Fetch the plan separately with timeout
+      const planPromise = supabase
         .from('plans')
         .select('*')
         .eq('id', clientData.plan_id);
+
+      const planTimeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Plan fetch timeout')), 3000)
+      );
+
+      const { data: planData, error: planError } = await Promise.race([
+        planPromise,
+        planTimeoutPromise
+      ]) as any;
 
       if (planError) {
         console.error('[Auth] Error fetching plan:', planError.message);
