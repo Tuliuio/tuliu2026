@@ -13,7 +13,7 @@ const assetTypeConfig: Record<AssetType, { icon: string; label: string }> = {
   domain: { icon: 'fa-globe', label: 'Domínios' },
   subdomain: { icon: 'fa-sitemap', label: 'Subdomínios' },
   website: { icon: 'fa-laptop-code', label: 'Websites' },
-  webapp: { icon: 'fa-browser', label: 'Web Apps' },
+  webapp: { icon: 'fa-mobile-alt', label: 'Web Apps' },
   email: { icon: 'fa-envelope', label: 'E-mails' },
   automation: { icon: 'fa-cogs', label: 'Automações' },
   agent: { icon: 'fa-robot', label: 'Agentes IA' },

@@ -62,7 +62,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
     { id: 'overview', label: 'Dashboard', icon: 'fa-chart-line' },
     { id: 'domains', label: 'Domínios', icon: 'fa-globe', count: assetCounts.domains || 0 },
     { id: 'websites', label: 'Websites', icon: 'fa-laptop-code', count: assetCounts.websites || 0 },
-    { id: 'webapps', label: 'Web Apps', icon: 'fa-browser', count: assetCounts.webapps || 0 },
+    { id: 'webapps', label: 'Web Apps', icon: 'fa-mobile-alt', count: assetCounts.webapps || 0 },
     { id: 'emails', label: 'E-mails', icon: 'fa-envelope', count: assetCounts.emails || 0 },
     { id: 'integrations', label: 'Integrações', icon: 'fa-plug', count: assetCounts.integrations || 0 },
     { id: 'automations', label: 'Automações', icon: 'fa-cogs', badge: 'Pro', count: assetCounts.automations || 0 },
