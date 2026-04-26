@@ -9,13 +9,13 @@ interface ClientDetailProps {
 }
 
 const assetTypeIcons: Record<string, string> = {
-  domain: '🌐',
-  subdomain: '📁',
-  website: '💻',
-  webapp: '📱',
-  email: '📧',
-  automation: '⚙️',
-  agent: '🤖',
+  domain: 'fa-globe',
+  subdomain: 'fa-sitemap',
+  website: 'fa-laptop-code',
+  webapp: 'fa-browser',
+  email: 'fa-envelope',
+  automation: 'fa-cogs',
+  agent: 'fa-robot',
 };
 
 const assetTypeLabels: Record<string, string> = {
@@ -112,7 +112,7 @@ export default function ClientDetail({ client, assets }: ClientDetailProps) {
         Object.entries(groupedAssets).map(([type, typeAssets]) => (
           <div key={type} style={{ marginBottom: '24px' }}>
             <h4 style={{ margin: '0 0 12px 0', fontSize: '13px', fontWeight: 600, color: '#666', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              {assetTypeIcons[type]} {assetTypeLabels[type]} <span style={{ fontWeight: 400, color: '#999' }}>({typeAssets.length})</span>
+              <i className={`fas ${assetTypeIcons[type]}`} style={{ marginRight: '6px' }}></i>{assetTypeLabels[type]} <span style={{ fontWeight: 400, color: '#999' }}>({typeAssets.length})</span>
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {typeAssets.map((asset) => {

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -7,8 +7,8 @@ interface AdminLayoutProps {
 }
 
 const MENU_ITEMS = [
-  { id: 'dashboard', label: 'Dashboard', icon: '📊' },
-  { id: 'clients', label: 'Clientes', icon: '👥' },
+  { id: 'dashboard', label: 'Dashboard', icon: 'fa-chart-line' },
+  { id: 'clients', label: 'Clientes', icon: 'fa-users' },
 ];
 
 export default function AdminLayout({ children, currentSection, onNavigate }: AdminLayoutProps) {
@@ -74,7 +74,7 @@ export default function AdminLayout({ children, currentSection, onNavigate }: Ad
                     }
                   }}
                 >
-                  <span style={{ fontSize: '16px' }}>{item.icon}</span>
+                  <i className={`fas ${item.icon}`}></i>
                   <span>{item.label}</span>
                 </button>
               );

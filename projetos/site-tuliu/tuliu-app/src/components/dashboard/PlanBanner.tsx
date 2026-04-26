@@ -9,7 +9,7 @@ export default function PlanBanner({ plan, assets }: PlanBannerProps) {
   const limits = plan.limits;
 
   const countAssetsByType = (type: string) => {
-    return assets.filter((a) => a.type === type).length;
+    return assets.filter((a) => a.type === type && a.status !== 'inactive').length;
   };
 
   const calculateUsage = (count: number, limit: number | 'unlimited') => {

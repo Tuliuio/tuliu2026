@@ -176,24 +176,6 @@ export default function AdminClientsPage() {
     }
   };
 
-  const handleDeleteAsset = async (assetId: string) => {
-    if (!confirm('Tem certeza que deseja remover este ativo?')) return;
-
-    try {
-      const { error: deleteError } = await supabase
-        .from('assets')
-        .delete()
-        .eq('id', assetId);
-
-      if (deleteError) throw deleteError;
-
-      setAssets((prev) => prev.filter((a) => a.id !== assetId));
-      show('Ativo removido com sucesso!', 'success');
-    } catch (err: any) {
-      show(err.message || 'Erro ao remover ativo', 'error');
-    }
-  };
-
   // Filter clients by search
   const filteredClients = clients.filter((client) =>
     client.company.toLowerCase().includes(searchQuery.toLowerCase()) ||

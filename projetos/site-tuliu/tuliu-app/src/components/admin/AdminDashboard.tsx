@@ -8,6 +8,7 @@ interface DashboardStats {
   clientsByPlan: Record<string, number>;
   assetsByType: Record<string, number>;
   activeAssetsCount: number;
+  pendingAssets: Asset[];
 }
 
 export default function AdminDashboard() {
@@ -17,8 +18,10 @@ export default function AdminDashboard() {
     clientsByPlan: {},
     assetsByType: {},
     activeAssetsCount: 0,
+    pendingAssets: [],
   });
   const [loading, setLoading] = useState(true);
+  const [activatingAsset, setActivatingAsset] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -41,6 +44,7 @@ export default function AdminDashboard() {
         const assetsList = (assets || []) as Asset[];
         const totalAssets = assetsList.length;
         const activeAssets = assetsList.filter((a) => a.status === 'active').length;
+        const pendingAssets = assetsList.filter((a) => a.status === 'pending');
 
         // Count by plan
         const clientsByPlan: Record<string, number> = {};
@@ -61,6 +65,7 @@ export default function AdminDashboard() {
           clientsByPlan,
           assetsByType,
           activeAssetsCount: activeAssets,
+          pendingAssets,
         });
       } catch (err) {
         console.error('Erro ao carregar estatísticas:', err);
@@ -72,7 +77,29 @@ export default function AdminDashboard() {
     fetchStats();
   }, []);
 
-  const StatCard = ({ label, value, subtext }: { label: string; value: string | number; subtext?: string }) => (
+  const handleApproveActivation = async (assetId: string) => {
+    setActivatingAsset(assetId);
+    try {
+      const { error } = await supabase
+        .from('assets')
+        .update({ status: 'active' })
+        .eq('id', assetId);
+
+      if (error) throw error;
+
+      setStats((prev) => ({
+        ...prev,
+        pendingAssets: prev.pendingAssets.filter((a) => a.id !== assetId),
+        activeAssetsCount: prev.activeAssetsCount + 1,
+      }));
+    } catch (err) {
+      console.error('Erro ao ativar ativo:', err);
+    } finally {
+      setActivatingAsset(null);
+    }
+  };
+
+  const StatCard = ({ label, value, subtext, icon }: { label: string; value: string | number; subtext?: string; icon?: string }) => (
     <div
       style={{
         padding: '24px',
@@ -82,7 +109,8 @@ export default function AdminDashboard() {
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
       }}
     >
-      <p style={{ margin: '0 0 8px 0', fontSize: '13px', fontWeight: 600, color: '#999', textTransform: 'uppercase' }}>
+      <p style={{ margin: '0 0 8px 0', fontSize: '13px', fontWeight: 600, color: '#999', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '6px' }}>
+        {icon && <i className={`fas ${icon}`} style={{ fontSize: '14px' }}></i>}
         {label}
       </p>
       <p style={{ margin: '0 0 4px 0', fontSize: '32px', fontWeight: 800, color: '#111' }}>{value}</p>
@@ -104,6 +132,16 @@ export default function AdminDashboard() {
     agent: 'Agentes IA',
   };
 
+  const assetTypeIcons: Record<string, string> = {
+    domain: 'fa-globe',
+    subdomain: 'fa-sitemap',
+    website: 'fa-laptop-code',
+    webapp: 'fa-browser',
+    email: 'fa-envelope',
+    automation: 'fa-cogs',
+    agent: 'fa-robot',
+  };
+
   return (
     <div>
       <div style={{ marginBottom: '40px' }}>
@@ -113,16 +151,76 @@ export default function AdminDashboard() {
 
       {/* Main Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '40px' }}>
-        <StatCard label="Total de Clientes" value={stats.totalClients} />
-        <StatCard label="Total de Ativos" value={stats.totalAssets} />
-        <StatCard label="Ativos Ativos" value={stats.activeAssetsCount} subtext={`${stats.totalAssets > 0 ? Math.round((stats.activeAssetsCount / stats.totalAssets) * 100) : 0}% do total`} />
+        <StatCard label="Total de Clientes" value={stats.totalClients} icon="fa-users" />
+        <StatCard label="Total de Ativos" value={stats.totalAssets} icon="fa-cubes" />
+        <StatCard label="Ativos Ativos" value={stats.activeAssetsCount} icon="fa-check-circle" subtext={`${stats.totalAssets > 0 ? Math.round((stats.activeAssetsCount / stats.totalAssets) * 100) : 0}% do total`} />
       </div>
+
+      {/* Pending Activation Requests Alert */}
+      {stats.pendingAssets.length > 0 && (
+        <div style={{ marginBottom: '40px', padding: '24px', background: '#fffbeb', borderRadius: '12px', border: '1px solid #fcd34d', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <i className="fas fa-bell" style={{ fontSize: '18px', color: '#d97706' }}></i>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: '#92400e' }}>Solicitações de Ativação Pendentes</h3>
+            </div>
+            <p style={{ margin: '0 0 12px 0', fontSize: '14px', color: '#b45309' }}>
+              {stats.pendingAssets.length} ativo(s) aguardando aprovação para ativação
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {stats.pendingAssets.map((asset) => (
+                <div key={asset.id} style={{ padding: '12px', background: 'white', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #fcd34d' }}>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ margin: '0 0 2px 0', fontSize: '14px', fontWeight: 500 }}>{asset.name}</p>
+                    <p style={{ margin: 0, fontSize: '12px', color: '#666' }}>{assetTypeLabels[asset.type] || asset.type}</p>
+                  </div>
+                  <button
+                    onClick={() => handleApproveActivation(asset.id)}
+                    disabled={activatingAsset === asset.id}
+                    style={{
+                      padding: '8px 16px',
+                      background: '#d97706',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      cursor: activatingAsset === asset.id ? 'not-allowed' : 'pointer',
+                      opacity: activatingAsset === asset.id ? 0.7 : 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activatingAsset !== asset.id) {
+                        e.currentTarget.style.background = '#ca8a04';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activatingAsset !== asset.id) {
+                        e.currentTarget.style.background = '#d97706';
+                      }
+                    }}
+                  >
+                    <i className="fas fa-check"></i>
+                    {activatingAsset === asset.id ? 'Ativando...' : 'Aprovar'}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Plans and Assets Distribution */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
         {/* Clients by Plan */}
         <div>
-          <h2 style={{ margin: '0 0 20px 0', fontSize: '18px', fontWeight: 600 }}>Clientes por Plano</h2>
+          <h2 style={{ margin: '0 0 20px 0', fontSize: '18px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <i className="fas fa-chart-pie"></i>
+            Clientes por Plano
+          </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {Object.entries(stats.clientsByPlan).map(([plan, count]) => (
               <div
@@ -157,7 +255,10 @@ export default function AdminDashboard() {
 
         {/* Assets by Type */}
         <div>
-          <h2 style={{ margin: '0 0 20px 0', fontSize: '18px', fontWeight: 600 }}>Ativos por Tipo</h2>
+          <h2 style={{ margin: '0 0 20px 0', fontSize: '18px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <i className="fas fa-chart-bar"></i>
+            Ativos por Tipo
+          </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {Object.entries(stats.assetsByType).map(([type, count]) => (
               <div
@@ -172,7 +273,10 @@ export default function AdminDashboard() {
                   alignItems: 'center',
                 }}
               >
-                <span style={{ fontSize: '14px', fontWeight: 500 }}>{assetTypeLabels[type] || type}</span>
+                <span style={{ fontSize: '14px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {assetTypeIcons[type] && <i className={`fas ${assetTypeIcons[type]}`}></i>}
+                  {assetTypeLabels[type] || type}
+                </span>
                 <span
                   style={{
                     padding: '4px 12px',
