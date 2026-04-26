@@ -2,6 +2,17 @@ import { useEffect, useState } from 'react';
 import type { Client, Asset } from '../../types/supabase';
 import { supabase } from '../../lib/supabase';
 
+interface ActivationRequest {
+  id: string;
+  asset_id: string;
+  client_id: string;
+  description: string;
+  status: 'pending' | 'approved' | 'rejected';
+  created_at: string;
+  asset?: Asset;
+  client?: Client;
+}
+
 interface DashboardStats {
   totalClients: number;
   totalAssets: number;
@@ -9,6 +20,7 @@ interface DashboardStats {
   assetsByType: Record<string, number>;
   activeAssetsCount: number;
   pendingAssets: Asset[];
+  activationRequests: ActivationRequest[];
 }
 
 export default function AdminDashboard() {
@@ -19,9 +31,11 @@ export default function AdminDashboard() {
     assetsByType: {},
     activeAssetsCount: 0,
     pendingAssets: [],
+    activationRequests: [],
   });
   const [loading, setLoading] = useState(true);
   const [activatingAsset, setActivatingAsset] = useState<string | null>(null);
+  const [processingRequest, setProcessingRequest] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -46,6 +60,16 @@ export default function AdminDashboard() {
         const activeAssets = assetsList.filter((a) => a.status === 'active').length;
         const pendingAssets = assetsList.filter((a) => a.status === 'pending');
 
+        // Fetch activation requests
+        const { data: requests, error: requestsError } = await supabase
+          .from('activation_requests')
+          .select('*, asset:asset_id(*), client:client_id(*)')
+          .eq('status', 'pending')
+          .order('created_at', { ascending: false });
+
+        if (requestsError) throw requestsError;
+        const activationRequests = (requests || []) as ActivationRequest[];
+
         // Count by plan
         const clientsByPlan: Record<string, number> = {};
         clientsList.forEach((client) => {
@@ -66,6 +90,7 @@ export default function AdminDashboard() {
           assetsByType,
           activeAssetsCount: activeAssets,
           pendingAssets,
+          activationRequests,
         });
       } catch (err) {
         console.error('Erro ao carregar estatísticas:', err);
@@ -96,6 +121,51 @@ export default function AdminDashboard() {
       console.error('Erro ao ativar ativo:', err);
     } finally {
       setActivatingAsset(null);
+    }
+  };
+
+  const handleApproveRequest = async (requestId: string) => {
+    setProcessingRequest(requestId);
+    try {
+      const request = stats.activationRequests.find((r) => r.id === requestId);
+      if (!request) throw new Error('Solicitação não encontrada');
+
+      const { error: updateError } = await supabase
+        .from('activation_requests')
+        .update({ status: 'approved' })
+        .eq('id', requestId);
+
+      if (updateError) throw updateError;
+
+      setStats((prev) => ({
+        ...prev,
+        activationRequests: prev.activationRequests.filter((r) => r.id !== requestId),
+      }));
+    } catch (err) {
+      console.error('Erro ao processar solicitação:', err);
+    } finally {
+      setProcessingRequest(null);
+    }
+  };
+
+  const handleRejectRequest = async (requestId: string) => {
+    setProcessingRequest(requestId);
+    try {
+      const { error: updateError } = await supabase
+        .from('activation_requests')
+        .update({ status: 'rejected' })
+        .eq('id', requestId);
+
+      if (updateError) throw updateError;
+
+      setStats((prev) => ({
+        ...prev,
+        activationRequests: prev.activationRequests.filter((r) => r.id !== requestId),
+      }));
+    } catch (err) {
+      console.error('Erro ao rejeitar solicitação:', err);
+    } finally {
+      setProcessingRequest(null);
     }
   };
 
@@ -155,6 +225,122 @@ export default function AdminDashboard() {
         <StatCard label="Total de Ativos" value={stats.totalAssets} icon="fa-cubes" />
         <StatCard label="Ativos Ativos" value={stats.activeAssetsCount} icon="fa-check-circle" subtext={`${stats.totalAssets > 0 ? Math.round((stats.activeAssetsCount / stats.totalAssets) * 100) : 0}% do total`} />
       </div>
+
+      {/* Service Activation Requests */}
+      {stats.activationRequests.length > 0 && (
+        <div style={{ marginBottom: '40px', padding: '24px', background: '#f0f9ff', borderRadius: '12px', border: '1px solid #0ea5e9', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <i className="fas fa-envelope-open" style={{ fontSize: '18px', color: '#0284c7' }}></i>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: '#0c4a6e' }}>Solicitações de Ativação de Serviços</h3>
+            </div>
+            <p style={{ margin: '0 0 16px 0', fontSize: '14px', color: '#0369a1' }}>
+              {stats.activationRequests.length} solicitação(ões) de cliente(s) aguardando processamento
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {stats.activationRequests.map((request) => (
+                <div key={request.id} style={{ padding: '16px', background: 'white', borderRadius: '8px', border: '1px solid #0ea5e9' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 600, color: '#111' }}>
+                        {request.client?.company || 'Cliente'}
+                      </p>
+                      <p style={{ margin: '0 0 4px 0', fontSize: '13px', color: '#666' }}>
+                        <i className={`fas ${request.asset?.type ? assetTypeIcons[request.asset.type] || 'fa-cube' : 'fa-cube'}`} style={{ marginRight: '6px' }}></i>
+                        {request.asset?.type ? assetTypeLabels[request.asset.type] || request.asset.type : 'Serviço'} - {request.asset?.name || 'Sem nome'}
+                      </p>
+                      <p style={{ margin: '8px 0 0 0', fontSize: '12px', color: '#999' }}>
+                        Solicitado em {new Date(request.created_at).toLocaleDateString('pt-BR', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '6px', marginBottom: '12px', borderLeft: '3px solid #0284c7' }}>
+                    <p style={{ margin: 0, fontSize: '13px', color: '#1e293b', lineHeight: '1.5' }}>
+                      {request.description}
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button
+                      onClick={() => handleApproveRequest(request.id)}
+                      disabled={processingRequest === request.id}
+                      style={{
+                        flex: 1,
+                        padding: '8px 12px',
+                        background: '#10b981',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        cursor: processingRequest === request.id ? 'not-allowed' : 'pointer',
+                        opacity: processingRequest === request.id ? 0.7 : 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (processingRequest !== request.id) {
+                          e.currentTarget.style.background = '#059669';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (processingRequest !== request.id) {
+                          e.currentTarget.style.background = '#10b981';
+                        }
+                      }}
+                    >
+                      <i className="fas fa-check"></i>
+                      {processingRequest === request.id ? 'Processando...' : 'Aprovar'}
+                    </button>
+                    <button
+                      onClick={() => handleRejectRequest(request.id)}
+                      disabled={processingRequest === request.id}
+                      style={{
+                        flex: 1,
+                        padding: '8px 12px',
+                        background: '#ef4444',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        cursor: processingRequest === request.id ? 'not-allowed' : 'pointer',
+                        opacity: processingRequest === request.id ? 0.7 : 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (processingRequest !== request.id) {
+                          e.currentTarget.style.background = '#dc2626';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (processingRequest !== request.id) {
+                          e.currentTarget.style.background = '#ef4444';
+                        }
+                      }}
+                    >
+                      <i className="fas fa-times"></i>
+                      {processingRequest === request.id ? 'Processando...' : 'Rejeitar'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Pending Activation Requests Alert */}
       {stats.pendingAssets.length > 0 && (

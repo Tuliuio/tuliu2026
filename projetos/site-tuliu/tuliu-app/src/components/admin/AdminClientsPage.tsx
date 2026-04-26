@@ -76,6 +76,21 @@ export default function AdminClientsPage() {
 
   const selectedClient = selectedClientId ? clients.find((c) => c.id === selectedClientId) : null;
 
+  const refetchAssets = async () => {
+    if (!selectedClientId) return;
+    try {
+      const { data, error: err } = await supabase
+        .from('assets')
+        .select('*')
+        .eq('client_id', selectedClientId);
+
+      if (err) throw err;
+      setAssets(data || []);
+    } catch (err) {
+      show('Erro ao recarregar ativos', 'error');
+    }
+  };
+
   const handleCreateClient = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -407,7 +422,11 @@ export default function AdminClientsPage() {
               </button>
             </div>
 
-            <ClientDetail client={selectedClient} assets={assets} />
+            <ClientDetail
+              client={selectedClient}
+              assets={assets}
+              onAssetDeleted={refetchAssets}
+            />
 
             {/* Add Asset Button */}
             <button
