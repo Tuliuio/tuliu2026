@@ -14,6 +14,7 @@ export default function ClientEditor({ client, onClose, onUpdate }: ClientEditor
     company: client.company,
     email: client.email,
     plan_id: client.plan_id,
+    custom_price: (client as any).custom_price || null,
   });
   const [plans, setPlans] = useState<Plan[]>([]);
   const [error, setError] = useState('');
@@ -49,6 +50,7 @@ export default function ClientEditor({ client, onClose, onUpdate }: ClientEditor
           company: formData.company,
           email: formData.email,
           plan_id: formData.plan_id,
+          custom_price: formData.custom_price ? parseFloat(formData.custom_price as any) : null,
         })
         .eq('id', client.id);
 
@@ -61,7 +63,8 @@ export default function ClientEditor({ client, onClose, onUpdate }: ClientEditor
         email: formData.email,
         plan_id: formData.plan_id,
         plan: selectedPlan,
-      });
+        custom_price: formData.custom_price ? parseFloat(formData.custom_price as any) : null,
+      } as Client);
     } catch (err: any) {
       setError(err.message || 'Erro ao atualizar cliente');
     } finally {
@@ -177,17 +180,51 @@ export default function ClientEditor({ client, onClose, onUpdate }: ClientEditor
           </label>
 
           {selectedPlan && (
-            <div style={{ marginBottom: '24px', padding: '16px', background: '#f3f4f6', borderRadius: '8px' }}>
-              <h4 style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: 600 }}>Detalhes do Plano</h4>
-              <div style={{ fontSize: '13px', color: '#666', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                <div>
-                  <span style={{ display: 'block', color: '#999', marginBottom: '2px' }}>Plano</span>
-                  <span style={{ fontWeight: 600 }}>{selectedPlan.name}</span>
+            <>
+              <label style={{ display: 'block', marginBottom: '24px' }}>
+                <span style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#666', marginBottom: '6px' }}>
+                  💰 Preço Customizado (opcional)
+                </span>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#999' }}>R$</span>
+                  <input
+                    type="number"
+                    placeholder={selectedPlan.price.toString()}
+                    value={formData.custom_price || ''}
+                    onChange={(e) => setFormData({ ...formData, custom_price: e.target.value ? parseFloat(e.target.value) : null })}
+                    step="0.01"
+                    min="0"
+                    style={{
+                      flex: 1,
+                      padding: '12px 16px',
+                      border: formData.custom_price ? '2px solid #6366f1' : '1px solid #E5E7EB',
+                      borderRadius: '8px',
+                      boxSizing: 'border-box',
+                      fontSize: '14px',
+                      background: formData.custom_price ? '#ede9fe' : 'white',
+                    }}
+                  />
+                  <span style={{ fontSize: '13px', color: '#666', minWidth: '80px' }}>/{selectedPlan.billing === 'monthly' ? 'mês' : 'ano'}</span>
                 </div>
-                <div>
-                  <span style={{ display: 'block', color: '#999', marginBottom: '2px' }}>Faturamento</span>
-                  <span style={{ fontWeight: 600 }}>R$ {selectedPlan.price.toLocaleString('pt-BR')}/{selectedPlan.billing === 'monthly' ? 'mês' : 'ano'}</span>
-                </div>
+                <span style={{ display: 'block', fontSize: '12px', color: '#999', marginTop: '6px' }}>
+                  Padrão: R$ {selectedPlan.price.toLocaleString('pt-BR')}
+                </span>
+              </label>
+
+              <div style={{ marginBottom: '24px', padding: '16px', background: '#f3f4f6', borderRadius: '8px' }}>
+                <h4 style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: 600 }}>Detalhes do Plano</h4>
+                <div style={{ fontSize: '13px', color: '#666', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div>
+                    <span style={{ display: 'block', color: '#999', marginBottom: '2px' }}>Plano</span>
+                    <span style={{ fontWeight: 600 }}>{selectedPlan.name}</span>
+                  </div>
+                  <div>
+                    <span style={{ display: 'block', color: '#999', marginBottom: '2px' }}>Faturamento</span>
+                    <span style={{ fontWeight: 600, color: formData.custom_price ? '#6366f1' : '#111' }}>
+                      R$ {(formData.custom_price || selectedPlan.price).toLocaleString('pt-BR')}/{selectedPlan.billing === 'monthly' ? 'mês' : 'ano'}
+                      {formData.custom_price && ' (customizado)'}
+                    </span>
+                  </div>
                 <div>
                   <span style={{ display: 'block', color: '#999', marginBottom: '2px' }}>Domínios</span>
                   <span style={{ fontWeight: 600 }}>{selectedPlan.limits.domains === 'unlimited' ? 'Ilimitado' : selectedPlan.limits.domains}</span>
@@ -209,7 +246,8 @@ export default function ClientEditor({ client, onClose, onUpdate }: ClientEditor
                   <span style={{ fontWeight: 600 }}>{selectedPlan.limits.agents === 'unlimited' ? 'Ilimitado' : selectedPlan.limits.agents}</span>
                 </div>
               </div>
-            </div>
+              </div>
+            </>
           )}
 
           <div style={{ display: 'flex', gap: '12px' }}>
