@@ -6,6 +6,7 @@ interface AssetSectionProps {
   assets: Asset[];
   maxAllowed: number | 'unlimited';
   onToggleStatus?: (assetId: string) => void;
+  onRequestActivation?: (assetType: string) => void;
 }
 
 const assetTypeConfig: Record<AssetType, { icon: string; label: string }> = {
@@ -23,6 +24,7 @@ export default function AssetSection({
   assets,
   maxAllowed,
   onToggleStatus,
+  onRequestActivation,
 }: AssetSectionProps) {
   const config = assetTypeConfig[type];
   const activeAssets = assets.filter((a) => a.status === 'active' || a.status === 'pending');
@@ -71,6 +73,7 @@ export default function AssetSection({
                 updated_at: '',
               } as Asset}
               variant="vacant"
+              onRequestActivation={onRequestActivation}
             />
           ))}
       </div>

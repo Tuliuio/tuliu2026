@@ -3,6 +3,7 @@ import type { Asset } from '../../types/supabase';
 interface AssetCardProps {
   asset: Asset;
   onToggleStatus?: (assetId: string) => void;
+  onRequestActivation?: (assetType: string) => void;
   variant?: 'normal' | 'vacant' | 'upgrade';
 }
 
@@ -32,7 +33,7 @@ const statusColors: Record<Asset['status'], { color: string; label: string }> = 
   pending: { color: '#f59e0b', label: 'Em configuração' },
 };
 
-export default function AssetCard({ asset, onToggleStatus, variant = 'normal' }: AssetCardProps) {
+export default function AssetCard({ asset, onToggleStatus, onRequestActivation, variant = 'normal' }: AssetCardProps) {
   const status = statusColors[asset.status];
   const icon = assetTypeIcons[asset.type];
 
@@ -61,6 +62,7 @@ export default function AssetCard({ asset, onToggleStatus, variant = 'normal' }:
           </div>
         </div>
         <button
+          onClick={() => onRequestActivation?.(asset.type)}
           className="btn btn-outline"
           style={{ fontSize: '13px', padding: '8px 16px', width: '100%' }}
         >
