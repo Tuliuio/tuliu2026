@@ -28,7 +28,6 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
       setIsMenuOpen(false);
       await logout();
       console.log('[DashboardNavbar] Logout complete, navigating home');
-      // Use setTimeout to ensure state is updated before navigation
       setTimeout(() => {
         onNavigate('home');
       }, 100);
@@ -51,7 +50,7 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
 
   return (
     <header className="dashboard-navbar">
-      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%' }}>
+      <div className="navbar-container">
         {/* Logo - Left */}
         <button
           onClick={() => onNavigate('dashboard')}
@@ -61,30 +60,32 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
           <img src={logo} alt="Tuliu Logo" height="40" />
         </button>
 
-        {/* Right Side - Admin Link + Avatar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          {/* Admin Link - only show if user is admin */}
-          {client?.role === 'admin' && (
-            <button
-              onClick={() => onNavigate('admin')}
-              className={`dashboard-nav-link ${currentPage === 'admin' ? 'active' : ''}`}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '15px',
-                fontWeight: 500,
-                color: currentPage === 'admin' ? '#111' : '#666',
-                textDecoration: currentPage === 'admin' ? 'underline' : 'none',
-                padding: 0,
-              }}
-            >
-              Administrador
-            </button>
-          )}
+        {/* Admin Link - Center (if admin) */}
+        {client?.role === 'admin' && (
+          <button
+            onClick={() => onNavigate('admin')}
+            className={`dashboard-nav-link ${currentPage === 'admin' ? 'active' : ''}`}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '15px',
+              fontWeight: 500,
+              color: currentPage === 'admin' ? '#111' : '#666',
+              textDecoration: currentPage === 'admin' ? 'underline' : 'none',
+              padding: 0,
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          >
+            <i className="fas fa-shield" style={{ marginRight: '6px' }}></i>
+            Administrador
+          </button>
+        )}
 
-          {/* User Avatar & Menu */}
-          <div style={{ position: 'relative' }}>
+        {/* User Avatar - Right */}
+        <div style={{ position: 'relative' }}>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             style={{
@@ -161,7 +162,8 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
-                  👤 Perfil
+                  <i className="fas fa-user" style={{ marginRight: '8px' }}></i>
+                  Perfil
                 </button>
 
                 <button
@@ -184,7 +186,8 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
-                  ⚙️ Configurações
+                  <i className="fas fa-gear" style={{ marginRight: '8px' }}></i>
+                  Configurações
                 </button>
 
                 <button
@@ -207,7 +210,8 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
-                  💬 Suporte
+                  <i className="fas fa-comment" style={{ marginRight: '8px' }}></i>
+                  Suporte
                 </button>
 
                 <div style={{ height: '1px', background: '#E5E7EB', margin: '8px 0' }}></div>
@@ -229,12 +233,12 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#FEE2E2')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
-                  🚪 Sair
+                  <i className="fas fa-sign-out-alt" style={{ marginRight: '8px' }}></i>
+                  Sair
                 </button>
               </div>
             </div>
           )}
-          </div>
         </div>
       </div>
 
@@ -254,8 +258,21 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
           z-index: 100;
         }
 
-        .dashboard-navbar .container {
+        .navbar-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 100%;
           padding: 0 24px;
+          position: relative;
+        }
+
+        .dashboard-nav-link {
+          transition: all 0.2s;
+        }
+
+        .dashboard-nav-link:hover {
+          color: #111 !important;
         }
       `}</style>
     </header>

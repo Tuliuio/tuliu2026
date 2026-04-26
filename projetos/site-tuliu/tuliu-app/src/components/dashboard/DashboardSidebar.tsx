@@ -14,19 +14,19 @@ interface MenuItem {
 }
 
 const MENU_ITEMS: MenuItem[] = [
-  { id: 'overview', label: 'Dashboard', icon: '📊' },
-  { id: 'domains', label: 'Domínios', icon: '🌐', count: 0 },
-  { id: 'websites', label: 'Websites', icon: '💻', count: 0 },
-  { id: 'webapps', label: 'Web Apps', icon: '📱', count: 0 },
-  { id: 'emails', label: 'E-mails', icon: '📧', count: 0 },
-  { id: 'integrations', label: 'Integrações', icon: '🔌', count: 0 },
-  { id: 'automations', label: 'Automações', icon: '⚙️', badge: 'Pro', count: 0 },
-  { id: 'agents', label: 'Agentes IA', icon: '🤖', badge: 'Pro', count: 0 },
+  { id: 'overview', label: 'Dashboard', icon: 'fa-chart-line' },
+  { id: 'domains', label: 'Domínios', icon: 'fa-globe', count: 0 },
+  { id: 'websites', label: 'Websites', icon: 'fa-laptop-code', count: 0 },
+  { id: 'webapps', label: 'Web Apps', icon: 'fa-browser', count: 0 },
+  { id: 'emails', label: 'E-mails', icon: 'fa-envelope', count: 0 },
+  { id: 'integrations', label: 'Integrações', icon: 'fa-plug', count: 0 },
+  { id: 'automations', label: 'Automações', icon: 'fa-cogs', badge: 'Pro', count: 0 },
+  { id: 'agents', label: 'Agentes IA', icon: 'fa-robot', badge: 'Pro', count: 0 },
 ];
 
 const SUPPORT_ITEMS: MenuItem[] = [
-  { id: 'support', label: 'Suporte', icon: '💬' },
-  { id: 'settings', label: 'Configurações', icon: '⚙️' },
+  { id: 'support', label: 'Suporte', icon: 'fa-comment' },
+  { id: 'settings', label: 'Configurações', icon: 'fa-gear' },
 ];
 
 export default function DashboardSidebar({ currentSection, onNavigate }: DashboardSidebarProps) {
@@ -87,7 +87,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
               title={hasNoPerm ? `Disponível no plano ${item.badge}` : ''}
             >
               <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '16px' }}>{item.icon}</span>
+                <i className={`fas ${item.icon}`}></i>
                 <span>{item.label}</span>
               </span>
 
