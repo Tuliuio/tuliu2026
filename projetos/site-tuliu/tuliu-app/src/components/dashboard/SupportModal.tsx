@@ -8,7 +8,7 @@ interface SupportModalProps {
 }
 
 export default function SupportModal({ isOpen, onClose }: SupportModalProps) {
-  const { user, client } = useAuth();
+  const { user } = useAuth();
   const { show } = useToast();
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');

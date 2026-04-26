@@ -118,16 +118,7 @@ export default function ClientOverview() {
             Suporte
           </p>
           <p style={{ margin: 0, fontSize: '14px', fontWeight: 600 }}>
-            {client.plan.support || 'E-mail'}
-          </p>
-        </div>
-
-        <div>
-          <p style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#666', textTransform: 'uppercase' }}>
-            Faturamento
-          </p>
-          <p style={{ margin: 0, fontSize: '14px', fontWeight: 600 }}>
-            {client.plan.billing_period === 'monthly' ? 'Mensal' : 'Anual'}
+            E-mail
           </p>
         </div>
 

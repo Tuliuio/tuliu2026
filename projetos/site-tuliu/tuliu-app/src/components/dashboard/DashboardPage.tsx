@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import type { Asset } from '../../types/supabase';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
+import DashboardLayout from './DashboardLayout';
 import PlanBanner from './PlanBanner';
 import AssetSection from './AssetSection';
 import ClientOverview from './ClientOverview';
+import AutomationsSection from './AutomationsSection';
+import AgentsSection from './AgentsSection';
 
-export default function DashboardPage() {
+function DashboardContent({ section }: { section: string }) {
   const { client } = useAuth();
   const [assets, setAssets] = useState<Asset[]>([]);
   const [assetStatuses, setAssetStatuses] = useState<Record<string, Asset['status']>>({});
@@ -67,29 +70,26 @@ export default function DashboardPage() {
 
   if (!client) {
     return (
-      <div className="dashboard-page" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
-        <div className="container">
-          <p>Carregando dados do cliente...</p>
-        </div>
+      <div style={{ padding: '40px' }}>
+        <p>Carregando dados do cliente...</p>
       </div>
     );
   }
 
   const { company, plan } = client;
 
-  return (
-    <div className="dashboard-page" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
-      <div className="container">
+  // Show overview by default
+  if (section === 'overview') {
+    return (
+      <div style={{ padding: '40px' }}>
         {/* Header */}
-        <div className="dashboard-header" style={{ marginBottom: '40px' }}>
-          <div>
-            <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
-              Olá, {company.split(' ')[0] || 'Usuário'}!
-            </h1>
-            <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
-              Aqui está toda a sua infraestrutura digital centralizada.
-            </p>
-          </div>
+        <div style={{ marginBottom: '40px' }}>
+          <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
+            Olá, {company.split(' ')[0] || 'Usuário'}!
+          </h1>
+          <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
+            Aqui está toda a sua infraestrutura digital centralizada.
+          </p>
         </div>
 
         {/* Client Overview */}
@@ -176,6 +176,29 @@ export default function DashboardPage() {
           </button>
         </div>
       </div>
+    );
+  }
+
+  if (section === 'automations') {
+    return <AutomationsSection />;
+  }
+
+  if (section === 'agents') {
+    return <AgentsSection />;
+  }
+
+  // For other sections (domains, websites, emails, etc)
+  return (
+    <div style={{ padding: '40px' }}>
+      <p>Seção em desenvolvimento</p>
     </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <DashboardLayout>
+      {(currentSection) => <DashboardContent section={currentSection} />}
+    </DashboardLayout>
   );
 }

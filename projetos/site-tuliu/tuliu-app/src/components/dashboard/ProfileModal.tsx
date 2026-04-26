@@ -9,11 +9,10 @@ interface ProfileModalProps {
 }
 
 export default function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
-  const { user, client } = useAuth();
+  const { client } = useAuth();
   const { show } = useToast();
   const [name, setName] = useState(client?.name || '');
   const [company, setCompany] = useState(client?.company || '');
-  const [email, setEmail] = useState(user?.email || '');
   const [loading, setLoading] = useState(false);
 
   const handleSave = async (e: React.FormEvent) => {
@@ -78,19 +77,9 @@ export default function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
             />
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#666', marginBottom: '6px' }}>
-              E-mail (apenas leitura)
-            </label>
-            <input
-              type="email"
-              value={email}
-              disabled
-              style={{ width: '100%', padding: '10px 12px', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '14px', fontFamily: 'Inter', background: '#f9f9f9', color: '#999' }}
-            />
-            <p style={{ margin: '8px 0 0 0', fontSize: '12px', color: '#999' }}>
-              Para alterar seu e-mail, entre em contato com nosso suporte
-            </p>
+          <div style={{ marginBottom: '20px', padding: '12px', background: '#f9f9f9', borderRadius: '8px', fontSize: '12px', color: '#666' }}>
+            <p style={{ margin: '0 0 4px 0', fontWeight: 600 }}>E-mail (apenas leitura)</p>
+            <p style={{ margin: '0 0 8px 0' }}>{client?.name} - Entre em contato para alterar</p>
           </div>
 
           <div style={{ display: 'flex', gap: '12px' }}>
