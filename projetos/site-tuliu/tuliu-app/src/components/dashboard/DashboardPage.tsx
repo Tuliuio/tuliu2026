@@ -1,29 +1,81 @@
-import { useState } from 'react';
-import type { Asset } from '../../types/dashboard';
-import { currentClient } from '../../data/dashboard';
+import { useState, useEffect } from 'react';
+import type { Asset } from '../../types/supabase';
+import { useAuth } from '../../context/AuthContext';
+import { supabase } from '../../lib/supabase';
 import PlanBanner from './PlanBanner';
 import AssetSection from './AssetSection';
+import ClientOverview from './ClientOverview';
 
 export default function DashboardPage() {
-  const [assetStatuses, setAssetStatuses] = useState<Record<string, Asset['status']>>(
-    Object.fromEntries(currentClient.assets.map((a) => [a.id, a.status]))
-  );
+  const { client } = useAuth();
+  const [assets, setAssets] = useState<Asset[]>([]);
+  const [assetStatuses, setAssetStatuses] = useState<Record<string, Asset['status']>>({});
 
-  const handleToggleStatus = (assetId: string) => {
-    setAssetStatuses((prev) => {
-      const current = prev[assetId];
-      const next = current === 'active' ? 'inactive' : 'active';
-      return { ...prev, [assetId]: next };
-    });
+  useEffect(() => {
+    const fetchAssets = async () => {
+      if (!client) {
+        console.log('[Dashboard] No client, skipping asset fetch');
+        return;
+      }
+
+      try {
+        console.log('[Dashboard] Fetching assets for client:', client.id);
+        const { data, error } = await supabase
+          .from('assets')
+          .select('*')
+          .eq('client_id', client.id);
+
+        if (error) {
+          console.error('[Dashboard] Error fetching assets:', error.message, error.code);
+          return;
+        }
+
+        console.log('[Dashboard] Assets fetched:', data?.length || 0);
+        setAssets(data || []);
+        setAssetStatuses(Object.fromEntries((data || []).map((a) => [a.id, a.status])));
+      } catch (err) {
+        console.error('[Dashboard] Unexpected error:', err);
+      }
+    };
+
+    fetchAssets();
+  }, [client]);
+
+  const handleToggleStatus = async (assetId: string) => {
+    const newStatus = assetStatuses[assetId] === 'active' ? 'inactive' : 'active';
+    setAssetStatuses((prev) => ({ ...prev, [assetId]: newStatus }));
+
+    const { error } = await supabase
+      .from('assets')
+      .update({ status: newStatus })
+      .eq('id', assetId);
+
+    if (error) {
+      console.error('Error updating asset:', error);
+      setAssetStatuses((prev) => {
+        const current = prev[assetId];
+        return { ...prev, [assetId]: current === 'active' ? 'inactive' : 'active' };
+      });
+    }
   };
 
   const getAssetsByType = (type: string) => {
-    return currentClient.assets
+    return assets
       .filter((a) => a.type === type)
       .map((a) => ({ ...a, status: assetStatuses[a.id] as Asset['status'] }));
   };
 
-  const { company, plan } = currentClient;
+  if (!client) {
+    return (
+      <div className="dashboard-page" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
+        <div className="container">
+          <p>Carregando dados do cliente...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { company, plan } = client;
 
   return (
     <div className="dashboard-page" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
@@ -32,7 +84,7 @@ export default function DashboardPage() {
         <div className="dashboard-header" style={{ marginBottom: '40px' }}>
           <div>
             <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
-              Olá, {company.split(' ')[0]}!
+              Olá, {company.split(' ')[0] || 'Usuário'}!
             </h1>
             <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
               Aqui está toda a sua infraestrutura digital centralizada.
@@ -40,71 +92,76 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Client Overview */}
+        <ClientOverview />
+
         {/* Plan Banner */}
-        <PlanBanner client={currentClient} />
+        {plan && <PlanBanner plan={plan} assets={assets} />}
 
         {/* Asset Sections */}
-        <div style={{ marginTop: '60px' }}>
-          {/* Domínios */}
-          <AssetSection
-            type="domain"
-            assets={getAssetsByType('domain')}
-            maxAllowed={plan.limits.domains}
-            onToggleStatus={handleToggleStatus}
-          />
-
-          {/* Subdomínios */}
-          <AssetSection
-            type="subdomain"
-            assets={getAssetsByType('subdomain')}
-            maxAllowed={'unlimited'}
-            onToggleStatus={handleToggleStatus}
-          />
-
-          {/* Websites/Webapps */}
-          <div style={{ marginTop: '40px' }}>
+        {plan && (
+          <div style={{ marginTop: '60px' }}>
+            {/* Domínios */}
             <AssetSection
-              type="website"
-              assets={getAssetsByType('website')}
-              maxAllowed={plan.limits.sites}
+              type="domain"
+              assets={getAssetsByType('domain')}
+              maxAllowed={plan.limits.domains}
               onToggleStatus={handleToggleStatus}
             />
-          </div>
 
-          {/* E-mails */}
-          <div style={{ marginTop: '40px' }}>
+            {/* Subdomínios */}
             <AssetSection
-              type="email"
-              assets={getAssetsByType('email')}
-              maxAllowed={plan.limits.emails}
+              type="subdomain"
+              assets={getAssetsByType('subdomain')}
+              maxAllowed={'unlimited'}
               onToggleStatus={handleToggleStatus}
             />
-          </div>
 
-          {/* Automações */}
-          {(plan.limits.automations === 'unlimited' || plan.limits.automations > 0) && (
+            {/* Websites/Webapps */}
             <div style={{ marginTop: '40px' }}>
               <AssetSection
-                type="automation"
-                assets={getAssetsByType('automation')}
-                maxAllowed={plan.limits.automations}
+                type="website"
+                assets={getAssetsByType('website')}
+                maxAllowed={plan.limits.sites}
                 onToggleStatus={handleToggleStatus}
               />
             </div>
-          )}
 
-          {/* Agentes IA */}
-          {(plan.limits.agents === 'unlimited' || plan.limits.agents > 0) && (
+            {/* E-mails */}
             <div style={{ marginTop: '40px' }}>
               <AssetSection
-                type="agent"
-                assets={getAssetsByType('agent')}
-                maxAllowed={plan.limits.agents}
+                type="email"
+                assets={getAssetsByType('email')}
+                maxAllowed={plan.limits.emails}
                 onToggleStatus={handleToggleStatus}
               />
             </div>
-          )}
-        </div>
+
+            {/* Automações */}
+            {(plan.limits.automations === 'unlimited' || plan.limits.automations > 0) && (
+              <div style={{ marginTop: '40px' }}>
+                <AssetSection
+                  type="automation"
+                  assets={getAssetsByType('automation')}
+                  maxAllowed={plan.limits.automations}
+                  onToggleStatus={handleToggleStatus}
+                />
+              </div>
+            )}
+
+            {/* Agentes IA */}
+            {(plan.limits.agents === 'unlimited' || plan.limits.agents > 0) && (
+              <div style={{ marginTop: '40px' }}>
+                <AssetSection
+                  type="agent"
+                  assets={getAssetsByType('agent')}
+                  maxAllowed={plan.limits.agents}
+                  onToggleStatus={handleToggleStatus}
+                />
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Call to Action */}
         <div style={{ marginTop: '80px', padding: '40px', textAlign: 'center', background: '#f9f9f9', borderRadius: '16px' }}>

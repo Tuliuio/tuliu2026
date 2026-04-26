@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import { useAuth } from './context/AuthContext';
+import { ToastProvider } from './components/Toast';
 import Navbar from './components/Navbar';
+import DashboardNavbar from './components/DashboardNavbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Integrations from './components/Integrations';
 import Pricing from './components/Pricing';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
-import LoginModal from './components/LoginModal';
+import AuthModal from './components/AuthModal';
 import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
 import DashboardPage from './components/dashboard/DashboardPage';
@@ -17,12 +20,28 @@ import './index.css';
 type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin';
 
 function App() {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [scrollToAnchor, setScrollToAnchor] = useState<string | null>(null);
+  const { session, loading, client } = useAuth();
 
-  // Page navigation with history support
+  // Suppress third-party script errors
+  useEffect(() => {
+    const handleError = (e: ErrorEvent) => {
+      if (e.filename?.includes('share-modal')) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
+
+  // Page navigation with authentication check
   const navigate = (page: Page, anchor?: string) => {
+    if ((page === 'dashboard' || page === 'admin') && !session) {
+      setIsAuthOpen(true);
+      return;
+    }
     setCurrentPage(page);
     const url = page === 'home' ? '/' : `/${page}`;
     window.history.pushState({ page }, '', url);
@@ -75,21 +94,70 @@ function App() {
       { threshold: 0.1 }
     );
 
-    // Re-observe all fade-in elements when page changes
-    document.querySelectorAll('.fade-in').forEach((el) => {
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    fadeInElements.forEach((el) => {
       observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    // Fallback: make elements visible after 100ms if not already
+    const timeout = setTimeout(() => {
+      fadeInElements.forEach((el) => {
+        if (!el.classList.contains('visible')) {
+          el.classList.add('visible');
+        }
+      });
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeout);
+    };
   }, [currentPage]);
+
+  useEffect(() => {
+    console.log('[App] Rendering with loading:', loading, 'session:', !!session, 'currentPage:', currentPage);
+  }, [loading, session, currentPage]);
+
+  // Auto-navigate based on user role when logged in and modal closes
+  useEffect(() => {
+    if (session && !isAuthOpen && currentPage === 'home' && client) {
+      if (client.role === 'admin') {
+        console.log('[App] Admin user detected, navigating to admin');
+        navigate('admin');
+      } else {
+        console.log('[App] Client user detected, navigating to dashboard');
+        navigate('dashboard');
+      }
+    }
+  }, [session, isAuthOpen, currentPage, client]);
+
+  if (loading) {
+    return (
+      <LanguageProvider>
+        <ToastProvider>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <p>Carregando...</p>
+          </div>
+        </ToastProvider>
+      </LanguageProvider>
+    );
+  }
 
   return (
     <LanguageProvider>
-      <Navbar
-        onOpenLogin={() => setIsLoginOpen(true)}
-        currentPage={currentPage}
-        onNavigate={navigate}
-      />
+      <ToastProvider>
+      {currentPage === 'dashboard' || currentPage === 'admin' ? (
+        <DashboardNavbar
+          currentPage={currentPage}
+          onNavigate={navigate}
+        />
+      ) : (
+        <Navbar
+          onOpenLogin={() => setIsAuthOpen(true)}
+          currentPage={currentPage}
+          onNavigate={navigate}
+        />
+      )}
       <main>
         {currentPage === 'home' ? (
           <>
@@ -104,13 +172,22 @@ function App() {
         ) : currentPage === 'learn' ? (
           <LearnPage />
         ) : currentPage === 'dashboard' ? (
-          <DashboardPage />
+          session ? <DashboardPage /> : null
         ) : currentPage === 'admin' ? (
-          <AdminPage />
+          session ? <AdminPage /> : null
         ) : null}
       </main>
       <Footer />
-      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => {
+          setIsAuthOpen(false);
+          if (session) {
+            navigate('dashboard');
+          }
+        }}
+      />
+      </ToastProvider>
     </LanguageProvider>
   );
 }
