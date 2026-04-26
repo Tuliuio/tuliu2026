@@ -2,6 +2,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero() {
   const { t } = useLanguage();
+  console.log('[Hero] Rendering with translations:', !!t?.hero);
   return (
     <section className="hero" aria-labelledby="hero-heading">
       <div className="container">

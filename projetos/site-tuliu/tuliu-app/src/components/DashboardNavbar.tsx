@@ -52,7 +52,7 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
   return (
     <header className="dashboard-navbar">
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%' }}>
-        {/* Logo */}
+        {/* Logo - Left */}
         <button
           onClick={() => onNavigate('dashboard')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
@@ -61,8 +61,8 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
           <img src={logo} alt="Tuliu Logo" height="40" />
         </button>
 
-        {/* Navigation Links */}
-        <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+        {/* Right Side - Admin Link + Avatar */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           {/* Admin Link - only show if user is admin */}
           {client?.role === 'admin' && (
             <button
@@ -82,10 +82,9 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
               Administrador
             </button>
           )}
-        </div>
 
-        {/* User Avatar & Menu */}
-        <div style={{ position: 'relative' }}>
+          {/* User Avatar & Menu */}
+          <div style={{ position: 'relative' }}>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             style={{
@@ -235,6 +234,7 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
 

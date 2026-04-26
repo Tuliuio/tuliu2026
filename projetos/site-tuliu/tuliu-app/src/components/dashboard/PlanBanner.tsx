@@ -1,11 +1,11 @@
-import type { Client } from '../../types/dashboard';
+import type { Asset, Plan } from '../../types/supabase';
 
 interface PlanBannerProps {
-  client: Client;
+  plan: Plan;
+  assets: Asset[];
 }
 
-export default function PlanBanner({ client }: PlanBannerProps) {
-  const { plan, assets } = client;
+export default function PlanBanner({ plan, assets }: PlanBannerProps) {
   const limits = plan.limits;
 
   const countAssetsByType = (type: string) => {

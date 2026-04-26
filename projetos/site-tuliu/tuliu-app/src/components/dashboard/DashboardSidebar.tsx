@@ -16,7 +16,8 @@ interface MenuItem {
 const MENU_ITEMS: MenuItem[] = [
   { id: 'overview', label: 'Dashboard', icon: '📊' },
   { id: 'domains', label: 'Domínios', icon: '🌐', count: 0 },
-  { id: 'websites', label: 'Websites/Apps', icon: '💻', count: 0 },
+  { id: 'websites', label: 'Websites', icon: '💻', count: 0 },
+  { id: 'webapps', label: 'Web Apps', icon: '📱', count: 0 },
   { id: 'emails', label: 'E-mails', icon: '📧', count: 0 },
   { id: 'automations', label: 'Automações', icon: '⚙️', badge: 'Pro', count: 0 },
   { id: 'agents', label: 'Agentes IA', icon: '🤖', badge: 'Pro', count: 0 },
@@ -30,9 +31,7 @@ const SUPPORT_ITEMS: MenuItem[] = [
 export default function DashboardSidebar({ currentSection, onNavigate }: DashboardSidebarProps) {
   const { client } = useAuth();
 
-  const isProPlan = client?.plan?.name?.toLowerCase().includes('pro') ||
-                   client?.plan?.name?.toLowerCase().includes('business') ||
-                   client?.plan?.name?.toLowerCase().includes('enterprise');
+  const isProPlan = ['business', 'enterprise'].includes(client?.plan?.tier?.toLowerCase() || '');
 
   const MenuGroup = ({ items, label }: { items: typeof MENU_ITEMS; label: string }) => (
     <div style={{ marginBottom: '32px' }}>

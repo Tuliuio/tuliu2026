@@ -1,4 +1,4 @@
-import type { Asset } from '../../types/dashboard';
+import type { Asset } from '../../types/supabase';
 
 interface AssetCardProps {
   asset: Asset;

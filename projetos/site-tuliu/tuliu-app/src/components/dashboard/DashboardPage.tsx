@@ -187,10 +187,53 @@ function DashboardContent({ section }: { section: string }) {
     return <AgentsSection />;
   }
 
-  // For other sections (domains, websites, emails, etc)
+  // For other asset sections (domains, websites, webapps, emails)
+  if (['domains', 'websites', 'webapps', 'emails'].includes(section)) {
+    const assetTypeMap: Record<string, 'domain' | 'website' | 'webapp' | 'email'> = {
+      domains: 'domain',
+      websites: 'website',
+      webapps: 'webapp',
+      emails: 'email',
+    };
+
+    const assetType = assetTypeMap[section];
+    const iconMap = { domain: '🌐', website: '💻', webapp: '📱', email: '📧' };
+    const labelMap = { domain: 'Domínios', website: 'Websites', webapp: 'Web Apps', email: 'E-mails' };
+
+    return (
+      <div style={{ padding: '40px' }}>
+        <div style={{ marginBottom: '40px' }}>
+          <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
+            {iconMap[assetType]} {labelMap[assetType]}
+          </h1>
+          <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
+            Gerencie seus {labelMap[assetType].toLowerCase()}
+          </p>
+        </div>
+
+        {plan && (
+          <AssetSection
+            type={assetType}
+            assets={getAssetsByType(assetType)}
+            maxAllowed={
+              assetType === 'domain'
+                ? plan.limits.domains
+                : assetType === 'website'
+                  ? plan.limits.sites
+                  : assetType === 'webapp'
+                    ? plan.limits.sites
+                    : plan.limits.emails
+            }
+            onToggleStatus={handleToggleStatus}
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div style={{ padding: '40px' }}>
-      <p>Seção em desenvolvimento</p>
+      <p>Seção não encontrada</p>
     </div>
   );
 }

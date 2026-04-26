@@ -1,4 +1,4 @@
-import type { Asset, AssetType } from '../../types/dashboard';
+import type { Asset, AssetType } from '../../types/supabase';
 import AssetCard from './AssetCard';
 
 interface AssetSectionProps {
@@ -63,10 +63,13 @@ export default function AssetSection({
               key={`vacant-${type}-${index}`}
               asset={{
                 id: `vacant-${type}-${index}`,
+                client_id: '',
                 type,
                 name: `${config.label}`,
                 status: 'inactive',
-              }}
+                created_at: '',
+                updated_at: '',
+              } as Asset}
               variant="vacant"
             />
           ))}

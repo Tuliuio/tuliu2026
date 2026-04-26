@@ -1,9 +1,11 @@
-import type { Client } from '../../types/dashboard';
+import type { Client } from '../../types/supabase';
 
 interface ClientCardProps {
   client: Client;
   isSelected?: boolean;
   onSelect?: () => void;
+  assetCount?: number;
+  activeAssetCount?: number;
 }
 
 const planColors: Record<string, { bg: string; color: string }> = {
@@ -12,10 +14,10 @@ const planColors: Record<string, { bg: string; color: string }> = {
   enterprise: { bg: '#6366f1', color: '#ffffff' },
 };
 
-export default function ClientCard({ client, isSelected = false, onSelect }: ClientCardProps) {
-  const planColor = planColors[client.plan.tier];
-  const totalAssets = client.assets.length;
-  const activeAssets = client.assets.filter((a) => a.status === 'active').length;
+export default function ClientCard({ client, isSelected = false, onSelect, assetCount = 0, activeAssetCount = 0 }: ClientCardProps) {
+  const planColor = planColors[client.plan?.tier || 'starter'];
+  const totalAssets = assetCount;
+  const activeAssets = activeAssetCount;
 
   return (
     <article
@@ -61,7 +63,7 @@ export default function ClientCard({ client, isSelected = false, onSelect }: Cli
             whiteSpace: 'nowrap',
           }}
         >
-          {client.plan.name}
+          {client.plan?.name || 'Starter'}
         </span>
       </div>
 
@@ -79,7 +81,7 @@ export default function ClientCard({ client, isSelected = false, onSelect }: Cli
         <div>
           <span style={{ color: '#999' }}>Faturamento:</span>
           <p style={{ margin: '2px 0 0 0', fontSize: '12px' }}>
-            R$ {client.plan.price.toLocaleString('pt-BR')}
+            R$ {(client.plan?.price || 0).toLocaleString('pt-BR')}
           </p>
         </div>
       </div>

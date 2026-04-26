@@ -104,8 +104,8 @@ body {
     FADE-IN ANIMATION
 ============================================= */
 .fade-in {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
