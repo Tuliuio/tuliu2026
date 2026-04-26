@@ -260,10 +260,15 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                   </div>
-                  <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '6px', marginBottom: '12px', borderLeft: '3px solid #0284c7' }}>
-                    <p style={{ margin: 0, fontSize: '13px', color: '#1e293b', lineHeight: '1.5' }}>
-                      {request.description}
+                  <div style={{ marginBottom: '12px' }}>
+                    <p style={{ margin: '0 0 8px 0', fontSize: '12px', fontWeight: 600, color: '#0c4a6e', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      <i className="fas fa-message" style={{ marginRight: '6px' }}></i>Descrição da Solicitação
                     </p>
+                    <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #bfdbfe', borderLeft: '4px solid #0284c7' }}>
+                      <p style={{ margin: 0, fontSize: '14px', color: '#1e293b', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
+                        {request.description}
+                      </p>
+                    </div>
                   </div>
                   <div style={{ display: 'flex', gap: '8px' }}>
                     <button
