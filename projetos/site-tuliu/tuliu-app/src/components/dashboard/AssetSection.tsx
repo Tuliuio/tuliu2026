@@ -30,9 +30,9 @@ export default function AssetSection({
   const config = assetTypeConfig[type];
   const activeAssets = assets.filter((a) => a.status === 'active' || a.status === 'pending');
   const hasVacantSlots = maxAllowed !== 'unlimited' && activeAssets.length < (maxAllowed as number);
-  const canRequest = maxAllowed === 'unlimited' || (maxAllowed as number) > 0;
+  const canShowSection = activeAssets.length > 0 || hasVacantSlots || maxAllowed === 0;
 
-  if (activeAssets.length === 0 && !hasVacantSlots && !canRequest) {
+  if (!canShowSection) {
     return null;
   }
 
