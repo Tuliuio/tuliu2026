@@ -29,10 +29,14 @@ export default function AssetSection({
   const config = assetTypeConfig[type];
   const activeAssets = assets.filter((a) => a.status === 'active' || a.status === 'pending');
   const hasVacantSlots = maxAllowed !== 'unlimited' && activeAssets.length < (maxAllowed as number);
+  const canRequest = maxAllowed === 'unlimited' || (maxAllowed as number) > 0;
 
-  if (activeAssets.length === 0 && !hasVacantSlots) {
+  if (activeAssets.length === 0 && !hasVacantSlots && !canRequest) {
     return null;
   }
+
+  const vacantSlotCount = hasVacantSlots ? (maxAllowed as number) - activeAssets.length : 0;
+  const showRequestSlot = activeAssets.length === 0 && maxAllowed === 0;
 
   return (
     <section className="asset-section">
@@ -59,8 +63,8 @@ export default function AssetSection({
         ))}
 
         {/* Slots vazios */}
-        {hasVacantSlots &&
-          Array.from({ length: (maxAllowed as number) - activeAssets.length }).map((_, index) => (
+        {vacantSlotCount > 0 &&
+          Array.from({ length: vacantSlotCount }).map((_, index) => (
             <AssetCard
               key={`vacant-${type}-${index}`}
               asset={{
@@ -76,6 +80,24 @@ export default function AssetSection({
               onRequestActivation={onRequestActivation}
             />
           ))}
+
+        {/* Request slot when limit is 0 */}
+        {showRequestSlot && (
+          <AssetCard
+            key={`request-${type}`}
+            asset={{
+              id: `request-${type}`,
+              client_id: '',
+              type,
+              name: `${config.label}`,
+              status: 'inactive',
+              created_at: '',
+              updated_at: '',
+            } as Asset}
+            variant="vacant"
+            onRequestActivation={onRequestActivation}
+          />
+        )}
       </div>
     </section>
   );
