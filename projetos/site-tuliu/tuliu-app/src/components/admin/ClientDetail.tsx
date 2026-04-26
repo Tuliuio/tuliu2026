@@ -17,6 +17,7 @@ const assetTypeIcons: Record<string, string> = {
   email: 'fa-envelope',
   automation: 'fa-cogs',
   agent: 'fa-robot',
+  integration: 'fa-plug',
 };
 
 const assetTypeLabels: Record<string, string> = {
@@ -27,6 +28,7 @@ const assetTypeLabels: Record<string, string> = {
   email: 'E-mail',
   automation: 'Automação',
   agent: 'Agente IA',
+  integration: 'Integração',
 };
 
 export default function ClientDetail({ client, assets, onAssetDeleted }: ClientDetailProps) {

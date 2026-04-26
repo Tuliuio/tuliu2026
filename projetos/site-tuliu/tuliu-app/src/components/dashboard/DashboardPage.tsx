@@ -315,6 +315,19 @@ function DashboardContent({ section }: { section: string }) {
               />
             </div>
 
+            {/* Integrações */}
+            {(plan.limits.integrations === 'unlimited' || plan.limits.integrations > 0) && (
+              <div style={{ marginTop: '40px' }}>
+                <AssetSection
+                  type="integration"
+                  assets={getAssetsByType('integration')}
+                  maxAllowed={plan.limits.integrations}
+                  onToggleStatus={handleToggleStatus}
+                  onRequestActivation={handleRequestActivation}
+                />
+              </div>
+            )}
+
             {/* Automações */}
             {(plan.limits.automations === 'unlimited' || plan.limits.automations > 0) && (
               <div style={{ marginTop: '40px' }}>
@@ -380,17 +393,18 @@ function DashboardContent({ section }: { section: string }) {
   }
 
   // For other asset sections (domains, websites, webapps, emails)
-  if (['domains', 'websites', 'webapps', 'emails'].includes(section)) {
-    const assetTypeMap: Record<string, 'domain' | 'website' | 'webapp' | 'email'> = {
+  if (['domains', 'websites', 'webapps', 'emails', 'integrations'].includes(section)) {
+    const assetTypeMap: Record<string, 'domain' | 'website' | 'webapp' | 'email' | 'integration'> = {
       domains: 'domain',
       websites: 'website',
       webapps: 'webapp',
       emails: 'email',
+      integrations: 'integration',
     };
 
     const assetType = assetTypeMap[section];
-    const iconMap = { domain: '🌐', website: '💻', webapp: '📱', email: '📧' };
-    const labelMap = { domain: 'Domínios', website: 'Websites', webapp: 'Web Apps', email: 'E-mails' };
+    const iconMap = { domain: '🌐', website: '💻', webapp: '📱', email: '📧', integration: '🔌' };
+    const labelMap = { domain: 'Domínios', website: 'Websites', webapp: 'Web Apps', email: 'E-mails', integration: 'Integrações' };
 
     return (
       <>
@@ -415,7 +429,9 @@ function DashboardContent({ section }: { section: string }) {
                     ? plan.limits.sites
                     : assetType === 'webapp'
                       ? plan.limits.sites
-                      : plan.limits.emails
+                      : assetType === 'email'
+                      ? plan.limits.emails
+                      : plan.limits.integrations
               }
               onToggleStatus={handleToggleStatus}
               onRequestActivation={handleRequestActivation}

@@ -17,6 +17,7 @@ const assetTypeConfig: Record<AssetType, { icon: string; label: string }> = {
   email: { icon: 'fa-envelope', label: 'E-mails' },
   automation: { icon: 'fa-cogs', label: 'Automações' },
   agent: { icon: 'fa-robot', label: 'Agentes IA' },
+  integration: { icon: 'fa-plug', label: 'Integrações' },
 };
 
 export default function AssetSection({

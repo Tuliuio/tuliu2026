@@ -19,6 +19,7 @@ const MENU_ITEMS: MenuItem[] = [
   { id: 'websites', label: 'Websites', icon: '💻', count: 0 },
   { id: 'webapps', label: 'Web Apps', icon: '📱', count: 0 },
   { id: 'emails', label: 'E-mails', icon: '📧', count: 0 },
+  { id: 'integrations', label: 'Integrações', icon: '🔌', count: 0 },
   { id: 'automations', label: 'Automações', icon: '⚙️', badge: 'Pro', count: 0 },
   { id: 'agents', label: 'Agentes IA', icon: '🤖', badge: 'Pro', count: 0 },
 ];

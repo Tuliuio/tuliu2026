@@ -15,6 +15,7 @@ const assetTypeIcons: Record<Asset['type'], string> = {
   email: 'fa-envelope',
   automation: 'fa-cogs',
   agent: 'fa-robot',
+  integration: 'fa-plug',
 };
 
 const assetTypeLabels: Record<Asset['type'], string> = {
@@ -25,6 +26,7 @@ const assetTypeLabels: Record<Asset['type'], string> = {
   email: 'E-mail',
   automation: 'Automação',
   agent: 'Agente IA',
+  integration: 'Integração',
 };
 
 const statusColors: Record<Asset['status'], { color: string; label: string }> = {
