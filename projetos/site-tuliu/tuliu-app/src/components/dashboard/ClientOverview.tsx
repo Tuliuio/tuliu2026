@@ -127,30 +127,40 @@ export default function ClientOverview() {
             Preço
           </p>
           <p style={{ margin: 0, fontSize: '14px', fontWeight: 600 }}>
-            R$ {(client.plan.price / 100).toFixed(2)}
+            R$ {((client as any).custom_price || client.plan.price).toLocaleString('pt-BR')}
           </p>
         </div>
       </div>
 
       {/* Actions */}
       <div style={{ marginTop: '24px', display: 'flex', gap: '12px' }}>
-        <button style={{
-          flex: 1,
-          padding: '12px 16px',
-          background: '#f3f4f6',
-          color: '#111',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '14px',
-          fontWeight: 600,
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
-        onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
+        <a
+          href="https://wa.me/5548404266597"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            flex: 1,
+            padding: '12px 16px',
+            background: '#f3f4f6',
+            color: '#111',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
         >
-          Visualizar Invoices
-        </button>
+          <i className="fab fa-whatsapp" style={{ fontSize: '16px' }}></i>
+          Suporte
+        </a>
         <button style={{
           flex: 1,
           padding: '12px 16px',

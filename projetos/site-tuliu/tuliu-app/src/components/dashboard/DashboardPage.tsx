@@ -3,7 +3,6 @@ import type { Asset } from '../../types/supabase';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 import DashboardLayout from './DashboardLayout';
-import PlanBanner from './PlanBanner';
 import AssetSection from './AssetSection';
 import ClientOverview from './ClientOverview';
 import AutomationsSection from './AutomationsSection';
@@ -268,9 +267,6 @@ function DashboardContent({ section }: { section: string }) {
 
           {/* Client Overview */}
           <ClientOverview />
-
-          {/* Plan Banner */}
-          {plan && <PlanBanner plan={plan} assets={assets} />}
 
         {/* Asset Sections */}
         {plan && (
