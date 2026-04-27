@@ -12,30 +12,47 @@ jobs:
     - name: Checkout código
       uses: actions/checkout@v3
 
-    - name: Preparar arquivos do site
-      run: |
-        mkdir -p dist
-        cp projetos/site-tuliu/index.html dist/
-        ls -lh dist/
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-    - name: Deploy para Hostinger via SFTP
-      env:
-        HOSTINGER_API_KEY: ${{ secrets.HOSTINGER_API_KEY }}
-        HOSTINGER_EMAIL: ${{ secrets.HOSTINGER_EMAIL }}
+    - name: Instalar dependências
       run: |
-        echo "🚀 Iniciando deploy em tuliu.io..."
-        echo "Arquivo a fazer deploy: dist/index.html"
+        cd projetos/site-tuliu/tuliu-app
+        npm ci
 
-        # Usar curl para fazer upload via API Hostinger (webhook simple)
-        # O Hostinger detectará mudanças no repositório via webhook
-        echo "✅ Arquivos preparados para deploy"
-        echo "📊 Tamanho: $(du -h dist/index.html | cut -f1)"
+    - name: Build da aplicação
+      run: |
+        cd projetos/site-tuliu/tuliu-app
+        npm run build
+
+    - name: Preparar arquivos para deploy
+      run: |
+        # Copiar .htaccess para dist
+        cp projetos/site-tuliu/.htaccess projetos/site-tuliu/tuliu-app/dist/
+        # Listar arquivos
+        echo "📦 Arquivos para deploy:"
+        ls -lh projetos/site-tuliu/tuliu-app/dist/ | head -20
+
+    - name: Deploy para Hostinger
+      uses: SamKirkland/FTP-Deploy-Action@4.3.4
+      with:
+        server: ${{ secrets.HOSTINGER_SERVER }}
+        username: ${{ secrets.HOSTINGER_USERNAME }}
+        password: ${{ secrets.HOSTINGER_PASSWORD }}
+        local-dir: ./projetos/site-tuliu/tuliu-app/dist/
+        server-dir: /
 
     - name: Verificar Deploy
-      run: |
-        echo "✅ Deploy iniciado com sucesso!"
-        echo "🔗 Acesse: https://tuliu.io"
-
-    - name: Notificar sucesso
       if: success()
-      run: echo "✅ Site publicado em https://tuliu.io"
+      run: |
+        echo "✅ Deploy concluído com sucesso!"
+        echo "🔗 Site ao vivo em: https://tuliu.io"
+        echo "📊 Verifique em alguns minutos para propagação"
+
+    - name: Notificar falha
+      if: failure()
+      run: |
+        echo "❌ Deploy falhou!"
+        echo "Verifique as credenciais de FTP/SFTP no GitHub Secrets"
