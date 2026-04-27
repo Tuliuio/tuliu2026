@@ -3,7 +3,6 @@ import type { Asset } from '../../types/supabase';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 import DashboardLayout from './DashboardLayout';
-import PlanBanner from './PlanBanner';
 import AssetSection from './AssetSection';
 import ClientOverview from './ClientOverview';
 import AutomationsSection from './AutomationsSection';
@@ -255,7 +254,21 @@ function DashboardContent({ section }: { section: string }) {
   if (section === 'overview') {
     return (
       <>
-        <div style={{ padding: '40px' }}>
+        <style>{`
+          @media (max-width: 768px) {
+            .dashboard-content {
+              padding: 20px !important;
+            }
+            .dashboard-content h1 {
+              font-size: 24px !important;
+            }
+            .dashboard-content .cta-section {
+              margin-top: 40px !important;
+              padding: 24px !important;
+            }
+          }
+        `}</style>
+        <div className="dashboard-content" style={{ padding: '40px' }}>
           {/* Header */}
           <div style={{ marginBottom: '40px' }}>
             <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
@@ -268,9 +281,6 @@ function DashboardContent({ section }: { section: string }) {
 
           {/* Client Overview */}
           <ClientOverview />
-
-          {/* Plan Banner */}
-          {plan && <PlanBanner plan={plan} assets={assets} />}
 
         {/* Asset Sections */}
         {plan && (
@@ -357,7 +367,7 @@ function DashboardContent({ section }: { section: string }) {
         )}
 
         {/* Call to Action */}
-        <div style={{ marginTop: '80px', padding: '40px', textAlign: 'center', background: '#f9f9f9', borderRadius: '16px' }}>
+        <div className="cta-section" style={{ marginTop: '80px', padding: '40px', textAlign: 'center', background: '#f9f9f9', borderRadius: '16px' }}>
           <h2 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: 700 }}>
             Precisa de mais recursos?
           </h2>

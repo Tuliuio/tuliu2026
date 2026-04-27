@@ -48,13 +48,33 @@ export default function ClientOverview() {
   };
 
   return (
-    <div style={{
-      background: 'white',
-      border: '1px solid #E5E7EB',
-      borderRadius: '12px',
-      padding: '24px',
-      marginBottom: '40px',
-    }}>
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .client-overview {
+            padding: 16px !important;
+          }
+          .client-overview h2 {
+            font-size: 20px !important;
+          }
+          .client-overview .usage-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .client-overview .plan-details {
+            grid-template-columns: 1fr !important;
+          }
+          .client-overview .action-buttons {
+            flex-direction: column !important;
+          }
+        }
+      `}</style>
+      <div className="client-overview" style={{
+        background: 'white',
+        border: '1px solid #E5E7EB',
+        borderRadius: '12px',
+        padding: '24px',
+        marginBottom: '40px',
+      }}>
       {/* Header */}
       <div style={{ marginBottom: '24px' }}>
         <h2 style={{ margin: '0 0 8px 0', fontSize: '18px', fontWeight: 700 }}>
@@ -66,7 +86,7 @@ export default function ClientOverview() {
       </div>
 
       {/* Usage Grid */}
-      <div style={{
+      <div className="usage-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '24px',
@@ -95,7 +115,7 @@ export default function ClientOverview() {
       </div>
 
       {/* Plan Details */}
-      <div style={{
+      <div className="plan-details" style={{
         marginTop: '24px',
         paddingTop: '24px',
         borderTop: '1px solid #E5E7EB',
@@ -127,30 +147,40 @@ export default function ClientOverview() {
             Preço
           </p>
           <p style={{ margin: 0, fontSize: '14px', fontWeight: 600 }}>
-            R$ {(client.plan.price / 100).toFixed(2)}
+            R$ {((client as any).custom_price || client.plan.price).toLocaleString('pt-BR')}
           </p>
         </div>
       </div>
 
       {/* Actions */}
-      <div style={{ marginTop: '24px', display: 'flex', gap: '12px' }}>
-        <button style={{
-          flex: 1,
-          padding: '12px 16px',
-          background: '#f3f4f6',
-          color: '#111',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '14px',
-          fontWeight: 600,
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
-        onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
+      <div className="action-buttons" style={{ marginTop: '24px', display: 'flex', gap: '12px' }}>
+        <a
+          href="https://wa.me/5548404266597"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            flex: 1,
+            padding: '12px 16px',
+            background: '#f3f4f6',
+            color: '#111',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
         >
-          Visualizar Invoices
-        </button>
+          <i className="fab fa-whatsapp" style={{ fontSize: '16px' }}></i>
+          Suporte
+        </a>
         <button style={{
           flex: 1,
           padding: '12px 16px',
@@ -169,6 +199,7 @@ export default function ClientOverview() {
           Fazer upgrade
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

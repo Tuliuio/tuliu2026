@@ -52,6 +52,39 @@ export default function SupportModal({ isOpen, onClose }: SupportModalProps) {
           Nos envie uma mensagem e responderemos em breve
         </p>
 
+        {/* WhatsApp Quick Support */}
+        <div style={{ marginBottom: '24px', padding: '16px', background: '#E7F5EE', borderRadius: '8px', border: '1px solid #A7E8D7' }}>
+          <p style={{ margin: '0 0 12px 0', fontSize: '13px', fontWeight: 600, color: '#047857' }}>
+            <i className="fab fa-whatsapp" style={{ marginRight: '6px' }}></i>
+            Suporte Rápido via WhatsApp
+          </p>
+          <p style={{ margin: '0 0 12px 0', fontSize: '13px', color: '#166534' }}>
+            Para uma resposta mais rápida, entre em contato conosco direto pelo WhatsApp:
+          </p>
+          <a
+            href="https://wa.me/5548404266597"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '10px 16px',
+              background: '#059669',
+              color: 'white',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = '#047857')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#059669')}
+          >
+            <i className="fab fa-whatsapp" style={{ marginRight: '6px' }}></i>
+            +55 48 4042-6597
+          </a>
+        </div>
+
         {sent ? (
           <div style={{ padding: '24px', textAlign: 'center', background: '#DCFCE7', borderRadius: '8px' }}>
             <p style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 600, color: '#166534' }}>
