@@ -17,6 +17,7 @@ import DashboardPage from './components/dashboard/DashboardPage';
 import AdminPage from './components/admin/AdminPage';
 import LoadingScreen from './components/LoadingScreen';
 import './index.css';
+import './responsive.css';
 
 type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin';
 
