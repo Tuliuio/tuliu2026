@@ -18,6 +18,8 @@ interface MenuItem {
 export default function DashboardSidebar({ currentSection, onNavigate }: DashboardSidebarProps) {
   const { client } = useAuth();
   const [assetCounts, setAssetCounts] = useState<Record<string, number>>({});
+  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
+  const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAssetCounts = async () => {
@@ -96,10 +98,19 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
           const isActive = currentSection === item.id;
           const hasNoPerm = item.badge && !isProPlan;
 
+          const handleClick = () => {
+            if (hasNoPerm) {
+              setSelectedFeature(item.label);
+              setUpgradeModalOpen(true);
+            } else {
+              onNavigate(item.id);
+            }
+          };
+
           return (
             <button
               key={item.id}
-              onClick={() => !hasNoPerm && onNavigate(item.id)}
+              onClick={handleClick}
               style={{
                 padding: '10px 12px',
                 background: isActive ? '#f3f4f6' : 'none',
@@ -212,6 +223,106 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
           {isProPlan ? '✓ Automações e IA desbloqueadas' : 'Upgrade para desbloquear automações e IA'}
         </p>
       </div>
+
+      {/* Upgrade Modal */}
+      {upgradeModalOpen && selectedFeature && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1001,
+            padding: '20px',
+          }}
+          onClick={() => setUpgradeModalOpen(false)}
+        >
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '12px',
+              padding: '40px',
+              maxWidth: '500px',
+              width: '100%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ margin: '0 0 16px 0', fontSize: '28px', fontWeight: 700 }}>
+              🚀 {selectedFeature}
+            </h2>
+            <p style={{ margin: '0 0 24px 0', fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
+              A funcionalidade de <strong>{selectedFeature.toLowerCase()}</strong> está disponível apenas nos planos <strong>Business</strong> e <strong>Enterprise</strong>.
+            </p>
+
+            <div style={{
+              marginBottom: '24px',
+              padding: '16px',
+              background: '#f9f9f9',
+              borderRadius: '8px',
+              borderLeft: '4px solid #6366f1'
+            }}>
+              <p style={{ margin: 0, fontSize: '14px', color: '#333', lineHeight: '1.6' }}>
+                Desbloqueia automações, agentes IA, integrações avançadas e muito mais. Entre em contato conosco para conhecer os planos disponíveis e fazer um upgrade!
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                type="button"
+                onClick={() => setUpgradeModalOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '12px 16px',
+                  background: '#f3f4f6',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'background 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
+              >
+                Voltar
+              </button>
+              <a
+                href="https://wa.me/5548404266597?text=Gostaria%20de%20fazer%20upgrade%20do%20meu%20plano"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  flex: 1,
+                  padding: '12px 16px',
+                  background: '#111',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'background 0.2s',
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#333')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#111')}
+              >
+                <i className="fab fa-whatsapp" style={{ fontSize: '16px' }}></i>
+                Fazer Upgrade
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Styling */}
       <style>{`

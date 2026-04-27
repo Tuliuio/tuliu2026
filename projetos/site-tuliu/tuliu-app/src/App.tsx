@@ -15,6 +15,7 @@ import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
 import DashboardPage from './components/dashboard/DashboardPage';
 import AdminPage from './components/admin/AdminPage';
+import LoadingScreen from './components/LoadingScreen';
 import './index.css';
 
 type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin';
@@ -135,9 +136,7 @@ function App() {
     return (
       <LanguageProvider>
         <ToastProvider>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <p>Carregando...</p>
-          </div>
+          <LoadingScreen />
         </ToastProvider>
       </LanguageProvider>
     );
