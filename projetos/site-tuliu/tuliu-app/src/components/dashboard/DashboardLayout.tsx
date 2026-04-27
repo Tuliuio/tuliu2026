@@ -27,16 +27,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div style={{ display: 'flex', background: '#ffffff' }}>
-      <style>{`
-        @media (max-width: 768px) {
-          aside {
-            display: none !important;
-          }
-          main {
-            width: 100% !important;
-          }
-        }
-      `}</style>
       <DashboardSidebar currentSection={currentSection} onNavigate={handleNavigate} />
 
       <main style={{

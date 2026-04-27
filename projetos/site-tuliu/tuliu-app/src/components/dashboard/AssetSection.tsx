@@ -41,16 +41,6 @@ export default function AssetSection({
 
   return (
     <section className="asset-section">
-      <style>{`
-        @media (max-width: 768px) {
-          .asset-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .asset-section-title h2 {
-            font-size: 16px !important;
-          }
-        }
-      `}</style>
       <div className="asset-section-title" style={{ marginBottom: '20px' }}>
         <i className={`fas ${config.icon}`} style={{ marginRight: '8px', fontSize: '18px' }}></i>
         <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 600, display: 'inline' }}>
