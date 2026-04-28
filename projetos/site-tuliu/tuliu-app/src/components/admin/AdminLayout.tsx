@@ -10,6 +10,7 @@ const MENU_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: 'fa-chart-line' },
   { id: 'activation-requests', label: 'Solicitações', icon: 'fa-bell' },
   { id: 'clients', label: 'Clientes', icon: 'fa-users' },
+  { id: 'flow', label: 'Flow', icon: 'fa-columns' },
 ];
 
 export default function AdminLayout({ children, currentSection, onNavigate }: AdminLayoutProps) {

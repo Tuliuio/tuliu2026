@@ -14,11 +14,12 @@ import AuthModal from './components/AuthModal';
 import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
 import DashboardPage from './components/dashboard/DashboardPage';
+import FlowPage from './components/dashboard/FlowPage';
 import AdminPage from './components/admin/AdminPage';
 import LoadingScreen from './components/LoadingScreen';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin';
+type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin' | 'flow';
 
 function App() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
@@ -39,7 +40,7 @@ function App() {
 
   // Page navigation with authentication check
   const navigate = (page: Page, anchor?: string) => {
-    if ((page === 'dashboard' || page === 'admin') && !session) {
+    if ((page === 'dashboard' || page === 'admin' || page === 'flow') && !session) {
       setIsAuthOpen(true);
       return;
     }
@@ -53,12 +54,29 @@ function App() {
     }
   };
 
-  // Handle browser back button
+  // Parse initial URL and handle browser back button
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       const page = (event.state?.page as Page) || 'home';
       setCurrentPage(page);
     };
+
+    // Parse initial URL on first load
+    const pathname = window.location.pathname;
+    if (pathname === '/dashboard') {
+      setCurrentPage('dashboard');
+    } else if (pathname === '/admin') {
+      setCurrentPage('admin');
+    } else if (pathname === '/flow') {
+      setCurrentPage('flow');
+    } else if (pathname === '/cases') {
+      setCurrentPage('cases');
+    } else if (pathname === '/learn') {
+      setCurrentPage('learn');
+    } else {
+      setCurrentPage('home');
+    }
+
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
@@ -145,7 +163,7 @@ function App() {
   return (
     <LanguageProvider>
       <ToastProvider>
-      {currentPage === 'dashboard' || currentPage === 'admin' ? (
+      {currentPage === 'dashboard' || currentPage === 'admin' || currentPage === 'flow' ? (
         <DashboardNavbar
           currentPage={currentPage}
           onNavigate={navigate}
@@ -174,9 +192,11 @@ function App() {
           session ? <DashboardPage /> : null
         ) : currentPage === 'admin' ? (
           session ? <AdminPage /> : null
+        ) : currentPage === 'flow' ? (
+          session ? <FlowPage /> : null
         ) : null}
       </main>
-      <Footer />
+      {currentPage !== 'flow' && <Footer />}
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => {

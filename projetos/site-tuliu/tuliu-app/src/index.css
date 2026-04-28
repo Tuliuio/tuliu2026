@@ -2080,6 +2080,53 @@ body {
   color: #333;
 }
 
+/* =============================================
+    KANBAN STYLES
+============================================= */
+.kanban-board {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.kanban-column {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.kanban-column-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.kanban-card-item {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+  cursor: grab;
+  transition: all 0.2s;
+}
+
+.kanban-card-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.kanban-card-item.dark {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.87);
+}
+
 @media (max-width: 768px) {
   .asset-grid {
     grid-template-columns: 1fr;
@@ -2095,6 +2142,15 @@ body {
 
   .admin-page h1 {
     font-size: 24px;
+  }
+
+  .kanban-board {
+    flex-direction: column;
+  }
+
+  .kanban-column {
+    flex: 1;
+    min-height: 300px;
   }
 }
 
