@@ -12,7 +12,7 @@ export default function Footer() {
           </a>
 
           <p className="footer-contact">
-            {t.footer.help} <a href="https://wa.me/5548940426597" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            {t.footer.help} <a href="https://wa.me/554840426597" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </p>
 
           <p className="footer-copy">

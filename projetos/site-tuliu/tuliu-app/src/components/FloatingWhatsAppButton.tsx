@@ -1,5 +1,5 @@
 export default function FloatingWhatsAppButton() {
-  const whatsappUrl = 'https://wa.me/5548940426597';
+  const whatsappUrl = 'https://wa.me/554840426597';
 
   return (
     <a
