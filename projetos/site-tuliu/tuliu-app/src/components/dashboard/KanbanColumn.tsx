@@ -28,9 +28,6 @@ export default function KanbanColumn({
   const bgColor = isDarkMode ? '#2a2a2a' : '#f9fafb';
   const borderColor = isDarkMode ? 'rgba(255, 255, 255, 0.08)' : '#E5E7EB';
   const textColor = isDarkMode ? 'rgba(255, 255, 255, 0.87)' : '#111111';
-  const accentGradient = isDarkMode
-    ? 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'
-    : 'linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%)';
 
   // Render without Droppable for read-only mode (when not admin)
   if (!isAdmin) {
@@ -200,7 +197,6 @@ export default function KanbanColumn({
                 : 'transparent',
               transition: 'background 0.2s',
               minHeight: '200px',
-              ...provided.droppableProps.style,
             }}
           >
             {cards.length === 0 ? (

@@ -22,6 +22,22 @@ export default function Hero() {
           {t.hero.subtitle}
         </p>
 
+        <div className="hero-dashboard-image fade-in fade-in-delay-3" style={{ marginTop: '48px', marginBottom: '48px' }}>
+          <img
+            src="/assets/dashboard_tuliu.png"
+            alt="Tuliu Dashboard"
+            style={{
+              width: '100%',
+              maxWidth: '900px',
+              height: 'auto',
+              borderRadius: '12px',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+              display: 'block',
+              margin: '0 auto'
+            }}
+          />
+        </div>
+
         <div className="hero-video-wrapper fade-in fade-in-delay-3" style={{ display: 'none' }} aria-hidden="true">
           <div className="hero-video-placeholder">
             <button className="play-button" tabIndex={-1}>
