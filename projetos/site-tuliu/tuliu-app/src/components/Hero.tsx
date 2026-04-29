@@ -24,7 +24,7 @@ export default function Hero() {
 
         <div className="hero-dashboard-image fade-in fade-in-delay-3" style={{ marginTop: '48px', marginBottom: '48px' }}>
           <img
-            src="/assets/dashboard_tuliu.png"
+            src="/dashboard_tuliu.png"
             alt="Tuliu Dashboard"
             style={{
               width: '100%',

@@ -7,6 +7,7 @@ import AssetSection from './AssetSection';
 import ClientOverview from './ClientOverview';
 import AutomationsSection from './AutomationsSection';
 import AgentsSection from './AgentsSection';
+import FlowPage from './FlowPage';
 
 interface AssetTypeInfo {
   type: string;
@@ -365,6 +366,15 @@ function DashboardContent({ section }: { section: string }) {
           </button>
         </div>
         </div>
+        {requestModal}
+      </>
+    );
+  }
+
+  if (section === 'flow') {
+    return (
+      <>
+        <FlowPage />
         {requestModal}
       </>
     );
