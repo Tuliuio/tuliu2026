@@ -17,6 +17,7 @@ import DashboardPage from './components/dashboard/DashboardPage';
 import FlowPage from './components/dashboard/FlowPage';
 import AdminPage from './components/admin/AdminPage';
 import LoadingScreen from './components/LoadingScreen';
+import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
 import './index.css';
 
 type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin' | 'flow';
@@ -197,6 +198,7 @@ function App() {
         ) : null}
       </main>
       {currentPage !== 'flow' && <Footer />}
+      <FloatingWhatsAppButton />
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => {

@@ -2155,3 +2155,45 @@ body {
   }
 }
 
+
+/* =============================================
+    FLOATING WHATSAPP BUTTON
+============================================= */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: #111111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  background: #2a2a2a;
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.floating-whatsapp-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .floating-whatsapp-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 54px;
+    height: 54px;
+    font-size: 24px;
+  }
+}

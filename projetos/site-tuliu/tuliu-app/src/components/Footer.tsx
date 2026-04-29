@@ -12,20 +12,8 @@ export default function Footer() {
           </a>
 
           <p className="footer-contact">
-            {t.footer.help} <a href="mailto:contato@tuliu.com.br">contato@tuliu.com.br</a>
+            {t.footer.help} <a href="https://wa.me/5548940426597" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </p>
-
-          <div className="footer-socials">
-            <a href="#" className="social-link" aria-label="LinkedIn">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" className="social-link" aria-label="Instagram">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#" className="social-link" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
-            </a>
-          </div>
 
           <p className="footer-copy">
             &copy; {new Date().getFullYear()} {t.footer.copy}
