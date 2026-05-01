@@ -28,6 +28,7 @@ function App() {
   const [scrollToAnchor, setScrollToAnchor] = useState<string | null>(null);
   const { session, loading, client } = useAuth();
 
+
   // Suppress third-party script errors
   useEffect(() => {
     const handleError = (e: ErrorEvent) => {
