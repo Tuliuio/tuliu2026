@@ -31,6 +31,9 @@ jobs:
       run: |
         # Copiar .htaccess para dist
         cp projetos/site-tuliu/.htaccess projetos/site-tuliu/tuliu-app/dist/
+        # Copiar arquivos estáticos (loop.html e loop/)
+        cp projetos/site-tuliu/loop.html projetos/site-tuliu/tuliu-app/dist/
+        cp -r projetos/site-tuliu/loop projetos/site-tuliu/tuliu-app/dist/
         # Listar arquivos
         echo "📦 Arquivos para deploy:"
         ls -lh projetos/site-tuliu/tuliu-app/dist/ | head -20
