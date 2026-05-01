@@ -28,7 +28,7 @@ export default function Hero() {
             alt="Tuliu Dashboard"
             style={{
               width: '100%',
-              maxWidth: '900px',
+              maxWidth: '1400px',
               height: 'auto',
               borderRadius: '12px',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
