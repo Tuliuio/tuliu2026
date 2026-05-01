@@ -29,14 +29,12 @@ jobs:
 
     - name: Preparar arquivos para deploy
       run: |
-        # Copiar .htaccess para dist
-        cp projetos/site-tuliu/.htaccess projetos/site-tuliu/tuliu-app/dist/
-        # Copiar arquivos estáticos (loop.html e loop/)
-        cp projetos/site-tuliu/loop.html projetos/site-tuliu/tuliu-app/dist/
-        cp -r projetos/site-tuliu/loop projetos/site-tuliu/tuliu-app/dist/
-        # Listar arquivos
+        # .htaccess já está em public/ e será incluído pelo Vite
+        # Arquivos estáticos em /mira/ já estão em public/ e serão incluídos
         echo "📦 Arquivos para deploy:"
         ls -lh projetos/site-tuliu/tuliu-app/dist/ | head -20
+        echo "---"
+        find projetos/site-tuliu/tuliu-app/dist/mira -type f 2>/dev/null | head -10
 
     - name: Deploy para Hostinger
       uses: SamKirkland/FTP-Deploy-Action@4.3.4
