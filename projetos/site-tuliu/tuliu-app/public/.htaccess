@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Se o arquivo ou diretório não existir
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Não reescreve arquivos .html ou .json diretos
+  RewriteCond %{REQUEST_URI} !\.html$
+  RewriteCond %{REQUEST_URI} !\.json$
+
+  # Redireciona todas as requisições para index.html
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
