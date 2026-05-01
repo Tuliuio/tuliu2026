@@ -2,6 +2,7 @@
 .*
 !.gitignore
 !.github
+!.htaccess
 
 # Arquivos do sistema
 .DS_Store
