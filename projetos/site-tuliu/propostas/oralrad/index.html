@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta Comercial: Atualização Banner Oralrad x Tuliu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ─── DESIGN SYSTEM TULIU ─── */
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FFFFFF;
+      --color-gray-900: #1A1A1A;
+      --color-gray-700: #4B4B4B;
+      --color-gray-400: #9CA3AF;
+      --color-gray-100: #F5F5F5;
+      --color-gray-50: #FAFAFA;
+      --color-purple-800: #3B0E6E;
+      --color-purple-deep: #1E0A3C;
+      --border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+      --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-full: 999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--color-white);
+      color: var(--color-black);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    /* EYEBROW */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #F0F0F0;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-black);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow__dot {
+      font-size: 8px;
+    }
+
+    /* TYPOGRAPHY */
+    .headline-primary {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-black);
+      letter-spacing: -0.03em;
+    }
+
+    .headline-muted {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-gray-400);
+      letter-spacing: -0.03em;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .body-text {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--color-gray-700);
+      max-width: 620px;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: #333;
+    }
+
+    /* ══ COVER ══ */
+    .cover {
+      background: var(--color-gray-50);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .cover-topbar {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cover-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .nav-badge {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      font-weight: 500;
+    }
+
+    .cover-body {
+      padding: 96px 24px 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .cover-footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .meta-block label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-gray-400);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .meta-block p {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-black);
+    }
+
+    .validity-pill {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      display: inline-block;
+      padding: 6px 16px;
+      background: #FEF3C7;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      color: #92400E;
+      letter-spacing: 0.5px;
+    }
+
+    /* ══ TWO COLUMN ══ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* ══ PRICING ══ */
+    .pricing-container {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      border: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .pricing-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .pricing-row:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-black);
+    }
+
+    .pricing-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-black);
+      text-align: right;
+    }
+
+    .pricing-total {
+      background: var(--color-gray-50);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pricing-total-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-black);
+    }
+
+    .pricing-total-value {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--color-black);
+      text-align: right;
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--color-gray-400);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    .payment-link {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--color-gray-50);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    .payment-link-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .payment-link-text {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      margin-bottom: 12px;
+    }
+
+    .payment-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--color-black);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .payment-btn:hover {
+      background: #333;
+    }
+
+    /* ══ GRID 3 ══ */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 56px 0;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-black);
+      letter-spacing: -0.3px;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      color: var(--color-gray-700);
+      line-height: 1.6;
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .card-list li {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-list li::before {
+      content: '✓';
+      color: var(--color-black);
+      font-weight: 700;
+    }
+
+    /* ══ CHECKLIST ══ */
+    .checklist {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .checklist li {
+      font-size: 16px;
+      color: var(--color-black);
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .checklist li::before {
+      content: '→';
+      color: var(--color-black);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ══ CTA DARK ══ */
+    .cta-dark-wrap {
+      padding: 96px 0;
+    }
+
+    .cta-dark {
+      background: linear-gradient(135deg, #1E0A3C 0%, #3B0E6E 50%, #1A1A2E 100%);
+      border-radius: var(--radius-xl);
+      padding: 96px 48px;
+      text-align: center;
+      color: white;
+      margin: 0 24px;
+    }
+
+    .cta-dark__title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cta-dark__desc {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+
+    .cta-dark .btn-primary {
+      background: white;
+      color: var(--color-black);
+    }
+
+    .cta-dark .btn-primary:hover {
+      background: var(--color-gray-100);
+    }
+
+    /* ══ FOOTER ══ */
+    .footer {
+      background: var(--color-gray-100);
+      padding: 48px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-contact {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      text-align: center;
+    }
+
+    .footer-contact a {
+      color: var(--color-black);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      text-align: center;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ══ MOBILE RESPONSIVO ══ */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .cover-body {
+        padding: 36px 16px 0;
+      }
+
+      .cover-nav {
+        padding: 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav-logo {
+        font-size: 14px;
+      }
+
+      .nav-logo img {
+        width: 100px !important;
+      }
+
+      .nav-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        margin-left: 0;
+      }
+
+      .nav-badge {
+        display: none;
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .headline-primary {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .headline-muted {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .section-title {
+        font-size: clamp(20px, 5vw, 32px);
+      }
+
+      .body-text {
+        font-size: 15px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .cover-footer {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .cta-dark {
+        padding: 48px 24px;
+        margin: 0 16px;
+      }
+
+      .cta-dark__title {
+        font-size: clamp(24px, 6vw, 36px);
+      }
+
+      .cta-dark__desc {
+        font-size: 15px;
+      }
+
+      .pricing-container {
+        padding: 24px;
+      }
+
+      .pricing-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .pricing-value {
+        text-align: left;
+      }
+
+      .pricing-total {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .pricing-total-value {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      .cover-body {
+        padding: 24px 12px 0;
+      }
+
+      .cover-nav {
+        padding: 12px;
+      }
+
+      .nav-logo img {
+        width: 80px !important;
+      }
+
+      .headline-primary {
+        font-size: clamp(24px, 8vw, 36px);
+      }
+
+      .section-title {
+        font-size: clamp(18px, 6vw, 28px);
+      }
+
+      .body-text {
+        font-size: 14px;
+      }
+
+      .cta-dark {
+        padding: 32px 16px;
+        margin: 0 12px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        padding: 4px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ COVER ══════════ -->
+  <div class="cover">
+    <div class="cover-topbar">
+      <div class="cover-nav">
+        <a class="nav-logo" href="/" title="Voltar ao site">
+          <img src="https://tuliu.io/assets/logo-Cd9A8hQ2.svg" alt="Tuliu Logo" style="width: 140px; height: auto;" />
+        </a>
+        <div class="nav-actions">
+          <span class="nav-badge">Digital Infrastructure by Tuliu</span>
+          <a href="/" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">← Voltar ao site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-body">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Proposta Comercial · Maio 2026</span>
+      <div class="headline-primary">Banner "20 Anos"</div>
+      <div class="headline-muted">para Oralrad.</div>
+      <p class="body-text" style="margin-top:28px">
+        Uma atualização visual para celebrar duas décadas de história. O novo banner do Oralrad
+        será criado, implementado e publicado em poucas horas, mantendo a responsividade
+        perfeita em todos os dispositivos. Pronto para impressionar.
+      </p>
+    </div>
+
+    <div class="cover-footer">
+      <div class="meta-block">
+        <label>Preparado por</label>
+        <p>Tom · Tuliu Infraestrutura Digital</p>
+      </div>
+      <div class="meta-block">
+        <label>Apresentado a</label>
+        <p>Oralrad</p>
+      </div>
+      <div class="meta-block">
+        <label>Data</label>
+        <p>Maio de 2026</p>
+      </div>
+      <span class="validity-pill">Válida por 15 dias</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════ CONTEXTO ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="eyebrow"><span class="eyebrow__dot">●</span> Contexto e Objetivo</span>
+          <h2 class="section-title">Uma celebração visual para 20 anos.</h2>
+          <p class="body-text">
+            O Oralrad completa 20 anos de excelência, inovação e confiança. Essa é uma oportunidade
+            de celebrar esse marco com uma atualização visual no site — um banner premium que comunique
+            essa jornada e reforce o posicionamento de experiência e autoridade.
+          </p>
+          <p class="body-text" style="margin-top: 20px;">
+            A Tuliu vai criar, implementar e publicar esse banner com a máxima qualidade, garantindo
+            responsividade perfeita em desktop, tablet e celular. Velocidade sem abrir mão do detalhe.
+          </p>
+        </div>
+        <div style="background: var(--color-gray-50); padding: 40px; border-radius: var(--radius-lg); height: fit-content;">
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--color-black);">
+            Entrega em 1–3 dias úteis
+          </h3>
+          <ul class="card-list">
+            <li>Criação verbal e visual do banner</li>
+            <li>Design responsivo (desktop, mobile, tablet)</li>
+            <li>Implementação via Elementor</li>
+            <li>Testes de compatibilidade</li>
+            <li>Publicação no site</li>
+            <li>Otimização de performance</li>
+            <li>Pronto para crescer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ O QUE ESTÁ INCLUÍDO ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto 56px;">
+        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__dot">●</span> O que está incluído</span>
+        <h2 class="section-title">Implementação completa</h2>
+        <p class="body-text">
+          Tudo o que o Oralrad precisa para celebrar 20 anos com estilo,
+          mantendo a qualidade e responsividade do site.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">💬</div>
+          <h3 class="card-title">Criação Verbal</h3>
+          <p class="card-desc">
+            Copy impactante que comunica a jornada de 20 anos, experiência
+            e confiança do Oralrad de forma clara e persuasiva.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+          <h3 class="card-title">Design Visual</h3>
+          <p class="card-desc">
+            Banner premium com o novo selo de 20 anos, alinhado à identidade
+            visual da marca e pronto para impressionar.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">⚙️</div>
+          <h3 class="card-title">Implementação Elementor</h3>
+          <p class="card-desc">
+            Integração perfeita no site via Elementor, sem códigos complexos,
+            mantendo facilidade para futuras edições.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">📱</div>
+          <h3 class="card-title">Responsividade Total</h3>
+          <p class="card-desc">
+            Banner testado e otimizado para desktop, tablet e celular.
+            Experiência perfeita em qualquer tela.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">✅</div>
+          <h3 class="card-title">Testes Completos</h3>
+          <p class="card-desc">
+            Revisão de compatibilidade, performance e integração antes
+            da publicação final.
+          </p>
+        </div>
+        <div class="card">
+          <div style="font-size: 24px; margin-bottom: 8px;">🚀</div>
+          <h3 class="card-title">Publicação no Ar</h3>
+          <p class="card-desc">
+            Deploy direto no site do Oralrad, pronto para receber visitantes
+            com a novidade em destaque.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ O QUE A CLIENTE PRECISA ENTREGAR ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> O que a cliente precisa entregar</span>
+      <h2 class="section-title">Para começar, precisamos de:</h2>
+      <p class="body-text" style="margin-bottom: 32px;">
+        Com os materiais abaixo, a Tuliu consegue executar a implementação dentro do prazo de 1–3 dias úteis.
+      </p>
+
+      <ul class="checklist">
+        <li><strong>Briefing do conceito</strong> — ideia, tom, estilo e sensação desejados para o banner</li>
+        <li><strong>Informações do selo</strong> — textos, número de anos, cores ou estilo preferido</li>
+        <li><strong>Referências visuais</strong> — inspirações de banners, paleta de cores ou imagens relacionadas</li>
+        <li><strong>Aprovação do design</strong> — feedback sobre a proposta antes da implementação final</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ══════════ INVESTIMENTO ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Investimento</span>
+      <h2 class="section-title">Preços diretos, sem surpresas.</h2>
+
+      <div class="pricing-container">
+        <div class="pricing-row">
+          <div class="pricing-label">Banner 20 Anos (criação, design, implementação e publicação)</div>
+          <div class="pricing-value">R$ 490,00</div>
+        </div>
+
+        <div class="payment-link">
+          <div class="payment-link-title">💳 Pagamento do Projeto</div>
+          <p class="payment-link-text">
+            Clique no botão abaixo para fazer o pagamento de R$ 490,00.
+            Você pode parcelar em até <strong>12 vezes</strong> sem juros.
+          </p>
+          <a href="https://www.asaas.com/i/ei4k3jx9zvslk9n8" class="payment-btn" target="_blank" rel="noopener noreferrer">
+            Fazer Pagamento
+          </a>
+          <p class="pricing-note">
+            Após o pagamento, entramos em contato para coletar os materiais e iniciar a criação imediatamente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PRAZO ══════════ -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Prazo de entrega</span>
+      <h2 class="section-title">Rápido e sem comprometer a qualidade.</h2>
+      <p class="body-text" style="margin-bottom: 32px;">
+        Com os materiais recebidos, a previsão de entrega é de <strong>1 a 3 dias úteis</strong>.
+        A Tuliu prioriza velocidade mantendo o padrão de excelência — o banner será entregue
+        perfeito, responsivo e pronto para publicação.
+      </p>
+
+      <div class="grid-3" style="margin-top: 40px;">
+        <div class="card">
+          <h3 class="card-title" style="font-size: 32px; margin-bottom: 4px;">1</h3>
+          <p class="card-desc"><strong>Recebimento</strong> de briefing</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="font-size: 32px; margin-bottom: 4px;">1–2d</h3>
+          <p class="card-desc"><strong>Criação</strong> e design</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="font-size: 32px; margin-bottom: 4px;">✓</h3>
+          <p class="card-desc"><strong>Publicação</strong> ao vivo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ PRÓXIMOS PASSOS ══════════ -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Próximos passos</span>
+      <h2 class="section-title">Como começamos?</h2>
+
+      <ul class="checklist" style="margin-top: 40px;">
+        <li><strong>Aprovação da proposta</strong> — confirma interesse no projeto</li>
+        <li><strong>Pagamento do projeto</strong> — R$ 1.080,00 (parcelável em 12x)</li>
+        <li><strong>Envio do briefing</strong> — conceito, referências e informações do selo</li>
+        <li><strong>Criação do design</strong> — Tuliu trabalha na proposta visual</li>
+        <li><strong>Aprovação e ajustes</strong> — feedback e refinamentos se necessário</li>
+        <li><strong>Implementação e publicação</strong> — banner ao vivo em 1 a 3 dias úteis</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ══════════ CTA FINAL ══════════ -->
+  <div class="cta-dark-wrap">
+    <div class="cta-dark">
+      <h2 class="cta-dark__title">Pronto para celebrar 20 anos?</h2>
+      <p class="cta-dark__desc">
+        O Oralrad merece uma atualização visual à altura de sua trajetória.
+        Vamos criar algo memorável, responsivo e pronto para impressionar.
+      </p>
+      <a href="https://www.asaas.com/i/ei4k3jx9zvslk9n8" class="btn-primary" target="_blank" rel="noopener noreferrer">
+        Fazer Pagamento e Começar
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <p class="footer-brand">Tuliu · Infraestrutura Digital</p>
+    <p class="footer-contact">
+      Implementamos tecnologia do jeito certo — passo a passo.<br>
+      Qualquer dúvida, é só chamar: <a href="https://tuliu.io">tuliu.io</a>
+    </p>
+    <p class="footer-copy">Tuliu. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+
+</html>
