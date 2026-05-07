@@ -349,7 +349,7 @@ Em `/Reviva/assets/logo/`:
 | Formato da seção "Datas" (turmas/encontros/eventos) | Viviam | até fim do dia |
 | Bio + formações da Viviam | Viviam | junto com textos |
 | ~~Foto da Viviam (arquivo)~~ | ✅ Resolvido | — |
-| Número do WhatsApp do consultório | Tom | antes do build |
+| ~~Número do WhatsApp do consultório~~ | ✅ Resolvido — `(48) 98458-6556` | — |
 | Domínio definitivo | Tom | antes do deploy |
 | Redes sociais (links) | Viviam | até fim do dia |
 | Arquivo do logo em vetor (SVG/AI) | Viviam (se tiver) | nice-to-have |
@@ -361,8 +361,8 @@ Em `/Reviva/assets/logo/`:
 Pra Claude Code preencher depois (busca/replace):
 
 ```
-{{WHATSAPP_NUMBER}}     → ex: 5544999998888 (formato internacional)
-{{WHATSAPP_DISPLAY}}    → ex: (44) 99999-8888
+{{WHATSAPP_NUMBER}}     → 5548984586556  (formato internacional, usado em wa.me)
+{{WHATSAPP_DISPLAY}}    → (48) 98458-6556 (formato exibido no footer/UI)
 {{DOMAIN}}              → ex: jornadareviva.com.br
 {{SITE_TITLE}}          → "Jornada Reviva — Viviam Agatti"
 {{SITE_DESCRIPTION}}    → meta description

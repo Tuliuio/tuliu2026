@@ -305,7 +305,7 @@ Sobre · Módulos · Quem conduz · Datas · Contato
 
 **Coluna 3 — contato:**
 ```
-WhatsApp: [PLACEHOLDER — número de exibição]
+WhatsApp: (48) 98458-6556
 E-mail: [PLACEHOLDER — se quiser exibir]
 [PLACEHOLDER — endereço do consultório, se quiser exibir]
 ```
@@ -398,7 +398,7 @@ Para fechar a copy e iniciar o desenvolvimento, precisamos da sua revisão e dos
 - [ ] **Lista de formações/credenciais** que você quer exibir (CRP, certificações, anos de experiência)
 - [ ] **Datas das turmas/edições** que você quer exibir (mês/ano + modalidade)
 - [ ] **Investimento/condições comerciais** — entram na página ou só no WhatsApp?
-- [ ] **Número do WhatsApp** que vai receber as mensagens
+- [x] ~~**Número do WhatsApp** que vai receber as mensagens~~ → `(48) 98458-6556`
 - [ ] **E-mail e endereço** que você quer exibir no rodapé (ou só WhatsApp)
 - [ ] **Links das suas redes sociais** (Instagram, Facebook, etc.)
 
