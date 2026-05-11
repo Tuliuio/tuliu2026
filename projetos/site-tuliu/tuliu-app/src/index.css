@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap');
 
 /* =============================================
     RESET & BASE
@@ -307,19 +307,21 @@ body {
 .hero-title .line1 {
   display: block;
   font-size: clamp(36px, 5vw, 56px);
-  font-weight: 800;
+  font-weight: 500;
   color: #1A1A1A;
   line-height: 1.1;
   letter-spacing: -1.5px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .hero-title .line2 {
   display: block;
   font-size: clamp(36px, 5vw, 56px);
-  font-weight: 600;
+  font-weight: 500;
   color: #9A9A9A;
   line-height: 1.1;
   letter-spacing: -1.5px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .hero-subtitle {
@@ -434,11 +436,12 @@ body {
 
 .section-header h2 {
   font-size: clamp(30px, 4vw, 42px);
-  font-weight: 700;
+  font-weight: 500;
   color: #1A1A1A;
   letter-spacing: -0.8px;
   margin-bottom: 16px;
   line-height: 1.2;
+  font-family: 'Poppins', sans-serif;
 }
 
 .section-header p {
@@ -491,10 +494,11 @@ body {
 
 .feature-card h3 {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   color: #1A1A1A;
   margin-bottom: 10px;
   letter-spacing: -0.3px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .feature-card p {
@@ -523,10 +527,11 @@ body {
 
 .integrations-header h2 {
   font-size: clamp(28px, 4vw, 38px);
-  font-weight: 700;
+  font-weight: 500;
   color: #1A1A1A;
   letter-spacing: -0.6px;
   margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .integrations-header p {
@@ -956,7 +961,7 @@ body {
 
 .cta-final-inner h2 {
   font-size: clamp(26px, 4vw, 40px);
-  font-weight: 700;
+  font-weight: 500;
   color: #ffffff;
   letter-spacing: -0.8px;
   margin-bottom: 16px;
@@ -966,6 +971,7 @@ body {
   margin-right: auto;
   position: relative;
   z-index: 1;
+  font-family: 'Poppins', sans-serif;
 }
 
 .cta-final-inner p {
@@ -1518,11 +1524,12 @@ body {
 
 .case-card-block h3 {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #999;
   margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .case-card-block p {
@@ -1956,8 +1963,9 @@ body {
 .plan-banner h2 {
   margin: 0;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
   color: #1A1A1A;
+  font-family: 'Poppins', sans-serif;
 }
 
 .plan-banner p {

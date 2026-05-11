@@ -8,7 +8,7 @@ export default function LoadingScreen() {
       background: '#ffffff',
     }}>
       <style>{`
-        @keyframes spin {
+        @keyframes tuliu-spin {
           from {
             transform: rotate(0deg);
           }
@@ -17,8 +17,8 @@ export default function LoadingScreen() {
           }
         }
 
-        .loading-spinner {
-          animation: spin 2s linear infinite;
+        .tuliu-loading {
+          animation: tuliu-spin 3s linear infinite;
         }
       `}</style>
 
@@ -28,34 +28,28 @@ export default function LoadingScreen() {
         alignItems: 'center',
         gap: '24px',
       }}>
-        {/* Spinning Circle with Icon */}
+        {/* Tuliu Symbol */}
         <div style={{
           position: 'relative',
           width: '120px',
           height: '120px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-          {/* Outer spinning ring */}
-          <div className="loading-spinner" style={{
-            position: 'absolute',
-            width: '120px',
-            height: '120px',
-            border: '3px solid #f0f0f0',
-            borderTop: '3px solid #111',
-            borderRadius: '50%',
-            top: 0,
-            left: 0,
-          }} />
-
-          {/* Icon in center */}
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            fontSize: '48px',
-          }}>
-            <i className="fas fa-feather" style={{ color: '#111' }}></i>
-          </div>
+          <svg
+            className="tuliu-loading"
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 114 114"
+          >
+            <rect x="0" y="0" width="114" height="114" rx="57" fill="#0a071a" />
+            <circle cx="57" cy="57" r="50" fill="none" stroke="white" strokeWidth="28" />
+            <circle cx="81" cy="57" r="19" fill="white" />
+          </svg>
         </div>
 
         {/* Loading text */}

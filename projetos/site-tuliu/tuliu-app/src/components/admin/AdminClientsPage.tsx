@@ -24,6 +24,12 @@ export default function AdminClientsPage() {
   const [isEditClientOpen, setIsEditClientOpen] = useState(false);
   const [isCreateAssetOpen, setIsCreateAssetOpen] = useState(false);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [isLoginClientOpen, setIsLoginClientOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isLoadingPassword, setIsLoadingPassword] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [formData, setFormData] = useState({ name: '', company: '', email: '', password: '' });
@@ -191,6 +197,75 @@ export default function AdminClientsPage() {
     }
   };
 
+  const handleLoginAsClient = async () => {
+    if (!selectedClient) return;
+    try {
+      const { data: { session }, error } = await supabase.functions.invoke('admin_client_operations', {
+        body: {
+          action: 'login_as_client',
+          clientEmail: selectedClient.email,
+          newPassword: selectedClient.password,
+        },
+      });
+
+      if (error) throw error;
+
+      if (session) {
+        show(`Login como ${selectedClient.name} realizado!`, 'success');
+        setIsLoginClientOpen(false);
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 500);
+      }
+    } catch (err: any) {
+      show('Erro ao fazer login como cliente: ' + (err.message || 'Email ou senha incorretos'), 'error');
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (!selectedClient) return;
+    setPasswordError('');
+
+    if (!newPassword || !confirmPassword) {
+      setPasswordError('Preencha todos os campos');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setPasswordError('As senhas não correspondem');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      setPasswordError('A senha deve ter pelo menos 6 caracteres');
+      return;
+    }
+
+    setIsLoadingPassword(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('admin_client_operations', {
+        body: {
+          action: 'change_password',
+          clientId: selectedClient.id,
+          clientEmail: selectedClient.email,
+          newPassword: newPassword,
+        },
+      });
+
+      if (error) throw error;
+
+      show('Senha alterada com sucesso!', 'success');
+      setIsChangePasswordOpen(false);
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (err: any) {
+      setPasswordError('Erro ao alterar senha: ' + (err.message || 'Erro desconhecido'));
+      show('Erro ao alterar senha', 'error');
+    } finally {
+      setIsLoadingPassword(false);
+    }
+  };
+
   // Filter clients by search
   const filteredClients = clients.filter((client) =>
     client.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -323,7 +398,7 @@ export default function AdminClientsPage() {
                           fontSize: '12px',
                           fontWeight: 500,
                           cursor: 'pointer',
-                          marginRight: '8px',
+                          marginRight: '4px',
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
@@ -343,12 +418,54 @@ export default function AdminClientsPage() {
                           fontSize: '12px',
                           fontWeight: 500,
                           cursor: 'pointer',
-                          marginRight: '8px',
+                          marginRight: '4px',
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                       >
                         Editar
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSelectedClientId(client.id);
+                          setIsLoginClientOpen(true);
+                        }}
+                        style={{
+                          padding: '6px 12px',
+                          background: '#dbeafe',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontSize: '12px',
+                          fontWeight: 500,
+                          color: '#0c4a6e',
+                          cursor: 'pointer',
+                          marginRight: '4px',
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = '#bfdbfe')}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = '#dbeafe')}
+                      >
+                        Login
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSelectedClientId(client.id);
+                          setIsChangePasswordOpen(true);
+                        }}
+                        style={{
+                          padding: '6px 12px',
+                          background: '#fef3c7',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontSize: '12px',
+                          fontWeight: 500,
+                          color: '#92400e',
+                          cursor: 'pointer',
+                          marginRight: '4px',
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = '#fde68a')}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = '#fef3c7')}
+                      >
+                        Senha
                       </button>
                       <button
                         onClick={() => handleDeleteClient(client.id)}
@@ -747,6 +864,223 @@ export default function AdminClientsPage() {
             show('Cliente atualizado com sucesso!', 'success');
           }}
         />
+      )}
+
+      {/* Login as Client Modal */}
+      {isLoginClientOpen && selectedClient && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '20px',
+          }}
+          onClick={() => setIsLoginClientOpen(false)}
+        >
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '12px',
+              padding: '32px',
+              maxWidth: '500px',
+              width: '100%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ margin: '0 0 24px 0', fontSize: '24px', fontWeight: 700 }}>Login como Cliente</h2>
+            <p style={{ margin: '0 0 24px 0', fontSize: '14px', color: '#666' }}>
+              Você será redirecionado para o painel do cliente <strong>{selectedClient.name}</strong> ({selectedClient.company}).
+            </p>
+            <div style={{ background: '#f3f4f6', padding: '16px', borderRadius: '8px', marginBottom: '24px' }}>
+              <p style={{ margin: '0 0 8px 0', fontSize: '12px', fontWeight: 600, color: '#999', textTransform: 'uppercase' }}>
+                <i className="fas fa-info-circle" style={{ marginRight: '6px' }}></i>Informação
+              </p>
+              <p style={{ margin: 0, fontSize: '13px', color: '#666' }}>
+                O cliente será desconectado após sua sessão de login como cliente terminar.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => setIsLoginClientOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '12px 24px',
+                  background: '#f3f4f6',
+                  color: '#111',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleLoginAsClient}
+                style={{
+                  flex: 1,
+                  padding: '12px 24px',
+                  background: '#0284c7',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#0369a1')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#0284c7')}
+              >
+                Fazer Login
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Change Password Modal */}
+      {isChangePasswordOpen && selectedClient && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '20px',
+          }}
+          onClick={() => setIsChangePasswordOpen(false)}
+        >
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '12px',
+              padding: '32px',
+              maxWidth: '500px',
+              width: '100%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ margin: '0 0 24px 0', fontSize: '24px', fontWeight: 700 }}>Alterar Senha</h2>
+            <p style={{ margin: '0 0 24px 0', fontSize: '14px', color: '#666' }}>
+              Alterando senha de <strong>{selectedClient.name}</strong>
+            </p>
+
+            {passwordError && (
+              <div style={{ background: '#fee2e2', padding: '12px', borderRadius: '8px', marginBottom: '16px', color: '#991B1B', fontSize: '13px' }}>
+                <i className="fas fa-exclamation-circle" style={{ marginRight: '6px' }}></i>
+                {passwordError}
+              </div>
+            )}
+
+            <input
+              type="password"
+              placeholder="Nova Senha"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              disabled={isLoadingPassword}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid #E5E7EB',
+                borderRadius: '8px',
+                marginBottom: '12px',
+                boxSizing: 'border-box',
+                fontSize: '14px',
+                opacity: isLoadingPassword ? 0.6 : 1,
+              }}
+            />
+
+            <input
+              type="password"
+              placeholder="Confirmar Senha"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              disabled={isLoadingPassword}
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: '1px solid #E5E7EB',
+                borderRadius: '8px',
+                marginBottom: '24px',
+                boxSizing: 'border-box',
+                fontSize: '14px',
+                opacity: isLoadingPassword ? 0.6 : 1,
+              }}
+            />
+
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => {
+                  setIsChangePasswordOpen(false);
+                  setNewPassword('');
+                  setConfirmPassword('');
+                  setPasswordError('');
+                }}
+                disabled={isLoadingPassword}
+                style={{
+                  flex: 1,
+                  padding: '12px 24px',
+                  background: '#f3f4f6',
+                  color: '#111',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: isLoadingPassword ? 'not-allowed' : 'pointer',
+                  opacity: isLoadingPassword ? 0.6 : 1,
+                }}
+                onMouseEnter={(e) => {
+                  if (!isLoadingPassword) e.currentTarget.style.background = '#e5e7eb';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isLoadingPassword) e.currentTarget.style.background = '#f3f4f6';
+                }}
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleChangePassword}
+                disabled={isLoadingPassword}
+                style={{
+                  flex: 1,
+                  padding: '12px 24px',
+                  background: '#f59e0b',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: isLoadingPassword ? 'not-allowed' : 'pointer',
+                  opacity: isLoadingPassword ? 0.6 : 1,
+                }}
+                onMouseEnter={(e) => {
+                  if (!isLoadingPassword) e.currentTarget.style.background = '#d97706';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isLoadingPassword) e.currentTarget.style.background = '#f59e0b';
+                }}
+              >
+                {isLoadingPassword ? 'Alterando...' : 'Alterar Senha'}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

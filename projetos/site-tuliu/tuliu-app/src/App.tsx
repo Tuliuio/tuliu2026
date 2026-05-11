@@ -10,20 +10,20 @@ import Integrations from './components/Integrations';
 import Pricing from './components/Pricing';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
-import AuthModal from './components/AuthModal';
 import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
+import LoginPage from './components/LoginPage';
 import DashboardPage from './components/dashboard/DashboardPage';
 import FlowPage from './components/dashboard/FlowPage';
 import AdminPage from './components/admin/AdminPage';
 import LoadingScreen from './components/LoadingScreen';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
+import ResetPasswordPage from './components/ResetPasswordPage';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin' | 'flow';
+type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'flow' | 'reset-password';
 
 function App() {
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [scrollToAnchor, setScrollToAnchor] = useState<string | null>(null);
   const { session, loading, client } = useAuth();
@@ -43,11 +43,13 @@ function App() {
   // Page navigation with authentication check
   const navigate = (page: Page, anchor?: string) => {
     if ((page === 'dashboard' || page === 'admin' || page === 'flow') && !session) {
-      setIsAuthOpen(true);
+      setCurrentPage('login');
+      window.history.pushState({ page: 'login' }, '', '/login');
+      window.scrollTo(0, 0);
       return;
     }
     setCurrentPage(page);
-    const url = page === 'home' ? '/' : `/${page}`;
+    const url = page === 'home' ? '/' : `/${page === 'reset-password' ? 'reset-password' : page}`;
     window.history.pushState({ page }, '', url);
     if (anchor) {
       setScrollToAnchor(anchor);
@@ -71,6 +73,10 @@ function App() {
       setCurrentPage('admin');
     } else if (pathname === '/flow') {
       setCurrentPage('flow');
+    } else if (pathname === '/login') {
+      setCurrentPage('login');
+    } else if (pathname === '/reset-password') {
+      setCurrentPage('reset-password');
     } else if (pathname === '/cases') {
       setCurrentPage('cases');
     } else if (pathname === '/learn') {
@@ -139,9 +145,9 @@ function App() {
     console.log('[App] Rendering with loading:', loading, 'session:', !!session, 'currentPage:', currentPage);
   }, [loading, session, currentPage]);
 
-  // Auto-navigate based on user role when logged in and modal closes
+  // Auto-navigate based on user role when logged in
   useEffect(() => {
-    if (session && !isAuthOpen && currentPage === 'home' && client) {
+    if (session && currentPage === 'login' && client) {
       if (client.role === 'admin') {
         console.log('[App] Admin user detected, navigating to admin');
         navigate('admin');
@@ -150,7 +156,7 @@ function App() {
         navigate('dashboard');
       }
     }
-  }, [session, isAuthOpen, currentPage, client]);
+  }, [session, currentPage, client]);
 
   if (loading) {
     return (
@@ -172,7 +178,7 @@ function App() {
         />
       ) : (
         <Navbar
-          onOpenLogin={() => setIsAuthOpen(true)}
+          onOpenLogin={() => navigate('login')}
           currentPage={currentPage}
           onNavigate={navigate}
         />
@@ -190,6 +196,10 @@ function App() {
           <CasesPage />
         ) : currentPage === 'learn' ? (
           <LearnPage />
+        ) : currentPage === 'login' ? (
+          <LoginPage onNavigateToHome={() => navigate('home')} />
+        ) : currentPage === 'reset-password' ? (
+          <ResetPasswordPage onNavigateToHome={() => navigate('home')} />
         ) : currentPage === 'dashboard' ? (
           session ? <DashboardPage /> : null
         ) : currentPage === 'admin' ? (
@@ -198,17 +208,8 @@ function App() {
           session ? <FlowPage /> : null
         ) : null}
       </main>
-      {currentPage !== 'flow' && <Footer />}
+      {currentPage !== 'flow' && currentPage !== 'login' && currentPage !== 'reset-password' && <Footer />}
       <FloatingWhatsAppButton />
-      <AuthModal
-        isOpen={isAuthOpen}
-        onClose={() => {
-          setIsAuthOpen(false);
-          if (session) {
-            navigate('dashboard');
-          }
-        }}
-      />
       </ToastProvider>
     </LanguageProvider>
   );

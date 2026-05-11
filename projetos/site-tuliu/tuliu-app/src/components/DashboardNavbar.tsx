@@ -63,7 +63,7 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
       <div className="navbar-container">
         {/* Logo - Left */}
         <button
-          onClick={() => onNavigate('dashboard')}
+          onClick={() => onNavigate(client?.role === 'admin' ? 'admin' : 'dashboard')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, filter: isDarkFlow ? 'brightness(0) invert(1)' : 'none' }}
           aria-label="Tuliu Dashboard"
         >
@@ -71,74 +71,76 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
         </button>
 
         {/* Navigation Tabs - Center */}
-        <div
-          style={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            gap: '0',
-            background: tabsBg,
-            borderRadius: '8px',
-            padding: '4px',
-          }}
-        >
-          <button
-            onClick={() => onNavigate('dashboard')}
+        {client?.role !== 'admin' && (
+          <div
             style={{
-              background: currentPage === 'dashboard' ? tabsActiveBg : 'transparent',
-              border: 'none',
-              padding: '8px 16px',
-              fontSize: '14px',
-              fontWeight: 500,
-              color: currentPage === 'dashboard' ? tabsActiveColor : tabsColor,
-              cursor: 'pointer',
-              borderRadius: '6px',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              if (currentPage !== 'dashboard') {
-                e.currentTarget.style.color = tabsActiveColor;
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (currentPage !== 'dashboard') {
-                e.currentTarget.style.color = tabsColor;
-              }
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              gap: '0',
+              background: tabsBg,
+              borderRadius: '8px',
+              padding: '4px',
             }}
           >
-            <i className="fas fa-chart-line" style={{ marginRight: '6px' }}></i>
-            Dashboard
-          </button>
+            <button
+              onClick={() => onNavigate('dashboard')}
+              style={{
+                background: currentPage === 'dashboard' ? tabsActiveBg : 'transparent',
+                border: 'none',
+                padding: '8px 16px',
+                fontSize: '14px',
+                fontWeight: 500,
+                color: currentPage === 'dashboard' ? tabsActiveColor : tabsColor,
+                cursor: 'pointer',
+                borderRadius: '6px',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== 'dashboard') {
+                  e.currentTarget.style.color = tabsActiveColor;
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== 'dashboard') {
+                  e.currentTarget.style.color = tabsColor;
+                }
+              }}
+            >
+              <i className="fas fa-chart-line" style={{ marginRight: '6px' }}></i>
+              Dashboard
+            </button>
 
-          <button
-            onClick={() => onNavigate('flow')}
-            style={{
-              background: currentPage === 'flow' ? tabsActiveBg : 'transparent',
-              border: 'none',
-              padding: '8px 16px',
-              fontSize: '14px',
-              fontWeight: 500,
-              color: currentPage === 'flow' ? tabsActiveColor : tabsColor,
-              cursor: 'pointer',
-              borderRadius: '6px',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              if (currentPage !== 'flow') {
-                e.currentTarget.style.color = tabsActiveColor;
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (currentPage !== 'flow') {
-                e.currentTarget.style.color = tabsColor;
-              }
-            }}
-          >
-            <i className="fas fa-columns" style={{ marginRight: '6px' }}></i>
-            Flow
-          </button>
-        </div>
+            <button
+              onClick={() => onNavigate('flow')}
+              style={{
+                background: currentPage === 'flow' ? tabsActiveBg : 'transparent',
+                border: 'none',
+                padding: '8px 16px',
+                fontSize: '14px',
+                fontWeight: 500,
+                color: currentPage === 'flow' ? tabsActiveColor : tabsColor,
+                cursor: 'pointer',
+                borderRadius: '6px',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== 'flow') {
+                  e.currentTarget.style.color = tabsActiveColor;
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== 'flow') {
+                  e.currentTarget.style.color = tabsColor;
+                }
+              }}
+            >
+              <i className="fas fa-columns" style={{ marginRight: '6px' }}></i>
+              Flow
+            </button>
+          </div>
+        )}
 
         {/* Admin Link - Visible when admin, positioned near tabs */}
         {client?.role === 'admin' && (

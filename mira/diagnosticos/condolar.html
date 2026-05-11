@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Marca · Condolar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:         #0A0A0A;
+    --surface:    #141414;
+    --surface2:   #1C1C1C;
+    --gold:       #D0AD23;
+    --gold-soft:  #ECE2BD;
+    --white:      #FFFFFF;
+    --off-white:  #E9E5E5;
+    --muted:      #54595F;
+    --border:     #2A2A2A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.08);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.06);
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-mira-logo {
+    height: 32px;
+    width: auto;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .cover-date {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .cover-center {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    font-weight: 300;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-client-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .cover-client-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+  }
+
+  .cover-author {
+    text-align: right;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .cover-author strong {
+    color: var(--off-white);
+    display: block;
+    font-weight: 400;
+  }
+
+  /* ── TOC ── */
+  .toc-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  .toc-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .toc-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+
+  .toc-item:hover .toc-item-title { color: var(--gold); }
+
+  .toc-item-n {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 24px;
+    font-weight: 500;
+  }
+
+  .toc-item-title {
+    font-size: 15px;
+    color: var(--off-white);
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 100px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 0 60px;
+    opacity: 0.2;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .section-num-line {
+    height: 1px;
+    width: 32px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: var(--off-white);
+    font-size: 16px;
+    max-width: 680px;
+    opacity: 0.85;
+  }
+
+  p strong {
+    color: var(--white);
+    font-weight: 500;
+    opacity: 1;
+  }
+
+  p em {
+    color: var(--gold-soft);
+    font-style: italic;
+  }
+
+  /* ── INTRO ESPECIAL ── */
+  .intro-section {
+    background: var(--surface);
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(22px, 3.5vw, 36px);
+    line-height: 1.4;
+    color: var(--gold-soft);
+    border-left: 3px solid var(--gold);
+    padding-left: 32px;
+    margin: 48px 0;
+    max-width: 700px;
+  }
+
+  /* ── HIGHLIGHT BOXES ── */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 40px 48px;
+    margin: 48px 0;
+    border-radius: 0 2px 2px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box p {
+    color: var(--off-white);
+    max-width: none;
+    opacity: 0.9;
+  }
+
+  .highlight-box strong { color: var(--white); }
+
+  .highlight-box .box-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--gold-soft);
+    margin-bottom: 16px;
+  }
+
+  .gold-box {
+    background: rgba(208,173,35,0.08);
+    border-left-color: var(--gold);
+  }
+
+  .light-box {
+    background: var(--surface2);
+    border-left-color: var(--gold);
+  }
+
+  .light-box p { color: var(--off-white); }
+  .light-box strong { color: var(--white); }
+  .light-box .box-title { color: var(--gold-soft); }
+
+  /* ── PILARES GRID ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .pillar {
+    background: var(--surface2);
+    padding: 40px 32px;
+    border-top: 3px solid var(--gold);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+  }
+
+  .pillar-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .pillar-text {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ── GAPS LIST ── */
+  .gaps-list {
+    margin: 48px 0;
+  }
+
+  .gap-item {
+    padding: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    margin-bottom: 16px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .gap-area {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+  }
+
+  .gap-desc {
+    font-size: 14px;
+    color: var(--off-white);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  .gap-desc strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── RECS GRID ── */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .rec-card {
+    background: var(--surface2);
+    padding: 40px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    position: relative;
+  }
+
+  .rec-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .rec-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 16px;
+    margin-right: 40px;
+  }
+
+  .rec-text {
+    font-size: 14px;
+    color: var(--off-white);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  .rec-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── STATEMENT ── */
+  .statement-section {
+    background: var(--surface);
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .statement-section h2 {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .statement-section p {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .cover, .section, .toc-section {
+      padding: 40px 24px;
+    }
+    .toc-grid, .pillars-grid, .recs-grid {
+      grid-template-columns: 1fr;
+    }
+    .cover-top, .cover-bottom {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-top">
+    <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" style="height: 40px; width: auto;">
+    <div class="cover-date">Maio de 2026</div>
+  </div>
+
+  <div class="cover-center">
+    <div class="cover-eyebrow">Diagnóstico de Branding</div>
+    <h1 class="cover-title">Condolar</h1>
+    <p class="cover-subtitle">Ritmo, não rumo. Marca para conquistar.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-client">
+      <div class="cover-client-label">Elaborado para</div>
+      <div class="cover-client-name">Aline & Condolar</div>
+    </div>
+    <div class="cover-author">
+      <strong>Tom Martins</strong>
+      Mira Brand Studio
+    </div>
+  </div>
+</section>
+
+<section class="toc-section">
+  <div class="toc-header">
+    <span class="toc-num">Índice</span>
+    <span class="toc-title">O que você encontra aqui</span>
+  </div>
+  <div class="toc-grid">
+    <a href="#intro" class="toc-item">
+      <span class="toc-item-n">01</span>
+      <span class="toc-item-title">Uma nota antes de começar</span>
+    </a>
+    <a href="#diferencial" class="toc-item">
+      <span class="toc-item-n">02</span>
+      <span class="toc-item-title">Diferencial e origem</span>
+    </a>
+    <a href="#ritmo" class="toc-item">
+      <span class="toc-item-n">03</span>
+      <span class="toc-item-title">O diagnóstico central</span>
+    </a>
+    <a href="#posicionamento" class="toc-item">
+      <span class="toc-item-n">04</span>
+      <span class="toc-item-title">Tom e posicionamento</span>
+    </a>
+    <a href="#nome-identidade" class="toc-item">
+      <span class="toc-item-n">06</span>
+      <span class="toc-item-title">Nome, identidade e diferenciação</span>
+    </a>
+    <a href="#operacional" class="toc-item">
+      <span class="toc-item-n">07</span>
+      <span class="toc-item-title">Estrutura e comunicação</span>
+    </a>
+    <a href="#postura" class="toc-item">
+      <span class="toc-item-n">08</span>
+      <span class="toc-item-title">Estrutura de execução</span>
+    </a>
+    <a href="#forcas" class="toc-item">
+      <span class="toc-item-n">09</span>
+      <span class="toc-item-title">Forças e pontos de atenção</span>
+    </a>
+    <a href="#recomendacoes" class="toc-item">
+      <span class="toc-item-n">10</span>
+      <span class="toc-item-title">Recomendações e próximos passos</span>
+    </a>
+  </div>
+</section>
+
+<section class="intro-section" id="intro">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Uma nota antes de começar</span>
+    </div>
+
+    <h2>Aline,<br><em>isso é para você.</em></h2>
+
+    <p>Este documento foi construído a partir de uma escuta dedicada sobre a Condolar: origem, diferencial, propósito estratégico e desafios operacionais atuais. É a leitura estratégica de marca que precisa acontecer agora, nessa transição que você está fazendo.</p>
+
+    <p>O que aparece aqui é o diagnóstico de marca que vai fundamentar a Condolar como a aposta real de transição de carreira. Não é análise genérica, é leitura específica do que você está construindo, organizada estrategicamente, devolvida para que você veja com clareza.</p>
+
+    <div class="intro-quote">
+      "Você não está errada. Está acelerada. O problema não é de rumo, é de ritmo."
+    </div>
+
+    <p>A leitura central: a Condolar possui diferencial claro, propósito defensável e arquitetura estratégica sólida. O desafio não é de direção, mas de cadência, sequenciar antes de tentar fazer tudo simultaneamente. Este documento oferece essa perspectiva de sequenciamento e estrutura operacional para consolidar a marca.</p>
+
+    <div class="highlight-box light-box" style="margin-top: 48px;">
+      <p class="box-title">Método de construção</p>
+      <p>A base foi escuta dedicada: compreensão estruturada do projeto, diferencial, propósito e contexto operacional. Paralelamente, sistematização dos insights estratégicos. Os insumos foram organizados em diagnóstico coerente, leitura estratégica da marca em suas dimensões reais.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="diferencial">
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Diferencial e origem</span>
+  </div>
+
+  <h2>Você enxerga o mercado<br><em>de um ângulo raro.</em></h2>
+
+  <p>Quem entra e sai de condomínios todo dia, lidando com seus problemas, escutando suas reuniões, mediando seus conflitos, vê o imóvel de um ângulo que nenhuma imobiliária convencional alcança. A expertise condominial que você tem não é acessório, é o primeiro diferencial da Condolar.</p>
+
+  <p>Aqui se entende que comprar um apartamento é comprar dois produtos ao mesmo tempo (o imóvel e a vida coletiva que vem com ele), e aqui se sabe vender os dois. Essa é a tese, e ela precisa ser expressa através de uma marca que realmente a comunique isso.</p>
+
+  <h3>O deslocamento de registro</h3>
+
+  <p>A Condolar trabalha um deslocamento estratégico: o imóvel não é mercadoria, é <strong>o meio pelo qual as pessoas conquistam sonhos e alcançam sucesso de vida.</strong> Esse deslocamento, do registro racional/técnico (metragem, preço, localização) para o registro simbólico-aspiracional (realização, conquista, mudança de patamar), define a orientação da marca.</p>
+
+  <p>Essa tese não é construída de fora: é anchorada em expertise real de mercado. A Condolar nasce com propósito redefinido, não apenas produtos imobiliários, mas possibilidades de vida.</p>
+
+  <div class="highlight-box">
+    <p class="box-title">Por que isso é raro</p>
+    <p>Poucas imobiliárias ocupam esse ângulo. Ainda menos conseguem sustentar um posicionamento simbólico com expertise concreta. A força está em poder dizer "imóvel como conquista" <strong>e</strong> sustentar isso com conhecimento real de quem entende o produto por dentro. É essa combinação, sonho + conhecimento, que diferencia.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="ritmo">
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">O diagnóstico central</span>
+  </div>
+
+  <h2>Ritmo, não rumo.<br><em>Este é o ponto.</em></h2>
+
+  <p><strong>Como a situação é percebida:</strong> múltiplas iniciativas simultâneas, sem clareza de prioridade. Sensação de excesso de oportunidades em paralelo, convergindo para a mesma marca.</p>
+
+  <p><strong>Como o diagnóstico lê de fora:</strong> as escolhas têm nexo estratégico. Não são ideias soltas, estão bem amarradas entre si, partem de base funcional sólida, conversam com expertise real e diferencial defensável no mercado. A marca não está desalinhada.</p>
+
+  <h3>O ponto fino</h3>
+
+  <p>O que se vive como confusão estratégica não é desorientação. É <strong>aceleração</strong>. A Condolar está tentando materializar muita coisa ao mesmo tempo, em ritmo acelerado demais. O problema não é de rumo, é de cadência estratégica.</p>
+
+  <div class="highlight-box gold-box">
+    <p><strong>E isso importa porque:</strong> uma marca em aceleração descalibrada não consegue consolidar seus ativos. O desafio aqui é não de direção, mas de sequenciamento. A Condolar precisa de um mapa de cadência que permita construir com solidez.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="posicionamento">
+  <div class="section-label">
+    <span class="section-num">04</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Tom e posicionamento</span>
+  </div>
+
+  <h2>A promessa que<br><em>diferencia.</em></h2>
+
+  <p>A Condolar pode se posicionar como a imobiliária que vende com expertise condominial, um ângulo que praticamente nenhuma imobiliária tradicional ocupa.</p>
+
+  <h3>Tom de marca</h3>
+
+  <p>Simbólico-aspiracional, mas com lastro técnico. Não é pieguice de "sonho da casa própria" sem substância, é "imóvel como conquista" sustentado por expertise concreta. Isso diferencia.</p>
+
+  <div class="highlight-box light-box">
+    <p class="box-title">Promessa central (a validar com você)</p>
+    <p><em>"A Condolar entende, antes de tudo, o que você quer conquistar. Depois, encontra o imóvel certo, e o condomínio certo, para que isso aconteça."</em></p>
+  </div>
+
+  <h3>Posicionamento competitivo</h3>
+
+  <p>O oposto: a imobiliária genérica, transacional, que trata cliente como ficha e imóvel como SKU. A Condolar se diferencia por oferecer expertise e sensibilidade que o mercado convencional não estrutura, porque essa expertise vem de dentro do produto real.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="nome-identidade">
+  <div class="section-label">
+    <span class="section-num">06</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Nome, identidade e diferenciação</span>
+  </div>
+
+  <h2>Os ativos de expressão<br><em>precisam de revisão.</em></h2>
+
+  <p>Aqui está um ponto crítico que merece atenção dedicada: o naming, a identidade visual e a arquitetura de comunicação são os canais através dos quais o mercado entende quem a Condolar é. E hoje, esses ativos correm um risco: soar comum.</p>
+
+  <h3>Sobre o nome "Condolar"</h3>
+
+  <p>O naming tem mérito semântico, costura condomínio + lar. A lógica existe. Mas a expressão final, a forma como soa e se apresenta, pode estar levando para o lugar comum das imobiliárias convencionais. Para uma marca que se propõe a diferenciação profunda, o nome precisa carregar essa diferenciação <em>desde o primeiro contato.</em></p>
+
+  <p>Não é crítica ao que existe. É sinalização: <strong>essa é uma decisão que merece ser revisitada com cuidado.</strong> Porque nome não é acessório, é o primeiro ativo de diferenciação.</p>
+
+  <div class="highlight-box gold-box">
+    <p><strong>Por que isso importa aqui, agora:</strong> A Condolar é a grande aposta de transição. É o veículo através do qual você abandona a posição de síndica profissional e migra para o mercado imobiliário em tempo integral. Essa transição será bem-sucedida na medida em que a marca conseguir <em>atrair pessoas para o seu projeto</em>. A sua marca. Não de forma genérica, mas com reconhecimento real de diferencial.</p>
+  </div>
+
+  <h3>Nome, logo, identidade como porta</h3>
+
+  <p>Quando estão bem feitos, esses elementos funcionam como magnetismo, atraem o público certo, sinalizam ao mercado que existe algo diferente sendo construído. Quando são genéricos, fazem o caminho inverso: distribuem a marca numa multidão de similares.</p>
+
+  <p>Para essa transição funcionar, você precisa que pessoas olhem para a Condolar e vejam imediatamente: <em>isso é diferente.</em> Isso não acontece por acaso. Acontece porque nome, logo, tom, identidade foram revisados com rigor estratégico.</p>
+
+  <h3>Branding como infraestrutura de carreira</h3>
+
+  <p>Esse não é um projeto de "bonitificar" a marca. É um projeto de estruturação clara, que permite que a Condolar funcione como ponte, entre quem você foi (síndica) e quem você quer ser (imobiliária, independente, em ritmo próprio). Branding bem feito conecta pessoas ao projeto real. E pessoas são o que vai fazer essa transição acontecer.</p>
+
+  <div class="highlight-box light-box">
+    <p><strong>A visão central:</strong> Você sai de uma posição onde resolvia problemas de outros (síndicos, condomínios) e entra numa posição onde outras pessoas resolvem os problemas da marca DELA. Branding é exatamente isso, é o primeiro passo para que o mercado entenda, se conecte e trabalhe junto. Faz diferença real na vida e no projeto.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="operacional">
+  <div class="section-label">
+    <span class="section-num">07</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Estrutura e comunicação</span>
+  </div>
+
+  <h2>Estrutura sólida<br><em>no momento certo.</em></h2>
+
+  <p>A Condolar já existe e está operando. Em apenas 3 meses, começou a capturar operações, clientes estão batendo à porta. Isso é excelente sinal de mercado. Mas é também o momento crítico: antes que o crescimento aconteça de forma desordenada, é hora de criar infraestrutura sólida. Processos, ofertas, canais e comunicação precisam ser estruturados agora, enquanto há tempo para fazer certo. O diferencial já está provando funcionar no mercado.</p>
+
+  <p>A identidade visual e arquitetura de comunicação existem mas são genéricas. Com crescimento à vista, ressignificá-las agora é investimento que vai crescer junto com a marca, não correção tardia.</p>
+
+  <h3>Construir base antes de escalar</h3>
+
+  <p>O repertório atual está no mundo dos síndicos, a rede imobiliária está sendo construída. Isso não é fraqueza, é oportunidade. Estruturar marca, processos e comunicação agora, enquanto a operação cresce, significa que você escala com solidez, não com improviso. O futuro promissor depende da base que você constrói hoje.</p>
+
+  <div class="highlight-box">
+    <p class="box-title">O que estruturar agora</p>
+    <p>Logo ressignificado, sistema visual diferenciado, tom de voz, narrativa de marca, presença digital. Com operações já acontecendo, esses ativos precisam ser construídos para que a Condolar escale com identidade clara, não com sorte.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="postura">
+  <div class="section-label">
+    <span class="section-num">08</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Estrutura de execução</span>
+  </div>
+
+  <h2>Outsource estratégico<br><em>da execução de marca.</em></h2>
+
+  <p>Este diagnóstico revela um padrão operacional importante: a tendência de concentrar em uma pessoa (você) a carga integral da construção e execução. Isso funciona em fase de exploração, mas não escala em fase de consolidação de marca.</p>
+
+  <p>Para que a Condolar ganhe em coerência e solidez, é necessário desconcentrar a execução. Outras pessoas precisam trabalhar na materialização da marca, na identidade visual, na narrativa, na presença digital, na comunicação. Você em posição estratégica; equipe em execução.</p>
+
+  <h3>O modelo operacional</h3>
+
+  <p>Não é delegação tática. É reorganização da estrutura de execução. De centralização em uma pessoa para distribuição de responsabilidades estratégicas.</p>
+
+  <div class="highlight-box gold-box">
+    <p><strong>Por que isso importa:</strong> Uma marca que depende de uma pessoa não consegue crescer além do ritmo dessa pessoa. A Condolar precisa de infraestrutura que permita escala, operacional, visual, comunicacional. Branding é a porta de entrada para construir essa infraestrutura.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="forcas">
+  <div class="section-label">
+    <span class="section-num">09</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Diagnóstico consolidado</span>
+  </div>
+
+  <h2>O que preservar<br><em>e o que blindar.</em></h2>
+
+  <h3>Forças a preservar</h3>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-icon">🏠</span>
+      <div class="pillar-title">Diferencial claro</div>
+      <p class="pillar-text">Expertise condominial rara; nenhuma imobiliária ocupa esse ângulo.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🎯</span>
+      <div class="pillar-title">Propósito defendível</div>
+      <p class="pillar-text">Imóvel como conquista; você a vive. Não é narrativa colada de fora.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">💡</span>
+      <div class="pillar-title">Expertise real</div>
+      <p class="pillar-text">Conhecimento concreto do mercado. Base sólida para diferenciar.</p>
+    </div>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-icon">🔗</span>
+      <div class="pillar-title">Coerência rara</div>
+      <p class="pillar-text">Marca alinhada à transição; propósito real, não fabricado.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">📍</span>
+      <div class="pillar-title">Posicionamento claro</div>
+      <p class="pillar-text">Sabe o que quer ser. Diferenciação ancorada em expertise real.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">💎</span>
+      <div class="pillar-title">Lastro técnico</div>
+      <p class="pillar-text">Conhecimento real que pode sustentar posicionamento aspiracional.</p>
+    </div>
+  </div>
+
+  <h3>Pontos de atenção</h3>
+
+  <div class="gaps-list">
+    <div class="gap-item">
+      <div class="gap-area">Aceleração e simultaneidade (crítico)</div>
+      <div class="gap-desc"><strong>Risco:</strong> Problema de ritmo, não de rumo. Necessário sequenciar antes de executar tudo.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Identidade visual direcionada para o comum</div>
+      <div class="gap-desc"><strong>Risco:</strong> Como o naming, existe mas é genérica. Logo, sistema visual e tom de voz não carregam diferenciação, então a marca não se destaca no mercado.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Operacionalização ainda não estruturada</div>
+      <div class="gap-desc"><strong>Risco:</strong> Existe como tese; precisa vir como operação. Processos, ofertas, canais.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Transição de público</div>
+      <div class="gap-desc"><strong>Risco:</strong> Repertório em síndicos; rede imobiliária a construir. Leva tempo e estratégia.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Risco de absorver demandas alheias</div>
+      <div class="gap-desc"><strong>Risco:</strong> O padrão que desgastou você na síndica pode se repetir. Necessário blindar.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="statement-section">
+  <h2>O posicionamento<br><em>que sustenta tudo.</em></h2>
+  <p>A Condolar é a imobiliária de quem sabe, por dentro, o que um imóvel realmente entrega. Não vende apartamentos, vende a conquista de novos patamares de vida. Para cada cliente, encontra não apenas um imóvel, mas o condomínio certo, a vida coletiva certa. Porque aqui se entende que comprar um lugar é comprar o sonho que vem com ele.</p>
+</section>
+
+<section style="background: var(--surface); padding: 100px 60px; border-top: 1px solid var(--border);" id="recomendacoes">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">10</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Próximos passos</span>
+    </div>
+
+    <h2>O que fazer<br><em>a partir de agora.</em></h2>
+
+    <p>As recomendações abaixo estão em ordem de prioridade e impacto:</p>
+
+    <div class="recs-grid">
+      <div class="rec-card">
+        <div class="rec-num">01</div>
+        <div class="rec-title">Branding como porta</div>
+        <p class="rec-text">Começa aqui. Trabalha onde está a confusão, ajuda a estabelecer ritmo, materializa o gesto de "outras pessoas cuidando".</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">02</div>
+        <div class="rec-title">Sequenciar antes de executar</div>
+        <p class="rec-text">Posicionamento > Identidade > Ofertas > Captação. Ordem importa. Não tudo ao mesmo tempo.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">03</div>
+        <div class="rec-title">Validar posicionamento</div>
+        <p class="rec-text">Propósito, diferencial, promessa e tom devem ser consenso com você antes de qualquer execução visual.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">04</div>
+        <div class="rec-title">Blindar contra sobrecarga</div>
+        <p class="rec-text">Organizar rotina para respeitar o ritmo. Não apenas planejamento, é estrutura operacional.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">05</div>
+        <div class="rec-title">Mapear contexto</div>
+        <p class="rec-text">Região/cidade de atuação, perfil de imóvel, ticket, eventuais parcerias. Define o escopo final.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">06</div>
+        <div class="rec-title">Levantar presença atual</div>
+        <p class="rec-text">Instagram, materiais já existentes. Também mapear concorrentes diretos e indiretos relevantes.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 80px; padding: 60px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <h3 style="color: var(--gold-soft); margin-bottom: 16px;">Fechamento</h3>
+      <p style="color: var(--off-white); opacity: 0.9;">Você tem uma ideia forte. Um diferencial real. Um propósito defendível. O que falta não é rumo, é ritmo. Não falta coragem, falta sequência. Este diagnóstico é para que você não disperse o que já está construindo e ganhe em coerência de resultado.</p>
+      <p style="color: var(--off-white); opacity: 0.9; margin-top: 16px;">O próximo passo é começar ali. Branding primeiro. Deixa que outras pessoas trabalhem. Deixa que o ritmo seja respirável. A Condolar está esperando por você, em ritmo certo.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top: 120px; padding: 60px 40px; border-top: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+  <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" style="height: 32px; width: auto; opacity: 0.8;">
+  <p style="color: var(--off-white); opacity: 0.6; font-size: 13px; letter-spacing: 0.5px;">Diagnóstico estratégico de marca | maio de 2026</p>
+</footer>
+
+</body>
+</html>

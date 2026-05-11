@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../Toast';
 import { supabase } from '../../lib/supabase';
+import ChangePasswordModal from './ChangePasswordModal';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -23,8 +24,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
     two_factor_enabled: false,
   });
   const [loading, setLoading] = useState(false);
-  const [showPasswordChange, setShowPasswordChange] = useState(false);
-  const [passwords, setPasswords] = useState({ current: '', new: '', confirm: '' });
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
   useEffect(() => {
     if (isOpen && client?.id) {
@@ -75,37 +75,6 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
     }
   };
 
-  const handlePasswordChange = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (passwords.new !== passwords.confirm) {
-      show('As senhas não conferem', 'error');
-      return;
-    }
-
-    if (passwords.new.length < 6) {
-      show('A senha deve ter no mínimo 6 caracteres', 'error');
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const { error } = await supabase.auth.updateUser({
-        password: passwords.new,
-      });
-
-      if (error) throw error;
-
-      show('Senha alterada com sucesso!', 'success', 3000);
-      setPasswords({ current: '', new: '', confirm: '' });
-      setShowPasswordChange(false);
-    } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Erro ao alterar senha';
-      show(errorMsg, 'error');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (!isOpen) return null;
 
@@ -152,92 +121,28 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid #E5E7EB' }}>
           <h3 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: 600 }}>Segurança</h3>
 
-          {!showPasswordChange ? (
-            <button
-              onClick={() => setShowPasswordChange(true)}
-              style={{
-                padding: '10px 16px',
-                background: '#f3f4f6',
-                color: '#111',
-                border: '1px solid #E5E7EB',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'background 0.2s',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
-            >
-              Alterar Senha
-            </button>
-          ) : (
-            <form onSubmit={handlePasswordChange}>
-              <div style={{ marginBottom: '12px' }}>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#666', marginBottom: '4px' }}>
-                  Nova Senha
-                </label>
-                <input
-                  type="password"
-                  value={passwords.new}
-                  onChange={(e) => setPasswords({ ...passwords, new: e.target.value })}
-                  style={{ width: '100%', padding: '8px 10px', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '13px' }}
-                  required
-                />
-              </div>
-
-              <div style={{ marginBottom: '12px' }}>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#666', marginBottom: '4px' }}>
-                  Confirmar Senha
-                </label>
-                <input
-                  type="password"
-                  value={passwords.confirm}
-                  onChange={(e) => setPasswords({ ...passwords, confirm: e.target.value })}
-                  style={{ width: '100%', padding: '8px 10px', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '13px' }}
-                  required
-                />
-              </div>
-
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button
-                  type="button"
-                  onClick={() => setShowPasswordChange(false)}
-                  style={{
-                    flex: 1,
-                    padding: '8px 12px',
-                    background: '#f3f4f6',
-                    color: '#111',
-                    border: 'none',
-                    borderRadius: '6px',
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                  }}
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  style={{
-                    flex: 1,
-                    padding: '8px 12px',
-                    background: '#111',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '6px',
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    cursor: loading ? 'not-allowed' : 'pointer',
-                    opacity: loading ? 0.6 : 1,
-                  }}
-                >
-                  {loading ? 'Salvando...' : 'Alterar'}
-                </button>
-              </div>
-            </form>
-          )}
+          <button
+            onClick={() => setIsChangePasswordOpen(true)}
+            style={{
+              padding: '10px 16px',
+              background: '#f3f4f6',
+              color: '#111',
+              border: '1px solid #E5E7EB',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'background 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
+          >
+            <i className="fas fa-key" style={{ fontSize: '14px' }}></i>
+            Alterar Senha
+          </button>
 
           <label style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px', cursor: 'pointer', opacity: 0.5 }}>
             <input
@@ -283,6 +188,11 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           ✕
         </button>
       </div>
+
+      <ChangePasswordModal
+        isOpen={isChangePasswordOpen}
+        onClose={() => setIsChangePasswordOpen(false)}
+      />
     </div>
   );
 }
