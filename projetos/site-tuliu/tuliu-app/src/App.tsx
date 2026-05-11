@@ -176,13 +176,13 @@ function App() {
           currentPage={currentPage}
           onNavigate={navigate}
         />
-      ) : (
+      ) : currentPage !== 'login' && currentPage !== 'reset-password' ? (
         <Navbar
           onOpenLogin={() => navigate('login')}
           currentPage={currentPage}
           onNavigate={navigate}
         />
-      )}
+      ) : null}
       <main>
         {currentPage === 'home' ? (
           <>

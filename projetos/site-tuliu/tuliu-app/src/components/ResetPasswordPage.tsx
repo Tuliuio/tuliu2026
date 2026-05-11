@@ -76,7 +76,7 @@ export default function ResetPasswordPage({ onNavigateToHome }: ResetPasswordPag
 
         {/* Logo */}
         <div style={styles.logoWrapper}>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" height="70" viewBox="0 0 1350.75 662.249984" preserveAspectRatio="xMidYMid meet">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="140" height="70" viewBox="0 0 1350.75 662.249984" preserveAspectRatio="xMidYMid meet">
             <defs>
               <clipPath id="clip1"><path d="M 130.769531 302.832031 L 243.363281 302.832031 L 243.363281 415.425781 L 130.769531 415.425781 Z M 130.769531 302.832031 " clipRule="nonzero"/></clipPath>
               <clipPath id="clip2"><path d="M 130.769531 359.128906 C 130.769531 390.21875 155.976562 415.425781 187.066406 415.425781 C 218.160156 415.425781 243.363281 390.21875 243.363281 359.128906 C 243.363281 328.035156 218.160156 302.832031 187.066406 302.832031 C 155.976562 302.832031 130.769531 328.035156 130.769531 359.128906 Z M 130.769531 359.128906 " clipRule="nonzero"/></clipPath>

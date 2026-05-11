@@ -204,7 +204,6 @@ export default function AdminClientsPage() {
         body: {
           action: 'login_as_client',
           clientEmail: selectedClient.email,
-          newPassword: selectedClient.password,
         },
       });
 
@@ -243,7 +242,7 @@ export default function AdminClientsPage() {
 
     setIsLoadingPassword(true);
     try {
-      const { data, error } = await supabase.functions.invoke('admin_client_operations', {
+      const { error } = await supabase.functions.invoke('admin_client_operations', {
         body: {
           action: 'change_password',
           clientId: selectedClient.id,
