@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta de Unificacao: Roberto Ferreira x Tuliu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* DESIGN SYSTEM TULIU */
+    :root {
+      --color-black: #0A0A0A;
+      --color-white: #FFFFFF;
+      --color-gray-900: #1A1A1A;
+      --color-gray-700: #4B4B4B;
+      --color-gray-400: #9CA3AF;
+      --color-gray-100: #F5F5F5;
+      --color-gray-50: #FAFAFA;
+      --color-purple-800: #3B0E6E;
+      --color-purple-deep: #1E0A3C;
+      --border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+      --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-full: 999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--color-white);
+      color: var(--color-black);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    /* EYEBROW */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #F0F0F0;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-black);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow__dot {
+      font-size: 8px;
+    }
+
+    /* TYPOGRAPHY */
+    .headline-primary {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-black);
+      letter-spacing: -0.03em;
+    }
+
+    .headline-muted {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--color-gray-400);
+      letter-spacing: -0.03em;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .body-text {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--color-gray-700);
+      max-width: 620px;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: #333;
+    }
+
+    /* COVER */
+    .cover {
+      background: var(--color-gray-50);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+    }
+
+    .cover-topbar {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cover-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .nav-badge {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      font-weight: 500;
+    }
+
+    .cover-body {
+      padding: 96px 24px 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .cover-footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: center;
+      position: relative;
+    }
+
+    .meta-block label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-gray-400);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .meta-block p {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-black);
+    }
+
+    .validity-pill {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      display: inline-block;
+      padding: 6px 16px;
+      background: #FEF3C7;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      color: #92400E;
+      letter-spacing: 0.5px;
+    }
+
+    /* GRID 3 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 56px 0;
+    }
+
+    /* GRID 2 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 56px 0;
+    }
+
+    /* COMPARE GRID */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    /* PLAN CARDS */
+    .plan-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .plan-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-black);
+    }
+
+    .plan-card.featured {
+      border-color: var(--color-black);
+      background: var(--color-gray-50);
+      transform: scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .plan-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--color-black);
+      color: white;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: 8px;
+    }
+
+    .plan-name {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--color-black);
+    }
+
+    .plan-price {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--color-black);
+    }
+
+    .plan-price-label {
+      font-size: 14px;
+      color: var(--color-gray-400);
+      font-weight: 500;
+    }
+
+    .plan-desc {
+      font-size: 16px;
+      color: var(--color-gray-700);
+      line-height: 1.65;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .plan-features li {
+      font-size: 15px;
+      color: var(--color-black);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--color-black);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .domain-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-gray-700);
+      margin-top: 4px;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .checklist li {
+      font-size: 16px;
+      color: var(--color-black);
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .checklist li::before {
+      content: '>';
+      color: var(--color-black);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* FEATURE CARDS */
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-black);
+    }
+
+    .card-icon {
+      font-size: 36px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--color-black);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      color: var(--color-gray-700);
+      line-height: 1.6;
+    }
+
+    /* CTA DARK */
+    .cta-dark-wrap {
+      padding: 96px 0;
+    }
+
+    .cta-dark {
+      background: linear-gradient(135deg, #1E0A3C 0%, #3B0E6E 50%, #1A1A2E 100%);
+      border-radius: var(--radius-xl);
+      padding: 96px 48px;
+      text-align: center;
+      color: white;
+      margin: 0 24px;
+    }
+
+    .cta-dark__title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cta-dark__desc {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+
+    .cta-dark .btn-primary {
+      background: white;
+      color: var(--color-black);
+    }
+
+    .cta-dark .btn-primary:hover {
+      background: var(--color-gray-100);
+    }
+
+    /* COMPARISON COLUMN */
+    .compare-col {
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .compare-col.current {
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .compare-col.proposed {
+      background: var(--color-black);
+      color: white;
+    }
+
+    .compare-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-gray-400);
+    }
+
+    .compare-col.proposed .compare-label {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .compare-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: 8px;
+    }
+
+    .compare-item {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .compare-col.current .compare-item {
+      color: var(--color-black);
+    }
+
+    .compare-col.proposed .compare-item {
+      color: white;
+    }
+
+    .compare-price {
+      font-size: 48px;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+
+    .compare-col.current .compare-price {
+      color: var(--color-black);
+    }
+
+    .compare-col.proposed .compare-price {
+      color: white;
+    }
+
+    .compare-note {
+      font-size: 13px;
+      opacity: 0.7;
+      font-style: italic;
+    }
+
+    .compare-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .compare-features li {
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .compare-features li::before {
+      content: '+';
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .compare-col.proposed .compare-features li {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .compare-centered {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 32px 0;
+      color: var(--color-black);
+    }
+
+    /* PAYMENT LINK */
+    .payment-link {
+      background: var(--color-gray-50);
+      border: 2px solid var(--color-black);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      text-align: center;
+      margin: 56px 0;
+    }
+
+    .payment-link__title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--color-black);
+      margin-bottom: 8px;
+    }
+
+    .payment-link__subtitle {
+      font-size: 16px;
+      color: var(--color-gray-700);
+      margin-bottom: 32px;
+    }
+
+    .payment-link .btn-primary {
+      font-size: 18px;
+      padding: 18px 48px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--color-gray-100);
+      padding: 48px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--color-black);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-contact {
+      font-size: 14px;
+      color: var(--color-gray-700);
+      text-align: center;
+    }
+
+    .footer-contact a {
+      color: var(--color-black);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--color-gray-400);
+      text-align: center;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .cover-body {
+        padding: 36px 16px 0;
+      }
+
+      .cover-nav {
+        padding: 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        margin-left: 0;
+      }
+
+      .nav-badge {
+        display: none;
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .headline-primary {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .section-title {
+        font-size: clamp(20px, 5vw, 32px);
+      }
+
+      .body-text {
+        font-size: 15px;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .plan-card {
+        padding: 32px 24px;
+      }
+
+      .plan-price {
+        font-size: 36px;
+      }
+
+      .plan-card.featured {
+        transform: scale(1);
+      }
+
+      .cover-footer {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .validity-pill {
+        position: static;
+        margin-top: 16px;
+      }
+
+      .cta-dark {
+        padding: 48px 24px;
+        margin: 0 16px;
+      }
+
+      .cta-dark__title {
+        font-size: clamp(24px, 6vw, 36px);
+      }
+
+      .compare-col {
+        padding: 32px 24px;
+      }
+
+      .compare-price {
+        font-size: 36px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      .cover-body {
+        padding: 24px 12px 0;
+      }
+
+      .cover-nav {
+        padding: 12px;
+      }
+
+      .headline-primary {
+        font-size: clamp(24px, 8vw, 36px);
+      }
+
+      .section-title {
+        font-size: clamp(18px, 6vw, 28px);
+      }
+
+      .body-text {
+        font-size: 14px;
+      }
+
+      .cta-dark {
+        padding: 32px 16px;
+        margin: 0 12px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        padding: 4px 12px;
+      }
+
+      .plan-price {
+        font-size: 32px;
+      }
+
+      .compare-price {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-topbar">
+      <div class="cover-nav">
+        <a class="nav-logo" href="/" title="Voltar ao site">
+          <img src="https://tuliu.io/assets/logo-Cd9A8hQ2.svg" alt="Tuliu Logo" style="width: 140px; height: auto;" />
+        </a>
+        <div class="nav-actions">
+          <span class="nav-badge">Digital Infrastructure by Tuliu</span>
+          <a href="/" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">← Voltar ao site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-body">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Proposta de Unificacao · Maio 2026</span>
+      <div class="headline-primary">Unifique seus dominios</div>
+      <div class="headline-muted">para Roberto Ferreira.</div>
+      <p class="body-text" style="margin-top:28px">
+        Gabriel, voce ja paga por dois sites separados. A proposta e simples: unificar tudo em uma conta unica, com
+        muito mais recursos, pelo mesmo valor que voce ja investe hoje.
+      </p>
+    </div>
+
+    <div class="cover-footer">
+      <div class="meta-block">
+        <label>Preparado por</label>
+        <p>Tom Martins · Tuliu</p>
+      </div>
+      <div class="meta-block">
+        <label>Apresentado a</label>
+        <p>Gabriel · Roberto Ferreira</p>
+      </div>
+      <div class="meta-block">
+        <label>Data</label>
+        <p>Maio de 2026</p>
+      </div>
+      <span class="validity-pill">Valida por 30 dias</span>
+    </div>
+  </div>
+
+
+  <!-- SITUACAO ATUAL -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Situacao atual</span>
+      <h2 class="section-title">Dois sites. Duas contas. Dois pagamentos.</h2>
+      <p class="body-text" style="margin-bottom: 40px;">
+        Hoje voce gerencia dois planos Starter separados: um para <strong>robertoferreira.com.br</strong> e outro para
+        <strong>villajordao.com.br</strong>. Cada um cobra R$ 97 por mes — juntos, sao R$ 194 por mes, ou R$
+        2.328 por ano.
+      </p>
+
+      <div class="grid-2">
+        <div class="plan-card">
+          <div class="plan-badge">Plano atual 1</div>
+          <h3 class="plan-name">Starter</h3>
+          <span class="domain-pill">robertoferreira.com.br</span>
+          <div>
+            <div class="plan-price">R$ 97<span class="plan-price-label">/mes</span></div>
+          </div>
+          <p class="plan-desc">
+            A base que voce possui, com todas as funcionalidades essenciais configuradas.
+          </p>
+          <ul class="plan-features">
+            <li>Infraestrutura basica</li>
+            <li>Dashboard e controle</li>
+            <li>Integracoes essenciais</li>
+            <li>Suporte tecnico</li>
+            <li>Atualizacoes de seguranca</li>
+          </ul>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-badge">Plano atual 2</div>
+          <h3 class="plan-name">Starter</h3>
+          <span class="domain-pill">villajordao.com.br</span>
+          <div>
+            <div class="plan-price">R$ 97<span class="plan-price-label">/mes</span></div>
+          </div>
+          <p class="plan-desc">
+            A mesma base, duplicada. Um ambiente separado para o segundo site.
+          </p>
+          <ul class="plan-features">
+            <li>Infraestrutura basica</li>
+            <li>Dashboard e controle</li>
+            <li>Integracoes essenciais</li>
+            <li>Suporte tecnico</li>
+            <li>Atualizacoes de seguranca</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="compare-centered" style="margin-top: 48px;">
+        Total atual: R$ 194/mes · R$ 2.328/ano
+      </div>
+    </div>
+  </div>
+
+
+  <!-- O PROBLEMA -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> O problema</span>
+      <h2 class="section-title">Duas contas separadas geram trabalho em dobro.</h2>
+      <p class="body-text" style="margin-bottom: 40px;">
+        Gerenciar dois ambientes distintos significa acesso separado, suporte separado, configuracoes separadas. Qualquer atualizacao precisa ser feita duas vezes. Qualquer nova funcionalidade precisa ser ativada em cada conta individualmente.
+      </p>
+
+      <ul class="checklist">
+        <li>Dois logins para acessar o mesmo grupo de negocios</li>
+        <li>Atualizacoes e manutencoes duplicadas</li>
+        <li>Duas faturas mensais para acompanhar</li>
+        <li>Sem visao unificada dos dois dominios</li>
+        <li>Impossivel adicionar um terceiro site sem abrir uma terceira conta</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- O QUE O BUSINESS INCLUI -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Plano Business</span>
+      <h2 class="section-title">Uma conta. Tres dominios. Recursos completos.</h2>
+      <p class="body-text" style="margin-bottom: 56px;">
+        O plano Business foi feito para quem tem mais de um dominio ou precisa de uma operacao digital mais robusta. Em vez de pagar por duas contas simples, voce tem tudo em um unico lugar — com muito mais poder.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3 class="card-title">Ate 3 dominios</h3>
+          <p class="card-desc">
+            Gerencie robertoferreira.com.br, villajordao.com.br e ainda um terceiro dominio futuro, todos na mesma conta.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3 class="card-title">Dashboard unificado</h3>
+          <p class="card-desc">
+            Uma unica interface para ver, editar e monitorar todos os seus ativos digitais ao mesmo tempo.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔗</div>
+          <h3 class="card-title">Automacoes e integracoes</h3>
+          <p class="card-desc">
+            Conecte seus sites a ferramentas externas, automatize fluxos e economize tempo operacional todo mes.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3 class="card-title">Agente de IA para marketing</h3>
+          <p class="card-desc">
+            Analise de desempenho, sugestoes de conteudo e otimizacao continua guiada por inteligencia artificial.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- A OFERTA -->
+  <div class="section" style="background:var(--color-gray-50)">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> A oferta</span>
+      <h2 class="section-title">O mesmo valor que voce ja paga, mas com muito mais.</h2>
+      <p class="body-text" style="margin-bottom: 56px;">
+        A proposta e trocar dois planos Starter mensais por um plano Business anual. O custo total e identico:
+        <strong>R$ 2.328 por ano</strong>. A diferenca e que voce sai de duas contas limitadas para uma conta completa.
+      </p>
+
+      <div class="compare-grid">
+        <div class="compare-col current">
+          <div class="compare-label">Situacao atual</div>
+          <div class="compare-item">2x Starter mensal</div>
+          <div style="font-size: 18px; color: var(--color-gray-700); margin: 12px 0;">
+            R$ 97<br>
+            <span style="font-size: 14px;">+</span><br>
+            R$ 97
+          </div>
+          <div class="compare-price" style="color: var(--color-black);">R$ 194/mes</div>
+          <div class="compare-price" style="font-size: 24px; color: var(--color-gray-700); font-weight: 600; margin: 0;">= R$ 2.328/ano</div>
+          <div class="compare-note">Faturamento mensal, dois contratos separados</div>
+        </div>
+
+        <div class="compare-col proposed">
+          <div class="compare-badge">PROPOSTA TULIU</div>
+          <div class="compare-label">Novo</div>
+          <div class="compare-item">1x Business anual</div>
+          <div class="compare-price">R$ 2.328/ano</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.7); margin: 8px 0;">Equivale a R$ 194/mes</div>
+          <ul class="compare-features">
+            <li>3 dominios inclusos</li>
+            <li>Dashboard unificado</li>
+            <li>Automacoes e integracoes</li>
+            <li>Agente de IA para marketing</li>
+            <li>Suporte prioritario</li>
+          </ul>
+          <div class="compare-note">Faturamento anual, uma unica conta</div>
+        </div>
+      </div>
+
+      <div class="compare-centered" style="margin-top: 56px; font-size: 22px;">
+        Mesmo investimento. Zero adicional. Uma unica decisao.
+      </div>
+
+      <div class="payment-link">
+        <h3 class="payment-link__title">Pronto para começar?</h3>
+        <p class="payment-link__subtitle">Clique abaixo para finalizar seu upgrade para Business</p>
+        <a href="https://www.asaas.com/c/ltb4byb8q2rn4by1" class="btn-primary" target="_blank">
+          Pagar agora · R$ 2.328/ano
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- POR QUE UNIFICAR -->
+  <div class="section" style="background:white">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow__dot">●</span> Vantagens da unificacao</span>
+      <h2 class="section-title">Menos complexidade. Mais controle.</h2>
+      <p class="body-text" style="margin-bottom: 40px;">
+        Unificar nao e so uma questao financeira. E uma decisao de gestao: menos contas para administrar, mais recursos disponiveis, e uma base preparada para crescer.
+      </p>
+
+      <ul class="checklist">
+        <li><strong>Um unico login</strong> para gerenciar todos os seus dominios</li>
+        <li><strong>Manutencao simplificada</strong> — atualizacoes feitas uma unica vez</li>
+        <li><strong>Uma unica fatura anual</strong> — sem preocupacao mensal</li>
+        <li><strong>Agente de IA</strong> disponivel para analise e sugestoes de marketing</li>
+        <li><strong>Terceiro dominio livre</strong> — pode adicionar sem custo extra</li>
+        <li><strong>Evoluções rapidas</strong> — novas funcionalidades chegam primeiro no Business</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- CTA DARK -->
+  <div class="cta-dark-wrap">
+    <div class="cta-dark">
+      <h2 class="cta-dark__title">Pronto para simplificar?</h2>
+      <p class="cta-dark__desc">
+        Gabriel, a migracao e simples e sem interrupcao dos seus sites. Tudo continua funcionando. Voce so passa a ter muito mais, pelo mesmo preco.
+      </p>
+      <a href="https://wa.me/554840426597" class="btn-primary" target="_blank">
+        Falar com Tom no WhatsApp
+      </a>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="https://tuliu.io/assets/logo-Cd9A8hQ2.svg" alt="Tuliu Logo" style="width: 120px; height: auto; margin-bottom: 12px;" />
+    <p class="footer-brand">Tuliu · Infraestrutura Digital</p>
+    <p class="footer-contact">
+      Implementamos tecnologia do jeito certo — passo a passo.<br>
+      Qualquer duvida, e so chamar: <a href="https://tuliu.io">tuliu.io</a>
+    </p>
+    <p class="footer-copy">Tuliu. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+
+</html>
