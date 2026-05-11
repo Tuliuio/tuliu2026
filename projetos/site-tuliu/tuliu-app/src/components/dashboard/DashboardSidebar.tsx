@@ -69,7 +69,6 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
     { id: 'integrations', label: 'Integrações', icon: 'fa-plug', badge: 'Pro', count: assetCounts.integrations || 0 },
     { id: 'automations', label: 'Automações', icon: 'fa-cogs', badge: 'Pro', count: assetCounts.automations || 0 },
     { id: 'agents', label: 'Agentes IA', icon: 'fa-robot', badge: 'Pro', count: assetCounts.agents || 0 },
-    { id: 'flow', label: 'Flow', icon: 'fa-project-diagram', badge: 'Pro' },
   ];
 
   const SUPPORT_ITEMS: MenuItem[] = [

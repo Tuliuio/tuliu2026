@@ -7,6 +7,7 @@ interface KanbanCardItemProps {
   onReturn?: () => void;
   onEdit?: () => void;
   onArchive?: () => void;
+  onOpenDetail?: () => void;
   isDragging?: boolean;
   isAdmin?: boolean;
   isDarkMode?: boolean;
@@ -20,6 +21,7 @@ export default function KanbanCardItem({
   onReturn,
   onEdit,
   onArchive,
+  onOpenDetail,
   isDragging,
   isAdmin,
   isDarkMode,
@@ -58,13 +60,14 @@ export default function KanbanCardItem({
       {...dragHandleProps}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onOpenDetail}
       style={{
         background: bgColor,
-        border: `1px solid ${borderColor}`,
+        border: `1px solid ${isHovered ? (isDarkMode ? 'rgba(168,85,247,0.35)' : '#a5b4fc') : borderColor}`,
         borderRadius: '12px',
         padding: '14px',
         marginBottom: '12px',
-        cursor: isDragging ? 'grabbing' : 'grab',
+        cursor: isDragging ? 'grabbing' : 'pointer',
         opacity: isDragging ? 0.5 : 1,
         transition: 'all 0.2s',
         ...draggableProps?.style,

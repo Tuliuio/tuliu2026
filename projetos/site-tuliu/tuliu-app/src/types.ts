@@ -19,3 +19,13 @@ export interface KanbanCard {
   created_at: string;
   updated_at: string;
 }
+
+export interface CardComment {
+  id: string;
+  card_id: string;
+  client_id: string;
+  content: string;
+  author_name: string;
+  author_role: 'client' | 'admin';
+  created_at: string;
+}

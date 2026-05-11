@@ -73,31 +73,33 @@ export default function AutomationsSection() {
       ) : automations.length === 0 ? (
         <div style={{
           background: '#f9f9f9',
-          border: '2px dashed #E5E7EB',
+          border: '1px dashed #d4d4d4',
           borderRadius: '12px',
-          padding: '60px 40px',
+          padding: '48px 40px',
           textAlign: 'center',
         }}>
-          <p style={{ fontSize: '18px', fontWeight: 600, color: '#333', margin: '0 0 8px 0' }}>
-            Nenhuma automação criada ainda
+          <i className="fas fa-cogs" style={{ fontSize: '28px', color: '#ccc', marginBottom: '12px', display: 'block' }}></i>
+          <p style={{ fontSize: '15px', fontWeight: 600, color: '#666', margin: '0 0 4px 0' }}>
+            Nenhuma automação configurada ainda
           </p>
-          <p style={{ fontSize: '14px', color: '#666', margin: '0 0 24px 0' }}>
-            Crie sua primeira automação para economizar tempo e aumentar produtividade
+          <p style={{ fontSize: '13px', color: '#999', margin: '0 0 20px 0' }}>
+            Entre em contato com a equipe Tuliu para solicitar a configuração.
           </p>
           <button style={{
-            padding: '12px 24px',
+            padding: '10px 24px',
             background: '#111',
             color: 'white',
             border: 'none',
             borderRadius: '8px',
             fontWeight: 600,
             cursor: 'pointer',
-            fontSize: '14px',
+            fontSize: '13px',
           }}
           onMouseEnter={(e) => (e.currentTarget.style.background = '#333')}
           onMouseLeave={(e) => (e.currentTarget.style.background = '#111')}
           >
-            + Criar Automação
+            <i className="fas fa-paper-plane" style={{ marginRight: '8px' }}></i>
+            Solicitar configuração
           </button>
         </div>
       ) : (

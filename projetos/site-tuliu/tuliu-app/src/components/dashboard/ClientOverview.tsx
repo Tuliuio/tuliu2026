@@ -1,16 +1,24 @@
+import type { Asset } from '../../types/supabase';
 import { useAuth } from '../../context/AuthContext';
 
-export default function ClientOverview() {
+interface ClientOverviewProps {
+  assets: Asset[];
+}
+
+export default function ClientOverview({ assets }: ClientOverviewProps) {
   const { client } = useAuth();
 
   if (!client?.plan) return null;
 
   const limits = client.plan.limits;
-  const domains = 0; // TODO: fetch from database
-  const sites = 0;
-  const emails = 0;
-  const automations = 0;
-  const agents = 0;
+  const activeAssets = (type: string) =>
+    assets.filter((a) => a.type === type && (a.status === 'active' || a.status === 'pending')).length;
+
+  const domains = activeAssets('domain');
+  const sites = activeAssets('website') + activeAssets('webapp');
+  const emails = activeAssets('email');
+  const automations = activeAssets('automation');
+  const agents = activeAssets('agent');
 
   const getUsagePercent = (current: number, limit: string | number) => {
     if (limit === 'unlimited') return 0;
@@ -127,7 +135,7 @@ export default function ClientOverview() {
             Preço
           </p>
           <p style={{ margin: 0, fontSize: '14px', fontWeight: 600 }}>
-            R$ {((client as any).custom_price || client.plan.price).toLocaleString('pt-BR')}
+            R$ {(client.custom_price || client.plan.price).toLocaleString('pt-BR')}
           </p>
         </div>
       </div>

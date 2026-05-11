@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 import type { KanbanColumn as IKanbanColumn, KanbanCard } from '../../types';
 import KanbanColumn from './KanbanColumn';
+import CardDetailModal from './CardDetailModal';
 import FlowGate from './FlowGate';
 
 export default function FlowPage() {
@@ -11,6 +12,7 @@ export default function FlowPage() {
   const [cards, setCards] = useState<KanbanCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCard, setSelectedCard] = useState<KanbanCard | null>(null);
 
   const isEnterprise = client?.plan?.tier?.toLowerCase() === 'enterprise';
 
@@ -219,6 +221,7 @@ export default function FlowPage() {
               cards={columnCards}
               onApprove={handleApproveCard}
               onReturn={handleReturnCard}
+              onOpenCard={setSelectedCard}
               isAdmin={false}
               isDarkMode={true}
             />
@@ -244,6 +247,24 @@ export default function FlowPage() {
             <p>Nenhuma coluna disponível</p>
           </div>
         </div>
+      )}
+
+      {/* Card Detail Modal */}
+      {selectedCard && (
+        <CardDetailModal
+          card={selectedCard}
+          columns={columns}
+          isAdmin={false}
+          onClose={() => setSelectedCard(null)}
+          onApprove={() => {
+            handleApproveCard(selectedCard.id);
+            setSelectedCard(null);
+          }}
+          onReturn={() => {
+            handleReturnCard(selectedCard.id);
+            setSelectedCard(null);
+          }}
+        />
       )}
 
       {/* Scrollbar Hint */}

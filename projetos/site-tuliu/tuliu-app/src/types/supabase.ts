@@ -25,6 +25,7 @@ export interface Client {
   email: string;
   plan_id: string;
   plan?: Plan;
+  custom_price?: number | null;
   status: 'active' | 'canceled' | 'suspended';
   role: 'client' | 'admin';
   created_at: string;

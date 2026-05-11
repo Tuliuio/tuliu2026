@@ -267,7 +267,7 @@ function DashboardContent({ section }: { section: string }) {
           </div>
 
           {/* Client Overview */}
-          <ClientOverview />
+          <ClientOverview assets={assets} />
 
         {/* Asset Sections */}
         {plan && (

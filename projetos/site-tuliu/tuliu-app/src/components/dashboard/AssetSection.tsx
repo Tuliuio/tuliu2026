@@ -30,14 +30,8 @@ export default function AssetSection({
   const config = assetTypeConfig[type];
   const activeAssets = assets.filter((a) => a.status === 'active' || a.status === 'pending');
   const hasVacantSlots = maxAllowed !== 'unlimited' && activeAssets.length < (maxAllowed as number);
-  const canShowSection = activeAssets.length > 0 || hasVacantSlots || maxAllowed === 0;
-
-  if (!canShowSection) {
-    return null;
-  }
-
   const vacantSlotCount = hasVacantSlots ? (maxAllowed as number) - activeAssets.length : 0;
-  const showRequestSlot = activeAssets.length === 0 && maxAllowed === 0;
+  const showEmptyState = activeAssets.length === 0 && vacantSlotCount === 0;
 
   return (
     <section className="asset-section">
@@ -82,22 +76,45 @@ export default function AssetSection({
             />
           ))}
 
-        {/* Request slot when limit is 0 */}
-        {showRequestSlot && (
-          <AssetCard
-            key={`request-${type}`}
-            asset={{
-              id: `request-${type}`,
-              client_id: '',
-              type,
-              name: `${config.label}`,
-              status: 'inactive',
-              created_at: '',
-              updated_at: '',
-            } as Asset}
-            variant="vacant"
-            onRequestActivation={onRequestActivation}
-          />
+        {/* Empty state when no assets and no vacant slots */}
+        {showEmptyState && (
+          <div
+            style={{
+              gridColumn: '1 / -1',
+              padding: '32px',
+              background: '#f9f9f9',
+              borderRadius: '12px',
+              border: '1px dashed #d4d4d4',
+              textAlign: 'center',
+            }}
+          >
+            <i
+              className={`fas ${config.icon}`}
+              style={{ fontSize: '28px', color: '#ccc', marginBottom: '12px', display: 'block' }}
+            ></i>
+            <p style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 600, color: '#666' }}>
+              Nenhum {config.label.toLowerCase().replace(/s$/, '')} configurado ainda
+            </p>
+            <p style={{ margin: '0 0 20px 0', fontSize: '13px', color: '#999' }}>
+              Entre em contato com a equipe Tuliu para solicitar a configuracao.
+            </p>
+            <button
+              onClick={() => onRequestActivation?.(type)}
+              style={{
+                padding: '10px 24px',
+                background: '#111',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
+              <i className="fas fa-paper-plane" style={{ marginRight: '8px' }}></i>
+              Solicitar configuracao
+            </button>
+          </div>
         )}
       </div>
     </section>

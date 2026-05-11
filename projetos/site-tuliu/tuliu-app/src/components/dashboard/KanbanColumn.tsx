@@ -10,6 +10,7 @@ interface KanbanColumnProps {
   onAddCard?: (columnId: string) => void;
   onEditCard?: (card: KanbanCard) => void;
   onArchiveCard?: (cardId: string) => void;
+  onOpenCard?: (card: KanbanCard) => void;
   isAdmin?: boolean;
   isDarkMode?: boolean;
 }
@@ -22,6 +23,7 @@ export default function KanbanColumn({
   onAddCard,
   onEditCard,
   onArchiveCard,
+  onOpenCard,
   isAdmin,
   isDarkMode,
 }: KanbanColumnProps) {
@@ -105,6 +107,7 @@ export default function KanbanColumn({
                   card={card}
                   onApprove={() => onApprove?.(card.id)}
                   onReturn={() => onReturn?.(card.id)}
+                  onOpenDetail={() => onOpenCard?.(card)}
                   isAdmin={false}
                   isDarkMode={isDarkMode}
                 />
@@ -231,6 +234,7 @@ export default function KanbanColumn({
                           onReturn={() => onReturn?.(card.id)}
                           onEdit={() => onEditCard?.(card)}
                           onArchive={() => onArchiveCard?.(card.id)}
+                          onOpenDetail={() => onOpenCard?.(card)}
                           isDragging={snapshot.isDragging}
                           isAdmin={true}
                           isDarkMode={isDarkMode}

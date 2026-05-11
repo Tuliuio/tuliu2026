@@ -24,7 +24,6 @@ export default function AdminClientsPage() {
   const [isEditClientOpen, setIsEditClientOpen] = useState(false);
   const [isCreateAssetOpen, setIsCreateAssetOpen] = useState(false);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [isLoginClientOpen, setIsLoginClientOpen] = useState(false);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -194,30 +193,6 @@ export default function AdminClientsPage() {
     } catch (err: any) {
       setError(err.message || 'Erro ao criar ativo');
       show(err.message || 'Erro ao criar ativo', 'error');
-    }
-  };
-
-  const handleLoginAsClient = async () => {
-    if (!selectedClient) return;
-    try {
-      const { data: { session }, error } = await supabase.functions.invoke('admin_client_operations', {
-        body: {
-          action: 'login_as_client',
-          clientEmail: selectedClient.email,
-        },
-      });
-
-      if (error) throw error;
-
-      if (session) {
-        show(`Login como ${selectedClient.name} realizado!`, 'success');
-        setIsLoginClientOpen(false);
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 500);
-      }
-    } catch (err: any) {
-      show('Erro ao fazer login como cliente: ' + (err.message || 'Email ou senha incorretos'), 'error');
     }
   };
 
@@ -423,27 +398,6 @@ export default function AdminClientsPage() {
                         onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                       >
                         Editar
-                      </button>
-                      <button
-                        onClick={() => {
-                          setSelectedClientId(client.id);
-                          setIsLoginClientOpen(true);
-                        }}
-                        style={{
-                          padding: '6px 12px',
-                          background: '#dbeafe',
-                          border: 'none',
-                          borderRadius: '6px',
-                          fontSize: '12px',
-                          fontWeight: 500,
-                          color: '#0c4a6e',
-                          cursor: 'pointer',
-                          marginRight: '4px',
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = '#bfdbfe')}
-                        onMouseLeave={(e) => (e.currentTarget.style.background = '#dbeafe')}
-                      >
-                        Login
                       </button>
                       <button
                         onClick={() => {
@@ -863,88 +817,6 @@ export default function AdminClientsPage() {
             show('Cliente atualizado com sucesso!', 'success');
           }}
         />
-      )}
-
-      {/* Login as Client Modal */}
-      {isLoginClientOpen && selectedClient && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '20px',
-          }}
-          onClick={() => setIsLoginClientOpen(false)}
-        >
-          <div
-            style={{
-              background: 'white',
-              borderRadius: '12px',
-              padding: '32px',
-              maxWidth: '500px',
-              width: '100%',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 style={{ margin: '0 0 24px 0', fontSize: '24px', fontWeight: 700 }}>Login como Cliente</h2>
-            <p style={{ margin: '0 0 24px 0', fontSize: '14px', color: '#666' }}>
-              Você será redirecionado para o painel do cliente <strong>{selectedClient.name}</strong> ({selectedClient.company}).
-            </p>
-            <div style={{ background: '#f3f4f6', padding: '16px', borderRadius: '8px', marginBottom: '24px' }}>
-              <p style={{ margin: '0 0 8px 0', fontSize: '12px', fontWeight: 600, color: '#999', textTransform: 'uppercase' }}>
-                <i className="fas fa-info-circle" style={{ marginRight: '6px' }}></i>Informação
-              </p>
-              <p style={{ margin: 0, fontSize: '13px', color: '#666' }}>
-                O cliente será desconectado após sua sessão de login como cliente terminar.
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setIsLoginClientOpen(false)}
-                style={{
-                  flex: 1,
-                  padding: '12px 24px',
-                  background: '#f3f4f6',
-                  color: '#111',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#e5e7eb')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#f3f4f6')}
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={handleLoginAsClient}
-                style={{
-                  flex: 1,
-                  padding: '12px 24px',
-                  background: '#0284c7',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#0369a1')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#0284c7')}
-              >
-                Fazer Login
-              </button>
-            </div>
-          </div>
-        </div>
       )}
 
       {/* Change Password Modal */}

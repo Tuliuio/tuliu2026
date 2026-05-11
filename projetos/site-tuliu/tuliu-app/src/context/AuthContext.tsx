@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Add timeout to prevent hanging
       const clientPromise = supabase
         .from('clients')
-        .select('id, user_id, name, company, email, plan_id, status, role, created_at, updated_at')
+        .select('id, user_id, name, company, email, plan_id, custom_price, status, role, created_at, updated_at')
         .eq('user_id', userId);
 
       const timeoutPromise = new Promise((_, reject) =>
