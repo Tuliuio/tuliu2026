@@ -6,6 +6,7 @@
 <title>Diagnóstico de Marca · Condolar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   :root {
     --bg:         #0A0A0A;
@@ -511,16 +512,194 @@
     font-size: 18px;
   }
 
+  /* ── PRICING ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 56px 0;
+    align-items: start;
+  }
+
+  .pricing-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--border);
+    padding: 40px 32px 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card.featured {
+    background: rgba(208,173,35,0.05);
+    border: 1px solid rgba(208,173,35,0.3);
+    border-top: 3px solid var(--gold);
+  }
+
+  .pricing-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 4px 12px;
+    margin-bottom: 28px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+
+  .pricing-tier {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .pricing-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .pricing-card.featured .pricing-name { color: var(--gold-soft); }
+
+  .pricing-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .pricing-card.featured .pricing-price { color: var(--gold); }
+
+  .pricing-price-note {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+  }
+
+  .pricing-tagline {
+    font-size: 13px;
+    color: var(--off-white);
+    opacity: 0.7;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+
+  .pricing-card.featured .pricing-tagline { opacity: 0.9; }
+
+  .pricing-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pricing-list li {
+    font-size: 13px;
+    color: var(--off-white);
+    opacity: 0.8;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .pricing-card.featured .pricing-list li { opacity: 0.95; }
+
+  .pricing-list li i {
+    color: var(--gold);
+    font-size: 11px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .pricing-card.featured .pricing-list li i { opacity: 1; }
+
+  .pricing-section-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 10px;
+    margin-top: 24px;
+    display: block;
+  }
+
+  /* ── PAYMENT OPTIONS ── */
+  .payment-options {
+    margin: 40px 0 0;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .payment-options-title {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+
+  .payment-item {
+    padding: 20px 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .payment-item i {
+    color: var(--gold);
+    font-size: 15px;
+    opacity: 0.75;
+  }
+
+  .payment-item-label {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.4;
+  }
+
+  .payment-item-note {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: -4px;
+  }
+
   @media (max-width: 768px) {
     .cover, .section, .toc-section {
       padding: 40px 24px;
     }
-    .toc-grid, .pillars-grid, .recs-grid {
+    .toc-grid, .pillars-grid, .recs-grid, .pricing-grid {
       grid-template-columns: 1fr;
     }
     .cover-top, .cover-bottom {
       flex-direction: column;
       gap: 24px;
+    }
+    .payment-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
@@ -592,6 +771,10 @@
     <a href="#recomendacoes" class="toc-item">
       <span class="toc-item-n">10</span>
       <span class="toc-item-title">Recomendações e próximos passos</span>
+    </a>
+    <a href="#proposta" class="toc-item">
+      <span class="toc-item-n">11</span>
+      <span class="toc-item-title">Proposta Mira</span>
     </a>
   </div>
 </section>
@@ -919,6 +1102,143 @@
       <h3 style="color: var(--gold-soft); margin-bottom: 16px;">Fechamento</h3>
       <p style="color: var(--off-white); opacity: 0.9;">Você tem uma ideia forte. Um diferencial real. Um propósito defendível. O que falta não é rumo, é ritmo. Não falta coragem, falta sequência. Este diagnóstico é para que você não disperse o que já está construindo e ganhe em coerência de resultado.</p>
       <p style="color: var(--off-white); opacity: 0.9; margin-top: 16px;">O próximo passo é começar ali. Branding primeiro. Deixa que outras pessoas trabalhem. Deixa que o ritmo seja respirável. A Condolar está esperando por você, em ritmo certo.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section style="background: var(--bg); padding: 100px 60px;" id="proposta">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">11</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Proposta Mira</span>
+    </div>
+
+    <h2>Como a Mira resolve<br><em>o que levantamos aqui.</em></h2>
+
+    <p>O diagnóstico mapeou com clareza o que está funcionando, o que precisa de atenção e o que é urgente. O próximo passo é transformar esse mapa em marca real. Abaixo, três caminhos possíveis para começar, cada um construído sobre a metodologia Mira: Essência, Storytelling e Expressão.</p>
+
+    <div class="pricing-grid">
+
+      <!-- BÁSICO -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Caminho 01</div>
+        <div class="pricing-name">Básico</div>
+        <div class="pricing-price">R$ 3.900</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Para quem precisa organizar a base e ganhar uma identidade que comunique diferença desde o primeiro contato.</p>
+
+        <span class="pricing-section-label">Essência</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Propósito e posicionamento</li>
+          <li><i class="fa-solid fa-check"></i> Diferencial competitivo definido</li>
+          <li><i class="fa-solid fa-check"></i> Público ideal e proposta de valor</li>
+          <li><i class="fa-solid fa-check"></i> Manifesto da marca</li>
+        </ul>
+
+        <span class="pricing-section-label">Expressão</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Logotipo</li>
+          <li><i class="fa-solid fa-check"></i> Identidade visual completa</li>
+          <li><i class="fa-solid fa-check"></i> Paleta, tipografia e sistema gráfico</li>
+          <li><i class="fa-solid fa-check"></i> Templates para redes sociais</li>
+        </ul>
+      </div>
+
+      <!-- BUSINESS (FEATURED) -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Recomendado</div>
+        <div class="pricing-tier">Caminho 02</div>
+        <div class="pricing-name">Business</div>
+        <div class="pricing-price">R$ 8.900</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Para quem quer marca completa — do posicionamento à presença digital — com narrativa que atrai e converte clientes.</p>
+
+        <span class="pricing-section-label">Essência</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Tudo do Básico</li>
+          <li><i class="fa-solid fa-check"></i> Arquétipo e personalidade de marca</li>
+          <li><i class="fa-solid fa-check"></i> Território de marca e estratégia de percepção</li>
+        </ul>
+
+        <span class="pricing-section-label">Storytelling</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Narrativa central e Brand Story</li>
+          <li><i class="fa-solid fa-check"></i> Tom de voz e linguagem verbal</li>
+          <li><i class="fa-solid fa-check"></i> Slogans e frases-chave</li>
+          <li><i class="fa-solid fa-check"></i> Elevator pitch e sales pitch</li>
+        </ul>
+
+        <span class="pricing-section-label">Expressão</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Tudo do Básico</li>
+          <li><i class="fa-solid fa-check"></i> Site completo alinhado à marca</li>
+          <li><i class="fa-solid fa-check"></i> Brandbook e guidelines</li>
+        </ul>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Caminho 03</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">R$ 14.000</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Para quem quer colocar a marca no mundo com suporte estratégico contínuo e time dedicado por 3 meses após a entrega.</p>
+
+        <span class="pricing-section-label">Inclui tudo do Business</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Essência, Storytelling e Expressão completos</li>
+          <li><i class="fa-solid fa-check"></i> Site com storytelling focado em conversão</li>
+          <li><i class="fa-solid fa-check"></i> Brandbook e guidelines</li>
+        </ul>
+
+        <span class="pricing-section-label">Acompanhamento 3 meses</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Time dedicado de sucesso</li>
+          <li><i class="fa-solid fa-check"></i> Reuniões mensais de estratégia</li>
+          <li><i class="fa-solid fa-check"></i> Ajustes e revisões em tempo real</li>
+          <li><i class="fa-solid fa-check"></i> Suporte para captação ativa e crescimento</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="payment-options">
+      <div class="payment-options-title">Formas de pagamento</div>
+      <div class="payment-grid">
+        <div class="payment-item">
+          <i class="fa-solid fa-tag"></i>
+          <div class="payment-item-label">10% de desconto</div>
+          <div class="payment-item-note">Pagamento à vista</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-handshake"></i>
+          <div class="payment-item-label">50% + 50%</div>
+          <div class="payment-item-note">Entrada + entrega</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-qrcode"></i>
+          <div class="payment-item-label">Até 4x no Pix</div>
+          <div class="payment-item-note">Parcelado sem juros</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-credit-card"></i>
+          <div class="payment-item-label">12x no cartão</div>
+          <div class="payment-item-note">Crédito</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-comments"></i>
+          <div class="payment-item-label">Financiamento</div>
+          <div class="payment-item-note">Prazos acima de 12x · consultar</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; padding: 48px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <p style="color: var(--gold-soft); font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 12px;">O próximo passo é simples.</p>
+      <p style="color: var(--off-white); opacity: 0.85; max-width: 580px;">Escolha o caminho que faz sentido agora para a Condolar. Se tiver dúvida, o Business é o ponto de equilíbrio certo: cobre toda a base estratégica, constrói a narrativa e entrega a presença digital que a marca precisa para atrair as pessoas certas.</p>
     </div>
   </div>
 </section>
