@@ -108,7 +108,7 @@ function App() {
     }
   }, [scrollToAnchor, currentPage]);
 
-  // Intersection Observer for fade-in animations
+  // Intersection Observer for fade-in animations (mantido para compatibilidade)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -126,18 +126,8 @@ function App() {
       observer.observe(el);
     });
 
-    // Fallback: make elements visible after 100ms if not already
-    const timeout = setTimeout(() => {
-      fadeInElements.forEach((el) => {
-        if (!el.classList.contains('visible')) {
-          el.classList.add('visible');
-        }
-      });
-    }, 100);
-
     return () => {
       observer.disconnect();
-      clearTimeout(timeout);
     };
   }, [currentPage]);
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 import logo from '../assets/logo.svg';
@@ -11,7 +11,14 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleAnchorClick = (anchorId: string) => {
     if (currentPage !== 'home') {
@@ -26,7 +33,7 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
   };
 
   return (
-    <header className="navbar" role="banner">
+    <header className={`navbar${scrolled ? ' scrolled' : ''}`} role="banner">
       <div className="container">
         <nav className="navbar-inner" aria-label="Navegação principal">
           <button

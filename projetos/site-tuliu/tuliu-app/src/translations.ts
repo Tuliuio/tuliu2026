@@ -13,7 +13,7 @@ export const translations = {
       subtitle: "A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.",
 
       videoLabel: "Veja o que entregamos",
-      cta: "Quero minha infraestrutura"
+      cta: "Quero a minha infraestrutura digital"
     },
     features: {
       badge: "Feito por nós, para você",
@@ -112,7 +112,7 @@ export const translations = {
       subtitle: "Tuliu builds, delivers, and maintains your company's entire digital infrastructure: domains, websites, AI agents, integrations, and automations. You focus on the business. We handle the rest.",
       microcopy: "No IT team needed. No lock-in. No complications.",
       videoLabel: "See what we deliver",
-      cta: "Get my infrastructure"
+      cta: "I want my digital infrastructure"
     },
     features: {
       badge: "Built by us, for you",

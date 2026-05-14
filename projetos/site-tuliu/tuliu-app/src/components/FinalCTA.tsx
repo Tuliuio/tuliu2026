@@ -10,8 +10,12 @@ export default function FinalCTA() {
           <p>
             {t.cta.subtitle}
           </p>
-          <a href="#precos" className="btn btn-white" style={{ fontSize: '16px', padding: '14px 36px' }}>
-            {t.cta.btn}
+          <a href="#precos" className="btn-motion btn-motion-on-dark">
+            <span className="btn-motion-circle" aria-hidden="true"></span>
+            <span className="btn-motion-icon" aria-hidden="true">
+              <i className="fas fa-arrow-right"></i>
+            </span>
+            <span className="btn-motion-label">{t.cta.btn}</span>
           </a>
         </div>
       </div>
