@@ -734,6 +734,184 @@ footer {
   color: var(--muted);
 }
 
+/* ══════════════════════════════════════════
+   METHOD DIAGRAM
+══════════════════════════════════════════ */
+.method-outer {
+  display: grid;
+  grid-template-columns: 1fr 380px 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 56px;
+}
+.method-side {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.method-group-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.method-group-title::before {
+  content: '';
+  width: 18px; height: 1.5px;
+  background: var(--gold);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.method-sub-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.method-sub-items li {
+  font-size: 12px;
+  color: var(--gray);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.method-sub-items li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.4;
+}
+.circles-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c-outer {
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,162,39,0.12);
+  background: rgba(201,162,39,0.02);
+  display: flex; align-items: center; justify-content: center;
+}
+.c-mid {
+  width: 242px; height: 242px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,162,39,0.22);
+  background: rgba(201,162,39,0.04);
+  display: flex; align-items: center; justify-content: center;
+}
+.c-inner {
+  width: 148px; height: 148px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201,162,39,0.5);
+  background: rgba(201,162,39,0.1);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px; text-align: center;
+}
+.c-inner-main {
+  font-size: 20px; font-weight: 900;
+  color: var(--gold); letter-spacing: -0.03em;
+}
+.c-inner-sub {
+  font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray); font-weight: 600;
+}
+
+/* ══════════════════════════════════════════
+   PHASES
+══════════════════════════════════════════ */
+.phase-badges-row {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.phase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.phase-heading {
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.phase-desc {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.phase-deliver {
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-bdr);
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.phase-deliver-lbl {
+  font-size: 9px; letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold); font-weight: 700;
+}
+.phase-deliver-txt {
+  font-size: 13px; color: var(--gray); line-height: 1.65;
+}
+.phase-num-items {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+  padding-top: 4px;
+}
+.phase-num-item {
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.phase-item-n {
+  font-size: 10px; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  min-width: 22px; margin-top: 3px;
+  flex-shrink: 0;
+}
+.phase-item-t {
+  font-size: 13px; color: var(--gray); line-height: 1.6;
+}
+.phase-item-t strong { color: var(--white); font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   TIMELINE
+══════════════════════════════════════════ */
+.tl-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 48px;
+}
+.tl-card {
+  border-radius: 14px;
+  padding: 24px 18px;
+  display: flex; flex-direction: column; gap: 14px;
+  border: 1px solid transparent;
+}
+.tl-num {
+  font-size: 40px; font-weight: 900;
+  line-height: 1; letter-spacing: -0.04em;
+}
+.tl-label {
+  font-size: 9px; letter-spacing: 0.25em;
+  text-transform: uppercase; font-weight: 700;
+  display: block; margin-bottom: 4px;
+}
+.tl-text { font-size: 12px; line-height: 1.6; }
+
 </style>
 </head>
 <body>
@@ -817,6 +995,217 @@ footer {
         <i class="fa-solid fa-seedling ctx-icon"></i>
         <div class="ctx-title">Primeiro mover tem vantagem</div>
         <p class="ctx-text">Não existe referência forte de marca nesse nicho. <strong style="color:var(--white);">Quem construir a narrativa certa agora</strong> vai ocupar um espaço de autoridade que vai durar anos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ MÉTODO MIRA ══════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Método Mira</div>
+    <h2 class="section-hl">Marca construída <span class="gold">de dentro para fora.</span></h2>
+    <p class="section-sub">Todo projeto começa pelo centro: a essência. Só depois construímos a história e, por último, a expressão visual que o mercado vai ver.</p>
+    <div class="method-outer">
+
+      <!-- Essência (esquerda) -->
+      <div class="method-side" style="align-items:flex-end;text-align:right;">
+        <div>
+          <div class="method-group-title" style="justify-content:flex-end;flex-direction:row-reverse;">
+            1. Essência
+            <span style="display:block;width:18px;height:1.5px;background:var(--gold);opacity:0.5;flex-shrink:0;"></span>
+          </div>
+          <ul class="method-sub-items" style="align-items:flex-end;">
+            <li style="padding-left:0;padding-right:14px;">Propósito e valores</li>
+            <li style="padding-left:0;padding-right:14px;">Posicionamento central</li>
+            <li style="padding-left:0;padding-right:14px;">Arquitetura de marca</li>
+            <li style="padding-left:0;padding-right:14px;">Tom de voz</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Círculos concêntricos (centro) -->
+      <div class="circles-wrap">
+        <div class="c-outer">
+          <div class="c-mid">
+            <div class="c-inner">
+              <div class="c-inner-main">mira</div>
+              <div class="c-inner-sub">método</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- História + Expressão (direita) -->
+      <div class="method-side">
+        <div>
+          <div class="method-group-title">2. História</div>
+          <ul class="method-sub-items">
+            <li>Narrativa da marca</li>
+            <li>Proposta de valor</li>
+            <li>Mensagens-chave</li>
+            <li>Storytelling</li>
+          </ul>
+        </div>
+        <div>
+          <div class="method-group-title">3. Expressão</div>
+          <ul class="method-sub-items">
+            <li>Identidade visual</li>
+            <li>Sistema de design</li>
+            <li>Aplicações digitais</li>
+            <li>Materiais de marca</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ FASE 1: ESSÊNCIA ══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="phase-badges-row">
+      <span class="pill pill-gold">1. Essência</span>
+      <span class="pill pill-outline">A BASE ESTRATÉGICA DA MARCA</span>
+    </div>
+    <div class="phase-grid">
+      <div>
+        <h2 class="phase-heading">O centro gravitacional <span class="gold">da sua marca.</span></h2>
+        <p class="phase-desc">A fase de Essência define quem a marca é antes de como ela aparece. É aqui que construímos a fundação estratégica que orienta todas as decisões futuras de comunicação e expressão.</p>
+        <div class="phase-deliver">
+          <span class="phase-deliver-lbl"><i class="fa-solid fa-file-lines" style="margin-right:6px;"></i>Entregável</span>
+          <p class="phase-deliver-txt">Documento de Estratégia de Marca com propósito, posicionamento, arquitetura verbal, tom de voz e guidelines estratégicos.</p>
+        </div>
+      </div>
+      <ul class="phase-num-items">
+        <li class="phase-num-item"><span class="phase-item-n">01</span><span class="phase-item-t"><strong>Imersão e diagnóstico:</strong> entendimento profundo do negócio, mercado e concorrência</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">02</span><span class="phase-item-t"><strong>Propósito e valores:</strong> o porquê da marca existir e o que ela defende</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">03</span><span class="phase-item-t"><strong>Posicionamento central:</strong> como a marca quer ser percebida no mercado</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">04</span><span class="phase-item-t"><strong>Arquitetura de marca:</strong> estrutura e hierarquia dos produtos e serviços</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">05</span><span class="phase-item-t"><strong>Persona e audiências:</strong> mapa detalhado do cliente ideal</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">06</span><span class="phase-item-t"><strong>Tom de voz:</strong> como a marca fala e se comporta verbalmente</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">07</span><span class="phase-item-t"><strong>Mapa de atributos:</strong> os diferenciadores únicos da marca</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ FASE 2: HISTÓRIA ══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="phase-badges-row">
+      <span class="pill pill-gold">2. História</span>
+      <span class="pill pill-outline">POSICIONAMENTO, NARRATIVA E PROPOSTA DE VALOR</span>
+    </div>
+    <div class="phase-grid">
+      <div>
+        <h2 class="phase-heading">Um <span class="gold">discurso claro</span> e relevante para o mercado.</h2>
+        <p class="phase-desc">A fase de História transforma a estratégia em palavras. Construímos a narrativa que conecta a marca com as necessidades reais do mercado de forma memorável e diferenciada.</p>
+        <div class="phase-deliver">
+          <span class="phase-deliver-lbl"><i class="fa-solid fa-book-open" style="margin-right:6px;"></i>Entregável</span>
+          <p class="phase-deliver-txt">Playbook de Comunicação com proposta de valor, mensagens-chave, narrativa institucional, templates de pitch e argumentário de vendas.</p>
+        </div>
+      </div>
+      <ul class="phase-num-items">
+        <li class="phase-num-item"><span class="phase-item-n">01</span><span class="phase-item-t"><strong>Proposta de valor:</strong> a promessa central da marca para o mercado</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">02</span><span class="phase-item-t"><strong>Narrativa institucional:</strong> a história da empresa de forma estratégica</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">03</span><span class="phase-item-t"><strong>Mensagens-chave:</strong> os pilares verbais para cada canal e audiência</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">04</span><span class="phase-item-t"><strong>Pitch de marca:</strong> apresentação clara em 30s, 2min e 5min</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">05</span><span class="phase-item-t"><strong>Headlines e taglines:</strong> expressões que capturam a essência da marca</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">06</span><span class="phase-item-t"><strong>Argumentário de vendas:</strong> como apresentar o valor da marca ao cliente</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">07</span><span class="phase-item-t"><strong>Storytelling de produto:</strong> narrativa para cada solução da empresa</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ FASE 3: EXPRESSÃO ══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="phase-badges-row">
+      <span class="pill pill-gold">3. Expressão</span>
+      <span class="pill pill-outline">MATERIALIZAÇÃO DO POSICIONAMENTO</span>
+    </div>
+    <div class="phase-grid">
+      <div>
+        <h2 class="phase-heading">A <span class="gold">forma visível</span> e consistente da marca.</h2>
+        <p class="phase-desc">A fase de Expressão traz o posicionamento para o mundo visual. Criamos um sistema de identidade único e aplicável em todos os pontos de contato com o mercado.</p>
+        <div class="phase-deliver">
+          <span class="phase-deliver-lbl"><i class="fa-solid fa-palette" style="margin-right:6px;"></i>Entregável</span>
+          <p class="phase-deliver-txt">Manual de Identidade Visual completo com logo, cores, tipografia, iconografia, sistema de imagens e guidelines de aplicação em digital e impresso.</p>
+        </div>
+      </div>
+      <ul class="phase-num-items">
+        <li class="phase-num-item"><span class="phase-item-n">01</span><span class="phase-item-t"><strong>Identidade visual:</strong> logo, símbolo, variações e regras de uso</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">02</span><span class="phase-item-t"><strong>Sistema de cores:</strong> paleta primária, secundária e de uso em digital</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">03</span><span class="phase-item-t"><strong>Tipografia:</strong> fontes institucionais e hierarquia tipográfica</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">04</span><span class="phase-item-t"><strong>Iconografia e ilustração:</strong> sistema de ícones alinhados à marca</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">05</span><span class="phase-item-t"><strong>Templates de comunicação:</strong> posts, apresentações e materiais</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">06</span><span class="phase-item-t"><strong>Aplicações digitais:</strong> site, redes sociais e plataformas</span></li>
+        <li class="phase-num-item"><span class="phase-item-n">07</span><span class="phase-item-t"><strong>Brand guidelines:</strong> o manual completo de uso da marca</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TIMELINE ══════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">O processo</div>
+    <h2 class="section-hl">Trazendo o melhor da sua<br>empresa para o <span class="gold">mundo.</span></h2>
+    <div class="tl-grid">
+      <div class="tl-card" style="background:linear-gradient(145deg,#191919,#141414);border-color:rgba(255,255,255,0.05);">
+        <div class="tl-num" style="color:#2e2e2e;">01</div>
+        <div class="tl-text" style="color:#555;">
+          <span class="tl-label" style="color:#3a3a3a;">IMERSÃO</span>
+          Entendimento profundo do negócio, mercado, concorrentes e audiência-alvo.
+        </div>
+      </div>
+      <div class="tl-card" style="background:linear-gradient(145deg,#1d1b0f,#191710);border-color:rgba(201,162,39,0.08);">
+        <div class="tl-num" style="color:#3d3310;">02</div>
+        <div class="tl-text" style="color:#777;">
+          <span class="tl-label" style="color:#5a4a18;">ESTRATÉGIA</span>
+          Definição do posicionamento, propósito e arquitetura de marca.
+        </div>
+      </div>
+      <div class="tl-card" style="background:linear-gradient(145deg,#221f0e,#1d1b0c);border-color:rgba(201,162,39,0.12);">
+        <div class="tl-num" style="color:#5a4a16;">03</div>
+        <div class="tl-text" style="color:#999;">
+          <span class="tl-label" style="color:#7a6424;">NARRATIVA</span>
+          Construção da história, mensagens-chave e proposta de valor.
+        </div>
+      </div>
+      <div class="tl-card" style="background:linear-gradient(145deg,#28230e,#22200c);border-color:rgba(201,162,39,0.18);">
+        <div class="tl-num" style="color:#806820;">04</div>
+        <div class="tl-text" style="color:#aaa;">
+          <span class="tl-label" style="color:#9a7c2c;">IDENTIDADE</span>
+          Desenvolvimento do sistema visual completo e identidade de marca.
+        </div>
+      </div>
+      <div class="tl-card" style="background:linear-gradient(145deg,#2e280c,#28220a);border-color:rgba(201,162,39,0.25);">
+        <div class="tl-num" style="color:#a88628;">05</div>
+        <div class="tl-text" style="color:#bbb;">
+          <span class="tl-label" style="color:#b89036;">APLICAÇÕES</span>
+          Criação dos materiais, templates e pontos de contato da marca.
+        </div>
+      </div>
+      <div class="tl-card" style="background:linear-gradient(145deg,rgba(201,162,39,0.12),rgba(201,162,39,0.04));border-color:rgba(201,162,39,0.4);">
+        <div class="tl-num" style="color:var(--gold);">06</div>
+        <div class="tl-text" style="color:var(--white);">
+          <span class="tl-label" style="color:var(--gold);">ENTREGA</span>
+          Apresentação final, handoff e brand guidelines completos da marca.
+        </div>
       </div>
     </div>
   </div>
