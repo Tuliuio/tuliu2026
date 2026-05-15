@@ -912,6 +912,105 @@ footer {
 }
 .tl-text { font-size: 12px; line-height: 1.6; }
 
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET  (≤ 900px)
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 18px 28px; }
+  .container { padding: 0 28px; }
+  .divider { margin: 0 28px; }
+  section { padding: 80px 0; }
+
+  .hero { padding: 110px 28px 60px; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
+
+  .ctx-grid { grid-template-columns: 1fr; }
+
+  .method-outer { grid-template-columns: 1fr; gap: 40px; }
+  .method-side  { align-items: flex-start !important; text-align: left !important; }
+  .method-sub-items { align-items: flex-start !important; }
+  .method-sub-items li { padding-left: 14px !important; padding-right: 0 !important; }
+  .method-group-title { flex-direction: row !important; justify-content: flex-start !important; }
+  .c-outer { width: 300px; height: 300px; }
+  .c-mid  { width: 214px; height: 214px; }
+  .c-inner { width: 130px; height: 130px; }
+  .c-inner-main { font-size: 18px; }
+
+  .phase-grid { grid-template-columns: 1fr; gap: 36px; }
+
+  .tl-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .plans-grid { grid-template-columns: 1fr; }
+
+  .del-grid { grid-template-columns: 1fr 1fr; }
+
+  .payment-plans { grid-template-columns: 1fr; }
+
+  .steps-layout { grid-template-columns: 1fr; }
+  .steps-illustration { display: none; }
+
+  .footer-bar { flex-direction: column; align-items: center; gap: 12px; }
+  footer { padding: 80px 28px 60px; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE  (≤ 600px)
+══════════════════════════════════════════ */
+@media (max-width: 600px) {
+  nav { padding: 16px 20px; }
+  .container { padding: 0 20px; }
+  .divider { margin: 0 20px; }
+  section { padding: 64px 0; }
+
+  .hero { padding: 96px 20px 52px; min-height: 100svh; }
+  .hero-headline { font-size: clamp(42px, 13vw, 72px); }
+  .hero-sub { font-size: 14px; }
+  .hero-client-name { font-size: 26px; }
+  .hero-pills { gap: 8px; }
+  .hero-pills .pill { font-size: 9px; padding: 5px 12px; }
+
+  .letter-quote-bg { font-size: 160px; top: -20px; left: 16px; }
+  .letter-name { margin-bottom: 24px; }
+  .letter-body { font-size: 14px; }
+
+  .section-hl { font-size: clamp(28px, 7vw, 44px); }
+  .section-sub { font-size: 14px; margin-bottom: 36px; }
+
+  .ctx-card { padding: 24px 20px; }
+
+  .c-outer { width: 260px; height: 260px; }
+  .c-mid  { width: 186px; height: 186px; }
+  .c-inner { width: 114px; height: 114px; }
+  .c-inner-main { font-size: 16px; }
+  .c-inner-sub { font-size: 8px; }
+
+  .phase-heading { font-size: clamp(22px, 6vw, 34px); }
+  .phase-desc { font-size: 13px; }
+  .plan-header { padding: 24px 22px 20px; }
+  .plan-price-block { padding: 20px 22px; }
+  .plan-body { padding: 20px 22px; }
+  .plan-name { font-size: 28px; }
+  .plan-price { font-size: 40px; }
+
+  .tl-grid { grid-template-columns: repeat(2, 1fr); }
+  .tl-num { font-size: 32px; }
+
+  .del-grid { grid-template-columns: 1fr; }
+  .del-intro { flex-direction: column; gap: 12px; }
+
+  .pp-header { padding: 18px 20px; }
+  .pp-options { padding: 12px 20px 20px; }
+  .pp-opt-value { font-size: 13px; }
+
+  .step-card { padding: 18px 20px; }
+  .step-text { font-size: 14px; }
+
+  footer { padding: 64px 20px 48px; }
+  .footer-logo { height: 40px; }
+  .footer-hl { font-size: clamp(22px, 6vw, 32px); }
+  .footer-links { flex-direction: column; align-items: center; gap: 16px; }
+}
+
 </style>
 </head>
 <body>
