@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial · Jéssica · Mira Brand Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+
+:root {
+  --bg:       #0f0f0f;
+  --surface:  #161616;
+  --surface2: #1e1e1e;
+  --gold:     #C9A227;
+  --gold-dim: rgba(201,162,39,0.08);
+  --gold-bdr: rgba(201,162,39,0.25);
+  --gold-bdr2:rgba(201,162,39,0.45);
+  --white:    #ffffff;
+  --gray:     #999999;
+  --muted:    #555555;
+  --border:   rgba(255,255,255,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(15,15,15,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.nav-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+section {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+section:last-of-type { border-bottom: none; }
+
+/* ── EYEBROW ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+/* ── PILLS ── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pill-outline { border: 1px solid var(--gold-bdr); color: var(--gold); }
+.pill-gold    { background: var(--gold); color: #0f0f0f; }
+.pill-dark    { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--gray); }
+
+/* ── COLORS ── */
+.gold { color: var(--gold); }
+.gray { color: var(--gray); }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0.15;
+  margin: 0 60px;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 140px 60px 80px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(201,162,39,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-meta {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-headline {
+  font-size: clamp(56px, 8vw, 104px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--gray);
+  max-width: 480px;
+  margin-top: 8px;
+  line-height: 1.75;
+}
+
+.hero-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-client-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.hero-client-name {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.hero-est {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ══════════════════════════════════════════
+   LETTER
+══════════════════════════════════════════ */
+.letter-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-quote-bg {
+  font-size: 280px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.018);
+  position: absolute;
+  top: -40px; left: 40px;
+  line-height: 0.85;
+  user-select: none;
+  pointer-events: none;
+  font-family: Georgia, serif;
+}
+
+.letter-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.letter-name {
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+}
+
+.letter-body {
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+.letter-body strong { color: var(--white); font-weight: 600; }
+
+.letter-sign {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-top: 32px;
+}
+
+/* ══════════════════════════════════════════
+   CONTEXT / OPPORTUNITY
+══════════════════════════════════════════ */
+.ctx-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 48px;
+}
+
+.ctx-card {
+  background: var(--surface);
+  border: 1px solid var(--gold-bdr);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ctx-icon {
+  font-size: 20px;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.ctx-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ctx-text {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   SECTION TITLES
+══════════════════════════════════════════ */
+.section-hl {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.8;
+  max-width: 580px;
+  margin-bottom: 48px;
+}
+
+/* ══════════════════════════════════════════
+   PLANS
+══════════════════════════════════════════ */
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.plan-card {
+  border-radius: 20px;
+  border: 1px solid var(--gold-bdr);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card.plan-complete {
+  border-color: rgba(201,162,39,0.5);
+  background: rgba(201,162,39,0.03);
+}
+
+.plan-header {
+  padding: 36px 36px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.plan-card.plan-complete .plan-header {
+  border-bottom-color: var(--gold-bdr);
+}
+
+.plan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.plan-name {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.plan-tagline {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+.plan-price-block {
+  padding: 28px 36px;
+  border-bottom: 1px solid var(--border);
+}
+.plan-card.plan-complete .plan-price-block { border-bottom-color: var(--gold-bdr); }
+
+.plan-bni-note {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.plan-old-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: line-through;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.plan-price {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.plan-card.plan-fast .plan-price { color: var(--white); }
+.plan-card.plan-complete .plan-price { color: var(--gold); }
+
+.plan-price-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+  letter-spacing: 0.05em;
+}
+
+.plan-body {
+  padding: 28px 36px;
+  flex: 1;
+}
+
+.plan-what-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.plan-what-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-what-items li {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.plan-what-items li i {
+  color: var(--gold);
+  font-size: 11px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.plan-card.plan-complete .plan-what-items li { color: #bbb; }
+.plan-card.plan-complete .plan-what-items li i { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   DELIVERABLES
+══════════════════════════════════════════ */
+.del-intro {
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-bdr);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.del-intro i {
+  font-size: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.del-intro p {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+.del-intro strong { color: var(--white); font-weight: 600; }
+
+.del-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.del-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+.del-item:hover { border-color: var(--gold-bdr); }
+
+.del-item i {
+  font-size: 18px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.del-item-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.del-item-desc {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════
+   PAYMENT
+══════════════════════════════════════════ */
+.payment-plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.payment-plan {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.payment-plan.plan-complete-pay { border-color: var(--gold-bdr); }
+
+.pp-header {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payment-plan.plan-complete-pay .pp-header { border-bottom-color: var(--gold-bdr); }
+
+.pp-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.pp-price {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--gold);
+}
+
+.pp-options {
+  padding: 16px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pp-option {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pp-option:last-child { border-bottom: none; }
+
+.pp-opt-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gray);
+}
+.pp-opt-label i { color: var(--gold); opacity: 0.7; font-size: 12px; }
+
+.pp-opt-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  text-align: right;
+  line-height: 1.4;
+}
+
+.pp-opt-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--gray);
+  display: block;
+}
+
+/* ══════════════════════════════════════════
+   NEXT STEPS
+══════════════════════════════════════════ */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 48px;
+  max-width: 720px;
+}
+
+.step-item {
+  background: var(--surface);
+  border: 1px solid var(--gold-bdr);
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transition: background 0.2s, border-color 0.2s;
+  cursor: default;
+}
+.step-item:hover {
+  background: rgba(201,162,39,0.06);
+  border-color: var(--gold-bdr2);
+}
+
+.step-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  min-width: 28px;
+}
+.step-text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  flex: 1;
+}
+.step-icon {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: #080808;
+  padding: 100px 60px 80px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.footer-glow {
+  position: absolute;
+  bottom: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 1000px; height: 500px;
+  background: radial-gradient(ellipse, rgba(201,162,39,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.footer-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo {
+  height: 52px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.footer-hl {
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  max-width: 600px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 36px;
+  margin-top: 12px;
+}
+
+.footer-link {
+  font-size: 14px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  letter-spacing: 0.04em;
+}
+.footer-link:hover { opacity: 1; }
+
+.footer-bar {
+  margin-top: 60px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
+.footer-bar span {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════ -->
+<nav>
+  <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" class="nav-logo">
+  <span class="nav-label">Mira Brand Studio</span>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-top">
+    <div class="hero-meta">EST. 2020 &nbsp;·&nbsp; Proposta Comercial &nbsp;·&nbsp; Branding</div>
+    <div class="hero-headline">Proposta<br>comercial</div>
+    <p class="hero-sub">Uma marca construída do zero, pensada para um mercado que importa.</p>
+    <div class="hero-pills">
+      <span class="pill pill-dark"><i class="fa-solid fa-mobile-screen-button" style="margin-right:8px;opacity:0.6;"></i>APLICATIVO</span>
+      <span class="pill pill-dark"><i class="fa-solid fa-heart-pulse" style="margin-right:8px;opacity:0.6;"></i>CUIDADO COM IDOSOS</span>
+      <span class="pill pill-dark"><i class="fa-solid fa-star" style="margin-right:8px;opacity:0.6;"></i>NOVO NEGÓCIO</span>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div>
+      <div class="hero-client-label">Preparada para</div>
+      <div class="hero-client-name">Jéssica</div>
+    </div>
+    <div class="hero-est">
+      Mira Brand Studio<br>2025
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ LETTER ════════════════════════════════ -->
+<section class="letter-wrap">
+  <div class="container">
+    <div class="letter-quote-bg">"</div>
+    <div class="letter-content">
+      <div class="eyebrow">Carta para você</div>
+      <div class="letter-name">Jéssica,</div>
+      <p class="letter-body">
+        Você está construindo algo que vai muito além de um aplicativo. Uma ferramenta pensada para quem cuida de idosos carrega consigo <strong>propósito, responsabilidade e uma enorme oportunidade de mercado.</strong> E marcas com propósito real são as que mais crescem.
+      </p>
+      <p class="letter-body">
+        Estamos em um momento em que o Brasil envelhece rápido e o mercado de cuidados ainda não tem uma referência clara. Quem construir a marca certa agora, <strong>com a mensagem certa para o profissional certo,</strong> vai ocupar um espaço que dificilmente alguém vai tirar.
+      </p>
+      <p class="letter-body">
+        Esta proposta tem dois caminhos. Um mais direto, para quem já tem a estratégia definida e precisa transformá-la em expressão visual. E um mais completo, para quem quer fazer isso com profundidade, garantindo que a essência e o posicionamento estejam sólidos antes de qualquer execução.
+      </p>
+      <p class="letter-body">
+        Qualquer que seja o caminho escolhido, <strong>o objetivo é o mesmo:</strong> uma marca que transmita confiança e humanidade, que o profissional de saúde orgulhe de usar e que a família confie quando vê.
+      </p>
+      <div class="letter-sign">Equipe Mira Brand Studio</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ CONTEXT ═══════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">O contexto</div>
+    <h2 class="section-hl">Uma solução para um mercado<br>que está <span class="gold">crescendo.</span></h2>
+    <p class="section-sub">O cuidado com idosos é um dos setores que mais cresce no Brasil. Uma marca bem construída nesse mercado não é custo. É vantagem competitiva.</p>
+    <div class="ctx-grid">
+      <div class="ctx-card">
+        <i class="fa-solid fa-users ctx-icon"></i>
+        <div class="ctx-title">Profissionais como público</div>
+        <p class="ctx-text">O app será uma ferramenta de trabalho para cuidadores, técnicos de enfermagem e profissionais da área de saúde do idoso. Isso exige uma marca que transmita <strong style="color:var(--white);">credibilidade profissional.</strong></p>
+      </div>
+      <div class="ctx-card">
+        <i class="fa-solid fa-mobile-screen-button ctx-icon"></i>
+        <div class="ctx-title">Produto digital em mercado analógico</div>
+        <p class="ctx-text">Entrar com tecnologia em um setor ainda pouco digitalizado exige <strong style="color:var(--white);">comunicação que reduza a barreira de adoção</strong> e posicione o produto como aliado, não como novidade complexa.</p>
+      </div>
+      <div class="ctx-card">
+        <i class="fa-solid fa-seedling ctx-icon"></i>
+        <div class="ctx-title">Primeiro mover tem vantagem</div>
+        <p class="ctx-text">Não existe referência forte de marca nesse nicho. <strong style="color:var(--white);">Quem construir a narrativa certa agora</strong> vai ocupar um espaço de autoridade que vai durar anos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ DELIVERABLES ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Entregáveis</div>
+    <h2 class="section-hl">O que você recebe <span class="gold">nas duas opções.</span></h2>
+    <p class="section-sub">Independentemente do caminho escolhido, todos os entregáveis de expressão de marca estão inclusos.</p>
+
+    <div class="del-intro">
+      <i class="fa-solid fa-circle-check"></i>
+      <p>Todos os arquivos são entregues em formatos prontos para uso: <strong>editable source + PNG/SVG/PDF.</strong> Os templates são desenvolvidos em Canva ou Google Slides para facilitar o uso no dia a dia.</p>
+    </div>
+
+    <div class="del-grid">
+      <div class="del-item">
+        <i class="fa-solid fa-trademark"></i>
+        <div class="del-item-name">Logo</div>
+        <p class="del-item-desc">Versões primária, secundária e símbolo. Aplicações em fundo claro, escuro e colorido.</p>
+      </div>
+      <div class="del-item">
+        <i class="fa-solid fa-book-open"></i>
+        <div class="del-item-name">Manual da Marca</div>
+        <p class="del-item-desc">Guia completo de identidade visual com cores, tipografia, uso de logo e exemplos de aplicação.</p>
+      </div>
+      <div class="del-item">
+        <i class="fa-solid fa-envelope"></i>
+        <div class="del-item-name">Assinatura de E-mail</div>
+        <p class="del-item-desc">Template profissional de assinatura de e-mail com instruções de instalação.</p>
+      </div>
+      <div class="del-item">
+        <i class="fa-solid fa-id-card"></i>
+        <div class="del-item-name">Arte Cartão do Associado</div>
+        <p class="del-item-desc">Layout do cartão de identificação do associado, pronto para impressão e versão digital.</p>
+      </div>
+      <div class="del-item">
+        <i class="fa-solid fa-display"></i>
+        <div class="del-item-name">Template de Apresentação</div>
+        <p class="del-item-desc">Modelo de apresentação institucional com slides pré-formatados na identidade da marca.</p>
+      </div>
+      <div class="del-item">
+        <i class="fa-solid fa-image"></i>
+        <div class="del-item-name">Mockups</div>
+        <p class="del-item-desc">Visualizações realistas da marca aplicada em celular, materiais e superfícies relevantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PLANS ══════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Opções de projeto</div>
+    <h2 class="section-hl">Dois caminhos para <span class="gold">a mesma marca.</span></h2>
+    <p class="section-sub">Cada projeto inclui todos os entregáveis de expressão de marca. A diferença está na profundidade do trabalho estratégico que fazemos juntos antes de executar.</p>
+
+    <div class="plans-grid">
+
+      <!-- FAST -->
+      <div class="plan-card plan-fast">
+        <div class="plan-header" style="background:var(--surface);">
+          <div class="plan-badge">
+            <i class="fa-solid fa-bolt"></i>
+            FAST
+          </div>
+          <div class="plan-name">Expressão Direta</div>
+          <p class="plan-tagline">Você já tem a estratégia pensada. A gente transforma esse pensamento em marca. Trabalhamos com o que você trouxer e executamos a identidade com qualidade e alinhamento.</p>
+        </div>
+        <div class="plan-price-block" style="background:var(--surface);">
+          <div class="plan-price">R$ 3.900</div>
+          <div class="plan-price-note">Prazo estimado: 20 dias úteis</div>
+        </div>
+        <div class="plan-body" style="background:var(--surface);">
+          <div class="plan-what-label">O que está incluso</div>
+          <ul class="plan-what-items">
+            <li><i class="fa-solid fa-check"></i>Briefing aprofundado com base na sua visão de marca</li>
+            <li><i class="fa-solid fa-check"></i>Alinhamento do posicionamento e referências visuais</li>
+            <li><i class="fa-solid fa-check"></i>Execução completa dos entregáveis de expressão</li>
+            <li><i class="fa-solid fa-check"></i>Até 2 rodadas de revisão por entregável</li>
+            <li><i class="fa-solid fa-minus" style="opacity:0.35;"></i><span style="opacity:0.5;">Sem imersão estratégica de essência</span></li>
+            <li><i class="fa-solid fa-minus" style="opacity:0.35;"></i><span style="opacity:0.5;">Sem desenvolvimento de narrativa e storytelling</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BRANDING COMPLETO -->
+      <div class="plan-card plan-complete">
+        <div class="plan-header" style="background:rgba(201,162,39,0.03);">
+          <div class="plan-badge">
+            <i class="fa-solid fa-crown"></i>
+            BRANDING COMPLETO
+          </div>
+          <div class="plan-name" style="color:var(--gold);">Do Propósito<br>à Expressão</div>
+          <p class="plan-tagline">Mergulhamos junto com você na essência do negócio. Construímos o posicionamento, a narrativa e a diferenciação antes de criar qualquer expressão visual. O resultado é uma marca que faz sentido de dentro para fora.</p>
+        </div>
+        <div class="plan-price-block" style="background:rgba(201,162,39,0.03);">
+          <div class="plan-bni-note"><i class="fa-solid fa-tag" style="margin-right:6px;"></i>Condição especial BNI</div>
+          <div class="plan-old-price">R$ 14.000</div>
+          <div class="plan-price">R$ 8.900</div>
+          <div class="plan-price-note">Prazo estimado: 45 dias úteis</div>
+        </div>
+        <div class="plan-body" style="background:rgba(201,162,39,0.02);">
+          <div class="plan-what-label">O que está incluso</div>
+          <ul class="plan-what-items">
+            <li><i class="fa-solid fa-check"></i>Imersão estratégica no negócio, mercado e audiência</li>
+            <li><i class="fa-solid fa-check"></i>Definição de propósito, valores e posicionamento central</li>
+            <li><i class="fa-solid fa-check"></i>Diferenciação e arquitetura de marca</li>
+            <li><i class="fa-solid fa-check"></i>Construção de narrativa e proposta de valor</li>
+            <li><i class="fa-solid fa-check"></i>Tom de voz e mensagens-chave da marca</li>
+            <li><i class="fa-solid fa-check"></i>Execução completa dos entregáveis de expressão</li>
+            <li><i class="fa-solid fa-check"></i>Até 3 rodadas de revisão por entregável</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PAYMENT ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Formas de pagamento</div>
+    <h2 class="section-hl">Condições para <span class="gold">cada opção.</span></h2>
+    <p class="section-sub">Escolha a forma de pagamento que melhor se encaixa no seu momento.</p>
+
+    <div class="payment-plans">
+
+      <!-- FAST payment -->
+      <div class="payment-plan">
+        <div class="pp-header" style="background:var(--surface);">
+          <span class="pp-name">Fast · Expressão Direta</span>
+          <span class="pp-price" style="color:var(--white);font-size:18px;">R$ 3.900</span>
+        </div>
+        <div class="pp-options" style="background:var(--surface);">
+          <div class="pp-option">
+            <span class="pp-opt-label">
+              <i class="fa-solid fa-circle-dollar-to-slot"></i>
+              À vista com desconto
+            </span>
+            <div class="pp-opt-value">
+              R$ 3.600
+              <span class="pp-opt-sub">via PIX</span>
+            </div>
+          </div>
+          <div class="pp-option">
+            <span class="pp-opt-label">
+              <i class="fa-solid fa-arrows-split-up-and-left"></i>
+              50% entrada + 50% entrega
+            </span>
+            <div class="pp-opt-value">
+              2x R$ 1.950
+              <span class="pp-opt-sub">PIX ou transferência</span>
+            </div>
+          </div>
+          <div class="pp-option">
+            <span class="pp-opt-label">
+              <i class="fa-solid fa-credit-card"></i>
+              Parcelado no cartão
+            </span>
+            <div class="pp-opt-value">
+              12x R$ 390
+              <span class="pp-opt-sub">sem juros</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BRANDING COMPLETO payment -->
+      <div class="payment-plan plan-complete-pay">
+        <div class="pp-header" style="background:rgba(201,162,39,0.04);">
+          <span class="pp-name">Branding Completo · BNI</span>
+          <span class="pp-price">R$ 8.900</span>
+        </div>
+        <div class="pp-options" style="background:rgba(201,162,39,0.02);">
+          <div class="pp-option" style="border-bottom-color:var(--gold-bdr);">
+            <span class="pp-opt-label">
+              <i class="fa-solid fa-circle-dollar-to-slot"></i>
+              À vista com desconto
+            </span>
+            <div class="pp-opt-value">
+              R$ 8.450
+              <span class="pp-opt-sub">via PIX</span>
+            </div>
+          </div>
+          <div class="pp-option" style="border-bottom-color:var(--gold-bdr);">
+            <span class="pp-opt-label">
+              <i class="fa-solid fa-arrows-split-up-and-left"></i>
+              50% entrada + 50% entrega
+            </span>
+            <div class="pp-opt-value">
+              2x R$ 4.450
+              <span class="pp-opt-sub">PIX ou transferência</span>
+            </div>
+          </div>
+          <div class="pp-option">
+            <span class="pp-opt-label">
+              <i class="fa-solid fa-credit-card"></i>
+              Parcelado no cartão
+            </span>
+            <div class="pp-opt-value">
+              12x R$ 890
+              <span class="pp-opt-sub">sem juros</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ NEXT STEPS ══════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Próximos passos</div>
+    <h2 class="section-hl">Como a gente <span class="gold">começa?</span></h2>
+    <p class="section-sub">Três movimentos simples para tirar a sua marca do papel.</p>
+    <div class="steps-list">
+      <div class="step-item">
+        <span class="step-num">01</span>
+        <span class="step-text">Escolha a opção que faz mais sentido para o seu momento e nos dê o sinal verde</span>
+        <i class="fa-solid fa-arrow-right step-icon"></i>
+      </div>
+      <div class="step-item">
+        <span class="step-num">02</span>
+        <span class="step-text">Assinamos o contrato e você recebe o briefing completo para preenchermos juntos</span>
+        <i class="fa-solid fa-arrow-right step-icon"></i>
+      </div>
+      <div class="step-item">
+        <span class="step-num">03</span>
+        <span class="step-text">Agendamos o kick-off e começamos a construir a marca da sua solução para idosos</span>
+        <i class="fa-solid fa-arrow-right step-icon"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════ -->
+<footer>
+  <svg class="footer-stars" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+    <circle cx="100" cy="60" r="1.5" fill="rgba(201,162,39,0.25)"/>
+    <circle cx="260" cy="120" r="1"   fill="rgba(255,255,255,0.15)"/>
+    <circle cx="420" cy="45" r="2"    fill="rgba(201,162,39,0.18)"/>
+    <circle cx="640" cy="90" r="1"    fill="rgba(255,255,255,0.12)"/>
+    <circle cx="820" cy="40" r="1.5"  fill="rgba(201,162,39,0.2)"/>
+    <circle cx="1000" cy="100" r="1"  fill="rgba(255,255,255,0.15)"/>
+    <circle cx="1180" cy="60" r="1.5" fill="rgba(201,162,39,0.22)"/>
+    <circle cx="1380" cy="110" r="1"  fill="rgba(255,255,255,0.12)"/>
+    <circle cx="70"  cy="350" r="1"   fill="rgba(255,255,255,0.08)"/>
+    <circle cx="700" cy="490" r="1"   fill="rgba(255,255,255,0.08)"/>
+    <circle cx="1350" cy="320" r="1.5" fill="rgba(201,162,39,0.15)"/>
+    <circle cx="340" cy="240" r="1"   fill="rgba(201,162,39,0.12)"/>
+    <circle cx="1060" cy="260" r="1"  fill="rgba(255,255,255,0.1)"/>
+  </svg>
+  <div class="footer-glow"></div>
+  <div class="footer-content">
+    <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" class="footer-logo">
+    <h2 class="footer-hl">Pronta para construir uma marca<br>que o mercado vai <span class="gold">reconhecer?</span></h2>
+    <div class="footer-links">
+      <a href="https://somosmira.com.br" class="footer-link" target="_blank">
+        <i class="fa-solid fa-globe" style="margin-right:8px;font-size:12px;"></i>somosmira.com.br
+      </a>
+      <a href="https://instagram.com/somos.mira" class="footer-link" target="_blank">
+        <i class="fa-brands fa-instagram" style="margin-right:8px;font-size:12px;"></i>@somos.mira
+      </a>
+    </div>
+    <div class="footer-bar">
+      <span>EST. 2020</span>
+      <span>Mira Brand Studio</span>
+      <span>Proposta · Jéssica · 2025</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
