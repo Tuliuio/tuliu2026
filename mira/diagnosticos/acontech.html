@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Marca · Acontech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg:         #0A0A0A;
+    --surface:    #141414;
+    --surface2:   #1C1C1C;
+    --gold:       #D0AD23;
+    --gold-soft:  #ECE2BD;
+    --white:      #FFFFFF;
+    --off-white:  #E9E5E5;
+    --muted:      #54595F;
+    --border:     #2A2A2A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.08);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.06);
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-date {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .cover-center {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    font-weight: 300;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-client-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .cover-client-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+  }
+
+  .cover-author {
+    text-align: right;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .cover-author strong {
+    color: var(--off-white);
+    display: block;
+    font-weight: 400;
+  }
+
+  /* ── TOC ── */
+  .toc-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  .toc-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .toc-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+
+  .toc-item:hover .toc-item-title { color: var(--gold); }
+
+  .toc-item-n {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 24px;
+    font-weight: 500;
+  }
+
+  .toc-item-title {
+    font-size: 15px;
+    color: var(--off-white);
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 100px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 0 60px;
+    opacity: 0.2;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .section-num-line {
+    height: 1px;
+    width: 32px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: var(--off-white);
+    font-size: 16px;
+    max-width: 680px;
+    opacity: 0.85;
+  }
+
+  p strong {
+    color: var(--white);
+    font-weight: 500;
+    opacity: 1;
+  }
+
+  p em {
+    color: var(--gold-soft);
+    font-style: italic;
+  }
+
+  /* ── INTRO ESPECIAL ── */
+  .intro-section {
+    background: var(--surface);
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(22px, 3.5vw, 36px);
+    line-height: 1.4;
+    color: var(--gold-soft);
+    border-left: 3px solid var(--gold);
+    padding-left: 32px;
+    margin: 48px 0;
+    max-width: 700px;
+  }
+
+  /* ── HIGHLIGHT BOXES ── */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 40px 48px;
+    margin: 48px 0;
+    border-radius: 0 2px 2px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box p {
+    color: var(--off-white);
+    max-width: none;
+    opacity: 0.9;
+  }
+
+  .highlight-box strong { color: var(--white); }
+
+  .highlight-box .box-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--gold-soft);
+    margin-bottom: 16px;
+  }
+
+  .gold-box {
+    background: rgba(208,173,35,0.08);
+    border-left-color: var(--gold);
+  }
+
+  .light-box {
+    background: var(--surface2);
+    border-left-color: var(--gold);
+  }
+
+  .light-box p { color: var(--off-white); }
+  .light-box strong { color: var(--white); }
+  .light-box .box-title { color: var(--gold-soft); }
+
+  /* ── PILARES GRID ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .pillar {
+    background: var(--surface2);
+    padding: 40px 32px;
+    border-top: 3px solid var(--gold);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+  }
+
+  .pillar-icon {
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .pillar-text {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ── GAPS LIST ── */
+  .gaps-list {
+    margin: 48px 0;
+  }
+
+  .gap-item {
+    padding: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    margin-bottom: 16px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .gap-area {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+  }
+
+  .gap-desc {
+    font-size: 14px;
+    color: var(--off-white);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  .gap-desc strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── RECS GRID ── */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .rec-card {
+    background: var(--surface2);
+    padding: 40px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    position: relative;
+  }
+
+  .rec-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .rec-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 16px;
+    margin-right: 40px;
+  }
+
+  .rec-text {
+    font-size: 14px;
+    color: var(--off-white);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  .rec-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── STATEMENT ── */
+  .statement-section {
+    background: var(--surface);
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .statement-section h2 {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .statement-section p {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+  }
+
+  /* ── PRICING ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 56px 0;
+    align-items: start;
+  }
+
+  .pricing-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--border);
+    padding: 40px 32px 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card.featured {
+    background: rgba(208,173,35,0.05);
+    border: 1px solid rgba(208,173,35,0.3);
+    border-top: 3px solid var(--gold);
+  }
+
+  .pricing-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 4px 12px;
+    margin-bottom: 28px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+
+  .pricing-tier {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .pricing-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .pricing-card.featured .pricing-name { color: var(--gold-soft); }
+
+  .pricing-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .pricing-card.featured .pricing-price { color: var(--gold); }
+
+  .pricing-price-note {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+  }
+
+  .pricing-tagline {
+    font-size: 13px;
+    color: var(--off-white);
+    opacity: 0.7;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+
+  .pricing-card.featured .pricing-tagline { opacity: 0.9; }
+
+  .pricing-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pricing-list li {
+    font-size: 13px;
+    color: var(--off-white);
+    opacity: 0.8;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .pricing-card.featured .pricing-list li { opacity: 0.95; }
+
+  .pricing-list li i {
+    color: var(--gold);
+    font-size: 11px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .pricing-card.featured .pricing-list li i { opacity: 1; }
+
+  .pricing-section-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 10px;
+    margin-top: 24px;
+    display: block;
+  }
+
+  /* ── PAYMENT OPTIONS ── */
+  .payment-options {
+    margin: 40px 0 0;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .payment-options-title {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+
+  .payment-item {
+    padding: 20px 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .payment-item i {
+    color: var(--gold);
+    font-size: 15px;
+    opacity: 0.75;
+  }
+
+  .payment-item-label {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.4;
+  }
+
+  .payment-item-note {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: -4px;
+  }
+
+  @media (max-width: 768px) {
+    .cover, .section, .toc-section {
+      padding: 40px 24px;
+    }
+    .toc-grid, .pillars-grid, .recs-grid, .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+    .cover-top, .cover-bottom {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .payment-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-top">
+    <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" style="height: 40px; width: auto;">
+    <div class="cover-date">Maio de 2026</div>
+  </div>
+
+  <div class="cover-center">
+    <div class="cover-eyebrow">Diagnóstico de Branding</div>
+    <h1 class="cover-title">Acontech</h1>
+    <p class="cover-subtitle">A profissional já chegou. A marca vai buscar.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-client">
+      <div class="cover-client-label">Elaborado para</div>
+      <div class="cover-client-name">Ana Carolina & Acontech</div>
+    </div>
+    <div class="cover-author">
+      <strong>Tom Martins</strong>
+      Mira Brand Studio
+    </div>
+  </div>
+</section>
+
+<section class="toc-section">
+  <div class="toc-header">
+    <span class="toc-num">Índice</span>
+    <span class="toc-title">O que você encontra aqui</span>
+  </div>
+  <div class="toc-grid">
+    <a href="#intro" class="toc-item">
+      <span class="toc-item-n">01</span>
+      <span class="toc-item-title">Uma nota antes de começar</span>
+    </a>
+    <a href="#diferencial" class="toc-item">
+      <span class="toc-item-n">02</span>
+      <span class="toc-item-title">Diferencial e origem</span>
+    </a>
+    <a href="#diagnostico" class="toc-item">
+      <span class="toc-item-n">03</span>
+      <span class="toc-item-title">O diagnóstico central</span>
+    </a>
+    <a href="#posicionamento" class="toc-item">
+      <span class="toc-item-n">04</span>
+      <span class="toc-item-title">Tom e posicionamento</span>
+    </a>
+    <a href="#nome-identidade" class="toc-item">
+      <span class="toc-item-n">05</span>
+      <span class="toc-item-title">Nome, identidade e diferenciação</span>
+    </a>
+    <a href="#presenca" class="toc-item">
+      <span class="toc-item-n">06</span>
+      <span class="toc-item-title">Presença digital e estrutura</span>
+    </a>
+    <a href="#captacao" class="toc-item">
+      <span class="toc-item-n">07</span>
+      <span class="toc-item-title">Captação ativa como objetivo</span>
+    </a>
+    <a href="#forcas" class="toc-item">
+      <span class="toc-item-n">08</span>
+      <span class="toc-item-title">Forças e pontos de atenção</span>
+    </a>
+    <a href="#recomendacoes" class="toc-item">
+      <span class="toc-item-n">09</span>
+      <span class="toc-item-title">Recomendações e próximos passos</span>
+    </a>
+    <a href="#proposta" class="toc-item">
+      <span class="toc-item-n">10</span>
+      <span class="toc-item-title">Proposta Mira</span>
+    </a>
+  </div>
+</section>
+
+<section class="intro-section" id="intro">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Uma nota antes de começar</span>
+    </div>
+
+    <h2>Ana Carolina,<br><em>isso é para você.</em></h2>
+
+    <p>Este documento foi construído a partir de uma escuta dedicada sobre a Acontech: sua trajetória, seu diferencial, o que te move, o que te trava e para onde você quer ir. É a leitura estratégica de marca que precisa acontecer agora, nesse momento em que você decidiu crescer de verdade.</p>
+
+    <p>O que aparece aqui é o diagnóstico que vai fundamentar a Acontech como a marca que você já merece ter, mas que ainda não existe de forma plena. Não é análise genérica, é leitura específica de uma profissional que cresceu além da sua marca, organizada estrategicamente, devolvida para que você veja com clareza.</p>
+
+    <div class="intro-quote">
+      "O desafio não é construir quem você é. É construir uma marca que finalmente comunique isso."
+    </div>
+
+    <p>A leitura central: você, Ana Carolina, já chegou num nível de maturidade profissional, experiência e autoridade que a Acontech enquanto marca ainda não comunica. O trabalho aqui não é empurrar você para um lugar que ainda não chegou. É fazer a marca correr atrás de você.</p>
+
+    <div class="highlight-box light-box" style="margin-top: 48px;">
+      <p class="box-title">Método de construção</p>
+      <p>A base foi escuta dedicada: conversa aprofundada sobre trajetória, serviços, posicionamento, referências e objetivos. Paralelamente, sistematização dos insights estratégicos extraídos dessa conversa. Os insumos foram organizados em diagnóstico coerente, leitura estratégica da marca em suas dimensões reais.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="diferencial">
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Diferencial e origem</span>
+  </div>
+
+  <h2>Você enxerga o imposto<br><em>onde os outros veem burocracia.</em></h2>
+
+  <p>Quando uma reforma tributária é anunciada, a maioria dos contadores vê um conjunto de novas regras. Você já sabe onde isso vai bater no fluxo de caixa do cliente. Essa capacidade de ler a cadeia de impacto de uma mudança fiscal, antes, de forma completa, com consequências práticas para o negócio, é o seu diferencial real. E ele é raro.</p>
+
+  <p>Essa leitura sistêmica não veio do escritório de contabilidade. Veio de anos dentro de grandes empresas, lidando com a complexidade tributária por dentro, participando dos dois lados do processo: da contabilidade internalizada e da terceirizada. Você tem o mapa completo. A maioria dos seus concorrentes tem apenas parte dele.</p>
+
+  <h3>A origem que define o ângulo</h3>
+
+  <p>A Acontech não nasceu de um plano. Nasceu de ajudar um amigo, depois outro, até virar escritório. Mas essa origem não diminui a força do que foi construído: ao contrário, ela explica por que a Acontech é <strong>consultiva por natureza</strong>, não por postura. Você não aprendeu a ser consultiva. Você simplesmente não sabe ser de outra forma.</p>
+
+  <p>A passagem do CLT em grandes empresas para a fundadora de escritório próprio gerou um ângulo que nenhum concorrente formado direto em escritório de contabilidade tem: você entende o empresário porque já foi executiva. Sabe o que ele não sabe que não sabe.</p>
+
+  <div class="highlight-box">
+    <p class="box-title">Por que isso é raro</p>
+    <p>Poucos contadores têm a visão dos dois mundos: grandes estruturas corporativas e a realidade do pequeno empresário. Menos ainda conseguem traduzir essa visão para o universo do Simples Nacional sem perder complexidade. Você consegue. E isso permite oferecer algo que ninguém está oferecendo: <strong>estratégia de grande empresa para negócio de menor porte</strong>.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="diagnostico">
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">O diagnóstico central</span>
+  </div>
+
+  <h2>A profissional cresceu.<br><em>A marca ficou para trás.</em></h2>
+
+  <p><strong>Como a situação se apresenta:</strong> uma marca criada há 5 anos, num momento de início, pensada para aquele momento, sem revisão estratégica desde então. Sem site. Instagram parado. Identidade visual que cumpriu o papel daquele tempo.</p>
+
+  <p><strong>Como o diagnóstico lê de fora:</strong> a profissional que conversa, que explica reforma tributária com fluência, que está reestruturando o sistema operacional de uma indústria, que fala com a naturalidade de quem viveu grandes empresas por dentro, essa profissional não encontra equivalente na marca que a representa hoje.</p>
+
+  <h3>O ponto fino</h3>
+
+  <p>Na maioria dos projetos de branding, o trabalho é elevar a marca para um lugar onde o fundador ainda não chegou: criar aspiração, construir autoridade projetada, empurrar a percepção para cima. No seu caso, o trabalho é o inverso. <strong>Você já está num nível que a marca ainda não alcançou.</strong></p>
+
+  <div class="highlight-box gold-box">
+    <p><strong>E isso importa porque:</strong> quando existe dissonância entre a profissional e a marca que a representa, o cliente sente. Quem conversa com você percebe a maturidade. Quem encontra sua marca por outro caminho, talvez não chegue a você. A Acontech precisa comunicar, antes do primeiro contato, o que você só consegue mostrar depois dele.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="posicionamento">
+  <div class="section-label">
+    <span class="section-num">04</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Tom e posicionamento</span>
+  </div>
+
+  <h2>Hub de soluções,<br><em>com tributário como âncora.</em></h2>
+
+  <p>A visão que você trouxe de reposicionamento como hub de soluções é estrategicamente coerente: contabilidade, BPO financeiro, certificado digital e planejamento tributário se complementam numa proposta de valor unificada para o empresário. Isso é a Acontech que você quer construir.</p>
+
+  <p>Mas dentro desse hub, existe um ativo que precisa ocupar o centro da narrativa: <strong>a expertise tributária</strong>. Não como único serviço, mas como o diferencial que ancora o posicionamento e justifica o valor de todo o restante. Quem entende de tributário de verdade não oferece só contabilidade, oferece proteção, estratégia e clareza num sistema que foi feito para confundir.</p>
+
+  <h3>Tom de marca</h3>
+
+  <p>Maduro, consultivo, direto. Não é o tom do contador que faz lançamento, é o tom da especialista que lê o impacto completo antes do cliente perceber que existe um problema. Nem técnico demais para afastar, nem simplificado demais para diminuir a complexidade real do trabalho.</p>
+
+  <div class="highlight-box light-box">
+    <p class="box-title">Promessa central (a validar com você)</p>
+    <p><em>"A Acontech entende o que a sua empresa deve pagar, o que ela não precisa pagar, e o que cada decisão fiscal vai custar no seu caixa. Antes de você precisar descobrir."</em></p>
+  </div>
+
+  <h3>Posicionamento competitivo</h3>
+
+  <p>O oposto: o escritório genérico de contabilidade que entrega obrigações acessórias sem estratégia, que trata cada cliente como mais uma empresa para manter em dia. A Acontech se diferencia por oferecer o que o mercado pequeno raramente acessa: uma profissional com repertório de grande empresa, traduzindo isso para quem mais precisa.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="nome-identidade">
+  <div class="section-label">
+    <span class="section-num">05</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Nome, identidade e diferenciação</span>
+  </div>
+
+  <h2>Os ativos de expressão<br><em>precisam crescer junto.</em></h2>
+
+  <p>Existe um ponto que merece atenção estratégica: o nome, a identidade visual e a arquitetura de comunicação são os canais através dos quais o mercado entende quem a Acontech é, antes de falar com você. E hoje, esses ativos estão presos no momento em que foram criados.</p>
+
+  <h3>Sobre o nome "Acontech"</h3>
+
+  <p>O nome tem lógica clara: Ana Carolina + Contabilidade + Tecnologia. Você o construiu, ele tem significado real, e, mais importante, ele não te causa desconforto. Isso importa muito. Um nome que o fundador não abraça é um problema. O seu não é esse caso.</p>
+
+  <p>O ponto de atenção é o <strong>TEC</strong>. Há 5 anos, tecnologia era diferencial, era promessa de modernidade e agilidade num mercado ainda analógico. Hoje, tecnologia é o mínimo esperado, é operação básica. O risco é que esse posicionamento envelhece enquanto você avança: o TEC que antes sinalizava inovação pode começar a sinalizar o presente óbvio, não o diferencial real.</p>
+
+  <div class="highlight-box gold-box">
+    <p><strong>O que fazer com isso:</strong> não é decisão imediata de trocar o nome. É uma decisão que precisa ser tomada dentro de um processo estratégico completo. Com posicionamento definido, essência documentada e visão clara de onde a Acontech quer chegar, aí sim o nome entra em análise. Às vezes ele se confirma. Às vezes surge algo mais preciso. O processo decide.</p>
+  </div>
+
+  <h3>Identidade visual como tempo parado</h3>
+
+  <p>O logo foi feito por uma profissional que você respeita, naquele momento, para aquele momento. Cumpriu o papel. Mas hoje você percebe que está num outro nível, que a empresa está em outra maturidade. A identidade visual precisa refletir onde a Acontech está chegando, não de onde partiu.</p>
+
+  <p>Quando nome, logo e comunicação estão alinhados ao que você realmente representa, eles funcionam como atração: o cliente certo chega antes do primeiro contato. Quando não estão, você precisa sempre convencer pessoalmente o que a marca deveria comunicar sozinha.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="presenca">
+  <div class="section-label">
+    <span class="section-num">06</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Presença digital e estrutura</span>
+  </div>
+
+  <h2>Cinco anos de empresa.<br><em>Zero de presença digital.</em></h2>
+
+  <p>Não é crítica. É o diagnóstico honesto do que existe. A Acontech tem 5 anos, tem equipe, tem faturamento, tem clientes complexos e tem uma fundadora com posicionamento claro. E não tem site. Tem um Instagram com algumas publicações esparsas e parado.</p>
+
+  <p>Isso significa que, para qualquer pessoa que não chega até você por indicação, a Acontech simplesmente não existe. E para quem chega por indicação e resolve pesquisar antes de ligar, o que encontra não comunica o que você é. É uma lacuna que custa clientes todos os meses, de forma silenciosa.</p>
+
+  <h3>Os fundamentos não mudaram</h3>
+
+  <p>Em marketing, os fundamentos resistem às modas. A IA chegou, as redes sociais transformaram tudo, mas <strong>nome, posicionamento, site e presença digital consistente</strong> continuam sendo a base que sustenta qualquer canal de crescimento. Não são opções de quem quer escalar. São pré-requisitos.</p>
+
+  <div class="highlight-box">
+    <p class="box-title">O que construir agora</p>
+    <p>Site com posicionamento claro e linguagem consultiva. Presença no Instagram com linha editorial de autoridade, não de conteúdo genérico de contabilidade. Tom de voz definido. Narrativa que comunique quem você é antes do primeiro contato. Esses ativos precisam existir para que a Acontech pare de depender exclusivamente de quem já te conhece.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="captacao">
+  <div class="section-label">
+    <span class="section-num">07</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Captação ativa como objetivo</span>
+  </div>
+
+  <h2>Indicação é bom.<br><em>Não é suficiente.</em></h2>
+
+  <p>A Acontech chegou até aqui por indicação. É o caminho mais natural para escritórios de contabilidade, especialmente nos primeiros anos. Mas você mesma percebe o limite: indicação pode aparecer esse mês, pode não aparecer no próximo. Não é um canal, é uma variável. E variável não escala.</p>
+
+  <p>A meta de 2026 que você trouxe é clara: construir posicionamento de marca para criar um canal de captação ativa. Isso não é vaidade de marca. É estratégia de negócio. É transformar o crescimento de evento em processo.</p>
+
+  <h3>O papel do BNI nessa equação</h3>
+
+  <p>O BNI está cumprindo um papel importante: ele força o posicionamento. Dentro da câmara, você é a contabilidade, tem a cadeira, fala só disso. Mas fora do BNI, você quer ser mais. E essa tensão entre o que você fala lá dentro e o que você quer construir lá fora é saudável: ela está te empurrando para ter uma marca que comunique o hub completo que você quer ser.</p>
+
+  <div class="highlight-box gold-box">
+    <p><strong>A conexão que fecha o raciocínio:</strong> captação ativa precisa de marca clara. Marca clara precisa de posicionamento definido. Posicionamento definido precisa de processo de branding. Não dá para queimar etapa. Quem tenta criar canal de captação sem posicionamento gasta dinheiro para atrair o cliente errado.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="section" id="forcas">
+  <div class="section-label">
+    <span class="section-num">08</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Diagnóstico consolidado</span>
+  </div>
+
+  <h2>O que preservar<br><em>e o que resolver.</em></h2>
+
+  <h3>Forças a preservar</h3>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-icon"><i class="fa-solid fa-building-columns"></i></span>
+      <div class="pillar-title">Repertório de grandes empresas</div>
+      <p class="pillar-text">Visão dos dois mundos: interno e terceirizado. Ângulo raro no mercado de escritórios.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon"><i class="fa-solid fa-fire-flame-curved"></i></span>
+      <div class="pillar-title">Paixão real pelo tributário</div>
+      <p class="pillar-text">Diferencial que não se finge. Quem escuta percebe. Âncora do posicionamento consultivo.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon"><i class="fa-solid fa-microchip"></i></span>
+      <div class="pillar-title">Tecnologia operacional real</div>
+      <p class="pillar-text">Captura de extrato, monitoramento de NF, portal do cliente. Não é promessa, é prática.</p>
+    </div>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-icon"><i class="fa-solid fa-briefcase"></i></span>
+      <div class="pillar-title">Portfólio consultivo completo</div>
+      <p class="pillar-text">Contabilidade, BPO, certificado digital e planejamento tributário em uma proposta coesa.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon"><i class="fa-solid fa-seedling"></i></span>
+      <div class="pillar-title">Base estruturada para crescer</div>
+      <p class="pillar-text">5 anos, equipe, faturamento, lucro. Fundação real para o próximo nível. Não é ponto zero.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon"><i class="fa-solid fa-eye"></i></span>
+      <div class="pillar-title">Clareza de onde quer chegar</div>
+      <p class="pillar-text">Referências claras (Pedro Neri, Contador CEO). Sabe o que quer construir. Isso acelera.</p>
+    </div>
+  </div>
+
+  <h3>Pontos de atenção</h3>
+
+  <div class="gaps-list">
+    <div class="gap-item">
+      <div class="gap-area">Marca que não alcança a profissional (crítico)</div>
+      <div class="gap-desc"><strong>Risco:</strong> Dissonância entre o que você entrega na conversa e o que a marca comunica antes dela. Clientes que precisariam de você não chegam até você porque a marca não os atrai.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Ausência de presença digital funcional</div>
+      <div class="gap-desc"><strong>Risco:</strong> Sem site e com Instagram parado, a Acontech não existe para quem não chegou por indicação direta. Cada mês sem presença é crescimento que não aconteceu.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Dependência exclusiva de indicação</div>
+      <div class="gap-desc"><strong>Risco:</strong> Indicação é variável, não canal. Não escala. Não permite projeção de crescimento. O escritório cresce quando quer ser indicado, não quando decide crescer.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">TEC como diferencial de prazo limitado</div>
+      <div class="gap-desc"><strong>Risco:</strong> Tecnologia como promessa de marca está envelhecendo. O que diferenciava em 2020 é pressuposto em 2026. O posicionamento precisa evoluir junto com o mercado.</div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-area">Operadora vs. CEO do negócio</div>
+      <div class="gap-desc"><strong>Risco:</strong> A transição para ser a face e a estrategista da marca exige liberar espaço operacional. Sem isso, o crescimento esbarra no seu próprio tempo.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="statement-section">
+  <h2>A especialista que lê<br><em>o que os outros não veem.</em></h2>
+  <p>A Acontech é o escritório de quem entrou numa grande empresa para fazer lançamentos e saiu entendendo como o sistema inteiro funciona. Que ouve notícia de reforma tributária e já sabe onde vai bater no caixa do cliente. Que atende empresas pequenas com a visão que só as grandes costumam ter acesso. Essa é a marca que precisa ser comunicada.</p>
+</section>
+
+<section style="background: var(--surface); padding: 100px 60px; border-top: 1px solid var(--border);" id="recomendacoes">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">09</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Próximos passos</span>
+    </div>
+
+    <h2>O que fazer<br><em>a partir de agora.</em></h2>
+
+    <p>As recomendações abaixo estão em ordem de prioridade e impacto:</p>
+
+    <div class="recs-grid">
+      <div class="rec-card">
+        <div class="rec-num">01</div>
+        <div class="rec-title">Posicionamento antes de tudo</div>
+        <p class="rec-text">Definir com precisão o que é a Acontech, para quem, com qual diferencial e em qual tom. Tudo o que vem depois depende disso estar claro e documentado.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">02</div>
+        <div class="rec-title">Site como urgência</div>
+        <p class="rec-text">Primeiro canal de captação ativa. Precisa existir, precisa comunicar quem você é e precisa ser encontrado por quem está procurando o que você oferece.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">03</div>
+        <div class="rec-title">Identidade que te alcança</div>
+        <p class="rec-text">Logo, sistema visual e tom de voz revisados para comunicar a maturidade e autoridade da profissional que você é hoje, não de 5 anos atrás.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">04</div>
+        <div class="rec-title">Linha editorial de autoridade</div>
+        <p class="rec-text">Instagram com linha editorial focada em tributário e consultividade. Conteúdo que comunica o que você sabe, não o que todo escritório de contabilidade posta.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">05</div>
+        <div class="rec-title">Tributário como âncora da narrativa</div>
+        <p class="rec-text">Posicionar o planejamento tributário como carro-chefe do hub. É onde está a paixão, é onde está o diferencial, é o que justifica o valor do portfólio completo.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">06</div>
+        <div class="rec-title">Decisão de nome com processo</div>
+        <p class="rec-text">Não trocar por trocar. Documentar a essência primeiro, construir alternativas, comparar com o atual. A decisão certa vem do processo, não da intuição isolada.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 80px; padding: 60px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <h3 style="color: var(--gold-soft); margin-bottom: 16px;">Fechamento</h3>
+      <p style="color: var(--off-white); opacity: 0.9;">Você tem expertise real. Paixão genuína. Trajetória que diferencia. Base de negócio construída. O que falta não é crescimento interno, é expressão externa. A Acontech precisa comunicar o que você já é, não o que você um dia quer ser.</p>
+      <p style="color: var(--off-white); opacity: 0.9; margin-top: 16px;">O próximo passo é trazer a marca até você. Posicionamento, identidade, site e presença. Nessa ordem. Com esse alinhamento, o canal de captação ativa que você quer construir em 2026 passa a ter base para funcionar de verdade.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section style="background: var(--bg); padding: 100px 60px;" id="proposta">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">10</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Proposta Mira</span>
+    </div>
+
+    <h2>Como a Mira resolve<br><em>o que levantamos aqui.</em></h2>
+
+    <p>O diagnóstico mapeou com clareza o que está funcionando, o que precisa de atenção e o que é urgente. O próximo passo é transformar esse mapa em marca real. Abaixo, três caminhos possíveis para começar, cada um construído sobre a metodologia Mira: Essência, Storytelling e Expressão.</p>
+
+    <div class="pricing-grid">
+
+      <!-- BÁSICO -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Caminho 01</div>
+        <div class="pricing-name">Básico</div>
+        <div class="pricing-price">R$ 3.900</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Para quem precisa organizar a base e ganhar uma identidade que comunique diferença desde o primeiro contato.</p>
+
+        <span class="pricing-section-label">Essência</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Propósito e posicionamento</li>
+          <li><i class="fa-solid fa-check"></i> Diferencial competitivo definido</li>
+          <li><i class="fa-solid fa-check"></i> Público ideal e proposta de valor</li>
+          <li><i class="fa-solid fa-check"></i> Manifesto da marca</li>
+        </ul>
+
+        <span class="pricing-section-label">Expressão</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Logotipo</li>
+          <li><i class="fa-solid fa-check"></i> Identidade visual completa</li>
+          <li><i class="fa-solid fa-check"></i> Paleta, tipografia e sistema gráfico</li>
+          <li><i class="fa-solid fa-check"></i> Templates para redes sociais</li>
+        </ul>
+      </div>
+
+      <!-- BUSINESS (FEATURED) -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Recomendado</div>
+        <div class="pricing-tier">Caminho 02</div>
+        <div class="pricing-name">Business</div>
+        <div class="pricing-price">R$ 8.900</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Para quem quer marca completa — do posicionamento à presença digital — com narrativa que atrai e converte clientes.</p>
+
+        <span class="pricing-section-label">Essência</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Tudo do Básico</li>
+          <li><i class="fa-solid fa-check"></i> Arquétipo e personalidade de marca</li>
+          <li><i class="fa-solid fa-check"></i> Território de marca e estratégia de percepção</li>
+        </ul>
+
+        <span class="pricing-section-label">Storytelling</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Narrativa central e Brand Story</li>
+          <li><i class="fa-solid fa-check"></i> Tom de voz e linguagem verbal</li>
+          <li><i class="fa-solid fa-check"></i> Slogans e frases-chave</li>
+          <li><i class="fa-solid fa-check"></i> Elevator pitch e sales pitch</li>
+        </ul>
+
+        <span class="pricing-section-label">Expressão</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Tudo do Básico</li>
+          <li><i class="fa-solid fa-check"></i> Site completo alinhado à marca</li>
+          <li><i class="fa-solid fa-check"></i> Brandbook e guidelines</li>
+        </ul>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Caminho 03</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">R$ 14.000</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Para quem quer colocar a marca no mundo com suporte estratégico contínuo e time dedicado por 3 meses após a entrega.</p>
+
+        <span class="pricing-section-label">Inclui tudo do Business</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Essência, Storytelling e Expressão completos</li>
+          <li><i class="fa-solid fa-check"></i> Site com storytelling focado em conversão</li>
+          <li><i class="fa-solid fa-check"></i> Brandbook e guidelines</li>
+        </ul>
+
+        <span class="pricing-section-label">Acompanhamento 3 meses</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Time dedicado de sucesso</li>
+          <li><i class="fa-solid fa-check"></i> Reuniões mensais de estratégia</li>
+          <li><i class="fa-solid fa-check"></i> Ajustes e revisões em tempo real</li>
+          <li><i class="fa-solid fa-check"></i> Suporte para captação ativa e crescimento</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="payment-options">
+      <div class="payment-options-title">Formas de pagamento</div>
+      <div class="payment-grid">
+        <div class="payment-item">
+          <i class="fa-solid fa-tag"></i>
+          <div class="payment-item-label">10% de desconto</div>
+          <div class="payment-item-note">Pagamento à vista</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-handshake"></i>
+          <div class="payment-item-label">50% + 50%</div>
+          <div class="payment-item-note">Entrada + entrega</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-qrcode"></i>
+          <div class="payment-item-label">Até 4x no Pix</div>
+          <div class="payment-item-note">Parcelado sem juros</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-credit-card"></i>
+          <div class="payment-item-label">12x no cartão</div>
+          <div class="payment-item-note">Crédito</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-comments"></i>
+          <div class="payment-item-label">Financiamento</div>
+          <div class="payment-item-note">Prazos acima de 12x · consultar</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; padding: 48px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <p style="color: var(--gold-soft); font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 12px;">O próximo passo é simples.</p>
+      <p style="color: var(--off-white); opacity: 0.85; max-width: 580px;">Escolha o caminho que faz sentido agora para a Acontech. Se tiver dúvida, o Business é o ponto de equilíbrio certo: cobre toda a base estratégica, constrói a narrativa e entrega o site que a marca precisa para começar a captar ativamente, sem depender só de indicação.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top: 120px; padding: 60px 40px; border-top: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+  <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" style="height: 32px; width: auto; opacity: 0.8;">
+  <p style="color: var(--off-white); opacity: 0.6; font-size: 13px; letter-spacing: 0.5px;">Diagnóstico estratégico de marca | maio de 2026</p>
+</footer>
+
+</body>
+</html>
