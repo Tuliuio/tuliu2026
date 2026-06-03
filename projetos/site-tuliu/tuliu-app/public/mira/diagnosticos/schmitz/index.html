@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Marca · Marmorearia Schmitz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg:         #0A0A0A;
+    --surface:    #141414;
+    --surface2:   #1C1C1C;
+    --gold:       #D0AD23;
+    --gold-soft:  #ECE2BD;
+    --white:      #FFFFFF;
+    --off-white:  #E9E5E5;
+    --muted:      #54595F;
+    --border:     #2A2A2A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.08);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.06);
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-date {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .cover-center { position: relative; z-index: 2; }
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .cover-title em { font-style: italic; color: var(--gold); }
+  .cover-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    font-weight: 300;
+  }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-client-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .cover-client-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+  }
+  .cover-author {
+    text-align: right;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .cover-author strong {
+    color: var(--off-white);
+    display: block;
+    font-weight: 400;
+  }
+
+  /* ── TOC ── */
+  .toc-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+  .toc-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .toc-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  .toc-item:hover .toc-item-title { color: var(--gold); }
+  .toc-item-n {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 24px;
+    font-weight: 500;
+  }
+  .toc-item-title {
+    font-size: 15px;
+    color: var(--off-white);
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  /* ── SECTION BASE ── */
+  .section {
+    padding: 80px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 0 60px;
+    opacity: 0.2;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .section-num-line {
+    height: 1px;
+    width: 32px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--off-white);
+    font-size: 15px;
+    max-width: 680px;
+    opacity: 0.85;
+  }
+  p strong { color: var(--white); font-weight: 500; opacity: 1; }
+  p em { color: var(--gold-soft); font-style: italic; }
+
+  /* ── LEAD TEXT ── */
+  .lead {
+    font-size: 17px;
+    color: var(--off-white);
+    opacity: 0.9;
+    margin-bottom: 20px;
+    max-width: 680px;
+    line-height: 1.6;
+  }
+  .lead strong { color: var(--white); font-weight: 500; }
+
+  /* ── EXPANDABLE ── */
+  details {
+    margin-top: 16px;
+  }
+  summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(208,173,35,0.2);
+    transition: opacity 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 9px;
+    transition: transform 0.25s;
+  }
+  details[open] summary::after { transform: rotate(180deg); }
+  summary:hover { opacity: 0.75; }
+  .details-body {
+    padding: 24px 0 8px;
+    border-top: none;
+  }
+  .details-body p {
+    font-size: 14px;
+    opacity: 0.75;
+    margin-bottom: 12px;
+  }
+
+  /* ── INTRO ESPECIAL ── */
+  .intro-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .intro-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(19px, 3vw, 28px);
+    line-height: 1.4;
+    color: var(--gold-soft);
+    border-left: 3px solid var(--gold);
+    padding-left: 28px;
+    margin: 36px 0;
+    max-width: 640px;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 32px 0;
+  }
+  .card {
+    background: var(--surface2);
+    padding: 32px 28px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+  }
+  .card-icon {
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .card-text {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.6;
+    opacity: 0.75;
+  }
+
+  /* ── GAPS LIST ── */
+  .gaps-list { margin: 32px 0; }
+  .gap-item {
+    padding: 24px 28px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    margin-bottom: 8px;
+    border-radius: 0 2px 2px 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .gap-icon {
+    color: var(--gold);
+    font-size: 14px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .gap-content {}
+  .gap-area {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--gold-soft);
+    margin-bottom: 4px;
+  }
+  .gap-desc {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+  .gap-desc strong { color: var(--white); font-weight: 500; }
+
+  /* ── RECS ── */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin: 32px 0;
+  }
+  .rec-card {
+    background: var(--surface2);
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    position: relative;
+  }
+  .rec-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .rec-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 10px;
+    margin-right: 36px;
+  }
+  .rec-text {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 32px 40px;
+    margin: 32px 0;
+    border-radius: 0 2px 2px 0;
+  }
+  .highlight-box p { color: var(--off-white); max-width: none; opacity: 0.9; }
+  .highlight-box strong { color: var(--white); }
+  .highlight-box .box-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+  }
+  .gold-box { background: rgba(208,173,35,0.07); }
+
+  /* ── STATEMENT ── */
+  .statement-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .statement-section h2 { max-width: 720px; margin: 0 auto 20px; }
+  .statement-section p { max-width: 560px; margin: 0 auto; font-size: 16px; }
+
+  /* ── PRICING ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 40px 0;
+    align-items: start;
+  }
+  .pricing-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--border);
+    padding: 36px 28px 44px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card.featured {
+    background: rgba(208,173,35,0.05);
+    border: 1px solid rgba(208,173,35,0.3);
+    border-top: 3px solid var(--gold);
+  }
+  .pricing-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 4px 12px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+  .pricing-tier {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .pricing-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .pricing-card.featured .pricing-name { color: var(--gold-soft); }
+  .pricing-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pricing-card.featured .pricing-price { color: var(--gold); }
+  .pricing-price-note {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .pricing-tagline {
+    font-size: 13px;
+    color: var(--off-white);
+    opacity: 0.7;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+  .pricing-card.featured .pricing-tagline { opacity: 0.9; }
+  .pricing-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pricing-list li {
+    font-size: 13px;
+    color: var(--off-white);
+    opacity: 0.8;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .pricing-card.featured .pricing-list li { opacity: 0.95; }
+  .pricing-list li i {
+    color: var(--gold);
+    font-size: 11px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .pricing-card.featured .pricing-list li i { opacity: 1; }
+  .pricing-section-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    display: block;
+  }
+
+  /* ── PAYMENT ── */
+  .payment-options {
+    margin: 32px 0 0;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .payment-options-title {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+  .payment-item {
+    padding: 18px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .payment-item i { color: var(--gold); font-size: 14px; opacity: 0.75; }
+  .payment-item-label { font-size: 12px; color: var(--off-white); line-height: 1.4; }
+  .payment-item-note { font-size: 10px; color: var(--muted); }
+
+  @media (max-width: 768px) {
+    .cover, .section, .toc-section, .intro-section, .statement-section { padding: 40px 24px; }
+    .toc-grid, .cards-grid, .recs-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .cover-top, .cover-bottom { flex-direction: column; gap: 24px; }
+    .payment-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-top">
+    <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" style="height: 40px; width: auto;">
+    <div class="cover-date">Junho de 2026</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-eyebrow">Diagnóstico de Branding</div>
+    <h1 class="cover-title">Marmorearia<br><em>Schmitz</em></h1>
+    <p class="cover-subtitle">35 anos de chão. Duas gerações. Uma marca que precisa contar isso.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-client">
+      <div class="cover-client-label">Elaborado para</div>
+      <div class="cover-client-name">Cristiano & Naim Schmitz</div>
+    </div>
+    <div class="cover-author">
+      <strong>Tom Martins</strong>
+      Mira Brand Studio
+    </div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="toc-section">
+  <div class="toc-header">
+    <span class="toc-num">Índice</span>
+    <span class="toc-title">O que você encontra aqui</span>
+  </div>
+  <div class="toc-grid">
+    <a href="#intro" class="toc-item"><span class="toc-item-n">01</span><span class="toc-item-title">Uma nota antes de começar</span></a>
+    <a href="#legado" class="toc-item"><span class="toc-item-n">02</span><span class="toc-item-title">Legado e diferencial</span></a>
+    <a href="#diagnostico" class="toc-item"><span class="toc-item-n">03</span><span class="toc-item-title">O diagnóstico central</span></a>
+    <a href="#offline-digital" class="toc-item"><span class="toc-item-n">04</span><span class="toc-item-title">Offline forte. Digital perdido.</span></a>
+    <a href="#movimento" class="toc-item"><span class="toc-item-n">05</span><span class="toc-item-title">O movimento que já está em curso</span></a>
+    <a href="#identidade" class="toc-item"><span class="toc-item-n">06</span><span class="toc-item-title">Identidade visual</span></a>
+    <a href="#digital" class="toc-item"><span class="toc-item-n">07</span><span class="toc-item-title">A oportunidade digital</span></a>
+    <a href="#forcas" class="toc-item"><span class="toc-item-n">08</span><span class="toc-item-title">Forças e pontos de atenção</span></a>
+    <a href="#recomendacoes" class="toc-item"><span class="toc-item-n">09</span><span class="toc-item-title">Próximos passos</span></a>
+    <a href="#proposta" class="toc-item"><span class="toc-item-n">10</span><span class="toc-item-title">Proposta Mira</span></a>
+  </div>
+</section>
+
+<!-- 01 INTRO -->
+<section class="intro-section" id="intro">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Uma nota antes de começar</span>
+    </div>
+
+    <h2>Cristiano,<br><em>isso é para vocês dois.</em></h2>
+
+    <p class="lead">Este diagnóstico foi construído a partir de escuta dedicada sobre a Schmitz: a história, o que está funcionando, o que pede atenção e para onde o negócio quer ir.</p>
+
+    <div class="intro-quote">
+      "O desafio não é construir quem vocês são. É fazer a marca finalmente comunicar isso."
+    </div>
+
+    <details>
+      <summary>Ver método de construção</summary>
+      <div class="details-body">
+        <p>A base foi uma conversa aprofundada sobre trajetória, posicionamento, identidade visual, presença digital e movimentos em andamento. Os insights foram sistematizados e organizados em leitura estratégica da marca em suas dimensões reais: offline, digital, institucional e pessoal.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 02 LEGADO -->
+<section class="section" id="legado">
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Legado e diferencial</span>
+  </div>
+
+  <h2>35 anos não se criam.<br><em>Se constroem.</em></h2>
+
+  <p class="lead">Clientes que fizeram com a Schmitz há 30 anos estão voltando. Filhos viraram clientes. Agora chegam os netos. Esse ciclo de fidelidade de geração em geração é o ativo mais raro que uma empresa pode ter.</p>
+
+  <div class="cards-grid" style="margin-top: 28px;">
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-bolt"></i></span>
+      <div class="card-title">Agilidade</div>
+      <div class="card-text">O diferencial primordial. Não é promessa — é cultura. Resultado de equipe com anos de casa.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-gem"></i></span>
+      <div class="card-title">Senso técnico e estético</div>
+      <div class="card-text">Capacidade de adaptar, detalhar e resolver o que o projeto não previu. Diferencial raro.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-handshake"></i></span>
+      <div class="card-title">Honestidade no material</div>
+      <div class="card-text">Quando o cliente quer o errado, a Schmitz fala. Essa postura gera confiança duradoura.</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>A origem que carrega peso</summary>
+    <div class="details-body">
+      <p>Naim veio do interior, começou do zero, conheceu a cidade aos 14 anos e construiu tudo no chão batido. O nome dele virou o nome do filho: Cristiano Naim. Hoje, pai e filho constroem juntos a empresa — cada um com seu ângulo, sua geração, sua contribuição. Isso não é detalhe. É a essência do que a Schmitz representa: <em>continuidade com propósito</em>.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 03 DIAGNÓSTICO -->
+<section class="section" id="diagnostico">
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">O diagnóstico central</span>
+  </div>
+
+  <h2>Movimentos em paralelo.<br><em>Ainda sem convergir.</em></h2>
+
+  <p class="lead">Há três movimentos acontecendo ao mesmo tempo: a marca histórica, a presença digital nascente e a chegada de uma nova geração à liderança. Todos bons. Ainda sem falar a mesma língua.</p>
+
+  <div class="highlight-box gold-box" style="margin-top: 28px;">
+    <p><strong>O ponto central:</strong> a Schmitz não precisa de reinvenção. Precisa de convergência. Tudo o que já existe precisa falar a mesma língua em todos os pontos de contato.</p>
+  </div>
+
+  <details>
+    <summary>Por que isso importa agora</summary>
+    <div class="details-body">
+      <p>À medida que a empresa começa a produzir mais conteúdo, a ter mais presença digital e a aparecer em eventos, o volume de pontos de contato cresce. Quanto mais pontos de contato, mais necessário é que todos estejam alinhados. O trabalho de agora é criar essa coerência antes que o volume aumente e a divergência fique mais evidente.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 04 OFFLINE X DIGITAL -->
+<section class="section" id="offline-digital">
+  <div class="section-label">
+    <span class="section-num">04</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Offline forte. Digital perdido.</span>
+  </div>
+
+  <h2>No muro, perfeita.<br><em>Na tela, outra empresa.</em></h2>
+
+  <p class="lead">Instagram e site, lado a lado, parecem empresas diferentes. Logos, tipografias, cores e tom — tudo diverge. Quem não conhece a Schmitz e navega pelos dois canais não reconhece a mesma marca.</p>
+
+  <div class="gaps-list" style="margin-top: 24px;">
+    <div class="gap-item">
+      <i class="fa-solid fa-circle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Vermelho sobre verde no digital</div>
+        <div class="gap-desc">Cores complementares geradas por luz vibram na tela. No muro funciona — no monitor gera conflito óptico e perde contraste. É um problema técnico, não de gosto.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-circle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Site com estética de IA genérica</div>
+        <div class="gap-desc">O irmão desenvolveu o site com boa tecnologia, mas a IA gerou um padrão visual que não pertence à Schmitz. Cada site feito assim parece o mesmo. O caminho é inverso: trazer a identidade da Schmitz para dentro do site.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 05 MOVIMENTO -->
+<section class="section" id="movimento">
+  <div class="section-label">
+    <span class="section-num">05</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">O movimento que já está em curso</span>
+  </div>
+
+  <h2>Cristiano já está<br><em>fazendo o rebranding.</em></h2>
+
+  <p class="lead">Cada aparição em evento, cada post, cada foto bem feita: Cristiano está emprestando sua presença à marca. Isso é irreversível e é um movimento bonito. A sessão de fotos profissionais vai acelerar esse processo.</p>
+
+  <div class="highlight-box" style="margin-top: 24px;">
+    <p class="box-title">A dupla como narrativa</p>
+    <p>Pai e filho trabalhando juntos — o chão batido de Naim e o olhar de arquiteto do Cristiano — é a história mais poderosa que a Schmitz pode contar. E ela ainda não está sendo contada.</p>
+  </div>
+
+  <details>
+    <summary>O cuidado necessário em marcas com história</summary>
+    <div class="details-body">
+      <p>Em empresas com 35 anos, os movimentos de reposicionamento precisam ser precisos, não agressivos. Não se trata de apagar o que foi construído. Os clientes de décadas precisam se sentir em casa. Os novos precisam sentir que chegaram no lugar certo. A marca precisa acolher os dois.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 06 IDENTIDADE -->
+<section class="section" id="identidade">
+  <div class="section-label">
+    <span class="section-num">06</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Identidade visual</span>
+  </div>
+
+  <h2>Manter a essência.<br><em>Resolver o digital.</em></h2>
+
+  <p class="lead">Não é redesign completo. É refinamento preciso: manter o que carrega identidade histórica e resolver o que não funciona na tela.</p>
+
+  <div class="cards-grid" style="margin-top: 24px;">
+    <div class="card" style="border-top-color: rgba(208,173,35,0.3);">
+      <span class="card-icon"><i class="fa-solid fa-shield-check"></i></span>
+      <div class="card-title">Preservar</div>
+      <div class="card-text">As cores como referência histórica. O semicírculo como forma-símbolo. A estética de empresa com tempo real.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-wrench"></i></span>
+      <div class="card-title">Resolver</div>
+      <div class="card-text">Contraste no digital. Versões adaptadas para diferentes contextos. Sistema visual que conecte todos os pontos de contato.</div>
+    </div>
+    <div class="card" style="border-top-color: rgba(208,173,35,0.3);">
+      <span class="card-icon"><i class="fa-solid fa-truck"></i></span>
+      <div class="card-title">Referência</div>
+      <div class="card-text">O caminhão, com seus detalhes e traços, tem uma linguagem de manualidade rica que pode ser traduzida para o digital.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 07 DIGITAL -->
+<section class="section" id="digital">
+  <div class="section-label">
+    <span class="section-num">07</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">A oportunidade digital</span>
+  </div>
+
+  <h2>O irmão tem a habilidade.<br><em>Falta o sistema.</em></h2>
+
+  <p class="lead">O irmão é programador com capacidade real de desenvolvimento com IA. Com um design system bem definido, essa habilidade se multiplica: calculadoras de orçamento, apps, páginas — tudo rápido e dentro da identidade da marca.</p>
+
+  <div class="highlight-box gold-box" style="margin-top: 24px;">
+    <p><strong>O que falta não é capacidade de execução.</strong> É o padrão que garante que tudo o que ele desenvolver pareça Schmitz — e não pareça qualquer outra coisa.</p>
+  </div>
+
+  <details>
+    <summary>O Instagram como construção interna</summary>
+    <div class="details-body">
+      <p>Neste momento, o Instagram cumpre um papel que vai além da captação: ele é vitrine de cultura interna. Com 10 funcionários, o conteúdo gera orgulho, pertencimento e narrativa de "eu trabalho num lugar que importa". Esse valor é real. A captação de clientes via digital virá em seguida — a fundação que está sendo construída agora já tem valor imediato.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 08 FORÇAS -->
+<section class="section" id="forcas">
+  <div class="section-label">
+    <span class="section-num">08</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Diagnóstico consolidado</span>
+  </div>
+
+  <h2>O que preservar<br><em>e o que resolver.</em></h2>
+
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-hourglass-half"></i></span>
+      <div class="card-title">35 anos de construção real</div>
+      <div class="card-text">Fidelidade de geração em geração. Não se compra esse ativo.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-people-group"></i></span>
+      <div class="card-title">Duas gerações na liderança</div>
+      <div class="card-text">Legado do Naim + olhar de arquiteto do Cristiano. Narrativa única no mercado.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-code"></i></span>
+      <div class="card-title">Irmão desenvolvedor</div>
+      <div class="card-text">Execução digital ágil. Com design system vira motor de desenvolvimento interno.</div>
+    </div>
+  </div>
+
+  <h2 style="margin-top: 48px; font-size: clamp(22px, 3vw, 32px);">Pontos de <em>atenção.</em></h2>
+
+  <div class="gaps-list">
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Pontos de contato que falam línguas diferentes</div>
+        <div class="gap-desc">Instagram, site e marca física comunicam empresas diferentes. Isso dilui a percepção de solidez que 35 anos construíram.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Identidade visual sem versão digital funcional</div>
+        <div class="gap-desc">A marca atual foi criada para o mundo físico. Falta paleta adaptada para tela, com versões testadas e documentadas.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Ausência de design system</div>
+        <div class="gap-desc">Sem padrão documentado, cada coisa que o irmão desenvolver pode desviar da identidade. Com design system, ele vira um ativo de execução consistente.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Narrativa da dupla ainda não contada</div>
+        <div class="gap-desc">A história de pai e filho trabalhando juntos — do chão batido ao olhar de arquiteto — é o diferencial emocional que nenhum concorrente tem.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STATEMENT -->
+<section class="statement-section">
+  <h2>Uma empresa de pedra<br><em>com alma de família.</em></h2>
+  <p>A Schmitz não precisa provar que existe. Existe há 35 anos na memória de quem passou por ela. O que precisa agora é fazer essa memória falar mais alto, em mais lugares — com coerência.</p>
+</section>
+
+<!-- 09 RECOMENDAÇÕES -->
+<section style="background: var(--surface); padding: 80px 60px; border-top: 1px solid var(--border);" id="recomendacoes">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">09</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Próximos passos</span>
+    </div>
+
+    <h2>O que fazer<br><em>a partir de agora.</em></h2>
+
+    <div class="recs-grid">
+      <div class="rec-card">
+        <div class="rec-num">01</div>
+        <div class="rec-title">Definir o padrão visual antes de acelerar</div>
+        <p class="rec-text">Logo, paleta e tipografia em versões para digital e físico. É o padrão que garante coerência em tudo que vem depois.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">02</div>
+        <div class="rec-title">Não frear o que já está andando</div>
+        <p class="rec-text">A sessão de fotos, os posts, a presença do Cristiano: tudo segue. Organizar e produzir podem andar juntos.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">03</div>
+        <div class="rec-title">Rebranding refinado, não agressivo</div>
+        <p class="rec-text">Ajuste preciso da identidade: manter a essência histórica, resolver o digital, criar versões funcionais para tela.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">04</div>
+        <div class="rec-title">Reconverter o site para a identidade real</div>
+        <p class="rec-text">Aproveitar o código do irmão e aplicar a identidade correta da Schmitz. Ele vai executar rápido com o padrão em mãos.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">05</div>
+        <div class="rec-title">Criar design system para o irmão</div>
+        <p class="rec-text">Documentar as regras visuais para que ele desenvolva qualquer coisa com velocidade e dentro da identidade da marca.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">06</div>
+        <div class="rec-title">Contar a história da dupla</div>
+        <p class="rec-text">A narrativa de pai e filho construindo juntos é o diferencial emocional que nenhum concorrente tem. E ela é verdadeira.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 48px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <h3 style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold-soft); margin-bottom: 12px;">Fechamento</h3>
+      <p style="color: var(--off-white); opacity: 0.9; font-size: 15px;">A Schmitz tem algo que o dinheiro não compra: tempo. 35 anos de presença e reputação construída no chão. O trabalho agora é garantir que esse peso chegue também no digital — com a mesma coerência e a mesma elegância que tem no muro.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 10 PROPOSTA -->
+<section style="background: var(--bg); padding: 80px 60px;" id="proposta">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">10</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Proposta Mira</span>
+    </div>
+
+    <h2>Como a Mira resolve<br><em>o que levantamos aqui.</em></h2>
+
+    <p style="margin-bottom: 8px;">Três caminhos possíveis, cada um construído sobre a metodologia Mira: Essência, Storytelling e Expressão.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Caminho 01</div>
+        <div class="pricing-name">Básico</div>
+        <div class="pricing-price">R$ 3.900</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Organizar a base visual e ter uma identidade que funcione em todos os contextos.</p>
+        <span class="pricing-section-label">Essência</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Posicionamento e diferencial</li>
+          <li><i class="fa-solid fa-check"></i> Proposta de valor e manifesto</li>
+        </ul>
+        <span class="pricing-section-label">Expressão</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Refinamento do logotipo</li>
+          <li><i class="fa-solid fa-check"></i> Paleta adaptada para digital</li>
+          <li><i class="fa-solid fa-check"></i> Tipografia e sistema gráfico</li>
+          <li><i class="fa-solid fa-check"></i> Templates para redes sociais</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Recomendado</div>
+        <div class="pricing-tier">Caminho 02</div>
+        <div class="pricing-name">Business</div>
+        <div class="pricing-price">R$ 8.900</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Marca completa — do posicionamento ao site — com design system para o irmão desenvolver.</p>
+        <span class="pricing-section-label">Essência + Storytelling</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Tudo do Básico</li>
+          <li><i class="fa-solid fa-check"></i> Arquétipo e personalidade</li>
+          <li><i class="fa-solid fa-check"></i> Narrativa: a história da dupla</li>
+          <li><i class="fa-solid fa-check"></i> Tom de voz e slogans</li>
+        </ul>
+        <span class="pricing-section-label">Expressão</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Site reconvertido com identidade real</li>
+          <li><i class="fa-solid fa-check"></i> Brandbook e guidelines</li>
+        </ul>
+        <span class="pricing-section-label" style="opacity: 1; color: var(--gold);">Design System — o diferencial</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-star"></i> Sistema visual completo documentado</li>
+          <li><i class="fa-solid fa-star"></i> Componentes prontos para o irmão usar</li>
+          <li><i class="fa-solid fa-star"></i> Paleta, tipografia e grid definidos</li>
+          <li><i class="fa-solid fa-star"></i> Tudo que ele desenvolver fica Schmitz</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Caminho 03</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">R$ 14.000</div>
+        <div class="pricing-price-note">Investimento único</div>
+        <p class="pricing-tagline">Marca no mundo com suporte estratégico contínuo por 3 meses após a entrega.</p>
+        <span class="pricing-section-label">Tudo do Business +</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Site com foco em conversão</li>
+          <li><i class="fa-solid fa-check"></i> Design system completo e documentado</li>
+        </ul>
+        <span class="pricing-section-label">Acompanhamento 3 meses</span>
+        <ul class="pricing-list">
+          <li><i class="fa-solid fa-check"></i> Time dedicado de sucesso</li>
+          <li><i class="fa-solid fa-check"></i> Reuniões mensais de estratégia</li>
+          <li><i class="fa-solid fa-check"></i> Ajustes e revisões em tempo real</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="payment-options">
+      <div class="payment-options-title">Formas de pagamento</div>
+      <div class="payment-grid">
+        <div class="payment-item">
+          <i class="fa-solid fa-tag"></i>
+          <div class="payment-item-label">10% de desconto</div>
+          <div class="payment-item-note">À vista</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-handshake"></i>
+          <div class="payment-item-label">50% + 50%</div>
+          <div class="payment-item-note">Entrada + entrega</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-qrcode"></i>
+          <div class="payment-item-label">Até 4x no Pix</div>
+          <div class="payment-item-note">Sem juros</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-credit-card"></i>
+          <div class="payment-item-label">12x no cartão</div>
+          <div class="payment-item-note">Crédito</div>
+        </div>
+        <div class="payment-item">
+          <i class="fa-solid fa-comments"></i>
+          <div class="payment-item-label">Financiamento</div>
+          <div class="payment-item-note">Acima de 12x · consultar</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 40px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <p style="color: var(--gold-soft); font-family: 'DM Serif Display', serif; font-size: 17px; margin-bottom: 10px;">O próximo passo é simples.</p>
+      <p style="color: var(--off-white); opacity: 0.85; max-width: 560px; font-size: 14px;">O Business é o ponto de equilíbrio certo: organiza toda a base estratégica, reconverte o site com a identidade correta e entrega o design system que permite ao irmão desenvolver tudo que vier com velocidade e coerência.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top: 80px; padding: 48px 40px; border-top: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+  <img src="https://somosmira.com.br/wp-content/uploads/2024/12/cropped-mira-2023_3-1024x424-6.png" alt="MIRA" style="height: 28px; width: auto; opacity: 0.7;">
+  <p style="color: var(--off-white); opacity: 0.5; font-size: 12px; letter-spacing: 0.5px;">Diagnóstico estratégico de marca | junho de 2026</p>
+</footer>
+
+</body>
+</html>
