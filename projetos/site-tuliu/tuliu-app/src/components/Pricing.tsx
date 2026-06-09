@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import CheckoutRedirectModal from './CheckoutRedirectModal';
 
-const CHECKOUT_MONTHLY = 'https://www.asaas.com/c/6tiddzmu54tk8ls4';
-const CHECKOUT_ANNUAL = 'https://www.asaas.com/c/gtx6degtgke5m743';
-
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -46,8 +43,8 @@ export default function Pricing() {
           <article className="pricing-card fade-in fade-in-delay-1">
             <p className="plan-name">Starter</p>
             <div className="plan-price">
-              <span className="currency">R$</span>
-              <span className="amount">{isAnnual ? '997' : '97'}</span>
+              <span className="currency">{t.pricing.currency}</span>
+              <span className="amount">{isAnnual ? t.pricing.starterAnnual : t.pricing.starterMonthly}</span>
               <span className="period">{isAnnual ? t.pricing.perYear : t.pricing.perMonth}</span>
             </div>
             <p className="plan-subtitle">{t.pricing.starterSubtitle}</p>
@@ -70,8 +67,8 @@ export default function Pricing() {
             <span className="popular-badge" aria-label="Plano mais popular">{t.pricing.popularBadge}</span>
             <p className="plan-name">Business</p>
             <div className="plan-price">
-              <span className="currency">R$</span>
-              <span className="amount">{isAnnual ? '4.970' : '497'}</span>
+              <span className="currency">{t.pricing.currency}</span>
+              <span className="amount">{isAnnual ? t.pricing.businessAnnual : t.pricing.businessMonthly}</span>
               <span className="period">{isAnnual ? t.pricing.perYear : t.pricing.perMonth}</span>
             </div>
             <p className="plan-subtitle">{t.pricing.businessSubtitle}</p>
@@ -111,8 +108,10 @@ export default function Pricing() {
     <CheckoutRedirectModal
       isOpen={isCheckoutOpen}
       onClose={() => setIsCheckoutOpen(false)}
-      checkoutUrl={isAnnual ? CHECKOUT_ANNUAL : CHECKOUT_MONTHLY}
       isAnnual={isAnnual}
+      currency={t.pricing.currency}
+      price={isAnnual ? t.pricing.starterAnnual : t.pricing.starterMonthly}
+      period={isAnnual ? t.pricing.perYear : t.pricing.perMonth}
     />
     </>
   );

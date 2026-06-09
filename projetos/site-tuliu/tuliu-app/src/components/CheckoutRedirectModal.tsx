@@ -1,16 +1,47 @@
+import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+
+const SUPABASE_URL = 'https://dojjedejwpwzvqoomtsj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvamplZGVqd3B3enZxb29tdHNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxMDc4ODMsImV4cCI6MjA1ODY4Mzg4M30.oewMMwFCBBX-5OcSTADnj5wlMwvNFiMLFovDcT5UMYA';
+
 interface CheckoutRedirectModalProps {
   isOpen: boolean;
   onClose: () => void;
-  checkoutUrl: string;
   isAnnual: boolean;
+  currency: string;
+  price: string;
+  period: string;
 }
 
-export default function CheckoutRedirectModal({ isOpen, onClose, checkoutUrl, isAnnual }: CheckoutRedirectModalProps) {
+export default function CheckoutRedirectModal({ isOpen, onClose, isAnnual, currency, price, period }: CheckoutRedirectModalProps) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { t } = useLanguage();
+  const m = t.checkoutModal;
+
   if (!isOpen) return null;
 
-  const handleProceed = () => {
-    window.open(checkoutUrl, '_blank');
-    onClose();
+  const handleProceed = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/asaas-create-checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({ isAnnual }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) throw new Error(data.error || m.errorFallback);
+      window.open(data.url, '_blank');
+      onClose();
+    } catch (err: unknown) {
+      setError((err as Error).message || m.errorFallback);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,11 +77,11 @@ export default function CheckoutRedirectModal({ isOpen, onClose, checkoutUrl, is
         </div>
 
         <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#111', marginBottom: '12px' }}>
-          Checkout seguro
+          {m.title}
         </h2>
 
         <p style={{ color: '#666', fontSize: '15px', lineHeight: 1.7, marginBottom: '8px' }}>
-          Você será redirecionado para o ambiente de pagamento seguro do <strong>ASAAS</strong>, onde seus dados de cartão são processados com total segurança e conformidade PCI.
+          {m.description} <strong>ASAAS</strong>{m.descriptionSuffix}
         </p>
 
         {/* Resumo do plano */}
@@ -60,11 +91,11 @@ export default function CheckoutRedirectModal({ isOpen, onClose, checkoutUrl, is
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <p style={{ margin: 0, fontWeight: 600, fontSize: '15px', color: '#111' }}>Plano Starter</p>
-              <p style={{ margin: '2px 0 0', fontSize: '13px', color: '#666' }}>Infraestrutura digital completa</p>
+              <p style={{ margin: 0, fontWeight: 600, fontSize: '15px', color: '#111' }}>{m.planName}</p>
+              <p style={{ margin: '2px 0 0', fontSize: '13px', color: '#666' }}>{m.planDesc}</p>
             </div>
             <p style={{ margin: 0, fontWeight: 700, fontSize: '18px', color: '#111' }}>
-              {isAnnual ? 'R$ 997/ano' : 'R$ 97/mês'}
+              {currency} {price}{period}
             </p>
           </div>
         </div>
@@ -72,9 +103,9 @@ export default function CheckoutRedirectModal({ isOpen, onClose, checkoutUrl, is
         {/* Etapas */}
         <div style={{ textAlign: 'left', marginBottom: '28px' }}>
           {[
-            { icon: 'fa-credit-card', text: 'Pague com segurança no checkout ASAAS' },
-            { icon: 'fa-envelope', text: 'Receba o email de acesso à sua conta' },
-            { icon: 'fa-rocket', text: 'Faça o onboarding e comece a usar' },
+            { icon: 'fa-credit-card', text: m.steps[0] },
+            { icon: 'fa-envelope', text: m.steps[1] },
+            { icon: 'fa-rocket', text: m.steps[2] },
           ].map((step, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: i < 2 ? '12px' : 0 }}>
               <div style={{
@@ -88,22 +119,40 @@ export default function CheckoutRedirectModal({ isOpen, onClose, checkoutUrl, is
           ))}
         </div>
 
+        {error && (
+          <p style={{ color: '#e53e3e', fontSize: '13px', marginBottom: '12px' }}>
+            <i className="fas fa-circle-exclamation" style={{ marginRight: '6px' }}></i>
+            {error}
+          </p>
+        )}
+
         <button
           onClick={handleProceed}
+          disabled={loading}
           style={{
             width: '100%', padding: '14px', borderRadius: '12px', border: 'none',
             background: '#111', color: 'white', fontSize: '15px', fontWeight: 600,
-            cursor: 'pointer', display: 'flex', alignItems: 'center',
+            cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1,
+            display: 'flex', alignItems: 'center',
             justifyContent: 'center', gap: '8px',
           }}
         >
-          Ir para o checkout
-          <i className="fas fa-arrow-up-right-from-square" style={{ fontSize: '13px' }}></i>
+          {loading ? (
+            <>
+              <i className="fas fa-spinner fa-spin" style={{ fontSize: '14px' }}></i>
+              {m.btnLoading}
+            </>
+          ) : (
+            <>
+              {m.btnProceed}
+              <i className="fas fa-arrow-up-right-from-square" style={{ fontSize: '13px' }}></i>
+            </>
+          )}
         </button>
 
         <p style={{ margin: '14px 0 0', fontSize: '12px', color: '#aaa' }}>
           <i className="fas fa-shield-halved" style={{ marginRight: '4px' }}></i>
-          Dados protegidos · Certificado SSL · PCI Compliant
+          {m.footer}
         </p>
       </div>
     </div>

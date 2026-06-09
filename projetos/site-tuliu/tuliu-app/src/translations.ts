@@ -41,6 +41,11 @@ export const translations = {
       save: "Economize 14%",
       perMonth: "/mês",
       perYear: "/ano",
+      currency: "R$",
+      starterMonthly: "97",
+      starterAnnual: "997",
+      businessMonthly: "497",
+      businessAnnual: "4.970",
       starterSubtitle: "A Tuliu cuida da sua base digital",
       starterFeatures: [
         "1 domínio registrado e configurado",
@@ -74,6 +79,22 @@ export const translations = {
         "Gerente de conta dedicado"
       ],
       enterpriseBtn: "Falar com especialista"
+    },
+    checkoutModal: {
+      title: "Checkout seguro",
+      description: "Você será redirecionado para o ambiente de pagamento seguro do",
+      descriptionSuffix: ", onde seus dados de cartão são processados com total segurança e conformidade PCI.",
+      planName: "Plano Starter",
+      planDesc: "Infraestrutura digital completa",
+      steps: [
+        "Pague com segurança no checkout ASAAS",
+        "Receba o email de acesso à sua conta",
+        "Faça o onboarding e comece a usar",
+      ],
+      btnProceed: "Ir para o checkout",
+      btnLoading: "Aguarde...",
+      footer: "Dados protegidos · Certificado SSL · PCI Compliant",
+      errorFallback: "Erro ao criar checkout. Tente novamente.",
     },
     cta: {
       title: "Pronto começar?",
@@ -139,6 +160,11 @@ export const translations = {
       save: "Save 14%",
       perMonth: "/mo",
       perYear: "/yr",
+      currency: "$",
+      starterMonthly: "19",
+      starterAnnual: "190",
+      businessMonthly: "97",
+      businessAnnual: "970",
       starterSubtitle: "Tuliu takes care of your digital foundation",
       starterFeatures: [
         "1 domain registered and configured",
@@ -172,6 +198,22 @@ export const translations = {
         "Dedicated account manager"
       ],
       enterpriseBtn: "Talk to an expert"
+    },
+    checkoutModal: {
+      title: "Secure checkout",
+      description: "You'll be redirected to the secure payment environment of",
+      descriptionSuffix: ", where your card details are processed with full security and PCI compliance.",
+      planName: "Starter Plan",
+      planDesc: "Complete digital infrastructure",
+      steps: [
+        "Pay securely on ASAAS checkout",
+        "Receive your account access email",
+        "Complete onboarding and get started",
+      ],
+      btnProceed: "Go to checkout",
+      btnLoading: "Please wait...",
+      footer: "Protected data · SSL Certificate · PCI Compliant",
+      errorFallback: "Failed to create checkout. Please try again.",
     },
     cta: {
       title: "Ready to start?",
