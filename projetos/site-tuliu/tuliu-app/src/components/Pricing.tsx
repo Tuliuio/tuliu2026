@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import PaymentModal from './PaymentModal';
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const { t } = useLanguage();
 
   return (
+    <>
     <section className="pricing" id="precos" aria-labelledby="pricing-heading">
       <div className="container">
         <div className="section-header">
@@ -51,14 +54,12 @@ export default function Pricing() {
                 <li key={i}><i className="fas fa-check" style={{ fontSize: '14px', color: 'currentColor' }}></i> {feature}</li>
               ))}
             </ul>
-            <a 
-              href={isAnnual ? "https://www.asaas.com/c/gtx6degtgke5m743" : "https://www.asaas.com/c/6tiddzmu54tk8ls4"} 
-              className="btn btn-outline plan-btn" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <button
+              className="btn btn-outline plan-btn"
+              onClick={() => setIsPaymentOpen(true)}
             >
               {t.pricing.starterBtn}
-            </a>
+            </button>
           </article>
 
           {/* Card Business (Destaque) */}
@@ -103,5 +104,11 @@ export default function Pricing() {
         </div>
       </div>
     </section>
+    <PaymentModal
+      isOpen={isPaymentOpen}
+      onClose={() => setIsPaymentOpen(false)}
+      isAnnual={isAnnual}
+    />
+  </>
   );
 }
