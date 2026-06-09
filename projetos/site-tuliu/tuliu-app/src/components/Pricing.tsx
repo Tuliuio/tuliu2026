@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import PaymentModal from './PaymentModal';
+import CheckoutRedirectModal from './CheckoutRedirectModal';
+
+const CHECKOUT_MONTHLY = 'https://www.asaas.com/c/6tiddzmu54tk8ls4';
+const CHECKOUT_ANNUAL = 'https://www.asaas.com/c/gtx6degtgke5m743';
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
-  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const { t } = useLanguage();
 
   return (
@@ -23,10 +26,10 @@ export default function Pricing() {
 
         <div className="pricing-toggle">
           <span className="pricing-toggle-label">{t.pricing.monthly}</span>
-          <div 
-            className={`toggle-switch ${isAnnual ? 'active' : ''}`} 
-            role="switch" 
-            aria-checked={isAnnual} 
+          <div
+            className={`toggle-switch ${isAnnual ? 'active' : ''}`}
+            role="switch"
+            aria-checked={isAnnual}
             aria-label="Trocar entre faturamento mensal e anual"
             onClick={() => setIsAnnual(!isAnnual)}
           >
@@ -56,7 +59,7 @@ export default function Pricing() {
             </ul>
             <button
               className="btn btn-outline plan-btn"
-              onClick={() => setIsPaymentOpen(true)}
+              onClick={() => setIsCheckoutOpen(true)}
             >
               {t.pricing.starterBtn}
             </button>
@@ -104,11 +107,13 @@ export default function Pricing() {
         </div>
       </div>
     </section>
-    <PaymentModal
-      isOpen={isPaymentOpen}
-      onClose={() => setIsPaymentOpen(false)}
+
+    <CheckoutRedirectModal
+      isOpen={isCheckoutOpen}
+      onClose={() => setIsCheckoutOpen(false)}
+      checkoutUrl={isAnnual ? CHECKOUT_ANNUAL : CHECKOUT_MONTHLY}
       isAnnual={isAnnual}
     />
-  </>
+    </>
   );
 }
