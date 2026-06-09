@@ -29,6 +29,13 @@ export interface Client {
   status: 'active' | 'canceled' | 'suspended';
   role: 'client' | 'admin';
   onboarding_completed: boolean;
+  onboarding_data?: {
+    segment?: string;
+    objective?: string;
+    hasDomain?: string;
+    domain?: string;
+    assets?: string[];
+  } | null;
   created_at: string;
   updated_at: string;
 }

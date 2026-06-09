@@ -3,8 +3,6 @@ import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 import logo from '../assets/logo.svg';
 
-const WHATSAPP_NUMBER = '554840426597';
-
 export default function OnboardingPage({ onComplete }: { onComplete: () => void }) {
   const { client } = useAuth();
   const [step, setStep] = useState(1);
@@ -55,18 +53,6 @@ export default function OnboardingPage({ onComplete }: { onComplete: () => void 
         })
         .eq('id', client?.id);
 
-      const msg = encodeURIComponent(
-        `Olá! Acabei de configurar minha conta na Tuliu.\n\n` +
-        `Nome: ${form.name}\n` +
-        `Empresa: ${form.company}\n` +
-        `Segmento: ${form.segment}\n` +
-        `Objetivo: ${form.objective}\n` +
-        `Tem domínio: ${form.hasDomain === 'yes' ? `Sim — ${form.domain}` : 'Não'}\n` +
-        `Ativos desejados: ${form.assets.join(', ')}\n\n` +
-        `Aguardo o próximo passo!`
-      );
-
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
       onComplete();
     } catch (err) {
       console.error(err);
@@ -262,9 +248,7 @@ export default function OnboardingPage({ onComplete }: { onComplete: () => void 
                 disabled={!form.hasDomain || loading}
                 onClick={handleSubmit}
               >
-                {loading ? 'Enviando...' : (
-                  <>Enviar e falar no WhatsApp <i className="fab fa-whatsapp" style={{ marginLeft: '8px' }}></i></>
-                )}
+                {loading ? 'Enviando...' : 'Enviar e acessar o painel'}
               </button>
             </div>
           </>

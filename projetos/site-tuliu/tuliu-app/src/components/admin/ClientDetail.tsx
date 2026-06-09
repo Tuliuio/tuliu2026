@@ -127,6 +127,41 @@ export default function ClientDetail({ client, assets, onAssetDeleted }: ClientD
         </div>
       </div>
 
+      {/* Onboarding Data */}
+      {client.onboarding_data && (
+        <div style={{
+          padding: '16px', background: '#fffbeb', borderRadius: '12px',
+          marginBottom: '24px', border: '1px solid #fde68a',
+        }}>
+          <h3 style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: 600, color: '#92400e' }}>
+            <i className="fas fa-clipboard-list" style={{ marginRight: '6px' }}></i>
+            Dados do Onboarding
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
+            {client.onboarding_data.segment && (
+              <p style={{ margin: 0 }}><strong>Segmento:</strong> {client.onboarding_data.segment}</p>
+            )}
+            {client.onboarding_data.objective && (
+              <p style={{ margin: 0 }}><strong>Objetivo:</strong> {client.onboarding_data.objective}</p>
+            )}
+            {client.onboarding_data.hasDomain && (
+              <p style={{ margin: 0 }}>
+                <strong>Domínio:</strong>{' '}
+                {client.onboarding_data.hasDomain === 'yes'
+                  ? `Sim — ${client.onboarding_data.domain || ''}`
+                  : 'Não tem ainda'}
+              </p>
+            )}
+            {client.onboarding_data.assets && client.onboarding_data.assets.length > 0 && (
+              <p style={{ margin: 0 }}>
+                <strong>Ativos desejados:</strong>{' '}
+                {client.onboarding_data.assets.join(', ')}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Assets by Type */}
       {Object.keys(groupedAssets).length === 0 ? (
         <div style={{ padding: '24px', textAlign: 'center', background: '#f9f9f9', borderRadius: '8px', color: '#666' }}>
