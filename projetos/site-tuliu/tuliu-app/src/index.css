@@ -360,7 +360,7 @@ body {
 .hero {
   /* Margem negativa = altura da navbar: fundo sobe atrás da navbar transparente */
   margin-top: -64px;
-  padding: calc(100px + 64px) 0 0;
+  padding: calc(100px + 64px) 0 80px;
   text-align: center;
   /* overflow: hidden removido — necessário para position: sticky funcionar no filho */
   background: #eaeaef;

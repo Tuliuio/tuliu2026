@@ -28,6 +28,7 @@ export interface Client {
   custom_price?: number | null;
   status: 'active' | 'canceled' | 'suspended';
   role: 'client' | 'admin';
+  onboarding_completed: boolean;
   created_at: string;
   updated_at: string;
 }

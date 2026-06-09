@@ -6,8 +6,8 @@ import SupportModal from './dashboard/SupportModal';
 import logo from '../assets/logo.svg';
 
 interface DashboardNavbarProps {
-  onNavigate: (page: 'home' | 'dashboard' | 'admin' | 'flow') => void;
-  currentPage: 'dashboard' | 'admin' | 'flow';
+  onNavigate: (page: 'home' | 'dashboard' | 'admin') => void;
+  currentPage: 'dashboard' | 'admin';
 }
 
 export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNavbarProps) {
@@ -48,15 +48,10 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
 
   const initials = client?.name ? getInitials(client.name) : 'U';
 
-  const isDarkFlow = currentPage === 'flow';
-  const headerBg = isDarkFlow ? '#1a1a1a' : 'white';
-  const headerBorder = isDarkFlow ? 'rgba(255, 255, 255, 0.08)' : '#E5E7EB';
-  const tabsBg = isDarkFlow ? '#2a2a2a' : '#f0f0f0';
-  const tabsColor = isDarkFlow ? 'rgba(255, 255, 255, 0.6)' : '#666';
-  const tabsActiveColor = isDarkFlow ? 'rgba(255, 255, 255, 0.87)' : '#111';
-  const tabsActiveBg = isDarkFlow ? '#333333' : 'white';
-  const adminColor = isDarkFlow ? 'rgba(255, 255, 255, 0.6)' : '#666';
-  const adminActiveColor = isDarkFlow ? 'rgba(255, 255, 255, 0.87)' : '#111';
+  const headerBg = 'white';
+  const headerBorder = '#E5E7EB';
+  const adminColor = '#666';
+  const adminActiveColor = '#111';
 
   return (
     <header className="dashboard-navbar" style={{ background: headerBg, borderBottomColor: headerBorder }}>
@@ -64,83 +59,13 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
         {/* Logo - Left */}
         <button
           onClick={() => onNavigate(client?.role === 'admin' ? 'admin' : 'dashboard')}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, filter: isDarkFlow ? 'brightness(0) invert(1)' : 'none' }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           aria-label="Tuliu Dashboard"
         >
           <img src={logo} alt="Tuliu Logo" height="40" />
         </button>
 
         {/* Navigation Tabs - Center */}
-        {client?.role !== 'admin' && (
-          <div
-            style={{
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              display: 'flex',
-              gap: '0',
-              background: tabsBg,
-              borderRadius: '8px',
-              padding: '4px',
-            }}
-          >
-            <button
-              onClick={() => onNavigate('dashboard')}
-              style={{
-                background: currentPage === 'dashboard' ? tabsActiveBg : 'transparent',
-                border: 'none',
-                padding: '8px 16px',
-                fontSize: '14px',
-                fontWeight: 500,
-                color: currentPage === 'dashboard' ? tabsActiveColor : tabsColor,
-                cursor: 'pointer',
-                borderRadius: '6px',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                if (currentPage !== 'dashboard') {
-                  e.currentTarget.style.color = tabsActiveColor;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (currentPage !== 'dashboard') {
-                  e.currentTarget.style.color = tabsColor;
-                }
-              }}
-            >
-              <i className="fas fa-chart-line" style={{ marginRight: '6px' }}></i>
-              Dashboard
-            </button>
-
-            <button
-              onClick={() => onNavigate('flow')}
-              style={{
-                background: currentPage === 'flow' ? tabsActiveBg : 'transparent',
-                border: 'none',
-                padding: '8px 16px',
-                fontSize: '14px',
-                fontWeight: 500,
-                color: currentPage === 'flow' ? tabsActiveColor : tabsColor,
-                cursor: 'pointer',
-                borderRadius: '6px',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                if (currentPage !== 'flow') {
-                  e.currentTarget.style.color = tabsActiveColor;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (currentPage !== 'flow') {
-                  e.currentTarget.style.color = tabsColor;
-                }
-              }}
-            >
-              <i className="fas fa-columns" style={{ marginRight: '6px' }}></i>
-              Flow
-            </button>
-          </div>
-        )}
 
         {/* Admin Link - Visible when admin, positioned near tabs */}
         {client?.role === 'admin' && (
@@ -210,8 +135,8 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                 top: '100%',
                 right: 0,
                 marginTop: '8px',
-                background: isDarkFlow ? '#2a2a2a' : 'white',
-                border: `1px solid ${isDarkFlow ? 'rgba(255,255,255,0.08)' : '#E5E7EB'}`,
+                background: 'white',
+                border: `1px solid ${'#E5E7EB'}`,
                 borderRadius: '12px',
                 boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                 minWidth: '240px',
@@ -220,14 +145,14 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
               onClick={() => setIsMenuOpen(false)}
             >
               {/* User Info */}
-              <div style={{ padding: '16px', borderBottom: `1px solid ${isDarkFlow ? 'rgba(255,255,255,0.08)' : '#E5E7EB'}` }}>
-                <p style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 600, color: isDarkFlow ? 'rgba(255,255,255,0.87)' : '#111' }}>
+              <div style={{ padding: '16px', borderBottom: `1px solid ${'#E5E7EB'}` }}>
+                <p style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 600, color: '#111' }}>
                   {client?.name || 'User'}
                 </p>
-                <p style={{ margin: 0, fontSize: '13px', color: isDarkFlow ? 'rgba(255,255,255,0.6)' : '#666' }}>
+                <p style={{ margin: 0, fontSize: '13px', color: '#666' }}>
                   {client?.company}
                 </p>
-                <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: isDarkFlow ? 'rgba(255,255,255,0.45)' : '#999' }}>
+                <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#999' }}>
                   {user?.email}
                 </p>
               </div>
@@ -246,12 +171,12 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                     border: 'none',
                     textAlign: 'left',
                     fontSize: '14px',
-                    color: isDarkFlow ? 'rgba(255,255,255,0.6)' : '#666',
+                    color: '#666',
                     cursor: 'pointer',
                     borderRadius: '8px',
                     transition: 'background 0.2s',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = isDarkFlow ? 'rgba(255,255,255,0.08)' : '#f3f4f6')}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
                   <i className="fas fa-user" style={{ marginRight: '8px' }}></i>
@@ -270,12 +195,12 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                     border: 'none',
                     textAlign: 'left',
                     fontSize: '14px',
-                    color: isDarkFlow ? 'rgba(255,255,255,0.6)' : '#666',
+                    color: '#666',
                     cursor: 'pointer',
                     borderRadius: '8px',
                     transition: 'background 0.2s',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = isDarkFlow ? 'rgba(255,255,255,0.08)' : '#f3f4f6')}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
                   <i className="fas fa-gear" style={{ marginRight: '8px' }}></i>
@@ -294,19 +219,19 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
                     border: 'none',
                     textAlign: 'left',
                     fontSize: '14px',
-                    color: isDarkFlow ? 'rgba(255,255,255,0.6)' : '#666',
+                    color: '#666',
                     cursor: 'pointer',
                     borderRadius: '8px',
                     transition: 'background 0.2s',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = isDarkFlow ? 'rgba(255,255,255,0.08)' : '#f3f4f6')}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#f3f4f6')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'none')}
                 >
                   <i className="fas fa-comment" style={{ marginRight: '8px' }}></i>
                   Suporte
                 </button>
 
-                <div style={{ height: '1px', background: isDarkFlow ? 'rgba(255,255,255,0.08)' : '#E5E7EB', margin: '8px 0' }}></div>
+                <div style={{ height: '1px', background: '#E5E7EB', margin: '8px 0' }}></div>
 
                 <button
                   onClick={handleLogout}

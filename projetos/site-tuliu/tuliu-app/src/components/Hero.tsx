@@ -32,12 +32,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-dashboard-image fade-in fade-in-delay-4">
-        <img
-          src="/dashboard_tuliu.png"
-          alt="Tuliu Dashboard"
-        />
-      </div>
     </section>
   );
 }

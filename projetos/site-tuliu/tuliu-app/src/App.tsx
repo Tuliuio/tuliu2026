@@ -14,14 +14,14 @@ import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
 import LoginPage from './components/LoginPage';
 import DashboardPage from './components/dashboard/DashboardPage';
-import FlowPage from './components/dashboard/FlowPage';
 import AdminPage from './components/admin/AdminPage';
 import LoadingScreen from './components/LoadingScreen';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
 import ResetPasswordPage from './components/ResetPasswordPage';
+import OnboardingPage from './components/OnboardingPage';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'flow' | 'reset-password';
+type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -42,7 +42,7 @@ function App() {
 
   // Page navigation with authentication check
   const navigate = (page: Page, anchor?: string) => {
-    if ((page === 'dashboard' || page === 'admin' || page === 'flow') && !session) {
+    if ((page === 'dashboard' || page === 'admin') && !session) {
       setCurrentPage('login');
       window.history.pushState({ page: 'login' }, '', '/login');
       window.scrollTo(0, 0);
@@ -71,8 +71,6 @@ function App() {
       setCurrentPage('dashboard');
     } else if (pathname === '/admin') {
       setCurrentPage('admin');
-    } else if (pathname === '/flow') {
-      setCurrentPage('flow');
     } else if (pathname === '/login') {
       setCurrentPage('login');
     } else if (pathname === '/reset-password') {
@@ -139,10 +137,10 @@ function App() {
   useEffect(() => {
     if (session && currentPage === 'login' && client) {
       if (client.role === 'admin') {
-        console.log('[App] Admin user detected, navigating to admin');
         navigate('admin');
+      } else if (!client.onboarding_completed) {
+        navigate('onboarding');
       } else {
-        console.log('[App] Client user detected, navigating to dashboard');
         navigate('dashboard');
       }
     }
@@ -161,12 +159,12 @@ function App() {
   return (
     <LanguageProvider>
       <ToastProvider>
-      {currentPage === 'dashboard' || currentPage === 'admin' || currentPage === 'flow' ? (
+      {currentPage === 'dashboard' || currentPage === 'admin' ? (
         <DashboardNavbar
           currentPage={currentPage}
           onNavigate={navigate}
         />
-      ) : currentPage !== 'login' && currentPage !== 'reset-password' ? (
+      ) : currentPage !== 'login' && currentPage !== 'reset-password' && currentPage !== 'onboarding' ? (
         <Navbar
           onOpenLogin={() => navigate('login')}
           currentPage={currentPage}
@@ -190,15 +188,15 @@ function App() {
           <LoginPage onNavigateToHome={() => navigate('home')} />
         ) : currentPage === 'reset-password' ? (
           <ResetPasswordPage onNavigateToHome={() => navigate('home')} />
+        ) : currentPage === 'onboarding' ? (
+          session ? <OnboardingPage onComplete={() => navigate('dashboard')} /> : null
         ) : currentPage === 'dashboard' ? (
           session ? <DashboardPage /> : null
         ) : currentPage === 'admin' ? (
           session ? <AdminPage /> : null
-        ) : currentPage === 'flow' ? (
-          session ? <FlowPage /> : null
         ) : null}
       </main>
-      {currentPage !== 'flow' && currentPage !== 'login' && currentPage !== 'reset-password' && <Footer />}
+      {currentPage !== 'login' && currentPage !== 'reset-password' && currentPage !== 'onboarding' && <Footer />}
       <FloatingWhatsAppButton />
       </ToastProvider>
     </LanguageProvider>
