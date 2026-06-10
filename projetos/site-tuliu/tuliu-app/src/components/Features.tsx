@@ -91,9 +91,6 @@ export default function Features() {
           </article>
         </div>
 
-        <div className="features-cta fade-in">
-          <a href="#" className="btn btn-outline">{t.features.cta}</a>
-        </div>
       </div>
     </section>
   );
