@@ -46,6 +46,8 @@ export const translations = {
       starterAnnual: "997",
       businessMonthly: "497",
       businessAnnual: "4.970",
+      starterDisplayName: "Plano Starter",
+      businessDisplayName: "Plano Business",
       starterSubtitle: "A Tuliu cuida da sua base digital",
       starterFeatures: [
         "1 domínio registrado e configurado",
@@ -66,7 +68,7 @@ export const translations = {
         "Integrações com ferramentas do seu stack",
         "Suporte prioritário via WhatsApp"
       ],
-      businessBtn: "Fale com vendas",
+      businessBtn: "Começar agora",
       enterpriseBadge: "Enterprise",
       consult: "Sob consulta",
       consultDesc: "Para operações digitais complexas",
@@ -163,6 +165,8 @@ export const translations = {
       currency: "$",
       starterMonthly: "19",
       starterAnnual: "190",
+      starterDisplayName: "Starter Plan",
+      businessDisplayName: "Business Plan",
       businessMonthly: "97",
       businessAnnual: "970",
       starterSubtitle: "Tuliu takes care of your digital foundation",
@@ -185,7 +189,7 @@ export const translations = {
         "Integrations with your tool stack",
         "Priority WhatsApp support"
       ],
-      businessBtn: "Talk to sales",
+      businessBtn: "Get started",
       enterpriseBadge: "Enterprise",
       consult: "Custom pricing",
       consultDesc: "For complex digital operations",

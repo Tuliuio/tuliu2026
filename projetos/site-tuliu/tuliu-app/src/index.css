@@ -695,6 +695,26 @@ body {
 .mb-line-3q    { width: 72%; }
 .mb-line-half  { width: 48%; }
 
+/* Loading bar animation */
+.mini-browser-progress-wrap {
+  height: 2px;
+  background: rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+.mini-browser-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #a78bfa, #6366f1);
+  border-radius: 0 2px 2px 0;
+  animation: browser-load 2.8s ease-in-out infinite;
+}
+@keyframes browser-load {
+  0%   { width: 0%; opacity: 1; }
+  65%  { width: 100%; opacity: 1; }
+  85%  { width: 100%; opacity: 0; }
+  100% { width: 0%; opacity: 0; }
+}
+
 /* ── CHAT ILLUSTRATION ── */
 .fcard-ia .fcard-illustration { background: #F0F0F3; }
 
@@ -811,6 +831,30 @@ body {
   border-top: 1px solid rgba(255,255,255,0.22);
   border-right: 1px solid rgba(255,255,255,0.22);
   transform: rotate(45deg);
+}
+
+/* Data packet traveling through flow */
+.flow-connector::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  top: -2px;
+  left: -3px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.5);
+  animation: flow-travel 2.8s linear infinite;
+}
+.fcard-auto-diagram > .flow-connector:nth-child(2)::before { animation-delay: 0s; }
+.fcard-auto-diagram > .flow-connector:nth-child(4)::before { animation-delay: 0.7s; }
+.fcard-auto-diagram > .flow-connector:nth-child(6)::before { animation-delay: 1.4s; }
+
+@keyframes flow-travel {
+  0%   { left: -3px; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: calc(100% + 3px); opacity: 0; }
 }
 
 /* ── CTA ── */

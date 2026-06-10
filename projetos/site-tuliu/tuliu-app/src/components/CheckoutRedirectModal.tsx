@@ -7,16 +7,19 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 interface CheckoutRedirectModalProps {
   isOpen: boolean;
   onClose: () => void;
+  plan: 'starter' | 'business';
   isAnnual: boolean;
   currency: string;
   price: string;
   period: string;
+  planDisplayName: string;
+  planDisplayDesc: string;
 }
 
-export default function CheckoutRedirectModal({ isOpen, onClose, isAnnual, currency, price, period }: CheckoutRedirectModalProps) {
+export default function CheckoutRedirectModal({ isOpen, onClose, plan, isAnnual, currency, price, period, planDisplayName, planDisplayDesc }: CheckoutRedirectModalProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const m = t.checkoutModal;
 
   if (!isOpen) return null;
@@ -31,7 +34,7 @@ export default function CheckoutRedirectModal({ isOpen, onClose, isAnnual, curre
           'Content-Type': 'application/json',
           'apikey': SUPABASE_ANON_KEY,
         },
-        body: JSON.stringify({ isAnnual }),
+        body: JSON.stringify({ isAnnual, plan }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) throw new Error(data.error || m.errorFallback);
@@ -91,14 +94,22 @@ export default function CheckoutRedirectModal({ isOpen, onClose, isAnnual, curre
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <p style={{ margin: 0, fontWeight: 600, fontSize: '15px', color: '#111' }}>{m.planName}</p>
-              <p style={{ margin: '2px 0 0', fontSize: '13px', color: '#666' }}>{m.planDesc}</p>
+              <p style={{ margin: 0, fontWeight: 600, fontSize: '15px', color: '#111' }}>{planDisplayName}</p>
+              <p style={{ margin: '2px 0 0', fontSize: '13px', color: '#666' }}>{planDisplayDesc}</p>
             </div>
             <p style={{ margin: 0, fontWeight: 700, fontSize: '18px', color: '#111' }}>
               {currency} {price}{period}
             </p>
           </div>
         </div>
+
+        {/* Nota BRL para clientes EN */}
+        {language === 'en' && (
+          <p style={{ fontSize: '12px', color: '#888', margin: '-12px 0 20px', textAlign: 'center' }}>
+            <i className="fas fa-circle-info" style={{ marginRight: '5px' }}></i>
+            Payment processed in BRL by ASAAS. Your bank will apply the exchange rate.
+          </p>
+        )}
 
         {/* Etapas */}
         <div style={{ textAlign: 'left', marginBottom: '28px' }}>

@@ -30,6 +30,9 @@ export default function Features() {
                   <div className="mini-browser-dot"></div>
                   <div className="mini-browser-url">tuliu.io</div>
                 </div>
+                <div className="mini-browser-progress-wrap">
+                  <div className="mini-browser-progress-bar"></div>
+                </div>
                 <div className="mini-browser-body">
                   <div className="mini-browser-hero-block">
                     <div className="mini-browser-hero-inner"></div>

@@ -4,8 +4,10 @@ import CheckoutRedirectModal from './CheckoutRedirectModal';
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [checkoutPlan, setCheckoutPlan] = useState<'starter' | 'business' | null>(null);
   const { t } = useLanguage();
+
+  const openCheckout = (plan: 'starter' | 'business') => setCheckoutPlan(plan);
 
   return (
     <>
@@ -56,7 +58,7 @@ export default function Pricing() {
             </ul>
             <button
               className="btn btn-outline plan-btn"
-              onClick={() => setIsCheckoutOpen(true)}
+              onClick={() => openCheckout('starter')}
             >
               {t.pricing.starterBtn}
             </button>
@@ -78,9 +80,12 @@ export default function Pricing() {
                 <li key={i}><i className="fas fa-check" style={{ fontSize: '14px', color: 'currentColor' }}></i> {feature}</li>
               ))}
             </ul>
-            <a href="https://wa.me/554840426597" className="btn btn-white plan-btn" target="_blank" rel="noopener noreferrer">
+            <button
+              className="btn btn-white plan-btn"
+              onClick={() => openCheckout('business')}
+            >
               {t.pricing.businessBtn}
-            </a>
+            </button>
           </article>
 
           {/* Card Enterprise */}
@@ -106,12 +111,19 @@ export default function Pricing() {
     </section>
 
     <CheckoutRedirectModal
-      isOpen={isCheckoutOpen}
-      onClose={() => setIsCheckoutOpen(false)}
+      isOpen={checkoutPlan !== null}
+      onClose={() => setCheckoutPlan(null)}
+      plan={checkoutPlan ?? 'starter'}
       isAnnual={isAnnual}
       currency={t.pricing.currency}
-      price={isAnnual ? t.pricing.starterAnnual : t.pricing.starterMonthly}
+      price={
+        checkoutPlan === 'business'
+          ? (isAnnual ? t.pricing.businessAnnual : t.pricing.businessMonthly)
+          : (isAnnual ? t.pricing.starterAnnual : t.pricing.starterMonthly)
+      }
       period={isAnnual ? t.pricing.perYear : t.pricing.perMonth}
+      planDisplayName={checkoutPlan === 'business' ? t.pricing.businessDisplayName : t.pricing.starterDisplayName}
+      planDisplayDesc={checkoutPlan === 'business' ? t.pricing.businessSubtitle : t.pricing.starterSubtitle}
     />
     </>
   );
