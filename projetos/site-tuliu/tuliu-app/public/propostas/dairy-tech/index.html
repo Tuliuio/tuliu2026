@@ -369,28 +369,108 @@
 
     /* ─── CASES ─── */
     .cases-section { padding: 100px 0; }
-    .cases-grid {
+    .cases-section .container { overflow: visible; }
+    .cases-track-wrapper {
       margin-top: 56px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+      /* extend past container to show partial card */
+      margin-right: -24px;
     }
-    .case-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+    .cases-track-wrapper::-webkit-scrollbar { display: none; }
+    .cases-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      padding-right: 24px;
+    }
+
+    /* ── flip card ── */
+    .case-card {
+      scroll-snap-align: start;
+      width: 260px;
+      aspect-ratio: 3 / 4;
+      flex-shrink: 0;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .case-card-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+      border-radius: 12px;
+    }
+    .case-card.flipped .case-card-inner { transform: rotateY(180deg); }
+    .case-card-front,
+    .case-card-back {
+      position: absolute; inset: 0;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .case-card-front {
       overflow: hidden;
-      aspect-ratio: 1 / 1;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color .2s, transform .2s;
+      border: 1px solid var(--border);
     }
-    .case-item:hover {
-      border-color: var(--border-hi);
-      transform: translateY(-2px);
+    .case-card-front img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .case-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); }
-    @media(max-width: 900px) { .cases-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media(max-width: 600px) { .cases-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+    .case-card-front .case-hint {
+      position: absolute; bottom: 14px; right: 14px;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-hi);
+      border-radius: 100px;
+      padding: 5px 11px;
+      font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gray);
+      opacity: 0; transition: opacity .2s;
+      pointer-events: none;
+    }
+    .case-card:hover .case-hint { opacity: 1; }
+    .case-card-back {
+      background: var(--bg-3);
+      border: 1px solid var(--border-hi);
+      transform: rotateY(180deg);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 28px 24px 24px;
+    }
+    .case-back-top { display: flex; flex-direction: column; gap: 14px; }
+    .case-back-client {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+    .case-back-title {
+      font-size: 18px; font-weight: 700; line-height: 1.25; color: var(--white);
+    }
+    .case-back-tags {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
+    }
+    .case-back-tag {
+      font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+      color: var(--gray);
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 10px;
+    }
+    .case-back-close {
+      font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gray-dim); align-self: flex-start;
+    }
+    .case-back-close i { margin-right: 5px; }
+
+    /* mobile: grid simples sem flip */
+    @media(max-width: 768px) {
+      .cases-track-wrapper { margin-right: -16px; }
+      .case-card { width: 220px; }
+      .case-card-front .case-hint { display: none; }
+    }
 
     /* ─── CTA ─── */
     .cta-section {
@@ -1297,23 +1377,335 @@
     <div class="container">
       <p class="section-label">Portfólio</p>
       <h2 class="section-title">Marcas que já<br>operam com o sistema.</h2>
-      <p class="section-sub">Empresas de diferentes setores que confiam na Tuliu para construir e operar sua presença digital.</p>
-      <div class="cases-grid">
-        <div class="case-item"><img src="cases/adapto.webp" alt="Adapto"></div>
-        <div class="case-item"><img src="cases/aj-noticias.webp" alt="AJ Notícias"></div>
-        <div class="case-item"><img src="cases/apex.webp" alt="Apex"></div>
-        <div class="case-item"><img src="cases/attez.webp" alt="Attez"></div>
-        <div class="case-item"><img src="cases/b2b.webp" alt="B2B"></div>
-        <div class="case-item"><img src="cases/casa-de-palha.webp" alt="Casa de Palha"></div>
-        <div class="case-item"><img src="cases/case-sport.webp" alt="Case Sport"></div>
-        <div class="case-item"><img src="cases/cria.webp" alt="Cria"></div>
-        <div class="case-item"><img src="cases/juris.webp" alt="Juris"></div>
-        <div class="case-item"><img src="cases/me-ensina.webp" alt="Me Ensina"></div>
-        <div class="case-item"><img src="cases/recebai.webp" alt="Recebai"></div>
-        <div class="case-item"><img src="cases/sander-maurano.webp" alt="Sander Maurano"></div>
-        <div class="case-item"><img src="cases/sooly.webp" alt="Sooly"></div>
-        <div class="case-item"><img src="cases/sparz.webp" alt="Sparz"></div>
-        <div class="case-item"><img src="cases/vital-brasil.webp" alt="Vital Brasil"></div>
+      <p class="section-sub">Empresas de diferentes setores. Clique em qualquer card para ver o que a Tuliu construiu.</p>
+    </div>
+    <div class="container" style="position:relative">
+      <div class="cases-track-wrapper">
+        <div class="cases-track">
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/adapto.webp" alt="Adapto">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Adapto</p>
+                  <p class="case-back-title">Infraestrutura digital do zero</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Infraestrutura digital</span>
+                    <span class="case-back-tag">Website</span>
+                    <span class="case-back-tag">Captação de leads</span>
+                    <span class="case-back-tag">Monitoramento de performance</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/aj-noticias.webp" alt="AJ Notícias">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">AJ Notícias</p>
+                  <p class="case-back-title">Portal de notícias de alto volume</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Estruturação digital</span>
+                    <span class="case-back-tag">Operação complexa</span>
+                    <span class="case-back-tag">Alto volume</span>
+                    <span class="case-back-tag">Monitoramento de performance</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/attez.webp" alt="Attez">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Attez</p>
+                  <p class="case-back-title">Tecnologia, domínio e hospedagem de alta velocidade</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Presença digital</span>
+                    <span class="case-back-tag">Domínio</span>
+                    <span class="case-back-tag">Hospedagem premium</span>
+                    <span class="case-back-tag">Alta velocidade</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/b2b.webp" alt="B2B">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">B2B</p>
+                  <p class="case-back-title">Landing page e tráfego pago B2B</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Landing page</span>
+                    <span class="case-back-tag">Conversão de leads</span>
+                    <span class="case-back-tag">Tráfego pago</span>
+                    <span class="case-back-tag">Presença digital</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/apex.webp" alt="Apex">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Apex</p>
+                  <p class="case-back-title">Infraestrutura digital potencializada por IA</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Infraestrutura digital</span>
+                    <span class="case-back-tag">Inteligência artificial</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/casa-de-palha.webp" alt="Casa de Palha">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Casa de Palha</p>
+                  <p class="case-back-title">E-commerce completo com IA e rastreamento avançado</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">E-commerce</span>
+                    <span class="case-back-tag">Tráfego pago</span>
+                    <span class="case-back-tag">Inteligência artificial</span>
+                    <span class="case-back-tag">Rastreamento avançado</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/case-sport.webp" alt="Case Sport">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Case Sport</p>
+                  <p class="case-back-title">Integrações de pagamento e infraestrutura digital</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Integrações de pagamento</span>
+                    <span class="case-back-tag">Infraestrutura digital</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/juris.webp" alt="Jurisprudência Descomplicada">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Jurisprudência Descomplicada</p>
+                  <p class="case-back-title">Tráfego pago, conteúdo e design com IA</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Tráfego pago</span>
+                    <span class="case-back-tag">Rastreamento</span>
+                    <span class="case-back-tag">Produção de conteúdo</span>
+                    <span class="case-back-tag">Design</span>
+                    <span class="case-back-tag">Inteligência artificial</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/cria.webp" alt="Cria">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Cria</p>
+                  <p class="case-back-title">Sistema operacional de marketing com agentes de IA</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Orquestração de agentes</span>
+                    <span class="case-back-tag">Sistema operacional de marketing</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/me-ensina.webp" alt="Me Ensina">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Me Ensina</p>
+                  <p class="case-back-title">Infraestrutura digital, apps e manutenção contínua</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Infraestrutura digital</span>
+                    <span class="case-back-tag">Desenvolvimento de páginas</span>
+                    <span class="case-back-tag">Aplicativos</span>
+                    <span class="case-back-tag">Manutenção</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/recebai.webp" alt="Recebai">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Recebai</p>
+                  <p class="case-back-title">Infraestrutura digital e automação financeira</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Infraestrutura digital</span>
+                    <span class="case-back-tag">Automação</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/sander-maurano.webp" alt="Sander Maurano">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Sander Maurano</p>
+                  <p class="case-back-title">Landing pages, Google Ads e integrações com IA</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Landing pages</span>
+                    <span class="case-back-tag">Google Ads</span>
+                    <span class="case-back-tag">Integrações</span>
+                    <span class="case-back-tag">Inteligência artificial</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/sooly.webp" alt="Sooly">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Sooly</p>
+                  <p class="case-back-title">Web app para gestão de locações de bicicletas elétricas</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Web app</span>
+                    <span class="case-back-tag">Infraestrutura</span>
+                    <span class="case-back-tag">Gestão de locações</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/sparz.webp" alt="Sparz">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Sparz</p>
+                  <p class="case-back-title">Conteúdo, tráfego pago e agente de code</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Criação de conteúdo</span>
+                    <span class="case-back-tag">Estratégia de conteúdo</span>
+                    <span class="case-back-tag">Tráfego pago</span>
+                    <span class="case-back-tag">Agente de code</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
+                <img src="cases/vital-brasil.webp" alt="Vital Brasil">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Vital Brasil</p>
+                  <p class="case-back-title">Sistema operacional de marketing completo</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Orquestração de agentes</span>
+                    <span class="case-back-tag">Tráfego pago</span>
+                    <span class="case-back-tag">Produção de conteúdo</span>
+                    <span class="case-back-tag">Sistema operacional de marketing</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
