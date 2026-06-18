@@ -367,6 +367,31 @@
     }
     .about-points li span { color: var(--white); font-size: 16px; }
 
+    /* ─── CASES ─── */
+    .cases-section { padding: 100px 0; }
+    .cases-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .case-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .case-item:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-2px);
+    }
+    .case-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); }
+    @media(max-width: 900px) { .cases-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media(max-width: 600px) { .cases-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+
     /* ─── CTA ─── */
     .cta-section {
       padding: 120px 0; text-align: center; position: relative; overflow: hidden;
@@ -1266,6 +1291,32 @@
       </div>
     </section>
   </div>
+
+  <!-- ─── CASES ─── -->
+  <section class="section cases-section">
+    <div class="container">
+      <p class="section-label">Portfólio</p>
+      <h2 class="section-title">Marcas que já<br>operam com o sistema.</h2>
+      <p class="section-sub">Empresas de diferentes setores que confiam na Tuliu para construir e operar sua presença digital.</p>
+      <div class="cases-grid">
+        <div class="case-item"><img src="cases/adapto.webp" alt="Adapto" loading="lazy"></div>
+        <div class="case-item"><img src="cases/aj-noticias.webp" alt="AJ Notícias" loading="lazy"></div>
+        <div class="case-item"><img src="cases/apex.webp" alt="Apex" loading="lazy"></div>
+        <div class="case-item"><img src="cases/attez.webp" alt="Attez" loading="lazy"></div>
+        <div class="case-item"><img src="cases/b2b.webp" alt="B2B" loading="lazy"></div>
+        <div class="case-item"><img src="cases/casa-de-palha.webp" alt="Casa de Palha" loading="lazy"></div>
+        <div class="case-item"><img src="cases/case-sport.webp" alt="Case Sport" loading="lazy"></div>
+        <div class="case-item"><img src="cases/cria.webp" alt="Cria" loading="lazy"></div>
+        <div class="case-item"><img src="cases/juris.webp" alt="Juris" loading="lazy"></div>
+        <div class="case-item"><img src="cases/me-ensina.webp" alt="Me Ensina" loading="lazy"></div>
+        <div class="case-item"><img src="cases/recebai.webp" alt="Recebai" loading="lazy"></div>
+        <div class="case-item"><img src="cases/sander-maurano.webp" alt="Sander Maurano" loading="lazy"></div>
+        <div class="case-item"><img src="cases/sooly.webp" alt="Sooly" loading="lazy"></div>
+        <div class="case-item"><img src="cases/sparz.webp" alt="Sparz" loading="lazy"></div>
+        <div class="case-item"><img src="cases/vital-brasil.webp" alt="Vital Brasil" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ─── PATH / FILOSOFIA ─── -->
   <section class="section">
