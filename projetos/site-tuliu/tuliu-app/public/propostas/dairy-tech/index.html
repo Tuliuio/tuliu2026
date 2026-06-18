@@ -579,6 +579,55 @@
     .path-note i { color: var(--white); font-size: 15px; margin-top: 3px; flex-shrink: 0; }
     .path-note strong { color: var(--white); font-weight: 600; }
 
+    /* ─── INVESTIMENTO ─── */
+    .invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:760px){ .invest-grid { grid-template-columns: 1fr; } }
+    .invest-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 18px; padding: 36px 32px; position: relative; overflow: hidden;
+    }
+    .invest-card.feat {
+      border-color: var(--accent-border);
+      background: linear-gradient(135deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.015) 100%);
+    }
+    .invest-card.feat::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+    }
+    .invest-kicker {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray-dim); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .invest-kicker i { font-size: 12px; }
+    .invest-card.feat .invest-kicker { color: var(--white); }
+    .invest-price { font-size: 46px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+    .invest-price small { font-size: 15px; font-weight: 600; color: var(--gray); letter-spacing: 0; }
+    .invest-period { font-size: 13px; color: var(--gray-dim); margin: 8px 0 22px; }
+    .invest-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 22px; }
+    .invest-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .invest-list li { display: flex; gap: 11px; font-size: 13px; color: var(--gray); line-height: 1.55; align-items: flex-start; }
+    .invest-list li i { color: var(--white); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
+
+    .invest-summary {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.015) 100%);
+      border: 1px solid var(--accent-border); border-radius: 16px; padding: 26px 30px; margin-top: 16px;
+    }
+    .invest-summary .is-left { font-size: 14px; color: var(--gray); line-height: 1.65; max-width: 600px; }
+    .invest-summary .is-left strong { color: var(--white); font-weight: 600; }
+    .invest-summary .is-total { text-align: right; }
+    .invest-summary .is-total-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-dim); margin-bottom: 6px; }
+    .invest-summary .is-total-val { font-size: 30px; font-weight: 900; letter-spacing: -0.03em; color: var(--white); line-height: 1; }
+    .invest-summary .is-total-sub { font-size: 11px; color: var(--gray-dim); margin-top: 6px; }
+    @media(max-width:600px){ .invest-summary { flex-direction: column; align-items: flex-start; } .invest-summary .is-total { text-align: left; } }
+
+    .invest-media-note {
+      margin-top: 16px; display: flex; gap: 12px; align-items: flex-start;
+      font-size: 13px; color: var(--gray); line-height: 1.7;
+    }
+    .invest-media-note i { color: var(--white); font-size: 14px; margin-top: 3px; flex-shrink: 0; }
+    .invest-media-note strong { color: var(--white); font-weight: 600; }
+
     /* ─── RESPONSIVE ─── */
     @media(max-width: 600px) {
       nav { padding: 14px 20px; }
@@ -617,7 +666,7 @@
       <svg class="nav-logo-svg" viewBox="0 205 985 285" role="img" aria-label="Tuliu"><use href="#tuliu-logo"/></svg>
     </a>
     <div class="nav-badge">Proposta Exclusiva · Dairy Tech Brasil</div>
-    <a href="#cta" class="nav-cta">Agendar Conversa</a>
+    <a href="#cta" class="nav-cta">Vamos começar agora</a>
   </nav>
 
   <!-- ─── HERO ─── -->
@@ -643,7 +692,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
         Ver a proposta completa
       </a>
-      <p class="hero-sub">Apresentado pela Tuliu · tuliu.io</p>
     </div>
   </section>
 
@@ -1262,17 +1310,72 @@
     </div>
   </section>
 
+  <!-- ─── INVESTIMENTO ─── -->
+  <div class="how-wrap">
+    <section class="section">
+      <div class="container">
+        <p class="section-label">O Investimento</p>
+        <h2 class="section-title">Escopo fechado,<br>valor claro.</h2>
+        <p class="section-sub">Três meses para construir o sistema completo, com resultado desde o primeiro. Dois valores, sem letras miúdas.</p>
+
+        <div class="invest-grid">
+          <div class="invest-card">
+            <div class="invest-kicker"><i class="fa-solid fa-screwdriver-wrench"></i> Implementação · pagamento único</div>
+            <div class="invest-price">R$ 5.000 <small>único</small></div>
+            <div class="invest-period">Entregue no primeiro mês</div>
+            <p class="invest-desc">A fundação do sistema. Montamos a estrutura e, já no Mês 1, você começa a operar o mais urgente: tráfego pago rodando e conteúdo integrado à performance.</p>
+            <ul class="invest-list">
+              <li><i class="fa-solid fa-check"></i>Unificação de conteúdo e performance em um só fluxo</li>
+              <li><i class="fa-solid fa-check"></i>Estruturação e estabilização do tráfego pago</li>
+              <li><i class="fa-solid fa-check"></i>Base de criativos e identidade aplicada</li>
+              <li><i class="fa-solid fa-check"></i>Operação do urgente começando já no Mês 1</li>
+            </ul>
+          </div>
+
+          <div class="invest-card feat">
+            <div class="invest-kicker"><i class="fa-solid fa-arrows-rotate"></i> Operação mensal · recorrente</div>
+            <div class="invest-price">R$ 3.500 <small>/mês</small></div>
+            <div class="invest-period">Durante os 3 meses e seguindo depois</div>
+            <p class="invest-desc">A gestão integrada rodando mês a mês: tráfego, conteúdo e otimização operando como um só motor, com o sistema evoluindo a cada ciclo.</p>
+            <ul class="invest-list">
+              <li><i class="fa-solid fa-check"></i>Gestão de tráfego pago no Meta e no Google</li>
+              <li><i class="fa-solid fa-check"></i>Produção de conteúdo integrada à performance</li>
+              <li><i class="fa-solid fa-check"></i>Design e criativos com IA supervisionada</li>
+              <li><i class="fa-solid fa-check"></i>Relatórios e reunião quinzenal de alinhamento</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="invest-summary">
+          <div class="is-left">
+            <strong>Escopo fechado de 3 meses.</strong> Tempo suficiente para implementar o sistema completo descrito em O Caminho, com resultado visível desde as primeiras semanas. Depois dos 3 meses, a parceria segue na mensalidade.
+          </div>
+          <div class="is-total">
+            <div class="is-total-label">Investimento nos 3 meses</div>
+            <div class="is-total-val">R$ 15.500</div>
+            <div class="is-total-sub">R$ 5.000 + 3× R$ 3.500</div>
+          </div>
+        </div>
+
+        <div class="invest-media-note">
+          <i class="fa-solid fa-bullhorn"></i>
+          <p>A sua verba de mídia (hoje cerca de R$ 8.000/mês) é <strong>separada e continua 100% investida em anúncios</strong>, agora gerida pela gente. Nossa taxa não consome o seu orçamento de tráfego, ela faz esse orçamento render mais.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <!-- ─── CTA ─── -->
   <section class="cta-section" id="cta">
     <div class="cta-glow"></div>
     <div class="container" style="position:relative">
       <span class="tag" style="margin-bottom:28px;display:inline-flex">Próximo Passo</span>
       <h2 class="section-title">Pronto para<br>escalar o <em class="grad-text" style="font-style:normal">MilkTest</em>?</h2>
-      <p class="section-sub">Vamos conversar sobre como esse sistema funcionaria especificamente para a Dairy Tech, sem compromisso, sem enrolação.</p>
+      <p class="section-sub">Escopo fechado de 3 meses, resultado desde as primeiras semanas. Bora tirar isso do papel e começar a operar o tráfego e o conteúdo da Dairy Tech de forma integrada.</p>
       <div class="cta-buttons">
         <a href="https://wa.me/554999734733" class="btn-primary" target="_blank">
           <i class="fa-brands fa-whatsapp" style="font-size:18px"></i>
-          Conversar via WhatsApp
+          Vamos começar agora
         </a>
         <a href="mailto:contato@tuliu.io" class="btn-secondary">
           <i class="fa-solid fa-envelope" style="font-size:16px"></i>
