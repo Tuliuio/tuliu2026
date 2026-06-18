@@ -466,6 +466,23 @@
     .case-back-close i { margin-right: 5px; }
 
     /* mobile: grid simples sem flip */
+    .cases-nav {
+      display: flex; gap: 10px; margin-top: 24px;
+    }
+    .cases-nav-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 1px solid var(--border-hi);
+      color: var(--white);
+      font-size: 15px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .cases-nav-btn:hover { background: var(--accent-soft); border-color: var(--accent-border); }
+    .cases-nav-btn:disabled { opacity: .3; cursor: default; }
+
     @media(max-width: 768px) {
       .cases-track-wrapper { margin-right: -16px; }
       .case-card { width: 220px; }
@@ -1408,6 +1425,28 @@
           <div class="case-card" onclick="this.classList.toggle('flipped')">
             <div class="case-card-inner">
               <div class="case-card-front">
+                <img src="cases/vital-brasil.webp" alt="Vital Brasil">
+                <span class="case-hint">Ver case</span>
+              </div>
+              <div class="case-card-back">
+                <div class="case-back-top">
+                  <p class="case-back-client">Vital Brasil</p>
+                  <p class="case-back-title">Sistema operacional de marketing completo</p>
+                  <div class="case-back-tags">
+                    <span class="case-back-tag">Orquestração de agentes</span>
+                    <span class="case-back-tag">Tráfego pago</span>
+                    <span class="case-back-tag">Produção de conteúdo</span>
+                    <span class="case-back-tag">Sistema operacional de marketing</span>
+                  </div>
+                </div>
+                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" onclick="this.classList.toggle('flipped')">
+            <div class="case-card-inner">
+              <div class="case-card-front">
                 <img src="cases/aj-noticias.webp" alt="AJ Notícias">
                 <span class="case-hint">Ver case</span>
               </div>
@@ -1683,29 +1722,16 @@
             </div>
           </div>
 
-          <div class="case-card" onclick="this.classList.toggle('flipped')">
-            <div class="case-card-inner">
-              <div class="case-card-front">
-                <img src="cases/vital-brasil.webp" alt="Vital Brasil">
-                <span class="case-hint">Ver case</span>
-              </div>
-              <div class="case-card-back">
-                <div class="case-back-top">
-                  <p class="case-back-client">Vital Brasil</p>
-                  <p class="case-back-title">Sistema operacional de marketing completo</p>
-                  <div class="case-back-tags">
-                    <span class="case-back-tag">Orquestração de agentes</span>
-                    <span class="case-back-tag">Tráfego pago</span>
-                    <span class="case-back-tag">Produção de conteúdo</span>
-                    <span class="case-back-tag">Sistema operacional de marketing</span>
-                  </div>
-                </div>
-                <span class="case-back-close"><i class="fa-solid fa-rotate-left"></i> Voltar</span>
-              </div>
-            </div>
-          </div>
-
         </div>
+      </div>
+      <!-- ── setas de navegação ── -->
+      <div class="cases-nav">
+        <button class="cases-nav-btn" id="casesPrev" aria-label="Anterior">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="cases-nav-btn" id="casesNext" aria-label="Próximo">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
     </div>
   </section>
@@ -1837,6 +1863,30 @@
       <p><a href="https://tuliu.io" style="color:#52525B;text-decoration:none">tuliu.io</a></p>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const wrapper = document.querySelector('.cases-track-wrapper');
+      const prev = document.getElementById('casesPrev');
+      const next = document.getElementById('casesNext');
+      if (!wrapper || !prev || !next) return;
+
+      const step = () => {
+        const card = wrapper.querySelector('.case-card');
+        return card ? card.offsetWidth + 14 : 274;
+      };
+
+      const update = () => {
+        prev.disabled = wrapper.scrollLeft <= 4;
+        next.disabled = wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth - 4;
+      };
+
+      prev.addEventListener('click', () => { wrapper.scrollBy({ left: -step() * 2, behavior: 'smooth' }); });
+      next.addEventListener('click', () => { wrapper.scrollBy({ left: step() * 2, behavior: 'smooth' }); });
+      wrapper.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
 
 </body>
 </html>
