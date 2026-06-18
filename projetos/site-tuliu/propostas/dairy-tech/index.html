@@ -667,6 +667,7 @@
       border-radius: 20px; padding: 0 48px 0 0;
       display: flex; gap: 40px; align-items: flex-end;
       overflow: hidden;
+      min-height: 340px;
     }
     @media(max-width:700px){
       .tom-card { flex-direction: column; padding: 32px 24px; align-items: flex-start; gap: 24px; }
@@ -674,11 +675,14 @@
     }
     .tom-photo-wrap {
       flex-shrink: 0;
-      width: 160px;
-      align-self: flex-end;
+      width: 210px;
+      align-self: stretch;
+      display: flex;
+      align-items: flex-end;
     }
     .tom-photo-wrap img {
-      display: block; width: 100%; height: auto;
+      display: block; width: 100%; height: 100%;
+      object-fit: contain; object-position: bottom center;
       filter: grayscale(15%);
     }
     .tom-body { padding: 40px 0; }
@@ -690,11 +694,16 @@
       display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
     }
     .tom-brands img {
-      height: 22px; width: auto;
+      height: 24px; width: auto;
       opacity: .55;
       filter: brightness(0) invert(1);
       transition: opacity .2s;
     }
+    .tom-brands img[alt="SBT"]       { height: 40px; }
+    .tom-brands img[alt="Marfrig"]   { height: 36px; }
+    .tom-brands img[alt="AACD"]      { height: 30px; }
+    .tom-brands img[alt="Ecovias"]   { height: 18px; }
+    .tom-brands img[alt="Habib's"]   { height: 36px; }
     .tom-brands img:hover { opacity: .9; }
 
     /* ─── PATH / FILOSOFIA ─── */
@@ -1362,7 +1371,7 @@
           <img src="tom/tom.png" alt="Tom">
         </div>
         <div class="tom-body">
-          <div class="tom-name">Tom</div>
+          <div class="tom-name">Tom Martins</div>
           <div class="tom-title">Gerente de Conta Enterprise · Tuliu</div>
           <p class="tom-bio">
             Mais de duas décadas dedicadas ao marketing de marcas que precisavam crescer de verdade. Tom já esteve na sala de decisão de nomes como <strong>Asics, Marfrig, Ecovias, SBT, Teletom, Pompom e Habib's</strong>. Marcas com públicos, desafios e escalas completamente diferentes entre si. Esse histórico é o que ele traz para cada cliente do plano Enterprise: a experiência de quem já navegou em mercados complexos e sabe que bom marketing é, antes de tudo, um problema de sistema.
@@ -1373,6 +1382,7 @@
             <img src="tom/logo-ecovias.png" alt="Ecovias">
             <img src="tom/logo-sbt.png" alt="SBT">
             <img src="tom/logo-aacd.webp" alt="AACD">
+            <img src="tom/logo-habibs.png" alt="Habib's">
           </div>
         </div>
       </div>
