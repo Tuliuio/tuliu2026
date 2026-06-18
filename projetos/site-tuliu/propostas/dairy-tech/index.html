@@ -217,7 +217,7 @@
       box-shadow: 0 4px 20px rgba(0,0,0,.4);
       animation: counter-spin 18s linear infinite;
     }
-    .orbit-ring.r2 .orbit-node { animation-duration: 28s; animation-direction: normal; }
+    .orbit-ring.r2 .orbit-node { animation-duration: 28s; animation-direction: reverse; }
     @keyframes counter-spin { from{transform: translate(-50%,-50%) rotate(0deg)} to{transform: translate(-50%,-50%) rotate(-360deg)} }
 
     .n1 { margin-top: -100px; margin-left: 0px; }
@@ -542,6 +542,42 @@
       padding: 4px 12px; border-radius: 100px;
       background: var(--bg-3); border: 1px solid var(--border-hi);
     }
+
+    /* ─── PATH / FILOSOFIA ─── */
+    .path-lead { max-width: 720px; margin-bottom: 48px; }
+    .path-lead p { font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 18px; }
+    .path-lead p:last-child { margin-bottom: 0; }
+    .path-lead strong { color: var(--white); font-weight: 600; }
+
+    .path-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    @media(max-width:760px){ .path-grid { grid-template-columns: 1fr; } }
+    .path-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 30px 28px; position: relative; overflow: hidden;
+    }
+    .path-card.is-now {
+      border-color: var(--accent-border);
+      background: linear-gradient(135deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.015) 100%);
+    }
+    .path-step-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .path-month {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+    .path-card.is-now .path-month { color: var(--white); }
+    .path-pill {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+      padding: 3px 9px; border-radius: 100px;
+      background: var(--accent-soft); color: var(--white); border: 1px solid var(--accent-border);
+    }
+    .path-card h4 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .path-card > p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+    .path-note {
+      margin-top: 32px; display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; color: var(--gray); line-height: 1.7; max-width: 720px;
+    }
+    .path-note i { color: var(--white); font-size: 15px; margin-top: 3px; flex-shrink: 0; }
+    .path-note strong { color: var(--white); font-weight: 600; }
 
     /* ─── RESPONSIVE ─── */
     @media(max-width: 600px) {
@@ -1179,6 +1215,49 @@
       </div>
     </section>
   </div>
+
+  <!-- ─── PATH / FILOSOFIA ─── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">O Caminho</p>
+      <h2 class="section-title">Começar pelo óbvio,<br>bem feito.</h2>
+      <div class="path-lead">
+        <p>Antes de qualquer inovação, o básico precisa estar de pé. Começamos pelo que dá resultado mais rápido: <strong>unificar conteúdo e performance</strong>, hoje em ilhas separadas, e transformar o tráfego pago em uma operação consistente, não em uma aposta de mês a mês.</p>
+        <p>Com essa fundação sólida, a inovação entra em camadas. Os agentes de IA, os loops de otimização e a orquestração completa do sistema vão sendo ligados aos poucos, sempre sobre uma base que já está funcionando.</p>
+        <p>O sistema completo, com todas as frentes operando em sincronia, leva <strong>cerca de três meses para ser implementado por inteiro.</strong> Por isso esta proposta vislumbra um futuro, mas é honesta sobre o caminho: ele é construído ao longo do tempo, etapa por etapa.</p>
+      </div>
+
+      <div class="path-grid">
+        <div class="path-card is-now">
+          <div class="path-step-head">
+            <span class="path-month">Mês 1</span>
+            <span class="path-pill">Começa aqui</span>
+          </div>
+          <h4>Fundação</h4>
+          <p>Unificar conteúdo e performance e estabilizar o tráfego pago. O básico bem feito, com resultado visível já nas primeiras semanas.</p>
+        </div>
+        <div class="path-card">
+          <div class="path-step-head">
+            <span class="path-month">Mês 2</span>
+          </div>
+          <h4>Integração</h4>
+          <p>Os agentes de pesquisa e criação entram no fluxo. Começam os primeiros ciclos de otimização alimentados por dados reais da operação.</p>
+        </div>
+        <div class="path-card">
+          <div class="path-step-head">
+            <span class="path-month">Mês 3</span>
+          </div>
+          <h4>Sistema completo</h4>
+          <p>Orquestração total entre IA e equipe humana operando em sincronia. O futuro descrito nesta proposta, implementado e rodando.</p>
+        </div>
+      </div>
+
+      <div class="path-note">
+        <i class="fa-solid fa-seedling"></i>
+        <p>Nenhuma promessa de virada da noite para o dia. <strong>Resultado desde o começo, sistema completo ao longo de três meses.</strong> É assim que se constrói algo que dura.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ─── CTA ─── -->
   <section class="cta-section" id="cta">
