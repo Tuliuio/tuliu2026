@@ -99,9 +99,9 @@ export const translations = {
       errorFallback: "Erro ao criar checkout. Tente novamente.",
     },
     cta: {
-      title: "Pronto começar?",
-      subtitle: "Não perca mais tempo resolvendo problemas de hospedagem, domínio ou código. Nós cuidamos da infraestrutura para você focar no que importa.",
-      btn: "Quero minha infraestrutura"
+      title: "A escolha das marcas que crescem no ambiente digital.",
+      subtitle: "O plano Enterprise é o nosso nível mais completo: um sistema operacional de marketing rodando para você, com IA e equipe humana em sincronia.",
+      btn: "Conhecer o plano Enterprise"
     },
     footer: {
       help: "Precisa de ajuda?",
@@ -220,9 +220,9 @@ export const translations = {
       errorFallback: "Failed to create checkout. Please try again.",
     },
     cta: {
-      title: "Ready to start?",
-      subtitle: "Stop wasting time solving hosting, domain, or coding issues. We take care of the infrastructure so you can focus on what matters.",
-      btn: "Get my infrastructure"
+      title: "The choice of brands that grow in the digital space.",
+      subtitle: "The Enterprise plan is our most complete tier: a marketing operating system running for you, with AI and a human team in sync.",
+      btn: "Discover the Enterprise plan"
     },
     footer: {
       help: "Need help?",
