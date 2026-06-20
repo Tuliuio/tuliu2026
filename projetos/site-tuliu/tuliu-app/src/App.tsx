@@ -136,9 +136,12 @@ function App() {
   // Auto-navigate based on user role when logged in
   useEffect(() => {
     if (session && currentPage === 'login' && client) {
+      // Onboarding é exclusivo de quem comprou: o cadastro via pagamento (webhook
+      // ASAAS) seta asaas_customer_id. Cadastros diretos não têm e vão direto ao painel.
+      const hasPurchased = !!client.asaas_customer_id;
       if (client.role === 'admin') {
         navigate('admin');
-      } else if (!client.onboarding_completed) {
+      } else if (hasPurchased && !client.onboarding_completed) {
         navigate('onboarding');
       } else {
         navigate('dashboard');

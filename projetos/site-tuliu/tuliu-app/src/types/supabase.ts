@@ -28,6 +28,8 @@ export interface Client {
   custom_price?: number | null;
   status: 'active' | 'canceled' | 'suspended';
   role: 'client' | 'admin';
+  asaas_customer_id?: string | null;
+  asaas_subscription_id?: string | null;
   onboarding_completed: boolean;
   onboarding_data?: {
     segment?: string;
