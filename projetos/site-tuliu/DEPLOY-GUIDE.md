@@ -1,66 +1,39 @@
-# Deploy Automático em tuliu.io via GitHub Actions
+# Deploy do tuliu.io
 
-## 📋 Configuração dos Secrets
+> Caminho único e oficial de publicação: **push na `main`**.
+> Não existe deploy por API da Hostinger nem por skill. Só GitHub.
 
-### Passo 1: Abrir Settings do Repositório
+## Como funciona
 
-1. Acesse: https://github.com/Tuliuio/tuliu2026
-2. Clique em **Settings** (engrenagem no topo)
-3. Na barra esquerda, clique em **Secrets and variables** → **Actions**
+A cada `push` na branch `main`, o GitHub Actions (`.github/workflows/deploy-hostinger.yml`):
 
-### Passo 2: Adicionar os Secrets
+1. Faz checkout do código
+2. Roda `npm ci` e `npm run build` em `projetos/site-tuliu/tuliu-app`
+3. Envia a pasta `dist/` para a Hostinger via **FTP** (`SamKirkland/FTP-Deploy-Action`)
 
-Clique em **New repository secret** e adicione:
+Tudo que está em `tuliu-app/public/` (incluindo `mira/diagnosticos/...` e o `.htaccess`) é copiado para `dist/` pelo Vite e vai ao ar.
 
-#### Secret 1: `HOSTINGER_API_KEY`
-```
-Valor: yBCOpJdCePnOV2K13YNb97BLye9NWfZXHrrdflLa351e3858
-```
+## Como publicar
 
-#### Secret 2: `HOSTINGER_EMAIL`
-```
-Valor: tom@somosmira.com.br
-```
-
-## 🚀 Como Fazer Deploy
-
-### Opção 1: Automático (via Git Push)
-Basta fazer push para `main` que o deploy acontece automaticamente:
 ```bash
 git push origin main
 ```
 
-### Opção 2: Manual (via GitHub Web)
-1. Acesse https://github.com/Tuliuio/tuliu2026/actions
-2. Selecione o workflow "Deploy para Hostinger"
-3. Clique em **Run workflow**
+Só isso. Em ~2-5 minutos o site atualiza em https://tuliu.io.
 
-## ✅ Verificar Deploy
+Para acompanhar: https://github.com/Tuliuio/tuliu2026/actions
 
-Após fazer push:
-1. Acesse https://github.com/Tuliuio/tuliu2026/actions
-2. Veja o workflow em execução
-3. Após conclusão, o site estará em https://tuliu.io
+## Secrets (já configurados no GitHub)
 
-## 📊 Status do Deploy
+O deploy usa segredos guardados em **GitHub Secrets** (Settings → Secrets and variables → Actions). Nunca coloque credenciais neste repositório.
 
-| Etapa | Status |
-|-------|--------|
-| ✅ Código no GitHub | Completo |
-| ✅ Workflow configurado | Completo |
-| ⏳ Secrets GitHub | Aguardando configuração |
-| ⏳ Deploy automático | Aguardando secrets |
+| Secret | Para que serve |
+|--------|----------------|
+| `HOSTINGER_SERVER` | Host FTP da Hostinger |
+| `HOSTINGER_USERNAME` | Usuário FTP |
+| `HOSTINGER_PASSWORD` | Senha FTP |
 
-## 🔗 Links Úteis
+## Publicar um diagnóstico
 
-- Repositório: https://github.com/Tuliuio/tuliu2026
-- Actions: https://github.com/Tuliuio/tuliu2026/actions
-- Settings Secrets: https://github.com/Tuliuio/tuliu2026/settings/secrets/actions
-- Site ao vivo: https://tuliu.io
-
-## ⚠️ Notas Importantes
-
-- Nunca compartilhe a `HOSTINGER_API_KEY` em público
-- Os secrets são criptografados e seguros
-- O deploy leva ~2-5 minutos por arquivo
-- Após deploy, o site pode levar 1-2 minutos para atualizar (cache)
+Ver o passo a passo completo em `DIAGNOSTICOS_WORKFLOW.md` (na raiz do repositório).
+Resumo: criar o HTML em `tuliu-app/public/mira/diagnosticos/<cliente>/index.html`, commitar e dar push. URL final: `https://tuliu.io/mira/diagnosticos/<cliente>`.
