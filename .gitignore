@@ -1,0 +1,7 @@
+# Segredos: nunca versionar arquivos .env (o deploy usa GitHub Secrets)
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
