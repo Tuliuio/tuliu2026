@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Marca · Mulheres Pedra Branca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg:         #0A0A0A;
+    --surface:    #141414;
+    --surface2:   #1C1C1C;
+    --gold:       #D0AD23;
+    --gold-soft:  #ECE2BD;
+    --white:      #FFFFFF;
+    --off-white:  #E9E5E5;
+    --muted:      #54595F;
+    --border:     #2A2A2A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.08);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(208,173,35,0.06);
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-date {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .cover-center { position: relative; z-index: 2; }
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .cover-title em { font-style: italic; color: var(--gold); }
+  .cover-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    font-weight: 300;
+  }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-client-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .cover-client-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+  }
+  .cover-author {
+    text-align: right;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .cover-author strong {
+    color: var(--off-white);
+    display: block;
+    font-weight: 400;
+  }
+
+  /* ── TOC ── */
+  .toc-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+  .toc-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .toc-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  .toc-item:hover .toc-item-title { color: var(--gold); }
+  .toc-item-n {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 24px;
+    font-weight: 500;
+  }
+  .toc-item-title {
+    font-size: 15px;
+    color: var(--off-white);
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  /* ── SECTION BASE ── */
+  .section {
+    padding: 80px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 0 60px;
+    opacity: 0.2;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .section-num-line {
+    height: 1px;
+    width: 32px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--off-white);
+    font-size: 15px;
+    max-width: 680px;
+    opacity: 0.85;
+  }
+  p strong { color: var(--white); font-weight: 500; opacity: 1; }
+  p em { color: var(--gold-soft); font-style: italic; }
+
+  /* ── LEAD TEXT ── */
+  .lead {
+    font-size: 17px;
+    color: var(--off-white);
+    opacity: 0.9;
+    margin-bottom: 20px;
+    max-width: 680px;
+    line-height: 1.6;
+  }
+  .lead strong { color: var(--white); font-weight: 500; }
+
+  /* ── EXPANDABLE ── */
+  details {
+    margin-top: 16px;
+  }
+  summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(208,173,35,0.2);
+    transition: opacity 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 9px;
+    transition: transform 0.25s;
+  }
+  details[open] summary::after { transform: rotate(180deg); }
+  summary:hover { opacity: 0.75; }
+  .details-body {
+    padding: 24px 0 8px;
+    border-top: none;
+  }
+  .details-body p {
+    font-size: 14px;
+    opacity: 0.75;
+    margin-bottom: 12px;
+  }
+
+  /* ── INTRO ESPECIAL ── */
+  .intro-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .intro-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(19px, 3vw, 28px);
+    line-height: 1.4;
+    color: var(--gold-soft);
+    border-left: 3px solid var(--gold);
+    padding-left: 28px;
+    margin: 36px 0;
+    max-width: 640px;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 32px 0;
+  }
+  .card {
+    background: var(--surface2);
+    padding: 32px 28px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+  }
+  .card-icon {
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .card-text {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.6;
+    opacity: 0.75;
+  }
+
+  /* ── GAPS LIST ── */
+  .gaps-list { margin: 32px 0; }
+  .gap-item {
+    padding: 24px 28px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    margin-bottom: 8px;
+    border-radius: 0 2px 2px 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .gap-icon {
+    color: var(--gold);
+    font-size: 14px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .gap-content {}
+  .gap-area {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--gold-soft);
+    margin-bottom: 4px;
+  }
+  .gap-desc {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+  .gap-desc strong { color: var(--white); font-weight: 500; }
+
+  /* ── RECS ── */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin: 32px 0;
+  }
+  .rec-card {
+    background: var(--surface2);
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    position: relative;
+  }
+  .rec-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .rec-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 10px;
+    margin-right: 36px;
+  }
+  .rec-text {
+    font-size: 13px;
+    color: var(--off-white);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 32px 40px;
+    margin: 32px 0;
+    border-radius: 0 2px 2px 0;
+  }
+  .highlight-box p { color: var(--off-white); max-width: none; opacity: 0.9; }
+  .highlight-box strong { color: var(--white); }
+  .highlight-box .box-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+  }
+  .gold-box { background: rgba(208,173,35,0.07); }
+
+  /* ── STATEMENT ── */
+  .statement-section {
+    background: var(--surface);
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .statement-section h2 { max-width: 720px; margin: 0 auto 20px; }
+  .statement-section p { max-width: 560px; margin: 0 auto; font-size: 16px; }
+
+  @media (max-width: 768px) {
+    .cover, .section, .toc-section, .intro-section, .statement-section { padding: 40px 24px; }
+    .toc-grid, .cards-grid, .recs-grid { grid-template-columns: 1fr; }
+    .cover-top, .cover-bottom { flex-direction: column; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-top">
+    <img src="mira-logo.png" alt="MIRA" style="height: 40px; width: auto;">
+    <div class="cover-date">Junho de 2026<br><span style="color: var(--gold); opacity: 0.8;">Documento confidencial</span></div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-eyebrow">Diagnóstico de Branding</div>
+    <h1 class="cover-title">Mulheres<br><em>Pedra Branca</em></h1>
+    <p class="cover-subtitle">Um movimento que já virou negócio. Falta a marca dizer isso em voz alta.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-client">
+      <div class="cover-client-label">Elaborado para</div>
+      <div class="cover-client-name">Alessandra Balbinot</div>
+    </div>
+    <div class="cover-author">
+      <strong>Tom Martins</strong>
+      Mira Brand Studio
+    </div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="toc-section">
+  <div class="toc-header">
+    <span class="toc-num">Índice</span>
+    <span class="toc-title">O que você encontra aqui</span>
+  </div>
+  <div class="toc-grid">
+    <a href="#intro" class="toc-item"><span class="toc-item-n">01</span><span class="toc-item-title">Uma nota antes de começar</span></a>
+    <a href="#autoridade" class="toc-item"><span class="toc-item-n">02</span><span class="toc-item-title">Autoridade vivida</span></a>
+    <a href="#diagnostico" class="toc-item"><span class="toc-item-n">03</span><span class="toc-item-title">O diagnóstico central</span></a>
+    <a href="#presencial-digital" class="toc-item"><span class="toc-item-n">04</span><span class="toc-item-title">Presencial forte. Digital em pausa.</span></a>
+    <a href="#movimento" class="toc-item"><span class="toc-item-n">05</span><span class="toc-item-title">O movimento que já está em curso</span></a>
+    <a href="#identidade" class="toc-item"><span class="toc-item-n">06</span><span class="toc-item-title">Identidade e símbolos</span></a>
+    <a href="#digital" class="toc-item"><span class="toc-item-n">07</span><span class="toc-item-title">A oportunidade digital</span></a>
+    <a href="#forcas" class="toc-item"><span class="toc-item-n">08</span><span class="toc-item-title">Forças e pontos de atenção</span></a>
+    <a href="#recomendacoes" class="toc-item"><span class="toc-item-n">09</span><span class="toc-item-title">Próximos passos</span></a>
+  </div>
+</section>
+
+<!-- 01 INTRO -->
+<section class="intro-section" id="intro">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Uma nota antes de começar</span>
+    </div>
+
+    <h2>Alessandra,<br><em>isso é para você.</em></h2>
+
+    <p class="lead">Este diagnóstico foi construído a partir de escuta dedicada sobre o Mulheres Pedra Branca: a sua história, a cultura que sustenta o movimento, o que já está funcionando e para onde você quer levar tudo isso.</p>
+
+    <div class="intro-quote">
+      "A gente não muda o mundo com intenção. A gente muda o mundo com ação."
+    </div>
+
+    <details>
+      <summary>Ver método de construção</summary>
+      <div class="details-body">
+        <p>A base foi uma conversa aprofundada sobre trajetória, propósito, cultura, presença digital e a visão de futuro do MPB. Os insights foram organizados em uma leitura estratégica da marca nas dimensões em que ela já existe: o presencial, o digital, o institucional e a sua marca pessoal.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 02 AUTORIDADE -->
+<section class="section" id="autoridade">
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Autoridade vivida</span>
+  </div>
+
+  <h2>Não é autoridade sabida.<br><em>É autoridade vivida.</em></h2>
+
+  <p class="lead">Quatorze anos de palco como palestrante profissional. Um movimento construído na própria pele, a partir de dor real, saúde, maternidade e fé. O que você carrega não veio de livro. Veio de vida vivida, e isso é o ativo mais difícil de copiar que existe.</p>
+
+  <div class="cards-grid" style="margin-top: 28px;">
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+      <div class="card-title">Cultura da honra</div>
+      <div class="card-text">A base do MPB. Não se fala em honrar quem caminha junto: honra-se. É o que diferencia o movimento de qualquer rede feminina genérica.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-fire"></i></span>
+      <div class="card-title">Ação acima da intenção</div>
+      <div class="card-text">Quando você decide algo, você faz e pronto. Essa capacidade de realização encurta a distância entre imaginar e acontecer.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-tower-observation"></i></span>
+      <div class="card-title">A luz que denuncia</div>
+      <div class="card-text">Você abre os olhos das mulheres para o que ficou oculto. Coragem de dizer o que poucos têm. O farol não é metáfora: é o seu papel.</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>A origem que sustenta tudo</summary>
+    <div class="details-body">
+      <p>Aos três anos, uma caixa de feira virada de cabeça para baixo era o palco e uma escova de cabelo, o microfone. A certeza de falar em público nunca foi um plano: foi uma convicção desde a infância. Depois vieram dez anos de indústria farmacêutica, a decisão de empreender do zero, doze anos cuidando do marido e a chegada da maternidade. Cada uma dessas camadas hoje vira repertório vivido. É disso que o MPB se alimenta.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 03 DIAGNÓSTICO -->
+<section class="section" id="diagnostico">
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">O diagnóstico central</span>
+  </div>
+
+  <h2>Você já sabe<br><em>exatamente onde quer chegar.</em></h2>
+
+  <p class="lead">Muitos empreendedores chegam sem saber para onde ir. Não é o seu caso. A visão está clara: de Mulheres Pedra Branca para Mulheres para o Brasil, o maior movimento de empreendedorismo feminino do país até 2030. A marca já está registrada no INPI. O destino já está internalizado.</p>
+
+  <div class="highlight-box gold-box" style="margin-top: 28px;">
+    <p><strong>O ponto central:</strong> não falta visão, nem capacidade de execução, nem fé. O que falta é a marca documentada. Aquilo que vibra dentro de você precisa ir para o papel, para que outras pessoas cheguem em sintonia sem que você tenha que elevar a conversa do zero toda vez.</p>
+  </div>
+
+  <details>
+    <summary>Por que isso importa agora</summary>
+    <div class="details-body">
+      <p>Você está retomando o movimento depois de uma pausa de mais de um ano. Cada nova parceira, patrocinadora ou mulher que chega precisa entender, rápido, o que é o MPB e para onde ele vai. Hoje essa tradução depende inteiramente da sua presença. Quando a marca estiver documentada, ela passa a trabalhar por você, mesmo quando você não está na sala.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 04 PRESENCIAL X DIGITAL -->
+<section class="section" id="presencial-digital">
+  <div class="section-label">
+    <span class="section-num">04</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Presencial forte. Digital em pausa.</span>
+  </div>
+
+  <h2>No presencial, lotado.<br><em>No digital, adormecido.</em></h2>
+
+  <p class="lead">Houve edição que esgotou todos os ingressos em 57 minutos. O limite hoje é físico: cabem 140 mulheres no espaço. A demanda existe e é reprimida no bairro. O presencial prova o valor. O digital, que poderia escalar isso, ficou parado durante a pausa e ainda comunica uma fase anterior.</p>
+
+  <div class="gaps-list" style="margin-top: 24px;">
+    <div class="gap-item">
+      <i class="fa-solid fa-circle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Pontos de contato na fase antiga</div>
+        <div class="gap-desc">O perfil novo ainda carrega resquícios da fase rateada e o link da bio não aterrissa em um lugar que explique o MPB. Quem chega de fora não consegue captar a vibração do movimento em poucos segundos.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-circle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Sem ambiente constante para as mulheres</div>
+        <div class="gap-desc">Entre um evento e outro, falta um espaço que mantenha a conexão viva. O grupo de WhatsApp ficou mais de um ano sem alimentação e, ainda assim, as mulheres voltaram. Imagine com um ambiente cuidado de forma intencional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 05 MOVIMENTO -->
+<section class="section" id="movimento">
+  <div class="section-label">
+    <span class="section-num">05</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">O movimento que já está em curso</span>
+  </div>
+
+  <h2>De Pedra Branca<br><em>para o Brasil.</em></h2>
+
+  <p class="lead">Você já tomou os passos de quem pensa grande: garantiu o registro da marca, desenhou a estratégia e plantou a semente. O MPB começou como movimento e está virando negócio. A energia agora está concentrada em estruturar o modelo aqui, para depois replicá-lo para outras cidades.</p>
+
+  <div class="highlight-box" style="margin-top: 24px;">
+    <p class="box-title">De movimento para negócio</p>
+    <p>Mulheres Pedra Branca nasceu como movimento e nunca vai deixar de ser onde tudo começou. Mas ele já é o MVP de algo maior. Validar o modelo, a cultura e a metodologia aqui é o que torna possível levar o Mulheres para o Brasil para qualquer outro lugar com a mesma alma.</p>
+  </div>
+
+  <details>
+    <summary>O cuidado necessário em marcas com comunidade</summary>
+    <div class="details-body">
+      <p>O MPB não é só uma marca: é uma comunidade com cultura própria, a cultura da honra. Em movimentos assim, o reposicionamento precisa ser preciso, não agressivo. As mulheres que já viveram a transformação precisam continuar se reconhecendo. As que chegam agora precisam sentir que entraram no lugar certo. A marca tem que acolher as duas pontas ao mesmo tempo.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 06 IDENTIDADE -->
+<section class="section" id="identidade">
+  <div class="section-label">
+    <span class="section-num">06</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Identidade e símbolos</span>
+  </div>
+
+  <h2>O girassol, o farol<br><em>e o que ainda não foi ao papel.</em></h2>
+
+  <p class="lead">Os símbolos já existem e fazem sentido. O girassol é o símbolo do MPB. O farol náutico é a sua marca pessoal, que te representa há mais de dez anos. O trabalho não é inventar identidade. É documentar e traduzir o que já vive em você.</p>
+
+  <div class="cards-grid" style="margin-top: 24px;">
+    <div class="card" style="border-top-color: rgba(208,173,35,0.3);">
+      <span class="card-icon"><i class="fa-solid fa-sun"></i></span>
+      <div class="card-title">Preservar</div>
+      <div class="card-text">O girassol como símbolo do movimento. A cultura da honra como base. O farol como referência da sua trajetória e do seu propósito.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-book"></i></span>
+      <div class="card-title">Documentar</div>
+      <div class="card-text">Propósito, missão, valores e a visão 2030 organizados em um brandbook. Tirar do coração e colocar no papel o que hoje só existe na sua fala.</div>
+    </div>
+    <div class="card" style="border-top-color: rgba(208,173,35,0.3);">
+      <span class="card-icon"><i class="fa-solid fa-tower-broadcast"></i></span>
+      <div class="card-title">Traduzir</div>
+      <div class="card-text">Levar essa vibração para um material que entregue a essência do MPB em poucos minutos, em qualquer ponto de contato.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 07 DIGITAL -->
+<section class="section" id="digital">
+  <div class="section-label">
+    <span class="section-num">07</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">A oportunidade digital</span>
+  </div>
+
+  <h2>O presencial gera autoridade.<br><em>O digital escala.</em></h2>
+
+  <p class="lead">A sua leitura já é a certa: o digital vai ser consequência de um trabalho bem feito no presencial, e não o contrário. Você usa a autoridade do palco para levar a mensagem à tela, de forma íntegra. E você já provou que funciona: clientes em Foz do Iguaçu, em São Paulo, transmissões online, o clube das leoas toda segunda às 5h27.</p>
+
+  <div class="highlight-box gold-box" style="margin-top: 24px;">
+    <p><strong>As mesmas ferramentas usadas para o mal servem para o bem.</strong> Você viveu os bastidores do digital no extremo e viu a podridão. Mas a ferramenta continua poderosa. O problema é a direção que deram a ela. Usada com integridade, ela é o que leva a cultura do MPB para muito além da geografia da Pedra Branca.</p>
+  </div>
+
+  <details>
+    <summary>Pertencimento como motor</summary>
+    <div class="details-body">
+      <p>Um ambiente digital constante, com uma contribuição mensal acessível, muda a relação das mulheres com o movimento. Enquanto não se paga, não se pertence. No momento em que existe um vínculo, o pertencimento se aprofunda. Não é sobre gravar curso para vender no digital. É sobre dar continuidade ao que já transforma vidas no presencial, com o digital cuidando da gestão, do alcance e da permanência.</p>
+    </div>
+  </details>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 08 FORÇAS -->
+<section class="section" id="forcas">
+  <div class="section-label">
+    <span class="section-num">08</span>
+    <div class="section-num-line"></div>
+    <span class="section-tag">Diagnóstico consolidado</span>
+  </div>
+
+  <h2>O que preservar<br><em>e o que resolver.</em></h2>
+
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-seedling"></i></span>
+      <div class="card-title">Três anos, onze edições</div>
+      <div class="card-text">Autoridade construída com consistência, mesmo com pausas. Demanda que se prova esgotando ingressos em minutos.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-bolt"></i></span>
+      <div class="card-title">Realização e fé</div>
+      <div class="card-text">Capacidade rara de tirar a ideia do papel e a convicção de quem sente o futuro antes de ele acontecer.</div>
+    </div>
+    <div class="card">
+      <span class="card-icon"><i class="fa-solid fa-people-group"></i></span>
+      <div class="card-title">Comunidade com transformação</div>
+      <div class="card-text">Depoimentos reais de mulheres que mudaram de vida. Não é promessa: é histórico comprovado.</div>
+    </div>
+  </div>
+
+  <h2 style="margin-top: 48px; font-size: clamp(22px, 3vw, 32px);">Pontos de <em>atenção.</em></h2>
+
+  <div class="gaps-list">
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Marca ainda não documentada</div>
+        <div class="gap-desc">Propósito, valores e visão vivem na sua fala, não no papel. Sem documentação, tudo depende da sua presença para acontecer.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Sem material que crie sintonia antes da conversa</div>
+        <div class="gap-desc">Falta uma landing page, um PDF ou um vídeo que, em cinco minutos, coloque qualquer parceira ou patrocinadora na mesma frequência do MPB.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Pontos de contato digitais na fase antiga</div>
+        <div class="gap-desc">Perfil, bio e links ainda não refletem o momento atual do movimento nem para onde ele vai.</div>
+      </div>
+    </div>
+    <div class="gap-item">
+      <i class="fa-solid fa-triangle-exclamation gap-icon"></i>
+      <div class="gap-content">
+        <div class="gap-area">Sem ambiente de pertencimento contínuo</div>
+        <div class="gap-desc">Entre os eventos, falta um espaço que mantenha a conexão viva e abra caminho para um modelo sustentável de contribuição.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STATEMENT -->
+<section class="statement-section">
+  <h2>Um movimento que já é maior<br><em>do que a geografia onde nasceu.</em></h2>
+  <p>O MPB não precisa provar que existe. Ele já transformou vidas, esgotou eventos e criou uma cultura própria. O que precisa agora é fazer essa força chegar em mais lugares, com a mesma alma e a mesma honra que tem na Pedra Branca.</p>
+</section>
+
+<!-- 09 RECOMENDAÇÕES -->
+<section style="background: var(--surface); padding: 80px 60px; border-top: 1px solid var(--border);" id="recomendacoes">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label">
+      <span class="section-num">09</span>
+      <div class="section-num-line"></div>
+      <span class="section-tag">Próximos passos</span>
+    </div>
+
+    <h2>O que fazer<br><em>a partir de agora.</em></h2>
+
+    <div class="recs-grid">
+      <div class="rec-card">
+        <div class="rec-num">01</div>
+        <div class="rec-title">Documentar a marca do MPB</div>
+        <p class="rec-text">Propósito, missão, valores, cultura da honra e a visão 2030 organizados no papel. É a fundação que faz tudo o mais ganhar coerência.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">02</div>
+        <div class="rec-title">Criar um material que entregue a vibração</div>
+        <p class="rec-text">Uma landing page, um PDF ou um vídeo que, em cinco minutos, coloque qualquer pessoa em sintonia com o movimento antes mesmo da conversa.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">03</div>
+        <div class="rec-title">Brandbook para parcerias e patrocínios</div>
+        <p class="rec-text">Um material de marca que você entrega antes das reuniões, para que parceiras e patrocinadoras cheguem já na mesma frequência.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">04</div>
+        <div class="rec-title">Ajustar os pontos de contato digitais</div>
+        <p class="rec-text">Perfil, bio e links alinhados ao momento atual, com um caminho claro que aterrissa em quem é o MPB e leva a próxima ação.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">05</div>
+        <div class="rec-title">Construir um ambiente de pertencimento</div>
+        <p class="rec-text">Um espaço contínuo entre os eventos, com contribuição mensal acessível, que aprofunda o vínculo e abre um modelo sustentável.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">06</div>
+        <div class="rec-title">Estruturar o modelo replicável</div>
+        <p class="rec-text">Transformar o que funciona na Pedra Branca em metodologia documentada, pronta para escalar como Mulheres para o Brasil.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 48px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 2px 2px 0;">
+      <h3 style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold-soft); margin-bottom: 12px;">Fechamento</h3>
+      <p style="color: var(--off-white); opacity: 0.9; font-size: 15px;">Você tem o que poucos têm: visão clara, capacidade de realização e uma comunidade que já comprova o valor do MPB. O trabalho de marca agora é encurtar a distância entre o que você já vê em 2030 e o que existe hoje. Documentar, traduzir e dar à sua vibração uma forma que caminhe junto com você, e também sem você na sala.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top: 80px; padding: 48px 40px; border-top: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+  <img src="mira-logo.png" alt="MIRA" style="height: 28px; width: auto; opacity: 0.7;">
+  <p style="color: var(--off-white); opacity: 0.5; font-size: 12px; letter-spacing: 0.5px;">Diagnóstico estratégico de marca | junho de 2026</p>
+  <p style="color: var(--gold-soft); opacity: 0.6; font-size: 11px; letter-spacing: 0.08em; max-width: 520px; line-height: 1.7;">Elaborado por <strong style="color: var(--gold);">Tom Martins</strong> · Mira Brand Studio.<br>Documento confidencial, de uso exclusivo de Alessandra Balbinot. Não deve ser copiado, distribuído ou compartilhado sem autorização.</p>
+</footer>
+
+</body>
+</html>
