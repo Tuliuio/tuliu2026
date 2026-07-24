@@ -16,8 +16,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const saved = localStorage.getItem('language') as Language;
     if (saved === 'pt' || saved === 'en') return saved;
 
-    // Fallback padrão para Inglês
-    return 'en';
+    // Fallback padrão para Português (PT-BR)
+    return 'pt';
   });
 
   const setLanguage = (lang: Language) => {

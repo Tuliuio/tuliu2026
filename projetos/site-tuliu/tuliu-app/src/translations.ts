@@ -7,13 +7,13 @@ export const translations = {
       account: "Minha conta"
     },
     hero: {
-      badge: "Feito por nós, rodando para você",
-      titleLine1: "Implementamos tecnologia",
-      titleLine2: "para te auxiliar nos desafios de marketing",
-      subtitle: "A Tuliu constrói, entrega e mantém toda a infraestrutura digital da sua empresa: domínios, sites, agentes de IA, integrações e automações. Você foca no negócio. A gente cuida do resto.",
-
+      badge: "Feito para quem empreende",
+      titleLine1: "Assuma o marketing da sua empresa",
+      titleLine2: "sem cair no operacional",
+      subtitle: "A Tuliu implementa a tecnologia que faz o seu marketing acontecer: conteúdo, edição de vídeos, landing pages, integrações de pagamento, agentes de IA e automações. Você lidera as decisões. A gente executa nos bastidores.",
+      microcopy: "Sem equipe técnica. Sem depender de agência. Sem se perder no operacional.",
       videoLabel: "Veja o que entregamos",
-      cta: "Quero a minha infraestrutura digital"
+      cta: "Quero assumir meu marketing"
     },
     features: {
       badge: "Feito por nós, para você",
@@ -129,13 +129,13 @@ export const translations = {
       account: "My account"
     },
     hero: {
-      badge: "Built by us, running for you",
-      titleLine1: "We implement technology",
-      titleLine2: "to address your marketing challenges",
-      subtitle: "Tuliu builds, delivers, and maintains your company's entire digital infrastructure: domains, websites, AI agents, integrations, and automations. You focus on the business. We handle the rest.",
-      microcopy: "No IT team needed. No lock-in. No complications.",
+      badge: "Built for founders",
+      titleLine1: "Own your company's marketing",
+      titleLine2: "without drowning in operations",
+      subtitle: "Tuliu implements the technology that makes your marketing happen: content, video editing, landing pages, payment integrations, AI agents, and automations. You lead the decisions. We execute behind the scenes.",
+      microcopy: "No technical team. No agency dependency. No getting lost in operations.",
       videoLabel: "See what we deliver",
-      cta: "I want my digital infrastructure"
+      cta: "I want to own my marketing"
     },
     features: {
       badge: "Built by us, for you",
