@@ -1,5 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
-import heroVisual from '../assets/hero-visual-dark.png';
+import heroVisual from '../assets/hero-visual-night.png';
 
 export default function Hero() {
   const { t } = useLanguage();

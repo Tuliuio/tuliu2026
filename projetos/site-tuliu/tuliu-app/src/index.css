@@ -357,14 +357,24 @@ body {
 /* Navbar transparente sobre a hero escura (home, topo): conteúdo claro */
 .navbar.on-hero:not(.scrolled) .navbar-anchor,
 .navbar.on-hero:not(.scrolled) .navbar-page-link,
-.navbar.on-hero:not(.scrolled) .language-selector {
+.navbar.on-hero:not(.scrolled) .language-selector-button {
   color: rgba(255, 255, 255, 0.85);
 }
 
 .navbar.on-hero:not(.scrolled) .navbar-anchor:hover,
 .navbar.on-hero:not(.scrolled) .navbar-page-link:hover,
-.navbar.on-hero:not(.scrolled) .navbar-page-link.active,
-.navbar.on-hero:not(.scrolled) .language-selector:hover {
+.navbar.on-hero:not(.scrolled) .navbar-page-link.active {
+  color: #ffffff;
+}
+
+/* Seletor de idioma sobre a hero escura: borda e hover claros */
+.navbar.on-hero:not(.scrolled) .language-selector-button {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.navbar.on-hero:not(.scrolled) .language-selector-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
   color: #ffffff;
 }
 
@@ -480,27 +490,28 @@ body {
   color: #b98bff;
 }
 
-/* Figura conceitual grande, sangrando pela metade direita (estilo referência) */
+/* Figura conceitual, sangrando pela metade direita (estilo referência) */
 .hero-visual {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 58vw;
-  max-width: 920px;
+  width: 48vw;
+  max-width: 660px;
   z-index: 1;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .hero-visual img {
-  position: absolute;
-  right: -3%;
-  bottom: -56px;
-  height: calc(100% + 104px);
-  width: auto;
+  width: 100%;
+  height: auto;
   max-width: none;
   display: block;
-  /* Sem moldura nem sombra: a figura flutua solta no fundo (bg da hero = bg da imagem) */
+  margin-right: -2%;
+  /* Sem moldura nem sombra: a figura flutua solta no fundo escuro da hero */
 }
 
 @media (max-width: 1024px) {

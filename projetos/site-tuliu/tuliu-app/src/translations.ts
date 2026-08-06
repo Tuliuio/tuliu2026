@@ -8,8 +8,8 @@ export const translations = {
     },
     hero: {
       badge: "Feito para quem empreende",
-      titleLine1: "Assuma o marketing da sua empresa",
-      titleLine2: "sem cair no operacional.",
+      titleLine1: "Assuma o marketing da sua empresa sem cair",
+      titleLine2: "no operacional.",
       subtitle: "A Tuliu implementa a tecnologia que faz o seu marketing acontecer: conteúdo, edição de vídeos, landing pages, integrações de pagamento, agentes de IA e automações. Você lidera as decisões. A gente executa nos bastidores.",
       microcopy: "Sem equipe técnica. Sem depender de agência. Sem se perder no operacional.",
       videoLabel: "Veja o que entregamos",
@@ -130,8 +130,8 @@ export const translations = {
     },
     hero: {
       badge: "Built for founders",
-      titleLine1: "Own your company's marketing",
-      titleLine2: "without drowning in operations.",
+      titleLine1: "Own your company's marketing without",
+      titleLine2: "drowning in operations.",
       subtitle: "Tuliu implements the technology that makes your marketing happen: content, video editing, landing pages, payment integrations, AI agents, and automations. You lead the decisions. We execute behind the scenes.",
       microcopy: "No technical team. No agency dependency. No getting lost in operations.",
       videoLabel: "See what we deliver",
