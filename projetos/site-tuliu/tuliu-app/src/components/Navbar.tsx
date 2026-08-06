@@ -33,7 +33,7 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
   };
 
   return (
-    <header className={`navbar${scrolled ? ' scrolled' : ''}`} role="banner">
+    <header className={`navbar${scrolled ? ' scrolled' : ''}${currentPage === 'home' ? ' on-hero' : ''}`} role="banner">
       <div className="container">
         <nav className="navbar-inner" aria-label="Navegação principal">
           <button
@@ -45,11 +45,10 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
             aria-label="Tuliu — início"
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           >
-            <img src={logo} alt="Tuliu Logo" height="46" />
+            <img src={logo} alt="Tuliu Logo" height="53" />
           </button>
 
           <ul className="navbar-links" role="list">
-            <li><button className="navbar-anchor" onClick={() => handleAnchorClick('servicos')}>{t.nav.services}</button></li>
             <li><button className="navbar-anchor" onClick={() => handleAnchorClick('solucoes')}>{t.nav.solutions}</button></li>
             <li><button className="navbar-anchor" onClick={() => handleAnchorClick('precos')}>{t.nav.pricing}</button></li>
             <li>
@@ -89,7 +88,6 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
       </div>
 
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} role="navigation" aria-label="Menu mobile">
-        <button className="mobile-menu-anchor" onClick={() => handleAnchorClick('servicos')}>{t.nav.services}</button>
         <button className="mobile-menu-anchor" onClick={() => handleAnchorClick('solucoes')}>{t.nav.solutions}</button>
         <button className="mobile-menu-anchor" onClick={() => handleAnchorClick('precos')}>{t.nav.pricing}</button>
         <button

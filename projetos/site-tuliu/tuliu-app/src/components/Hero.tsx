@@ -1,5 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
-import heroVisual from '../assets/hero-visual.jpg';
+import heroVisual from '../assets/hero-visual-dark.png';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -28,7 +28,7 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions fade-in fade-in-delay-3">
-            <a href="#precos" className="btn-motion">
+            <a href="#precos" className="btn-motion btn-motion-on-dark">
               <span className="btn-motion-circle" aria-hidden="true"></span>
               <span className="btn-motion-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>

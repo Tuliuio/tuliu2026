@@ -9,14 +9,14 @@ export const translations = {
     hero: {
       badge: "Feito para quem empreende",
       titleLine1: "Assuma o marketing da sua empresa",
-      titleLine2: "sem cair no operacional",
+      titleLine2: "sem cair no operacional.",
       subtitle: "A Tuliu implementa a tecnologia que faz o seu marketing acontecer: conteúdo, edição de vídeos, landing pages, integrações de pagamento, agentes de IA e automações. Você lidera as decisões. A gente executa nos bastidores.",
       microcopy: "Sem equipe técnica. Sem depender de agência. Sem se perder no operacional.",
       videoLabel: "Veja o que entregamos",
       cta: "Quero assumir meu marketing"
     },
     features: {
-      badge: "Feito por nós, para você",
+      badge: "Idealizado por humanos, potencializado pela IA",
       title: "Feito para você e não por você.",
       subtitle: "Chega de depender de múltiplos fornecedores, tutoriais ou equipe técnica interna. A Tuliu assume a infraestrutura digital da sua empresa, construída, configurada e mantida por nós, do início ao fim.",
       card1Title: "Domínios e Websites",
@@ -29,12 +29,12 @@ export const translations = {
       cta: "Ver como funciona na prática"
     },
     integrations: {
-      title: "Conectamos com as ferramentas que você já usa",
+      title: "Conectamos as ferramentas que você já usa",
       subtitle: "Nós fazemos as integrações por você. Seu CRM, comunicação, pagamentos e produtividade tudo conectado, configurado e funcionando sem que você precise abrir um manual.",
       cta: "Quero minha infraestrutura"
     },
     pricing: {
-      badge: "Planos e preços",
+      badge: "Investimentos claros",
       title: "Preços diretos, sem letras miúdas",
       monthly: "Mensal",
       annual: "Anual",
@@ -131,14 +131,14 @@ export const translations = {
     hero: {
       badge: "Built for founders",
       titleLine1: "Own your company's marketing",
-      titleLine2: "without drowning in operations",
+      titleLine2: "without drowning in operations.",
       subtitle: "Tuliu implements the technology that makes your marketing happen: content, video editing, landing pages, payment integrations, AI agents, and automations. You lead the decisions. We execute behind the scenes.",
       microcopy: "No technical team. No agency dependency. No getting lost in operations.",
       videoLabel: "See what we deliver",
       cta: "I want to own my marketing"
     },
     features: {
-      badge: "Built by us, for you",
+      badge: "Envisioned by humans, powered by AI",
       title: "Built for you, not by you.",
       subtitle: "Stop relying on multiple vendors, tutorials, or internal technical teams. Tuliu takes over your company's digital infrastructure, built, configured, and maintained by us, from start to finish.",
       card1Title: "Domains and Websites",
@@ -150,12 +150,12 @@ export const translations = {
       cta: "See how it works in practice"
     },
     integrations: {
-      title: "We connect with the tools you already use",
+      title: "We connect the tools you already use",
       subtitle: "We handle the integrations for you. Your CRM, communications, payments, and productivity all connected, configured, and working without you needing to read a manual.",
       cta: "Get my infrastructure"
     },
     pricing: {
-      badge: "Plans and pricing",
+      badge: "Clear investment",
       title: "Straightforward pricing, no fine print",
       monthly: "Monthly",
       annual: "Annually",
