@@ -6,7 +6,7 @@
   <title>Plano Enterprise · Tuliu</title>
   <meta name="description" content="O nível mais completo da Tuliu: um sistema operacional de marketing rodando para você, com IA e equipe humana em sincronia.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -608,6 +608,69 @@
       nav { padding: 14px 20px; }
       .nav-badge { display: none; }
       .section { padding: 72px 0; }
+    }
+
+    /* ===== Estética Tuliu v3 (mesma do tuliu.io) ===== */
+    :root {
+      --bg: #05040b; --bg-2: #0a0814; --bg-3: #13101f; --bg-card: #0f0c1a;
+      --border: rgba(255,255,255,0.08); --border-hi: rgba(255,255,255,0.16);
+      --gray: #a19db3; --gray-dim: #6b6880;
+      --violet: #8b5cf6; --violet-light: #b98bff;
+      --grad: linear-gradient(100deg, #a78bfa 0%, #c084fc 45%, #e879f9 100%);
+      --accent-soft: rgba(139,92,246,0.12); --accent-border: rgba(185,139,255,0.32); --accent-glow: rgba(139,92,246,0.35);
+      --display: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .tag { background: rgba(255,255,255,0.06); border-color: var(--border-hi); color: rgba(255,255,255,0.85); }
+    .tag::before { background: var(--violet-light); }
+
+    /* Header: logo solto + pílula de vidro + CTA claro */
+    nav { background: transparent; border-bottom: 0; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 18px 40px; transition: background .3s; }
+    nav.scrolled { background: rgba(5,4,11,0.72); backdrop-filter: blur(18px) saturate(1.5); -webkit-backdrop-filter: blur(18px) saturate(1.5); }
+    .nav-badge { background: rgba(20,17,36,0.55); border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 9px 18px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .nav-cta { background: linear-gradient(120deg, #efe7ff 0%, #fbe4ff 100%); color: #3b1a6b; border-radius: 100px; padding: 11px 20px; font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 6px 20px rgba(168,85,247,0.25); }
+    .nav-cta:hover { opacity: 1; transform: translateY(-1px); }
+
+    /* Tipografia */
+    .hero h1, .section-title, .tom-name, .stat-card .stat-num { font-family: var(--display); font-weight: 500; letter-spacing: -0.05em; }
+    .hero h1 { font-size: clamp(42px, 6.6vw, 88px); line-height: 1; }
+    .section-title { font-size: clamp(32px, 4.6vw, 58px); line-height: 1.04; }
+    .pillar h3, .step-body h3, .deliverable h4, .enterprise-feature h4, .kb-col-name, .case-back-title { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; }
+    .section-label { color: var(--violet-light); font-family: var(--display); letter-spacing: .14em; font-weight: 600; }
+
+    /* Hero com a imagem de vidro 3D */
+    .hero { padding: 200px 0 140px; background: #05040b; }
+    .hero-grid { display: none; }
+    .hero-glow { top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; transform: none;
+      background: radial-gradient(60% 60% at 50% 40%, rgba(5,4,11,0.2) 0%, rgba(5,4,11,0.85) 70%), url('hero-glass.jpg') center 30% / cover no-repeat;
+      opacity: .75; }
+    .hero p { color: rgba(255,255,255,0.68); }
+
+    /* Botões em pílula */
+    .hero-cta, .btn-primary { background: #fff; color: #0c0b16; border-radius: 100px; font-weight: 500; letter-spacing: -0.01em; padding: 17px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-direction: row-reverse; }
+    .hero-cta:hover, .btn-primary:hover { box-shadow: 0 16px 40px rgba(139,92,246,0.4); }
+    .btn-secondary { border-radius: 100px; font-weight: 500; padding: 17px 30px; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); }
+
+    /* Cards mais arredondados e com acento violeta */
+    .pillar, .deliverable, .stat-card, .enterprise-card, .tom-card, .kb-col, .case-card-front, .case-card-back { border-radius: 24px; }
+    .pillar:hover, .deliverable:hover { border-color: var(--accent-border); }
+    .point-icon, .pillar-icon, .deliverable-icon, .orbit-node, .enterprise-feature .ef-icon { color: var(--violet-light); }
+    .orbit-center { background: var(--accent-soft); border-color: var(--accent-border); }
+    .solution-wrap, .how-wrap, .about-wrap { background: var(--bg-2); }
+    .cta-glow { background: radial-gradient(ellipse, rgba(139,92,246,.22) 0%, transparent 70%); width: 900px; height: 500px; }
+
+    @media (max-width: 767px) {
+      nav { padding: 14px 18px; }
+      .nav-badge { display: none; }
+      .hero { padding: 140px 0 90px; }
+      .hero h1 { font-size: clamp(38px, 11vw, 48px); }
+      .hero p { font-size: 16px; margin-bottom: 36px; }
+      .section { padding: 72px 0; }
+      .section-title { font-size: clamp(30px, 8.6vw, 40px); }
+      .section-sub { font-size: 16px; margin-bottom: 40px; }
+      .hero-cta, .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .cta-section { padding: 80px 0; }
     }
   </style>
 </head>
@@ -1597,5 +1660,8 @@
     })();
   </script>
 
+<script>
+  (function(){var n=document.querySelector('nav');function f(){n.classList.toggle('scrolled',window.scrollY>20);}f();window.addEventListener('scroll',f,{passive:true});})();
+</script>
 </body>
 </html>

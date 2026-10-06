@@ -266,11 +266,16 @@ export function CompareTable({ title, subtitle, columns, rows, footer }: { title
       <div className="container">
         <Header eyebrow="Linha a linha" title={title} subtitle={subtitle} />
         <div className="lp-table-wrap">
-          <table className="lp-table">
+          <table className={`lp-table${columns.length > 3 ? ' many-cols' : ''}`}>
             <thead>
               <tr>
                 <th></th>
-                {columns.map((c, i) => <th key={c} className={i === tuliuIndex ? 'is-tuliu' : ''}>{c}</th>)}
+                {columns.map((c, i) => (
+                  <th key={c} className={i === tuliuIndex ? 'is-tuliu' : ''}>
+                    <span className="col-full">{c}</span>
+                    <span className="col-short">{c.split(/[ ,+]/)[0]}</span>
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>

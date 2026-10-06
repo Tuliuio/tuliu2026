@@ -1215,7 +1215,7 @@
 .floating-cta.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
 .floating-cta-text { display: flex; flex-direction: column; }
 .floating-cta strong { font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -0.02em; color: #14121f; }
-.floating-cta span { font-size: 13px; color: #5d5a70; }
+.floating-cta-text span { font-size: 13px; color: #5d5a70; }
 .floating-cta em { font-style: normal; font-weight: 700; color: var(--lp-violet); }
 .floating-cta button {
   display: inline-flex;
@@ -1239,7 +1239,7 @@
   .floating-cta { left: 12px; right: 88px; bottom: 16px; gap: 10px; padding: 8px 8px 8px 16px; transform: translateY(140%); }
   .floating-cta.show { transform: translateY(0); }
   .floating-cta strong { font-size: 15px; }
-  .floating-cta span { font-size: 11px; }
+  .floating-cta-text span { font-size: 11px; }
   .floating-cta button { padding: 11px 14px; font-size: 13px; }
 }
 
@@ -1284,3 +1284,129 @@
 .hero-v2-visual { width: 60%; }
 .hero-v2-visual img { object-position: 100% 50%; }
 .hero-v2-sub { max-width: 500px; }
+
+/* =============================================
+    MOBILE: otimização
+============================================= */
+.fc-short { display: none; }
+
+/* WhatsApp sobe quando o CTA flutuante aparece */
+.floating-whatsapp-btn { transition: bottom 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, background 0.2s ease; }
+
+@media (max-width: 1180px) {
+  /* Sem a pílula central, o header ganha uma faixa de vidro ao rolar para o conteúdo não passar por trás do logo */
+  .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(18px) saturate(1.6);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
+    border-bottom: 1px solid rgba(18, 16, 24, 0.06);
+  }
+  .navbar.on-hero.scrolled { background: rgba(8, 6, 18, 0.72); border-bottom-color: rgba(255, 255, 255, 0.06); }
+  .navbar-inner { height: 68px; }
+  .hero.hero-v2 { margin-top: -68px; }
+  .lp-hero { margin-top: -68px; }
+  .mobile-menu { max-height: calc(100vh - 68px); overflow-y: auto; }
+}
+
+@media (max-width: 767px) {
+  .lp-section { padding: 64px 0; }
+  .lp-header { margin-bottom: 36px; }
+  .lp-header h2, .section-header h2 { font-size: clamp(30px, 8.6vw, 40px); }
+  .lp-header p { font-size: 16px; }
+
+  /* Hero */
+  .hero.hero-v2 { padding-top: 112px; }
+  .hero-v2-eyebrow { font-size: 16px; margin-bottom: 14px; }
+  .hero-v2-title { font-size: clamp(38px, 11vw, 46px); margin-bottom: 20px; }
+  .hero-v2-sub { font-size: 16px; margin-bottom: 28px; }
+  .hero-v2-micro { font-size: 13px; line-height: 1.5; }
+  .hero-v2-visual { height: 280px; margin-top: 8px; }
+  .hero-v2-stats { font-size: 11px; gap: 10px 20px; justify-content: flex-start; padding: 0 24px 36px; }
+  .lp-hero { padding: 108px 0 56px; }
+  .lp-hero h1 { font-size: clamp(34px, 10vw, 42px); }
+  .lp-hero-sub { font-size: 16px; }
+
+  /* Tags */
+  .lp-services-band { padding: 22px 0; gap: 8px; }
+  .lp-chip { font-size: 13px; padding: 7px 13px; }
+
+  /* Cards com imagem */
+  .duo { padding: 64px 0; }
+  .duo-header { margin-bottom: 36px; }
+  .duo-header h2 { font-size: clamp(32px, 9vw, 42px); }
+  .duo-header span { font-size: 16px; }
+  .duo-grid { gap: 12px; }
+  .duo-card { height: 300px; border-radius: 22px; }
+  .duo-label { top: 20px; left: 22px; font-size: 16px; }
+  .duo-word { left: 22px; bottom: 14px; font-size: 52px; }
+
+  /* Máquina */
+  .lp-machine { gap: 12px; }
+  .lp-machine-col { padding: 18px; }
+  .lp-sources { gap: 6px; }
+  .lp-sources li { font-size: 13px; padding: 6px 10px; }
+  .lp-vscroll { height: 210px; }
+  .lp-machine-foot { font-size: 13px; gap: 8px; }
+
+  /* Funções do time: carrossel horizontal */
+  .lp-roles-band { padding-bottom: 64px; }
+  .lp-roles { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin: 0 -24px; padding: 0 24px 6px; scrollbar-width: none; }
+  .lp-roles::-webkit-scrollbar { display: none; }
+  .lp-role { flex: 0 0 62%; scroll-snap-align: start; padding: 18px; }
+  .lp-expert { padding: 28px 22px; }
+
+  /* Cases: carrossel horizontal */
+  .lp-cases { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -24px; padding: 0 24px 8px; scrollbar-width: none; }
+  .lp-cases::-webkit-scrollbar { display: none; }
+  .lp-case { flex: 0 0 84%; scroll-snap-align: start; padding: 22px; }
+
+  /* Tabela: primeira coluna fixa ao rolar de lado */
+  .lp-table-wrap { border-radius: 16px; }
+  .lp-table { min-width: 0; table-layout: fixed; }
+  .lp-table thead th { font-size: 10.5px; line-height: 1.25; padding: 12px 3px; word-break: break-word; }
+  .lp-table thead th:first-child { width: 38%; }
+  .lp-table thead th.is-tuliu { font-size: 12px; }
+  .lp-table tbody th { font-size: 13px; line-height: 1.35; padding: 11px 8px 11px 12px; }
+  .lp-table td { padding: 11px 2px; font-size: 13px; }
+  .lp-compare-links a { font-size: 13px; padding: 7px 13px; }
+
+  /* Tudo incluso: grade compacta de 2 colunas */
+  .included { padding: 64px 0; }
+  .included-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .included-item { padding: 16px; }
+  .included-item h3 { font-size: 15px; }
+  .included-item p { font-size: 13px; line-height: 1.5; }
+
+  /* Preços e FAQ */
+  .pricing, .faq { padding: 64px 0; }
+  .section-header { margin-bottom: 36px; }
+
+  /* Final */
+  .lp-final { padding: 56px 0; }
+  .lp-final-inner { padding: 40px 20px; border-radius: 22px; }
+  .lp-final-steps { gap: 10px; margin-bottom: 28px; }
+  .lp-final-steps div { padding: 16px; }
+
+  /* Rodapé */
+  .footer-grid { gap: 24px 16px; }
+
+  /* CTA flutuante ocupa a largura toda, WhatsApp sobe */
+  .floating-cta { left: 12px; right: 12px; bottom: 12px; gap: 10px; padding: 8px 8px 8px 18px; transform: translateY(160%); }
+  .floating-cta.show { transform: translateY(0); }
+  .floating-cta-text strong { display: none; }
+  .floating-cta-text span { font-size: 12px; line-height: 1.35; white-space: normal; }
+  .floating-cta button { padding: 12px 16px; font-size: 14px; flex-shrink: 0; }
+  .fc-long { display: none; }
+  .fc-short { display: inline; }
+  body.cta-visible .floating-whatsapp-btn { bottom: 84px; }
+}
+@media (max-width: 767px) {
+  .lp-roles, .lp-cases { scroll-padding-left: 24px; }
+}
+.col-short { display: none; }
+@media (max-width: 767px) {
+  .lp-table thead th { word-break: normal; font-size: 11px; }
+  .lp-table.many-cols thead .col-full { display: none; }
+  .lp-table.many-cols thead .col-short { display: inline; }
+}
+@media (max-width: 767px) { .lp-table.many-cols thead th { font-size: 10px; padding: 12px 1px; } }
