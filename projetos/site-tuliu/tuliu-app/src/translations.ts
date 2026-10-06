@@ -138,6 +138,8 @@ export const translations = {
       enterpriseBadge: "Enterprise",
       enterpriseTag: "Para escalar",
       consult: "Sob consulta",
+      fromLabel: "a partir de",
+      enterpriseMonthly: "2.000",
       consultDesc: "Seu sistema operacional de marketing completo.",
       enterpriseFeatures: [
         "Tudo do Business, e mais:",
@@ -343,6 +345,8 @@ export const translations = {
       enterpriseBadge: "Enterprise",
       enterpriseTag: "To scale",
       consult: "Custom pricing",
+      fromLabel: "from",
+      enterpriseMonthly: "400",
       consultDesc: "Your complete marketing operating system.",
       enterpriseFeatures: [
         "Everything in Business, plus:",

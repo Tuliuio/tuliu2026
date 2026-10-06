@@ -79,7 +79,12 @@ export default function Pricing() {
             <span className="pl-tag">{p.enterpriseTag}</span>
             <h3>Enterprise</h3>
             <p className="pl-sub">{p.consultDesc}</p>
-            <div className="pl-price pl-price-consult"><strong>{p.consult}</strong></div>
+            <div className="pl-price pl-price-from">
+              <em>{p.fromLabel}</em>
+              <small>{p.currency}</small>
+              <strong>{p.enterpriseMonthly}</strong>
+              <span>{p.perMonth}</span>
+            </div>
             <p className="pl-agency">{p.enterpriseAgencyCost}</p>
             <a className="pill-btn pl-btn pl-btn-outline" href="/enterprise/">
               {p.enterpriseBtn} <i className="fas fa-arrow-right"></i>
