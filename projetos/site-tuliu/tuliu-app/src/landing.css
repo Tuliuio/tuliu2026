@@ -1410,3 +1410,26 @@
   .lp-table.many-cols thead .col-short { display: inline; }
 }
 @media (max-width: 767px) { .lp-table.many-cols thead th { font-size: 10px; padding: 12px 1px; } }
+
+/* Hero: degradê preto atrás do texto para dar conforto de leitura */
+.hero.hero-v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, #05040b 0%, rgba(5, 4, 11, 0.94) 32%, rgba(5, 4, 11, 0.72) 48%, rgba(5, 4, 11, 0.3) 62%, rgba(5, 4, 11, 0) 76%);
+}
+.hero-v2-visual video { width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%; display: block; }
+@media (max-width: 1024px) {
+  .hero.hero-v2::before { display: none; }
+  .hero-v2-visual video { object-position: 76% 50%; mask-image: linear-gradient(180deg, transparent 0%, #000 30%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-v2-visual video { display: none; }
+}
+@media (min-width: 1025px) {
+  .hero-v2-visual video { mask-image: linear-gradient(90deg, transparent 0%, #000 30%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%); }
+}
+.hero-v2-still { display: none; }
+@media (prefers-reduced-motion: reduce) { .hero-v2-still { display: block; } }
