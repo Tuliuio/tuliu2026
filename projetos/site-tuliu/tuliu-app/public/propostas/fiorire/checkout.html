@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tuliu · Checkout Fiorire</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a071a'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='white' stroke-width='31'/%3E%3Ccircle cx='74' cy='50' r='21' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--txt:#666;--txt2:#444;--muted:#888;--bg:#fafafa;--card:#fff;--line:#ebebeb;--soft:#f3f3f3;
+  --grad:linear-gradient(135deg,#6366f1,#a855f7,#ec4899);--dark:linear-gradient(135deg,#111 0%,#1f1f3a 100%)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding-left:24px;padding-right:24px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none;color:inherit}
+.brand svg{width:30px;height:30px;display:block}
+.steps{display:flex;gap:8px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.steps b{color:var(--ink);font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:500;color:var(--txt2)}
+h1{font-size:clamp(30px,4.6vw,44px);line-height:1.1;letter-spacing:-.03em;font-weight:800}
+h2{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:14px}
+p{color:var(--txt)}
+.layout{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;align-items:start;margin-top:28px;padding-bottom:64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}
+.card+.card{margin-top:16px}
+label.f{display:block;font-size:13px;font-weight:600;color:var(--txt2);margin-bottom:6px}
+input[type=text],input[type=email],input[type=tel],select{width:100%;font:inherit;font-size:15px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:2px solid #a855f7;outline-offset:1px;border-color:transparent}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.opt{display:block;border:1.5px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;margin-top:10px;transition:border-color .2s}
+.opt:first-of-type{margin-top:0}
+.opt.on{border-color:var(--ink)}
+.opt .top{display:flex;align-items:center;gap:12px}
+.opt input[type=radio]{width:18px;height:18px;accent-color:#111;flex:none}
+.opt .t{font-weight:600;flex:1}
+.opt .v{font-weight:700;white-space:nowrap}
+.opt .d{font-size:13.5px;color:var(--txt);margin-top:6px;padding-left:30px}
+.opt select{margin-top:12px;margin-left:30px;width:calc(100% - 30px);display:none}
+.opt.on select{display:block}
+.tag{font-size:11px;font-weight:600;color:#fff;background:var(--grad);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.sum{background:var(--dark);color:#fff;border:0;position:sticky;top:20px}
+.sum p{color:rgba(255,255,255,.7)}
+.sum ul{list-style:none;margin-top:8px}
+.sum li{display:flex;gap:10px;padding:8px 0;font-size:14px;color:rgba(255,255,255,.85);border-top:1px solid rgba(255,255,255,.1)}
+.sum li:first-child{border-top:0}
+.sum li i{font-style:normal;color:#c4b5fd}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.18)}
+.total b{font-size:30px;letter-spacing:-.03em}
+.fio{display:flex;align-items:center;gap:14px;padding:16px;border-radius:14px;background:rgba(255,255,255,.06);margin:16px 0}
+.fio .m{width:52px;height:52px;border-radius:12px;background:#1E2A40;display:flex;align-items:center;justify-content:center;flex:none}
+.accept{display:flex;gap:12px;align-items:flex-start;margin-top:18px;font-size:14px;color:var(--txt2);cursor:pointer}
+.accept input{width:19px;height:19px;margin-top:2px;accent-color:#111;flex:none}
+.btn{display:flex;width:100%;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:17px 26px;font-weight:600;font-size:16px;border:0;background:var(--ink);color:#fff;cursor:pointer;font-family:inherit;margin-top:20px}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn.wa{background:#1f7a4d}
+.err{color:#b91c1c;font-size:13px;margin-top:10px;display:none}
+.ph{background:#fef3c7;color:#92400e;border-radius:4px;padding:0 5px}
+/* confirmação */
+.modal{position:fixed;inset:0;background:rgba(10,7,26,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal.on{display:flex}
+.modal .box{background:#fff;border-radius:22px;max-width:560px;width:100%;padding:30px;max-height:90vh;overflow:auto}
+.modal pre{white-space:pre-wrap;font-family:inherit;font-size:14px;background:var(--soft);border-radius:14px;padding:16px;margin-top:14px;color:var(--txt2)}
+.lnk{background:none;border:1px solid var(--line);border-radius:999px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px;width:100%}
+footer{padding-top:30px;padding-bottom:40px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line)}
+@media (max-width:860px){.layout{grid-template-columns:1fr}.sum{position:static;order:-1}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="wrap nav">
+  <a class="brand" href="index.html"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="20" fill="#0a071a"/><circle cx="50" cy="50" r="45" fill="none" stroke="#fff" stroke-width="31"/><circle cx="74" cy="50" r="21" fill="#fff"/></svg>Tuliu</a>
+  <div class="steps"><span>Proposta ✓</span><span>·</span><span>Marca ✓</span><span>·</span><b>Checkout</b></div>
+</div>
+
+<main class="wrap">
+  <span class="pill">Checkout seguro · pagamento finalizado com a nossa equipe</span>
+  <h1 style="margin-top:16px">Revise e confirme o seu pedido</h1>
+  <p style="margin-top:8px">Até 18x sem juros, no cartão ou no Pix. Você recebe o link de pagamento pelo WhatsApp.</p>
+
+  <div class="layout">
+    <div>
+      <!-- DADOS -->
+      <div class="card">
+        <h2>Seus dados</h2>
+        <label class="f" for="nome">Nome completo</label>
+        <input type="text" id="nome" autocomplete="name" value="Suelen Lodetti">
+        <div class="row">
+          <div><label class="f" for="email">E-mail</label><input type="email" id="email" autocomplete="email"></div>
+          <div><label class="f" for="tel">WhatsApp</label><input type="tel" id="tel" autocomplete="tel" placeholder="(00) 00000-0000"></div>
+        </div>
+        <div class="row">
+          <div><label class="f" for="doc">CPF ou CNPJ (para o contrato)</label><input type="text" id="doc"></div>
+          <div><label class="f" for="razao">Razão social (opcional)</label><input type="text" id="razao"></div>
+        </div>
+      </div>
+
+      <!-- PAGAMENTO -->
+      <div class="card">
+        <h2>Forma de pagamento</h2>
+        <label class="opt on" data-opt="pix">
+          <div class="top"><input type="radio" name="pg" value="pix" checked><span class="t">Pix à vista</span><span class="v" id="v-pix"></span></div>
+          <div class="d">Pagamento único. A entrega começa assim que o Pix for confirmado.</div>
+        </label>
+        <label class="opt" data-opt="cartao">
+          <div class="top"><input type="radio" name="pg" value="cartao"><span class="t">Cartão de crédito</span><span class="tag">Sem juros</span></div>
+          <div class="d">Parcele em até <span id="max-cartao"></span>x <b>sem juros</b>.</div>
+          <select id="parc-cartao" aria-label="Parcelas no cartão"></select>
+        </label>
+        <label class="opt" data-opt="pixparc">
+          <div class="top"><input type="radio" name="pg" value="pixparc"><span class="t">Pix parcelado</span><span class="tag">Sem juros</span></div>
+          <div class="d">Até 18 parcelas mensais no Pix, sem juros e sem consumir o limite do cartão.</div>
+          <select id="parc-pix" aria-label="Parcelas no Pix"></select>
+        </label>
+      </div>
+    </div>
+
+    <!-- RESUMO -->
+    <aside class="card sum">
+      <h2 style="color:#fff">Resumo do pedido</h2>
+      <div class="fio">
+        <div class="m"><svg viewBox="0 0 152 62" width="34" fill="#F4EEE4"><path d="M0 62L0 20A20 20 0 0 1 40 20L40 62L33.5 62L33.5 20A13.5 18.9 0 0 0 6.5 20L6.5 62ZM56 62L56 20A20 20 0 0 1 96 20L96 62L89.5 62L89.5 20A13.5 18.9 0 0 0 62.5 20L62.5 62ZM112 62L112 20A20 20 0 0 1 152 20L152 62L145.5 62L145.5 20A13.5 18.9 0 0 0 118.5 20L118.5 62Z"/></svg></div>
+        <div><b>Identidade de marca Fiorire</b><p style="font-size:13px">Completa, com cessão de direitos</p></div>
+      </div>
+      <ul>
+        <li><i>✓</i>Marca completa e direitos de uso</li>
+        <li><i>✓</i>Arquivos em SVG, PNG e PDF</li>
+        <li><i>✓</i>Brand system</li>
+        <li><i>✓</i>Site com até 10 páginas, com GEO e SEO</li>
+        <li><i>✓</i>18 posts e carrosséis para Instagram</li>
+        <li><i>✓</i>Link de bio</li>
+        <li><i>✓</i>Enxoval completo</li>
+        <li><i>✓</i>Domínio, hospedagem e e-mails</li>
+      </ul>
+      <p style="font-size:13.5px;margin-top:14px"><b style="color:#fff">Entrega:</b> em até 7 dias após a confirmação do pagamento.</p>
+      <div class="total"><span>Total</span><b id="total"></b></div>
+      <p id="forma" style="font-size:13.5px;text-align:right;margin-top:4px"></p>
+      <div class="total" style="margin-top:12px;padding-top:12px"><span>Plano Essencial</span><b style="font-size:20px" id="mensal"></b></div>
+      <p style="font-size:12.5px;text-align:right;margin-top:4px">Hospedagem, domínio e e-mails. O mesmo valor que você já paga hoje.</p>
+
+      <label class="accept" style="color:rgba(255,255,255,.85)">
+        <input type="checkbox" id="aceite" style="accent-color:#a855f7">
+        <span>Li e aceito o <span class="ph">[contrato de cessão de direitos]</span> e os termos de compra.</span>
+      </label>
+      <button class="btn" id="enviar" style="background:#fff;color:#111" disabled>Confirmar pedido</button>
+      <p class="err" id="err" style="color:#fca5a5"></p>
+      <p style="font-size:12.5px;margin-top:12px;text-align:center">Nenhuma cobrança é feita nesta tela. Você recebe o link de pagamento pelo WhatsApp.</p>
+    </aside>
+  </div>
+</main>
+
+<div class="wrap"><footer>
+  <span>Criado com tecnologia Tuliu e direção especializada humana.</span>
+  <span>© 2026 Tuliu. Todos os direitos reservados.</span>
+</footer></div>
+
+<!-- CONFIRMAÇÃO -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="box">
+    <h2 id="mt" style="font-size:22px">Pedido pronto</h2>
+    <p>Envie para a nossa equipe pelo WhatsApp. Respondemos com o link de pagamento.</p>
+    <pre id="msg"></pre>
+    <a class="btn wa" id="wa" target="_blank" rel="noopener" style="text-decoration:none">Enviar pelo WhatsApp</a>
+    <button class="lnk" id="copiar">Copiar pedido</button>
+    <button class="lnk" id="fechar">Voltar e revisar</button>
+  </div>
+</div>
+
+<script>
+// ===== Configuração da oferta (ajustar antes de enviar) =====
+var CONFIG={
+  preco:4929,
+  cartaoMax:18,          // parcelas no cartão, sem juros
+  pixParcMax:18,         // parcelas no Pix parcelado, sem juros
+  mensal:99,             // Plano Essencial (hospedagem, domínio e e-mails)
+  whatsapp:''            // [preencher] número com DDI e DDD, só dígitos. Ex.: 5511999999999
+};
+// ============================================================
+(function(){
+  var brl=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});};
+  var $=function(id){return document.getElementById(id);};
+  $('v-pix').textContent=brl(CONFIG.preco);
+  $('max-cartao').textContent=CONFIG.cartaoMax;
+    function fill(sel,from,max){for(var n=from;n<=max;n++){var o=document.createElement('option');o.value=n;o.textContent=n+'x de '+brl(CONFIG.preco/n)+(n===1?' (à vista)':' sem juros');sel.appendChild(o);}sel.value=max;}
+  fill($('parc-cartao'),1,CONFIG.cartaoMax); fill($('parc-pix'),2,CONFIG.pixParcMax);
+
+  function escolha(){
+    var pg=document.querySelector('input[name=pg]:checked').value;
+    if(pg==='pix')return{rotulo:'Pix à vista',detalhe:'Pix à vista: '+brl(CONFIG.preco)};
+    if(pg==='cartao'){var n=+$('parc-cartao').value;return{rotulo:'Cartão de crédito',detalhe:'Cartão de crédito em '+n+'x de '+brl(CONFIG.preco/n)+(n>1?', sem juros':'')};}
+    var m=+$('parc-pix').value;return{rotulo:'Pix parcelado',detalhe:'Pix parcelado em '+m+'x de '+brl(CONFIG.preco/m)+', sem juros'};
+  }
+  function render(){
+    [].forEach.call(document.querySelectorAll('.opt'),function(o){o.classList.toggle('on',o.querySelector('input').checked);});
+    $('total').textContent=brl(CONFIG.preco);
+    $('mensal').textContent=brl(CONFIG.mensal)+'/mês';
+    $('forma').textContent=escolha().detalhe;
+    $('enviar').disabled=!$('aceite').checked;
+  }
+  document.addEventListener('change',render); render();
+
+  function pedido(){
+    var e=escolha(),agora=new Date();
+    return ['Olá! Quero adquirir a identidade de marca Fiorire.','',
+      'Nome: '+$('nome').value.trim(),
+      'E-mail: '+$('email').value.trim(),
+      'WhatsApp: '+$('tel').value.trim(),
+      'CPF/CNPJ: '+$('doc').value.trim()+($('razao').value.trim()?' ('+$('razao').value.trim()+')':''),'',
+      'Forma de pagamento: '+e.detalhe,
+      'Total: '+brl(CONFIG.preco),
+      'Plano Essencial: '+brl(CONFIG.mensal)+'/mês (hospedagem, domínio e e-mails)',
+      'Entrega: em até 7 dias após a confirmação','',
+      'Li e aceito o contrato de cessão de direitos e os termos de compra.',
+      'Pedido gerado em '+agora.toLocaleDateString('pt-BR')+' às '+agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})].join('\n');
+  }
+  $('enviar').addEventListener('click',function(){
+    var falta=[];
+    if(!$('nome').value.trim())falta.push('nome');
+    if(!/\S+@\S+\.\S+/.test($('email').value))falta.push('e-mail');
+    if($('tel').value.replace(/\D/g,'').length<10)falta.push('WhatsApp');
+    if($('doc').value.replace(/\D/g,'').length<11)falta.push('CPF ou CNPJ');
+    if(falta.length){$('err').style.display='block';$('err').textContent='Preencha: '+falta.join(', ')+'.';return;}
+    $('err').style.display='none';
+    var txt=pedido(); $('msg').textContent=txt;
+    var wa=$('wa');
+    if(CONFIG.whatsapp){wa.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(txt);wa.style.display='flex';}
+    else{wa.style.display='none';}
+    $('modal').classList.add('on');
+  });
+  $('copiar').addEventListener('click',function(){var t=$('msg').textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){$('copiar').textContent='Pedido copiado';},function(){$('copiar').textContent='Selecione o texto e copie';});});
+  $('fechar').addEventListener('click',function(){$('modal').classList.remove('on');});
+})();
+</script>
+</body>
+</html>

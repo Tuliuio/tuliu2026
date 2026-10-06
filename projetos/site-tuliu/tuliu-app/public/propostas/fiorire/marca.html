@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiorire · Sua marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Jost:wght@300..600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--marinho:#1E2A40;--terracota:#B4553A;--tijolo:#8E3B27;--creme:#F4EEE4;--pedra:#E3D7C5;--ocre:#C8954E;--grafite:#4A4F58;--bar:96px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--creme);color:var(--marinho);font-family:'Jost',sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:var(--bar)}
+img{max-width:100%;display:block}
+svg.s{display:block;fill:currentColor}
+.wrap{max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px}
+.eb{font-size:12px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--tijolo)}
+.dark .eb{color:var(--ocre)}
+h1,h2,h3{font-family:'Bodoni Moda',serif;font-weight:400}
+h1{font-size:clamp(40px,7vw,78px);line-height:1.03}
+h2{font-size:clamp(30px,4.4vw,48px);line-height:1.1}
+h3{font-size:21px;line-height:1.25;font-weight:500;margin-bottom:6px}
+em{font-style:italic}
+.serif{font-family:'Bodoni Moda',serif}
+.muted{color:var(--grafite)}
+.dark{background:var(--marinho);color:var(--creme)}
+.dark .muted{color:#C9C4BA}
+.stone{background:var(--pedra)}
+.line{height:1.5px;background:var(--terracota)}
+.dark .line{background:var(--ocre)}
+section{padding-top:104px;padding-bottom:104px}
+.chap{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.chap .n{font-family:'Bodoni Moda',serif;color:var(--terracota);font-size:18px}
+.dark .chap .n{color:var(--ocre)}
+.lead{font-size:19px;max-width:680px;margin-top:22px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.mt{margin-top:52px}
+ul.clean{list-style:none}
+ul.clean li{padding:11px 0;border-top:1px solid rgba(30,42,64,.15);font-size:16px}
+.dark ul.clean li{border-top-color:rgba(244,238,228,.18)}
+.wm{font-family:'Bodoni Moda',serif;font-variation-settings:'opsz' 40;letter-spacing:.11em;margin-right:-.11em;line-height:1;display:inline-block;transform:scaleY(.93);transform-origin:center bottom}
+.tag{text-transform:uppercase;letter-spacing:.42em;margin-right:-.42em}
+.btn{display:inline-block;background:var(--marinho);color:var(--creme);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 32px;border:0;cursor:pointer;font-family:'Jost'}
+.dark .btn,.btn.light{background:var(--creme);color:var(--marinho)}
+.ph{background:rgba(200,149,78,.2);outline:1px dashed var(--ocre);padding:0 4px}
+/* marca d'água sobre os blocos de logo */
+.prev{position:relative;overflow:hidden}
+.prev::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='120'%3E%3Ctext x='0' y='70' transform='rotate(-24 130 60)' font-family='Futura,Jost,sans-serif' font-size='13' letter-spacing='3' fill='%23888' fill-opacity='.22'%3EPRÉVIA · TULIU%3C/text%3E%3C/svg%3E")}
+
+/* abertura */
+.open{min-height:calc(100vh - var(--bar));display:flex;flex-direction:column;justify-content:space-between;padding-top:28px;padding-bottom:40px}
+.open .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;font-size:12px;letter-spacing:.24em;text-transform:uppercase}
+.open .mid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;margin:56px 0}
+.open .logo{display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 24px;border:1px solid rgba(244,238,228,.16)}
+.done{list-style:none;margin-top:30px}
+.done li{display:flex;gap:14px;padding:10px 0;border-top:1px solid rgba(244,238,228,.16);font-size:16px}
+.done li span{color:var(--ocre);font-family:'Bodoni Moda',serif;min-width:28px}
+.scroll{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#C9C4BA;text-decoration:none;display:flex;align-items:center;gap:14px}
+.scroll .line{width:64px}
+
+/* símbolo */
+.constr{background:#fff;border:1px solid rgba(30,42,64,.1);padding:40px;display:flex;align-items:center;justify-content:center}
+/* logo */
+.lockups{display:grid;grid-template-columns:1.1fr 1fr 1fr;grid-template-rows:240px 210px;gap:16px}
+.lockups>div{display:flex;align-items:center;justify-content:center;position:relative}
+.lockups .cap{position:absolute;left:16px;bottom:12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+/* tipografia */
+.spec{font-family:'Bodoni Moda',serif;font-size:clamp(90px,15vw,170px);line-height:1}
+/* cor */
+.sw{display:grid;grid-template-columns:2.2fr 1.4fr 1fr 1.6fr 1fr .6fr .9fr;gap:8px;height:300px}
+.sw div{padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:13px;line-height:1.35}
+.sw b{font-weight:500;font-size:14px}
+/* tom */
+table{border-collapse:collapse;width:100%}
+td,th{text-align:left;vertical-align:top;padding:14px 18px 14px 0;border-top:1px solid rgba(30,42,64,.15)}
+th{font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--tijolo);border-top:none}
+/* foto */
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.photos img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.arch{border-radius:999px 999px 0 0}
+/* aplicações */
+.site{border:1px solid rgba(30,42,64,.18);background:var(--creme)}
+.site .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid rgba(30,42,64,.12);gap:12px}
+.site .hero{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:24px;padding:36px 22px 22px}
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ig>div{aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:center;padding:10px;overflow:hidden}
+.ig img{width:100%;height:100%;object-fit:cover}
+.apps{display:grid;grid-template-columns:1.5fr 1fr;gap:32px}
+/* entregáveis */
+.items{border-top:1px solid rgba(244,238,228,.2)}
+.item{display:grid;grid-template-columns:64px 1fr 1.3fr;gap:24px;padding:24px 0;border-bottom:1px solid rgba(244,238,228,.2);align-items:baseline}
+.item .n{font-family:'Bodoni Moda',serif;color:var(--ocre);font-size:20px}
+.steps{display:flex;align-items:flex-start}
+.step{flex:1}.step .k{font-family:'Bodoni Moda',serif;font-size:32px;line-height:1}
+.step p{font-size:15px;margin-top:10px;max-width:230px}
+.steps .line{flex:.35;margin-top:18px}
+.value{font-family:'Bodoni Moda',serif;font-size:clamp(60px,9vw,104px);line-height:1}
+.value small{font-size:.3em;vertical-align:top;margin-right:6px}
+details{border-top:1px solid rgba(30,42,64,.15);padding:20px 0}
+details:last-of-type{border-bottom:1px solid rgba(30,42,64,.15)}
+summary{cursor:pointer;font-family:'Bodoni Moda',serif;font-size:21px;list-style:none}
+summary::-webkit-details-marker{display:none}
+details p{margin-top:10px;font-size:15px;max-width:760px}
+
+/* ===== Oferta: identidade Tuliu ===== */
+.tl{--ink:#111;--txt:#666;--txt2:#444;--muted:#888;--bg:#fafafa;--card:#fff;--line:#ebebeb;--soft:#f3f3f3;--grad:linear-gradient(135deg,#6366f1,#a855f7,#ec4899);--dark:linear-gradient(135deg,#111 0%,#1f1f3a 100%);font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.tl p{color:var(--txt)}
+.tl h2,.tl h3,.tl summary{font-family:Inter,system-ui,sans-serif}
+.tl h2{font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.03em;font-weight:800}
+.tl h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.tl .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:500;color:var(--txt2)}
+.tl .dot{width:8px;height:8px;border-radius:50%;background:var(--grad)}
+.tl .tcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.tl .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.tl .ic{width:40px;height:40px;border-radius:12px;background:var(--soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-weight:800;font-size:14px}
+.tl .ic span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tl .tgrid p{font-size:14.5px}
+.tl .tprice{font-size:clamp(52px,8vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.tl .tprice small{font-size:.3em;vertical-align:top;margin-right:6px;font-weight:600;color:var(--txt)}
+.tl .tbtn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:16px 28px;font-weight:600;font-size:15px;text-decoration:none;background:var(--ink);color:#fff;border:0;font-family:inherit;letter-spacing:0;text-transform:none}
+.tl .tbtn.light{background:#fff;color:var(--ink)}
+.tl .tlist{list-style:none}
+.tl .tlist li{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--txt2)}
+.tl .tlist li:first-child{border-top:0}
+.tl .ck{flex:none;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.tl .ph{background:#fef3c7;color:#92400e;border-radius:4px;padding:0 5px;outline:0}
+.tl details{border-top:1px solid var(--line)}
+.tl details:last-of-type{border-bottom:1px solid var(--line)}
+.tl summary{font-size:17px;font-weight:600}
+.tl .split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+.tl .tdark{background:var(--dark);color:#fff;border:0}
+.tl .tdark p,.tl .tdark .tlist li{color:rgba(255,255,255,.8)}
+.tl .tdark .tlist li{border-top-color:rgba(255,255,255,.12)}
+.tl .tdark .ck{background:#fff;color:#111}
+.stage{position:relative}
+.pin{position:sticky;top:0;z-index:0}
+.pin::after{content:"";position:absolute;inset:0;background:#0a071a;opacity:var(--dim,0);pointer-events:none}
+.tofr{position:relative;z-index:2;background:#fafafa;padding-top:88px;padding-bottom:calc(64px + var(--bar));margin-bottom:calc(-1 * var(--bar));transform-origin:50% 0;will-change:transform;box-shadow:0 -30px 80px rgba(10,7,26,.25)}
+.tl .hero-price{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;margin-top:28px;padding:34px;align-items:stretch}
+.tl .tparc{font-size:clamp(44px,7vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.tl .tparc small{font-size:.32em;font-weight:600;color:var(--txt);letter-spacing:0;vertical-align:middle}
+.tl .sj{display:inline-block;margin-top:10px;font-weight:800;font-size:15px;color:#fff;background:var(--grad);border-radius:999px;padding:5px 14px}
+.tl .monthly{background:var(--dark);color:#fff;border-radius:16px;padding:26px}
+.tl .monthly p{color:rgba(255,255,255,.75)}
+.tl .tgrid{grid-template-columns:repeat(5,1fr)}
+.tl .star{border-color:#c4b5fd;box-shadow:0 0 0 3px rgba(168,85,247,.08)}
+
+/* a tarja: identidade Tuliu */
+.bar{position:fixed;left:0;right:0;bottom:0;height:var(--bar);z-index:50;transform:translateY(110%);transition:transform .35s ease;padding:0 16px 12px;pointer-events:none}
+.bar.on{transform:none}
+.bar .shell{pointer-events:auto;max-width:1120px;margin:0 auto;height:100%;background:#fff;border:1px solid #ebebeb;border-radius:20px;box-shadow:0 12px 40px rgba(17,17,17,.14);position:relative;overflow:hidden}
+.bar .prog{position:absolute;top:0;left:0;height:3px;background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899);width:0;transition:width .3s}
+.bar .in{height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 14px 0 18px}
+.bar .mark{width:30px;height:30px;flex:none;display:block}
+.bar .pitch{min-width:0;flex:1}
+.bar .pitch small{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#888;letter-spacing:0;text-transform:none}
+.bar .pitch small i{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899)}
+.bar .pitch span{display:block;font-size:15.5px;font-weight:600;color:#111;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .25s}
+.bar .buy{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.bar .price{font-size:22px;font-weight:800;letter-spacing:-.03em;white-space:nowrap;color:#111;line-height:1.1}
+.bar .price small{display:block;font-size:11px;font-weight:500;color:#888;letter-spacing:0}
+.bar .cta{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 24px;font-weight:600;font-size:15px;text-decoration:none;background:#111;color:#fff;white-space:nowrap}
+
+@media (max-width:860px){
+  :root{--bar:84px}
+  section{padding-top:68px;padding-bottom:68px}
+  .g2,.g3,.open .mid{grid-template-columns:1fr;gap:32px}
+  .g4{grid-template-columns:1fr 1fr;gap:24px}
+  .lockups{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .lockups>div{min-height:170px}
+  .lockups .v{grid-column:span 2;min-height:260px}
+  .lockups .h{grid-column:span 2}
+  .sw{grid-template-columns:repeat(4,1fr);grid-auto-rows:110px;height:auto}
+  .photos{grid-template-columns:1fr 1fr}
+  .site .hero{grid-template-columns:1fr}
+  .apps{grid-template-columns:1fr}
+  .site .nav span.muted{display:none}
+  .bar{padding:0 10px 10px}
+  .bar .pitch small{display:none}
+  .bar .pitch span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.25;font-size:13.5px}
+  .bar .price{display:none}
+  .bar .cta{padding:12px 16px;font-size:13.5px}
+  .bar .cta-x{display:none}
+  .bar .in{gap:10px;padding:0 10px 0 12px}
+  .bar .mark{width:26px;height:26px}
+  .tl .tgrid{grid-template-columns:1fr 1fr}
+  .tl .hero-price{grid-template-columns:1fr;padding:24px}
+  .tl .split{grid-template-columns:1fr}
+  .item{grid-template-columns:40px 1fr;gap:4px 12px}.item p{grid-column:2}
+  .steps{flex-direction:column;gap:24px}.steps .line{display:none}
+  td,th{padding-right:10px}
+}
+</style>
+<script>
+// Só abre depois do aceite dos termos de acesso na página de entrada.
+(function(){try{if(!localStorage.getItem('fiorire_aceite_acesso')){location.replace('index.html');}}catch(e){}})();
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="cad" viewBox="0 0 152 62"><path d="M0 62L0 20A20 20 0 0 1 40 20L40 62L33.5 62L33.5 20A13.5 18.9 0 0 0 6.5 20L6.5 62ZM56 62L56 20A20 20 0 0 1 96 20L96 62L89.5 62L89.5 20A13.5 18.9 0 0 0 62.5 20L62.5 62ZM112 62L112 20A20 20 0 0 1 152 20L152 62L145.5 62L145.5 20A13.5 18.9 0 0 0 118.5 20L118.5 62Z"/></symbol>
+    <symbol id="cadr" viewBox="0 0 152 62"><path d="M0 62L0 20A20 20 0 0 1 40 20L40 62L32.4 62L32.4 20A12.4 16.6 0 0 0 7.6 20L7.6 62ZM56 62L56 20A20 20 0 0 1 96 20L96 62L88.4 62L88.4 20A12.4 16.6 0 0 0 63.6 20L63.6 62ZM112 62L112 20A20 20 0 0 1 152 20L152 62L144.4 62L144.4 20A12.4 16.6 0 0 0 119.6 20L119.6 62Z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ABERTURA -->
+<header class="dark" data-pitch="Uma identidade completa, pronta para usar.">
+  <div class="wrap open">
+    <div class="top"><span>Tuliu</span><span style="color:#C9C4BA">Preparado para Suelen Lodetti</span></div>
+    <div class="mid" style="grid-template-columns:1fr;max-width:760px">
+      <div>
+        <div class="eb">A marca da Fiorire</div>
+        <h1 style="margin-top:18px">Suelen, esta é<br>a <em>Fiorire</em>.</h1>
+        <p class="lead" style="color:#D9D3C8">Criamos a identidade completa da sua marca antes de você pedir. Navegue por ela com calma. Se fizer sentido, ela é sua, e tudo chega pronto em até 7 dias.</p>
+        <ul class="done">
+          <li><span>I</span>Estratégia, ideia central e território da marca</li>
+          <li><span>II</span>Símbolo, logotipo e sistema visual</li>
+          <li><span>III</span>Tom de voz, público e direção de fotografia</li>
+          <li><span>IV</span>Aplicações no site e no Instagram</li>
+        </ul>
+      </div>
+    </div>
+    <a class="scroll" href="#ideia"><span class="line"></span>Conhecer a marca</a>
+  </div>
+</header>
+
+<!-- 01 IDEIA CENTRAL -->
+<section id="ideia" data-pitch="Estratégia documentada: posicionamento, ideia central e território.">
+  <div class="wrap">
+    <div class="chap"><span class="n">01</span><span class="eb">Ideia central</span></div>
+    <h2 style="font-size:clamp(40px,7vw,72px);line-height:1.02">Estrutura que faz<br><em style="color:var(--terracota)">florescer.</em></h2>
+    <div class="g3 mt">
+      <div><h3>O que revela</h3><p class="muted">Que crescer com leveza é consequência de estrutura, não de esforço.</p></div>
+      <div><h3>A metáfora</h3><p class="muted">O pórtico de Bolonha organiza o caminho e protege quem passa. Cada arco é uma etapa; a sequência é o método.</p></div>
+      <div><h3>A tensão</h3><p class="muted">Feita para mulheres empreendedoras, sem os estereótipos do "feminino" no empreendedorismo. Fala de executiva para executiva.</p></div>
+    </div>
+    <div class="g3 mt">
+      <div><div class="eb" style="margin-bottom:8px">Entra</div><ul class="clean"><li>Pórticos, tijolo, travertino</li><li>Tipografia bodoniana</li><li>Ritmo, sequência, espaço</li></ul></div>
+      <div><div class="eb" style="margin-bottom:8px">Fica fora</div><ul class="clean muted"><li>Rosa, aquarela, manuscritas</li><li>Dourado e mármore</li><li>Clichês italianos</li></ul></div>
+      <div><div class="eb" style="margin-bottom:8px">Assinatura</div><ul class="clean"><li>O ritmo de arcos</li><li>A linha-arquitrave</li><li>Marinho sobre creme</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BOLONHA -->
+<section class="stone" data-pitch="Um conceito exclusivo, com origem e história para contar.">
+  <div class="wrap">
+    <div class="chap"><span class="n">02</span><span class="eb">O repertório</span></div>
+    <h2>Bolonha. Quatro fontes,<br>nenhum cartão-postal.</h2>
+    <div class="g4 mt">
+      <div><div style="height:80px;display:flex;align-items:flex-end;margin-bottom:22px"><svg class="s" viewBox="0 0 152 62" style="width:120px"><use href="#cad"/></svg></div><h3>Os pórticos</h3><p class="muted">62 km de arcadas, Patrimônio da UNESCO. Estrutura que abriga a vida da cidade: a forma do método.</p></div>
+      <div><div style="display:flex;gap:6px;height:80px;margin-bottom:22px"><div style="flex:1;background:var(--terracota)"></div><div style="flex:1;background:var(--ocre)"></div><div style="flex:1;background:var(--creme)"></div></div><h3>Tijolo e travertino</h3><p class="muted">Terracota, ocre e pedra clara. Calor sem ostentação.</p></div>
+      <div><div class="serif" style="font-size:72px;line-height:80px;height:80px;margin-bottom:22px">Aa</div><h3>Bodoni, de Parma</h3><p class="muted">O tipógrafo da Emilia-Romagna e a origem da tipografia da Fiorire.</p></div>
+      <div><div class="serif" style="font-size:56px;line-height:80px;height:80px;margin-bottom:22px;color:var(--terracota)">1088</div><h3>A Università</h3><p class="muted">A universidade mais antiga do Ocidente. Método e rigor como herança.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SÍMBOLO -->
+<section data-pitch="Símbolo em vetor, com versão reduzida para favicon e avatar.">
+  <div class="wrap g2" style="align-items:center">
+    <div class="constr prev">
+      <svg viewBox="-20 -14 192 90" style="width:100%;max-width:440px;display:block">
+        <g stroke="#B4553A" stroke-width=".3" fill="none">
+          <line x1="-20" y1="0" x2="172" y2="0"/><line x1="-20" y1="20" x2="172" y2="20"/><line x1="-20" y1="62" x2="172" y2="62"/>
+          <line x1="40" y1="-14" x2="40" y2="76"/><line x1="56" y1="-14" x2="56" y2="76"/><line x1="96" y1="-14" x2="96" y2="76"/><line x1="112" y1="-14" x2="112" y2="76"/>
+        </g>
+        <use href="#cad" width="152" height="62" fill="#1E2A40"/>
+        <g font-family="Jost" font-size="4" fill="#8E3B27" letter-spacing=".3">
+          <text x="41.5" y="73">VÃO 40%</text><text x="-19" y="-3">COROA FINA</text><text x="-19" y="71">PERNA GROSSA</text>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <div class="chap"><span class="n">03</span><span class="eb">Símbolo</span></div>
+      <h2>A Cadência</h2>
+      <ul class="clean" style="margin-top:26px">
+        <li><b style="font-weight:500">Pernas grossas, coroa fina.</b> <span class="muted">O contraste da Bodoni dentro de cada arco: símbolo e letra feitos pela mesma mão.</span></li>
+        <li><b style="font-weight:500">Três arcos.</b> <span class="muted">Diagnóstico, estrutura, crescimento. O seu método, visível na marca.</span></li>
+        <li><b style="font-weight:500">Vão de 40%.</b> <span class="muted">Cada arco é uma etapa independente.</span></li>
+        <li><b style="font-weight:500">Sem arquitrave.</b> <span class="muted">A linha que fechava o desenho virou o recurso gráfico do sistema.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 LOGO -->
+<section style="padding-top:0" data-pitch="Todas as versões e cores em SVG, PNG e PDF.">
+  <div class="wrap">
+    <div class="chap"><span class="n">04</span><span class="eb">Logo</span></div>
+    <h2 style="margin-bottom:36px">Versões e cores</h2>
+    <div class="lockups">
+      <div class="v prev" style="grid-row:span 2;background:#fff;border:1px solid rgba(30,42,64,.1);flex-direction:column">
+        <svg class="s" viewBox="0 0 152 62" style="width:120px"><use href="#cad"/></svg>
+        <div class="wm" style="font-size:44px;margin-top:32px">FIORIRE</div>
+        <div class="tag" style="font-size:9px;margin-top:16px">Assessoria Empresarial</div>
+        <span class="cap">Vertical · principal</span>
+      </div>
+      <div class="h prev" style="grid-column:span 2;background:var(--marinho);color:var(--creme);gap:26px">
+        <svg class="s" viewBox="0 0 152 62" style="width:92px"><use href="#cad"/></svg>
+        <div><div class="wm" style="font-size:38px">FIORIRE</div><div class="tag" style="font-size:8px;margin-top:10px">Assessoria Empresarial</div></div>
+        <span class="cap">Horizontal · negativo</span>
+      </div>
+      <div class="prev" style="background:var(--pedra);gap:14px"><svg class="s" viewBox="0 0 152 62" style="width:54px"><use href="#cad"/></svg><div class="wm" style="font-size:24px">FIORIRE</div><span class="cap">Horizontal · pedra</span></div>
+      <div class="prev" style="background:var(--marinho);color:var(--creme);gap:24px">
+        <svg class="s" viewBox="0 0 152 62" style="width:96px"><use href="#cad"/></svg>
+        <svg class="s" viewBox="0 0 152 62" style="width:30px"><use href="#cadr"/></svg>
+        <span class="cap">Símbolo · avatar e favicon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 TIPOGRAFIA -->
+<section class="stone" data-pitch="Fontes gratuitas, com escala pronta para site e Instagram.">
+  <div class="wrap g2" style="grid-template-columns:1.3fr 1fr">
+    <div>
+      <div class="chap"><span class="n">05</span><span class="eb">Tipografia</span></div>
+      <div class="spec">Aa<em style="color:var(--terracota)">Rr</em></div>
+      <h3 style="margin-top:18px">Bodoni Moda</h3>
+      <p class="muted">Herdeira de Bodoni, de Parma, a 90 km de Bolonha. O alto contraste é a elegância editorial italiana, e o eixo óptico mantém a fonte legível em tela pequena.</p>
+    </div>
+    <div style="align-self:end">
+      <div style="font-size:clamp(64px,10vw,96px);line-height:1">Aa</div>
+      <h3 style="margin-top:18px">Jost</h3>
+      <p class="muted">Geométrica de raiz Futura. Bodoni com Futura é o par clássico do design editorial italiano do século XX.</p>
+      <div style="background:var(--creme);padding:26px;margin-top:26px">
+        <div class="eb" style="font-size:10px">Mapeamento de processos</div>
+        <div class="serif" style="font-size:26px;line-height:1.1;margin-top:8px">Seu negócio cresceu. A estrutura <span style="font-style:italic;border-bottom:1.5px solid var(--terracota)">precisa</span> crescer junto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 COR -->
+<section data-pitch="Paleta com códigos e regras de contraste testadas.">
+  <div class="wrap">
+    <div class="chap"><span class="n">06</span><span class="eb">Cor</span></div>
+    <h2 style="margin-bottom:36px">Sombra do pórtico, tijolo e pedra.</h2>
+    <div class="sw">
+      <div style="background:var(--marinho);color:var(--creme)"><b>Marinho Fiorire</b>#1E2A40</div>
+      <div style="background:var(--terracota);color:var(--creme)"><b>Terracota</b>#B4553A</div>
+      <div style="background:var(--tijolo);color:var(--creme)"><b>Tijolo</b>#8E3B27</div>
+      <div style="background:var(--creme);border:1px solid rgba(30,42,64,.15)"><b>Creme Travertino</b>#F4EEE4</div>
+      <div style="background:var(--pedra)"><b>Pedra</b>#E3D7C5</div>
+      <div style="background:var(--ocre)"><b>Ocre</b>#C8954E</div>
+      <div style="background:var(--grafite);color:var(--creme)"><b>Grafite</b>#4A4F58</div>
+    </div>
+    <div class="g3" style="margin-top:28px">
+      <p class="muted"><b style="font-weight:500;color:var(--marinho)">60 · 30 · 10.</b> Creme e pedra, marinho, terracota.</p>
+      <p class="muted"><b style="font-weight:500;color:var(--marinho)">Marinho</b> herdado da marca atual e aprofundado.</p>
+      <p class="muted"><b style="font-weight:500;color:var(--marinho)">Ocre</b> no lugar do dourado: calor sem ostentação.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 LINHA -->
+<section class="stone" data-pitch="Um recurso gráfico exclusivo para todas as peças.">
+  <div class="wrap">
+    <div class="chap"><span class="n">07</span><span class="eb">Recurso gráfico</span></div>
+    <h2>A linha-arquitrave</h2>
+    <div style="display:flex;align-items:center;gap:18px;margin:48px 0">
+      <span class="serif" style="font-size:clamp(22px,4vw,40px)">mapear</span><div class="line" style="flex:1"></div>
+      <span class="serif" style="font-size:clamp(22px,4vw,40px)">estruturar</span><div class="line" style="flex:1"></div>
+      <span class="serif" style="font-size:clamp(22px,4vw,40px);font-style:italic;color:var(--terracota)">crescer</span>
+    </div>
+    <div class="g4">
+      <div><h3>Ligar etapas</h3><p class="muted">Une os verbos do processo.</p></div>
+      <div><h3>Sustentar</h3><p class="muted">Atravessa a composição no topo dos arcos.</p></div>
+      <div><h3>Destacar</h3><p class="muted">Sublinha o itálico de um título.</p></div>
+      <div><h3>Escapar</h3><p class="muted">Sai da foto e continua no texto.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 TOM -->
+<section class="dark" data-pitch="Guia de tom de voz, com vocabulário e exemplos prontos.">
+  <div class="wrap">
+    <div class="chap"><span class="n">08</span><span class="eb">Tom de voz</span></div>
+    <h2>Consultora sênior,<br>de igual para igual.</h2>
+    <div class="g4 mt">
+      <div><h3>Par a par</h3><p class="muted">Fala com a cliente como com uma diretora de outra empresa.</p></div>
+      <div><h3>Precisão</h3><p class="muted">Verbo concreto, número quando houver.</p></div>
+      <div><h3>Clareza</h3><p class="muted">Uma ideia por parágrafo. Clareza é o produto.</p></div>
+      <div><h3>Calor contido</h3><p class="muted">Empatia no entendimento, não nos adjetivos.</p></div>
+    </div>
+    <div class="mt" style="border-top:1px solid rgba(244,238,228,.18)">
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:24px;padding:18px 0;border-bottom:1px solid rgba(244,238,228,.18)"><span class="muted">"Estratégias para uma rotina leve."</span><span class="serif" style="font-size:19px">Estrutura para o seu negócio crescer sem depender de você em cada etapa.</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:24px;padding:18px 0;border-bottom:1px solid rgba(244,238,228,.18)"><span class="muted">"Prático e transformador."</span><span class="serif" style="font-size:19px">Mapeamos como sua empresa funciona hoje e desenhamos como ela deve funcionar amanhã.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 AUDIÊNCIA -->
+<section data-pitch="Perfil de público para orientar conteúdo e vendas.">
+  <div class="wrap g2">
+    <div>
+      <div class="chap"><span class="n">09</span><span class="eb">Audiência</span></div>
+      <h2>O negócio deu certo.<br>E virou um peso.</h2>
+      <p class="muted" style="margin-top:22px">Mulher, dona ou sócia de um negócio em crescimento, com equipe pequena a média. O faturamento já é relevante, mas a operação inteira passa por ela.</p>
+    </div>
+    <div style="background:var(--marinho);color:var(--creme);padding:40px;align-self:start">
+      <p class="serif" style="font-size:22px;line-height:1.4;font-style:italic">"Tudo depende de mim." "Minha equipe não sabe o que fazer sem mim." "Quero crescer, mas do jeito certo."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 FOTOGRAFIA -->
+<section class="stone" data-pitch="Direção de fotografia e as imagens do ensaio.">
+  <div class="wrap">
+    <div class="chap"><span class="n">10</span><span class="eb">Fotografia</span></div>
+    <h2>Você, em luz de pórtico.</h2>
+    <p class="lead muted">Luz natural de fim de tarde, arcos, tijolo e madeira. Figurino marinho, creme e camel. As imagens foram geradas com IA a partir de uma foto sua e servem de direção para o ensaio.</p>
+    <div class="photos mt">
+      <img class="arch" src="img/retrato.jpg" alt="Retrato sob o pórtico">
+      <img src="img/mentoria.jpg" alt="Mentoria">
+      <img src="img/workshop.jpg" alt="Workshop">
+      <img src="img/maos.jpg" alt="Mãos desenhando um fluxo">
+    </div>
+  </div>
+</section>
+
+<!-- 11 APLICAÇÕES -->
+<section data-pitch="Site pronto, link de bio e conteúdos para Instagram.">
+  <div class="wrap">
+    <div class="chap"><span class="n">11</span><span class="eb">Aplicações</span></div>
+    <h2 style="margin-bottom:36px">Site e Instagram</h2>
+    <div class="apps">
+      <div class="site prev">
+        <div class="nav"><div style="display:flex;align-items:center;gap:8px"><svg class="s" viewBox="0 0 152 62" style="width:30px"><use href="#cad"/></svg><span class="wm" style="font-size:14px">FIORIRE</span></div><span class="muted" style="font-size:10px;letter-spacing:.18em;text-transform:uppercase">Método · Serviços · Sobre</span></div>
+        <div class="hero">
+          <div class="line" style="position:absolute;left:0;right:0;top:56px"></div>
+          <div style="padding-top:36px">
+            <div class="eb" style="font-size:10px">Assessoria de processos</div>
+            <div class="serif" style="font-size:30px;line-height:1.08;margin:10px 0">Estrutura que faz o seu negócio <em>florescer.</em></div>
+            <p class="muted" style="font-size:14px">Para empreendedoras que querem sair do operacional e voltar a decidir.</p>
+            <div class="btn" style="margin-top:16px;font-size:10px;padding:12px 18px">Agendar uma conversa</div>
+          </div>
+          <img class="arch" src="img/retrato.jpg" alt="" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 25%">
+        </div>
+      </div>
+      <div>
+        <div class="ig">
+          <div style="padding:0"><img src="img/mentoria.jpg" alt=""></div>
+          <div style="background:var(--creme);border:1px solid rgba(30,42,64,.15)"><div class="serif" style="font-size:14px;line-height:1.15">3 sinais de que você virou o <em>gargalo</em></div><div class="line" style="width:60%;margin-top:8px"></div></div>
+          <div style="background:var(--marinho);color:var(--creme)"><div class="serif" style="font-size:14px;line-height:1.15;font-style:italic">Processo não engessa. Liberta.</div></div>
+          <div style="background:var(--marinho);color:var(--creme);align-items:center"><svg class="s" viewBox="0 0 152 62" style="width:56px"><use href="#cad"/></svg></div>
+          <div style="padding:0"><img src="img/maos.jpg" alt=""></div>
+          <div style="background:var(--pedra)"><div class="eb" style="font-size:8px">Etapa II</div><div class="serif" style="font-size:14px;line-height:1.15;margin-top:4px">Quem faz o quê</div></div>
+        </div>
+        <p class="muted" style="font-size:14px;margin-top:14px">Um terço foto, um terço carrossel em creme, um terço peça marinho. A linha-arquitrave aparece uma vez por peça.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PALCO FINAL: o último capítulo fica parado e a oferta sobe por cima -->
+<div class="stage">
+<!-- 12 ANTI-PADRÕES -->
+<section class="stone pin" id="pin" data-pitch="Regras claras para a marca não se perder ao crescer.">
+  <div class="wrap">
+    <div class="chap"><span class="n">12</span><span class="eb">Anti-padrões</span></div>
+    <h2>A Fiorire nunca.</h2>
+    <div class="g3 mt">
+      <div style="border-top:2px solid var(--terracota);padding-top:18px"><h3>Estética coach</h3><p class="muted">Rosa, aquarela, manuscritas, frases motivacionais.</p></div>
+      <div style="border-top:2px solid var(--terracota);padding-top:18px"><h3>Luxo ostentação</h3><p class="muted">Dourado, preto e dourado, mármore brilhante.</p></div>
+      <div style="border-top:2px solid var(--terracota);padding-top:18px"><h3>Italiano caricato</h3><p class="muted">Bandeira, clichês turísticos, palavras italianas soltas.</p></div>
+    </div>
+    <p class="muted" style="margin-top:64px;font-size:14px;letter-spacing:.2em;text-transform:uppercase">Fim do brand book · Fiorire</p>
+  </div>
+</section>
+
+<!-- ===== OFERTA (identidade Tuliu) ===== -->
+<div class="tl tofr" id="investimento" data-pitch="Tudo isso, em até 18x sem juros.">
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span>Oferta Tuliu · exclusiva para a Fiorire</span>
+    <h2 style="margin-top:18px">Tudo o que você viu,<br>pronto para usar.</h2>
+
+    <!-- preço -->
+    <div class="tcard hero-price">
+      <div>
+        <span class="pill">Investimento</span>
+        <div class="tparc" style="margin-top:18px"><small>18x de</small> R$ 273,83</div>
+        <div class="sj">sem juros</div>
+        <p style="margin-top:10px">ou R$ 4.929 à vista no Pix. Entrega completa em até 7 dias.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
+          <span class="pill"><span class="dot"></span>Cartão em até 18x sem juros</span>
+          <span class="pill"><span class="dot"></span>Pix parcelado em até 18x sem juros</span>
+          <span class="pill">Não consome o limite do cartão</span>
+        </div>
+      </div>
+      <div class="monthly">
+        <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff">Plano mensal</span>
+        <div class="tprice" style="color:#fff;margin-top:16px;font-size:clamp(44px,6vw,60px)"><small style="color:rgba(255,255,255,.7)">R$</small>99<span style="font-size:.32em;font-weight:600;color:rgba(255,255,255,.7)">/mês</span></div>
+        <p style="margin-top:8px">Plano Essencial. O mesmo valor que você já paga hoje, agora com o site novo, domínio, hospedagem e e-mails.</p>
+      </div>
+      <a class="tbtn" href="checkout.html" data-buy style="grid-column:1/-1;justify-self:start">Adquirir a Fiorire</a>
+    </div>
+
+    <!-- entregáveis -->
+    <div class="tgrid">
+      <div class="tcard"><div class="ic"><span>01</span></div><h3>Marca completa</h3><p>Símbolo, logotipo e todas as versões, com direitos de uso.</p></div>
+      <div class="tcard"><div class="ic"><span>02</span></div><h3>Arquivos finais</h3><p>SVG, PNG e PDF em todas as versões e cores. Favicon e avatar.</p></div>
+      <div class="tcard"><div class="ic"><span>03</span></div><h3>Brand system</h3><p>Este DNA em versão final, com todas as regras de uso.</p></div>
+      <div class="tcard"><div class="ic"><span>04</span></div><h3>Site com até 10 páginas</h3><p>Site da Fiorire pronto e no ar, na nova identidade.</p></div>
+      <div class="tcard star"><div class="ic"><span>05</span></div><h3>GEO e SEO configurados</h3><p>Site preparado para ser encontrado no Google e indicado por IAs como ChatGPT, Gemini e Perplexity.</p></div>
+      <div class="tcard"><div class="ic"><span>06</span></div><h3>18 posts para Instagram</h3><p>Posts e carrosséis prontos, mais modelos editáveis.</p></div>
+      <div class="tcard"><div class="ic"><span>07</span></div><h3>Link de bio</h3><p>Página de links para o Instagram, na identidade da marca.</p></div>
+      <div class="tcard"><div class="ic"><span>08</span></div><h3>Enxoval completo</h3><p>Cartão, assinatura de e-mail, papel timbrado e modelos.</p></div>
+      <div class="tcard"><div class="ic"><span>09</span></div><h3>Domínio incluso</h3><p>Endereço próprio da Fiorire, registrado e configurado.</p></div>
+      <div class="tcard"><div class="ic"><span>10</span></div><h3>Hospedagem e e-mails</h3><p>Site hospedado e <span class="ph">[N]</span> contas de e-mail profissional.</p></div>
+    </div>
+
+    <!-- plano mensal e upgrades -->
+    <div class="split" style="margin-top:14px">
+      <div class="tcard" style="padding:30px">
+        <span class="pill"><span class="dot"></span>Plano Essencial · R$ 99/mês</span>
+        <ul class="tlist" style="margin-top:14px">
+          <li><span class="ck">✓</span>Hospedagem do site e do link de bio</li>
+          <li><span class="ck">✓</span>Domínio renovado todo ano</li>
+          <li><span class="ck">✓</span><span><span class="ph">[N]</span> contas de e-mail profissional</span></li>
+          <li><span class="ck">✓</span>Certificado de segurança (SSL) e backups</li>
+          <li><span class="ck">✓</span>Atualizações e suporte pelo WhatsApp</li>
+        </ul>
+      </div>
+      <div class="tcard" style="padding:30px">
+        <span class="pill">Para quando a Fiorire crescer</span>
+        <ul class="tlist" style="margin-top:14px">
+          <li><span class="ck" style="background:#f3f3f3;color:#111">+</span>Contas de e-mail adicionais</li>
+          <li><span class="ck" style="background:#f3f3f3;color:#111">+</span>Mais armazenamento e desempenho</li>
+          <li><span class="ck" style="background:#f3f3f3;color:#111">+</span>Gestão mensal de conteúdo para Instagram</li>
+          <li><span class="ck" style="background:#f3f3f3;color:#111">+</span>Agente de IA para atendimento no WhatsApp</li>
+        </ul>
+        <p style="font-size:13px;margin-top:10px">Upgrades opcionais, sob consulta.</p>
+      </div>
+    </div>
+
+    <!-- garantias e termos -->
+    <div class="split" style="margin-top:14px">
+      <div class="tcard" style="padding:30px">
+        <span class="pill">Garantias</span>
+        <ul class="tlist" style="margin-top:14px">
+          <li><span class="ck">✓</span>Você só paga se decidir ficar com a marca.</li>
+          <li><span class="ck">✓</span>Entrega completa em até 7 dias.</li>
+          <li><span class="ck">✓</span>Até 18x sem juros, no cartão ou no Pix.</li>
+          <li><span class="ck">✓</span><span><span class="ph">[número]</span> rodadas de ajuste incluídas.</span></li>
+        </ul>
+      </div>
+      <div class="tcard tdark" style="padding:30px">
+        <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff">Os termos</span>
+        <ul class="tlist" style="margin-top:14px">
+          <li><span class="ck">✓</span>O nome Fiorire é seu. Nada aqui limita o uso do seu nome.</li>
+          <li><span class="ck">✓</span>A identidade visual é uma obra original, protegida pela Lei 9.610/98.</li>
+          <li><span class="ck">✓</span>Ao adquirir, você recebe a cessão total dos direitos, por contrato escrito.</li>
+          <li><span class="ck">✓</span>Se não adquirir, nada é cobrado e as imagens com o seu rosto são apagadas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tcard" style="margin-top:14px;padding:10px 28px">
+      <details><summary style="padding:16px 0">O que é GEO?</summary><p style="padding-bottom:16px">É a otimização para mecanismos de IA. O site é estruturado para que assistentes como ChatGPT, Gemini e Perplexity entendam o que a Fiorire faz e a indiquem quando alguém pergunta por assessoria de processos.</p></details>
+      <details><summary style="padding:16px 0">O plano mensal é obrigatório?</summary><p style="padding-bottom:16px">Ele mantém o site, o domínio e os e-mails no ar. É o mesmo valor que você já paga hoje.</p></details>
+      <details><summary style="padding:16px 0">Posso pedir ajustes?</summary><p style="padding-bottom:16px">Sim. Estão incluídas <span class="ph">[número]</span> rodadas de ajuste dentro do sistema aprovado.</p></details>
+      <details><summary style="padding:16px 0">As fotos são reais?</summary><p style="padding-bottom:16px">Foram geradas com IA a partir de uma foto sua, para mostrar a direção. Servem de referência para um ensaio real ou podem ser refinadas e usadas.</p></details>
+      <details style="border-bottom:0"><summary style="padding:16px 0">E o registro da marca?</summary><p style="padding-bottom:16px">A aquisição transfere os direitos sobre a identidade visual. O registro no INPI, em seu nome, é um processo à parte, e indicamos como fazer.</p></details>
+    </div>
+
+    <div style="text-align:center;margin-top:56px">
+      <h2>A Fiorire está pronta.<br>Falta ser sua.</h2>
+      <p style="margin-top:12px">18x de R$ 273,83 sem juros · entrega em até 7 dias</p>
+      <a class="tbtn" href="checkout.html" data-buy style="margin-top:24px">Adquirir a Fiorire</a>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:56px;padding-top:24px;border-top:1px solid #ebebeb;font-size:13px;color:#888">
+      <span>Criado com tecnologia Tuliu e direção especializada humana.</span>
+      <span>© 2026 Tuliu · Prévia confidencial · Acesso registrado</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- A TARJA (identidade Tuliu) -->
+<div class="bar tl" id="bar" role="region" aria-label="Adquirir a marca">
+  <div class="shell">
+    <div class="prog" id="prog"></div>
+    <div class="in">
+      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="20" fill="#0a071a"/><circle cx="50" cy="50" r="45" fill="none" stroke="#fff" stroke-width="31"/><circle cx="74" cy="50" r="21" fill="#fff"/></svg>
+      <div class="pitch"><small><i></i>Incluso · 18x sem juros</small><span id="pitch">Uma identidade completa, pronta para usar.</span></div>
+      <div class="buy">
+        <div class="price"><small>18x sem juros de</small>R$ 273,83</div>
+        <a class="cta" href="checkout.html" data-buy>Adquirir<span class="cta-x">&nbsp;a Fiorire</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar'),pitch=document.getElementById('pitch'),prog=document.getElementById('prog');
+  var secs=[].slice.call(document.querySelectorAll('[data-pitch]'));
+  var current='';
+  function update(){
+    var y=window.scrollY,h=window.innerHeight;
+    // palco final: a oferta cresce de 86% a 100% enquanto sobe por cima do último capítulo
+    var ofr=document.getElementById('investimento'),pin=document.getElementById('pin');
+    var top=ofr.getBoundingClientRect().top,p=Math.max(0,Math.min(1,1-top/h));
+    var e=p*(2-p);
+    ofr.style.transform='scale('+(0.86+0.14*e).toFixed(4)+')';
+    ofr.style.borderRadius=(32*(1-e)).toFixed(1)+'px '+(32*(1-e)).toFixed(1)+'px 0 0';
+    pin.style.setProperty('--dim',(0.55*e).toFixed(3));
+    bar.classList.toggle('on',y>h*0.35&&top>h*0.45);
+    var max=document.documentElement.scrollHeight-h;
+    prog.style.width=(max>0?Math.min(100,y/max*100):0)+'%';
+    var mid=h*0.45,active=secs[0];
+    for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=mid)active=secs[i];}
+    var t=active.getAttribute('data-pitch');
+    if(t!==current){current=t;pitch.style.opacity=0;setTimeout(function(){pitch.textContent=t;pitch.style.opacity=1;},180);}
+  }
+  function pinTop(){var pn=document.getElementById('pin');pn.style.top=Math.min(0,window.innerHeight-pn.offsetHeight)+'px';}
+  window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',function(){pinTop();update();});pinTop();update();
+})();
+</script>
+</body>
+</html>
