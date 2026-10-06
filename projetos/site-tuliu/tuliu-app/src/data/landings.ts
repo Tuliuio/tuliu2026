@@ -38,14 +38,14 @@ export const machine = (title: string, subtitle: string): Block => ({
   improvements: IMPROVEMENTS,
 });
 
-const volume = (title = 'Quanto marketing acontece de verdade?', agency = 'R$2.500+ por mês'): Block => ({
+const volume = (title = 'Quanto marketing acontece de verdade?', agency = 'R$2.500+ por mês', tuliuPrice = 'A partir de R$97 por mês'): Block => ({
   type: 'volume',
   title,
   subtitle: 'Fazer sozinho, contratar uma agência ou deixar a Tuliu operar. A diferença é quanto acontece de fato a cada mês, e quanto isso custa.',
   options: [
     { label: 'Você mesmo', level: 1, price: 'De graça, mas custa suas noites', desc: 'Você tem as ferramentas, mas não tem tempo nem dados para fazer direito. A maior parte fica na lista de tarefas.' },
     { label: 'Uma agência', level: 3, price: agency, desc: 'Gente boa, mas lenta, cara e dividida entre vários fornecedores. Cada mudança vira orçamento.' },
-    { label: 'Tuliu', level: 5, price: 'A partir de R$97 por mês', desc: 'O trabalho de um time de marketing inteiro, executado toda semana, com um único ponto de contato. A IA faz, um especialista aprova.', recommended: true },
+    { label: 'Tuliu', level: 5, price: tuliuPrice, desc: 'O trabalho de um time de marketing inteiro, executado toda semana, com um único ponto de contato. A IA faz, um especialista aprova.', recommended: true },
   ],
 });
 
@@ -139,7 +139,8 @@ export const landings: Landing[] = [
     navLabel: 'SEO feito por IA',
     navDesc: 'Seu site subindo no Google, otimizado toda semana',
     metaTitle: 'SEO feito por IA, aprovado por especialistas | Tuliu',
-    metaDescription: 'A IA analisa seus dados do Google todo dia e otimiza seu site. Especialistas aprovam cada mudança. A partir de R$97/mês.',
+    metaDescription: 'A IA analisa seus dados do Google todo dia e otimiza seu site. Especialistas aprovam cada mudança. No plano Business, a partir de R$497/mês.',
+    priceFrom: 'R$497/mês',
     hero: {
       eyebrow: 'SEO com IA',
       title: 'A IA faz o seu SEO',
@@ -185,7 +186,7 @@ export const landings: Landing[] = [
         options: [
           { label: 'Você mesmo', level: 1, price: 'De graça, mas toma tempo', desc: 'Você pede pra uma IA escrever, mas sem dados para guiar. Chute bem escrito continua sendo chute.' },
           { label: 'Agência de SEO', level: 2, price: 'R$1.500+ por mês', desc: 'Usa dados, mas não tem braço para executar em volume. Relatório bonito, poucas mudanças no ar.' },
-          { label: 'Tuliu', level: 5, price: 'A partir de R$97 por mês', desc: 'Todos os seus dados, analisados e aplicados em escala, com revisão de um especialista.', recommended: true },
+          { label: 'Tuliu', level: 5, price: 'A partir de R$497 por mês', desc: 'Todos os seus dados, analisados e aplicados em escala, com revisão de um especialista.', recommended: true },
         ],
       },
       { type: 'cases', title: 'Quem já está crescendo com a Tuliu.', subtitle: 'Empresas reais, com operação digital rodando todos os dias.' },
@@ -207,7 +208,7 @@ export const landings: Landing[] = [
           { q: 'Em quanto tempo vejo resultado?', a: 'SEO é cumulativo. As primeiras melhorias técnicas e de título costumam mostrar efeito em semanas. Ganhar posições em palavras disputadas leva meses. O que muda com a Tuliu é que algo acontece toda semana, então o resultado vem mais cedo.' },
           { q: 'Preciso trocar meu site?', a: 'Não. A gente pode otimizar o site que você já tem, ou construir um novo se ele estiver segurando o seu crescimento. Você decide.' },
           { q: 'Vocês mexem no meu Google Search Console?', a: 'Com o seu acesso, sim. É de lá que vêm os dados que guiam a IA. Você continua dono de todas as contas.' },
-          { q: 'Quanto custa?', a: 'Os planos começam em R$97 por mês, sem fidelidade. SEO, conteúdo, site e tráfego entram na mesma mensalidade.' },
+          { q: 'Quanto custa?', a: 'O SEO semanal faz parte do plano Business, a partir de R$497 por mês, junto com site sob medida e gestão de tráfego. Sem fidelidade.' },
         ],
       },
     ],
@@ -251,7 +252,7 @@ export const landings: Landing[] = [
         chips: ['Site e landing pages', 'SEO', 'SEO para IA', 'Conteúdo e vídeos', 'Google Ads', 'Meta Ads', 'Agentes de IA', 'Automações', 'Hospedagem e manutenção'],
         cards: [
           { icon: 'fas fa-layer-group', title: 'Uma empresa no lugar de quatro', desc: 'Sem coordenar agência de site, agência de SEO, redator e gestor de tráfego. Tudo num lugar só.' },
-          { icon: 'fas fa-receipt', title: 'Um valor mensal fixo', desc: 'Sem taxa de criação de site, sem cobrança por hora. A partir de R$97 por mês, tudo incluso.' },
+          { icon: 'fas fa-receipt', title: 'Um valor mensal fixo', desc: 'Sem taxa de criação, sem cobrança por hora. Planos a partir de R$97 por mês, com site, tráfego e SEO juntos a partir de R$497.' },
           { icon: 'fab fa-whatsapp', title: 'Um contato no WhatsApp', desc: 'Você manda o que precisa, por texto ou áudio, e a gente coloca no ar. Como falar com o seu próprio time.' },
         ],
       },
@@ -286,7 +287,8 @@ export const landings: Landing[] = [
     navLabel: 'Tráfego pago com IA',
     navDesc: 'Google Ads e Meta Ads ajustados toda semana',
     metaTitle: 'Gestão de tráfego pago com IA, Google e Meta Ads | Tuliu',
-    metaDescription: 'Campanhas de Google Ads e Meta Ads criadas, ajustadas e conectadas à página certa. IA e gestores de tráfego por um valor fixo.',
+    metaDescription: 'Campanhas de Google Ads e Meta Ads criadas, ajustadas e conectadas à página certa. IA e gestores de tráfego a partir de R$497/mês.',
+    priceFrom: 'R$497/mês',
     hero: {
       eyebrow: 'Tráfego pago',
       title: 'Anúncios que se ajustam toda semana,',
@@ -312,7 +314,7 @@ export const landings: Landing[] = [
         ],
       },
       machine('Uma máquina que aprende com cada real investido.', 'A IA junta os dados de anúncio, site e atendimento e encontra onde a verba está escorrendo. Depois ajusta, com aprovação de um gestor de tráfego.'),
-      volume('Quanta otimização acontece de verdade?', 'R$1.500+ por mês, fora a verba'),
+      volume('Quanta otimização acontece de verdade?', 'R$1.500+ por mês, fora a verba', 'A partir de R$497 por mês, fora a verba'),
       { type: 'cases', title: 'Tráfego pago rodando de verdade.', subtitle: 'Empresas que deixaram de depender de um gestor sozinho.', ids: ['vita-brasil', 'oralrad'] },
       { type: 'related', title: 'Outras frentes da máquina.', hrefs: ['seo-feito-por-ia', 'conteudo-com-ia', 'agentes-de-ia'] },
       {
@@ -523,7 +525,7 @@ export const landings: Landing[] = [
         items: [
           { q: 'O cliente percebe que é uma IA?', a: 'A gente recomenda deixar claro que é um assistente virtual. A experiência é natural, rápida, e passa para um humano quando precisa.' },
           { q: 'Funciona no meu número de WhatsApp?', a: 'Sim, usando a API oficial do WhatsApp Business. A gente cuida da configuração.' },
-          { q: 'Em qual plano entra?', a: 'Agentes de IA estão inclusos a partir do plano Business.' },
+          { q: 'Em qual plano entra?', a: 'Agentes de IA e automações sob medida fazem parte do plano Enterprise, a partir de R$2.000 por mês.' },
         ],
       },
     ],

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { PriceContext } from '../../context/PriceContext';
 import type { ReactNode } from 'react';
 import type { Block, Cell, Landing } from '../../data/landingTypes';
 import { cases } from '../../data/cases';
@@ -7,7 +8,6 @@ import { useLinkProps } from '../../context/NavContext';
 
 type Of<T extends Block['type']> = Extract<Block, { type: T }>;
 
-export const PRICE_FROM = 'R$97/mês';
 
 function Header({ eyebrow, title, subtitle, dark }: { eyebrow?: string; title: string; subtitle?: string; dark?: boolean }) {
   return (
@@ -47,6 +47,7 @@ export function Marquee({ items, reverse, chip }: { items: MarqueeItem[]; revers
 /* ---------- HERO ---------- */
 export function LandingHero({ hero, onCta }: { hero: Landing['hero']; onCta: () => void }) {
   const link = useLinkProps();
+  const priceFrom = useContext(PriceContext);
   return (
     <section className="lp-hero">
       <div className="container-wide lp-hero-grid">
@@ -60,7 +61,7 @@ export function LandingHero({ hero, onCta }: { hero: Landing['hero']; onCta: () 
           <div className="lp-hero-actions">
             <CtaButton label="Quero meu diagnóstico gratuito" onClick={onCta} />
             <a className="lp-hero-price" {...link('/#precos')}>
-              <strong>A partir de {PRICE_FROM}</strong>
+              <strong>A partir de {priceFrom}</strong>
               <span>Ver os planos</span>
             </a>
           </div>
@@ -220,12 +221,13 @@ function Bundle({ b }: { b: Of<'bundle'> }) {
 
 /* ---------- PRICE BAND ---------- */
 export function PriceBand({ onCta, text }: { onCta: () => void; text?: string }) {
+  const priceFrom = useContext(PriceContext);
   return (
     <div className="lp-price-band">
       <div>
         <span className="lp-price-band-label">Com a Tuliu</span>
         <p>
-          {text ?? `Um valor mensal fixo, a partir de ${PRICE_FROM}. Site, SEO, conteúdo, tráfego pago e manutenção em um só lugar, com IA e especialistas fazendo o trabalho.`}
+          {text ?? `Um valor mensal fixo, a partir de ${priceFrom}. Site, SEO, conteúdo, tráfego pago e manutenção em um só lugar, com IA e especialistas fazendo o trabalho.`}
         </p>
       </div>
       <CtaButton label="Quero meu diagnóstico" onClick={onCta} />

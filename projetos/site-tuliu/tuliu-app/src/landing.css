@@ -1814,3 +1814,7 @@
 .pl-price-from em { position: absolute; top: 0; left: 0; font-style: normal; font-size: 13px; font-weight: 600; color: #8a8799; letter-spacing: 0.02em; }
 .pl-price-from { padding-top: 0; }
 .pl-price-from em { top: -18px; }
+
+/* Submenus sem transparência */
+.mega-card { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.mega-foot { background: #f6f3ff; }

@@ -32,6 +32,8 @@ export interface Landing {
   navDesc: string;
   metaTitle: string;
   metaDescription: string;
+  /** Preço de entrada exibido na página (padrão: R$97/mês, o Starter) */
+  priceFrom?: string;
   hero: {
     eyebrow: string;
     title: string;

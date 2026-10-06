@@ -81,7 +81,7 @@ export const translations = {
         { icon: "fas fa-chart-line", title: "Rastreamento e relatórios", desc: "Você sabe de onde vêm seus resultados, sem precisar entender de analytics." },
         { icon: "fab fa-whatsapp", title: "Suporte via WhatsApp", desc: "Fala direto com o time, sem abrir chamado e sem fila de espera." },
         { icon: "fas fa-plug", title: "Integrações do seu stack", desc: "CRM, pagamentos e comunicação conectados, sem manual." },
-        { icon: "fas fa-robot", title: "Agentes de IA", desc: "Atendem, vendem e automatizam tarefas no seu site (a partir do Business)." },
+        { icon: "fas fa-robot", title: "Agentes de IA", desc: "Atendem, vendem e automatizam tarefas no seu site (no plano Enterprise)." },
         { icon: "fas fa-bolt", title: "Automações de marketing", desc: "Conteúdo, campanhas e fluxos de trabalho rodando nos bastidores." }
       ]
     },
@@ -130,7 +130,6 @@ export const translations = {
         "Gestão de tráfego pago no Google Ads e Meta Ads",
         "Criativos para anúncios renovados todo mês",
         "SEO e SEO para IA otimizados toda semana",
-        "Agente de IA atendendo no WhatsApp",
         "Relatório mensal de resultados",
         "Suporte prioritário via WhatsApp"
       ],
@@ -288,7 +287,7 @@ export const translations = {
         { icon: "fas fa-chart-line", title: "Tracking and reports", desc: "You know where your results come from, no analytics degree needed." },
         { icon: "fab fa-whatsapp", title: "WhatsApp support", desc: "Talk directly to the team, no tickets and no waiting in line." },
         { icon: "fas fa-plug", title: "Your stack, integrated", desc: "CRM, payments and communication connected, no manual required." },
-        { icon: "fas fa-robot", title: "AI agents", desc: "Support, sell and automate tasks on your site (from Business up)." },
+        { icon: "fas fa-robot", title: "AI agents", desc: "Support, sell and automate tasks on your site (on the Enterprise plan)." },
         { icon: "fas fa-bolt", title: "Marketing automations", desc: "Content, campaigns and workflows running behind the scenes." }
       ]
     },
@@ -337,7 +336,6 @@ export const translations = {
         "Paid ads management on Google Ads and Meta Ads",
         "Ad creatives refreshed every month",
         "SEO and AI search optimized every week",
-        "AI agent answering on WhatsApp",
         "Monthly results report",
         "Priority WhatsApp support"
       ],
