@@ -16,13 +16,14 @@ import DashboardPage from './components/dashboard/DashboardPage';
 import AdminPage from './components/admin/AdminPage';
 import LoadingScreen from './components/LoadingScreen';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
+import FloatingCta from './components/FloatingCta';
 import ResetPasswordPage from './components/ResetPasswordPage';
 import OnboardingPage from './components/OnboardingPage';
 import LandingPage from './components/landing/LandingPage';
 import { setMeta } from './lib/meta';
 import LeadFormModal from './components/LeadFormModal';
 import { FinalBand, Related } from './components/landing/blocks';
-import { ServicesMarquee, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
+import { ServicesMarquee, DuoCards, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
 import { landingBySlug } from './data/landings';
 import { NavContext } from './context/NavContext';
 import './index.css';
@@ -227,6 +228,7 @@ function App() {
           <>
             <Hero />
             <ServicesMarquee />
+            <DuoCards />
             <HomeMachine />
             <BehindTheScenes />
             <HomeCases />
@@ -261,6 +263,7 @@ function App() {
         ) : null}
       </main>
       {currentPage !== 'login' && currentPage !== 'reset-password' && currentPage !== 'onboarding' && <Footer />}
+      {(currentPage === 'home' || currentPage === 'landing') && <FloatingCta key={landingSlug ?? currentPage} source={currentPage === 'landing' ? landingSlug ?? 'landing' : 'home'} />}
       <FloatingWhatsAppButton />
       </NavContext.Provider>
       </ToastProvider>

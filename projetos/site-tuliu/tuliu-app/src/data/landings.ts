@@ -900,8 +900,28 @@ export const landings: Landing[] = [
 
 export const landingBySlug: Record<string, Landing> = Object.fromEntries(landings.map((l) => [l.slug, l]));
 
-export const landingGroups: { group: Landing['group']; label: string }[] = [
-  { group: 'servico', label: 'Serviços' },
-  { group: 'comparacao', label: 'Comparar' },
-  { group: 'segmento', label: 'Para quem' },
+export const landingGroups: { group: Landing['group']; label: string; title: string; desc: string; link: { label: string; href: string } }[] = [
+  { group: 'servico', label: 'Serviços', title: 'Tudo que a máquina faz', desc: 'Site, SEO, conteúdo, tráfego e IA em uma só operação, com especialistas aprovando cada entrega.', link: { label: 'Ver a máquina completa', href: '/#maquina' } },
+  { group: 'comparacao', label: 'Comparar', title: 'Tuliu vs o que você usa hoje', desc: 'Comparações honestas, linha a linha. Inclusive onde a outra opção ganha.', link: { label: 'Ver a tabela completa', href: '/#comparativo' } },
+  { group: 'segmento', label: 'Para quem', title: 'O que fazemos no seu mercado', desc: 'A máquina é a mesma. A estratégia muda para cada tipo de negócio.', link: { label: 'Ver todos os resultados', href: '/cases' } },
 ];
+
+export const navIcons: Record<string, string> = {
+  'seo-feito-por-ia': 'fas fa-magnifying-glass-chart',
+  'terceirizar-marketing': 'fas fa-people-arrows',
+  'gestao-de-trafego-com-ia': 'fas fa-bullseye',
+  'criar-site-com-ia': 'fas fa-laptop-code',
+  'conteudo-com-ia': 'fas fa-photo-film',
+  'agentes-de-ia': 'fas fa-robot',
+  'alternativa-agencia-de-marketing': 'fas fa-building',
+  'alternativa-lovable': 'fas fa-heart',
+  'alternativa-framer': 'fas fa-vector-square',
+  'alternativa-wix': 'fas fa-cubes',
+  'alternativa-wordpress': 'fab fa-wordpress-simple',
+  'alternativa-canva': 'fas fa-palette',
+  'marketing-para-pequenas-empresas': 'fas fa-store',
+  'marketing-para-b2b': 'fas fa-handshake',
+  'marketing-para-saude': 'fas fa-stethoscope',
+  'marketing-para-prestadores-de-servico': 'fas fa-screwdriver-wrench',
+  sobre: 'fas fa-circle-info',
+};

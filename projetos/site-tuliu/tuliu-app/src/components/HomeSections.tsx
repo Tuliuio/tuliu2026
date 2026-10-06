@@ -1,9 +1,30 @@
 import { useLinkProps } from '../context/NavContext';
 import { machine } from '../data/landings';
+import speedImg from '../assets/card-velocidade.jpg';
+import qualityImg from '../assets/card-qualidade.jpg';
 import { CasesStrip, CompareTable, Expert, Marquee, RenderBlock } from './landing/blocks';
 
-const SERVICES_A = ['Site sob medida', 'SEO', 'SEO para IA', 'Landing pages', 'Copywriting', 'Carrosséis', 'Edição de vídeos', 'Google Ads', 'Meta Ads'];
-const SERVICES_B = ['Agentes de IA', 'Automações', 'Integrações de pagamento', 'Testes A/B', 'Domínio, hospedagem e SSL', 'E-mail profissional', 'Relatórios', 'Revisão humana'];
+const SERVICES_A = [
+  { icon: 'fas fa-laptop-code', label: 'Site sob medida' },
+  { icon: 'fas fa-magnifying-glass', label: 'SEO' },
+  { icon: 'fas fa-wand-magic-sparkles', label: 'SEO para IA' },
+  { icon: 'fas fa-file-lines', label: 'Landing pages' },
+  { icon: 'fas fa-pen-nib', label: 'Copywriting' },
+  { icon: 'fas fa-images', label: 'Carrosséis' },
+  { icon: 'fas fa-film', label: 'Edição de vídeos' },
+  { icon: 'fab fa-google', label: 'Google Ads' },
+  { icon: 'fab fa-meta', label: 'Meta Ads' },
+];
+const SERVICES_B = [
+  { icon: 'fas fa-robot', label: 'Agentes de IA' },
+  { icon: 'fas fa-gears', label: 'Automações' },
+  { icon: 'fas fa-credit-card', label: 'Integrações de pagamento' },
+  { icon: 'fas fa-flask', label: 'Testes A/B' },
+  { icon: 'fas fa-globe', label: 'Domínio, hospedagem e SSL' },
+  { icon: 'fas fa-envelope', label: 'E-mail profissional' },
+  { icon: 'fas fa-chart-line', label: 'Relatórios' },
+  { icon: 'fas fa-user-check', label: 'Revisão humana' },
+];
 
 export function ServicesMarquee() {
   return (
@@ -68,30 +89,56 @@ export function HomeCases() {
 export function HomeCompare() {
   const link = useLinkProps();
   return (
-    <>
-      <CompareTable
-        title="O trabalho de uma agência. O preço e a velocidade da IA."
-        subtitle="Agências fazem trabalho bom, mas custam tempo e dinheiro. Ferramentas são rápidas e baratas, mas te deixam sozinho. A Tuliu entrega os dois ao mesmo tempo."
-        columns={['Tuliu', 'Agência de marketing', 'Wix, Squarespace', 'Lovable, Framer', 'Canva + você']}
-        rows={[
-          { label: 'Preço de entrada baixo', values: ['yes', 'no', 'yes', 'yes', 'yes'] },
-          { label: 'Site com design sob medida', values: ['yes', 'yes', 'partly', 'yes', 'no'] },
-          { label: 'SEO, conteúdo e anúncios', values: ['yes', 'yes', 'no', 'no', 'partly'] },
-          { label: 'Feito 100% por você', values: ['yes', 'yes', 'no', 'no', 'no'] },
-          { label: 'Otimizado toda semana', values: ['yes', 'partly', 'no', 'no', 'no'] },
-          { label: 'No ar rápido, sem orçamento', values: ['yes', 'no', 'partly', 'yes', 'yes'] },
-          { label: 'Agentes de IA e automações', values: ['yes', 'partly', 'no', 'partly', 'no'] },
-          { label: 'Insights cruzando todos os dados', values: ['yes', 'partly', 'no', 'no', 'no'] },
-        ]}
-      />
-      <div className="container lp-compare-links">
-        <a {...link('/alternativa-agencia-de-marketing')}>vs agência</a>
-        <a {...link('/alternativa-lovable')}>vs Lovable</a>
-        <a {...link('/alternativa-framer')}>vs Framer</a>
-        <a {...link('/alternativa-wix')}>vs Wix e Squarespace</a>
-        <a {...link('/alternativa-wordpress')}>vs WordPress</a>
-        <a {...link('/alternativa-canva')}>vs Canva</a>
+    <CompareTable
+      title="O trabalho de uma agência. O preço e a velocidade da IA."
+      subtitle="Agências fazem trabalho bom, mas custam tempo e dinheiro. Ferramentas são rápidas e baratas, mas te deixam sozinho. A Tuliu entrega os dois ao mesmo tempo."
+      columns={['Tuliu', 'Agência de marketing', 'Wix, Squarespace', 'Lovable, Framer', 'Canva + você']}
+      rows={[
+        { label: 'Preço de entrada baixo', values: ['yes', 'no', 'yes', 'yes', 'yes'] },
+        { label: 'Site com design sob medida', values: ['yes', 'yes', 'partly', 'yes', 'no'] },
+        { label: 'SEO, conteúdo e anúncios', values: ['yes', 'yes', 'no', 'no', 'partly'] },
+        { label: 'Feito 100% por você', values: ['yes', 'yes', 'no', 'no', 'no'] },
+        { label: 'Otimizado toda semana', values: ['yes', 'partly', 'no', 'no', 'no'] },
+        { label: 'No ar rápido, sem orçamento', values: ['yes', 'no', 'partly', 'yes', 'yes'] },
+        { label: 'Agentes de IA e automações', values: ['yes', 'partly', 'no', 'partly', 'no'] },
+        { label: 'Insights cruzando todos os dados', values: ['yes', 'partly', 'no', 'no', 'no'] },
+      ]}
+      footer={
+        <div className="lp-compare-links">
+          <a {...link('/alternativa-agencia-de-marketing')}>vs agência</a>
+          <a {...link('/alternativa-lovable')}>vs Lovable</a>
+          <a {...link('/alternativa-framer')}>vs Framer</a>
+          <a {...link('/alternativa-wix')}>vs Wix e Squarespace</a>
+          <a {...link('/alternativa-wordpress')}>vs WordPress</a>
+          <a {...link('/alternativa-canva')}>vs Canva</a>
+        </div>
+      }
+    />
+  );
+}
+
+export function DuoCards() {
+  return (
+    <section className="duo">
+      <div className="container-wide">
+        <div className="duo-header">
+          <p>O que muda quando a Tuliu assume o seu marketing?</p>
+          <h2>Um único time pra fazer todo o seu marketing acontecer</h2>
+          <span>Site, SEO, conteúdo, vídeos, tráfego pago e automações em uma só operação. A IA garante a velocidade. Os especialistas garantem a qualidade.</span>
+        </div>
+        <div className="duo-grid">
+          <article className="duo-card duo-dark">
+            <img src={speedImg} alt="" aria-hidden="true" />
+            <span className="duo-label"><i className="far fa-circle"></i> Feito pela IA</span>
+            <strong className="duo-word">Velocidade</strong>
+          </article>
+          <article className="duo-card duo-light">
+            <img src={qualityImg} alt="" aria-hidden="true" />
+            <span className="duo-label"><i className="far fa-circle"></i> Aprovado por especialistas</span>
+            <strong className="duo-word">Qualidade</strong>
+          </article>
+        </div>
       </div>
-    </>
+    </section>
   );
 }

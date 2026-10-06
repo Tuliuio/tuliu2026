@@ -1,54 +1,48 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import heroVisual from '../assets/hero-visual-night.png';
+import heroVisual from '../assets/hero-glass.jpg';
 import LeadFormModal from './LeadFormModal';
 
 export default function Hero() {
   const { t } = useLanguage();
   const [showLeadForm, setShowLeadForm] = useState(false);
   return (
-    <section className="hero" aria-labelledby="hero-heading">
-      <div className="hero-visual" aria-hidden="true">
+    <section className="hero hero-v2" aria-labelledby="hero-heading">
+      <div className="hero-v2-visual" aria-hidden="true">
         <img src={heroVisual} alt="" loading="eager" />
       </div>
 
       <div className="container">
-        <div className="hero-content">
-          <div className="hero-badge fade-in">
-            <span className="badge">
-              <i className="fas fa-circle" style={{ fontSize: '6px', marginRight: '8px', verticalAlign: 'middle' }}></i>
-              {t.hero.badge}
-            </span>
-          </div>
+        <div className="hero-v2-content">
+          <p className="hero-v2-eyebrow fade-in">{t.hero.badge}</p>
 
-          <h1 className="hero-title fade-in fade-in-delay-1" id="hero-heading">
-            <span className="line1">{t.hero.titleLine1}</span>
-            <span className="line2">{t.hero.titleLine2}</span>
+          <h1 className="hero-v2-title fade-in fade-in-delay-1" id="hero-heading">
+            {t.hero.titleLine1}{' '}
+            {t.hero.titleLine2}{' '}
+            <span className="hero-v2-highlight">{t.hero.titleHighlight}</span>
           </h1>
 
-          <p className="hero-subtitle fade-in fade-in-delay-2">
-            {t.hero.subtitle}
-          </p>
+          <p className="hero-v2-sub fade-in fade-in-delay-2">{t.hero.subtitle}</p>
 
-          <div className="hero-actions fade-in fade-in-delay-3">
-            <button type="button" className="btn-motion btn-motion-on-dark" onClick={() => setShowLeadForm(true)}>
-              <span className="btn-motion-circle" aria-hidden="true"></span>
-              <span className="btn-motion-icon" aria-hidden="true">
-                <i className="fas fa-arrow-right"></i>
-              </span>
-              <span className="btn-motion-label">{t.hero.cta}</span>
+          <div className="hero-v2-actions fade-in fade-in-delay-3">
+            <button type="button" className="pill-btn pill-light" onClick={() => setShowLeadForm(true)}>
+              {t.hero.cta} <i className="fas fa-arrow-right"></i>
             </button>
-
-            <a href="#precos" className="hero-price-teaser">
-              <strong>{t.hero.priceTeaser}</strong>
-              <span>{t.hero.priceTeaserLink}</span>
+            <a href="#precos" className="pill-btn pill-ghost">
+              {t.hero.priceTeaserLink} <i className="fas fa-arrow-down"></i>
             </a>
           </div>
 
-          <p className="hero-microcopy fade-in fade-in-delay-3">
-            {t.hero.microcopy}
+          <p className="hero-v2-micro fade-in fade-in-delay-3">
+            <strong>{t.hero.priceTeaser}</strong> · {t.hero.microcopy}
           </p>
         </div>
+      </div>
+
+      <div className="hero-v2-stats" aria-label="Números da Tuliu">
+        <span><strong>+100</strong> projetos entregues</span>
+        <span><strong>Desde 2020</strong> no digital</span>
+        <span><strong>Revisão humana</strong> em cada entrega</span>
       </div>
 
       <LeadFormModal

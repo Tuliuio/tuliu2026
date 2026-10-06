@@ -7,15 +7,16 @@ export const translations = {
       account: "Minha conta"
     },
     hero: {
-      badge: "Agências são lentas e caras",
+      badge: "Agências de marketing são lentas e caras",
       titleLine1: "Um time de marketing completo,",
-      titleLine2: "pelo preço de uma ferramenta.",
+      titleLine2: "pelo preço de uma",
+      titleHighlight: "ferramenta.",
       subtitle: "Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação, que melhora toda semana com base nos seus dados. A IA executa, especialistas aprovam. Você assume o marketing sem cair no operacional.",
-      microcopy: "Sem fidelidade. Sem taxa de criação. Tudo resolvido por WhatsApp.",
+      microcopy: "Sem fidelidade, sem taxa de criação, tudo por WhatsApp.",
       videoLabel: "Veja o que entregamos",
       cta: "Quero meu diagnóstico gratuito",
       priceTeaser: "A partir de R$97/mês",
-      priceTeaserLink: "Ver preços sem letra miúda"
+      priceTeaserLink: "Ver planos"
     },
     proof: {
       badge: "Prova real",
@@ -196,15 +197,16 @@ export const translations = {
       account: "My account"
     },
     hero: {
-      badge: "Agencies are slow and expensive",
+      badge: "Marketing agencies are slow and expensive",
       titleLine1: "A complete marketing team,",
-      titleLine2: "for the price of a tool.",
+      titleLine2: "for the price of a",
+      titleHighlight: "tool.",
       subtitle: "Website, SEO, content, video, paid ads, AI agents and automations in one operation that improves every week based on your data. AI does the work, experts approve it. You own your marketing without drowning in operations.",
-      microcopy: "No lock-in. No setup fee. Everything handled over WhatsApp.",
+      microcopy: "No lock-in, no setup fee, everything over WhatsApp.",
       videoLabel: "See what we deliver",
       cta: "I want my free diagnosis",
       priceTeaser: "From $19/mo",
-      priceTeaserLink: "See pricing, no fine print"
+      priceTeaserLink: "See plans"
     },
     proof: {
       badge: "Real proof",

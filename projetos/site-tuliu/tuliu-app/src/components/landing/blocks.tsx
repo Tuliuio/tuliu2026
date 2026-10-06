@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import type { Block, Cell, Landing } from '../../data/landingTypes';
 import { cases } from '../../data/cases';
 import { landingBySlug } from '../../data/landings';
@@ -20,21 +21,23 @@ function Header({ eyebrow, title, subtitle, dark }: { eyebrow?: string; title: s
 
 export function CtaButton({ label, onClick, light }: { label: string; onClick: () => void; light?: boolean }) {
   return (
-    <button type="button" className={`btn-motion${light ? '' : ' btn-motion-on-dark'}`} onClick={onClick}>
-      <span className="btn-motion-circle" aria-hidden="true"></span>
-      <span className="btn-motion-icon" aria-hidden="true"><i className="fas fa-arrow-right"></i></span>
-      <span className="btn-motion-label">{label}</span>
+    <button type="button" className={`pill-btn ${light ? 'pill-dark' : 'pill-light'}`} onClick={onClick}>
+      {label} <i className="fas fa-arrow-right"></i>
     </button>
   );
 }
 
-export function Marquee({ items, reverse, chip }: { items: string[]; reverse?: boolean; chip?: boolean }) {
+export type MarqueeItem = string | { icon: string; label: string };
+
+export function Marquee({ items, reverse, chip }: { items: MarqueeItem[]; reverse?: boolean; chip?: boolean }) {
   const loop = [...items, ...items];
   return (
     <div className="lp-marquee" aria-hidden="true">
       <div className={`lp-marquee-track${reverse ? ' reverse' : ''}`}>
         {loop.map((item, i) => (
-          <span key={i} className={chip ? 'lp-chip' : 'lp-marquee-item'}>{item}</span>
+          <span key={i} className={chip ? 'lp-chip' : 'lp-marquee-item'}>
+            {typeof item === 'string' ? item : <><i className={item.icon}></i>{item.label}</>}
+          </span>
         ))}
       </div>
     </div>
@@ -256,7 +259,7 @@ function Costs({ b, onCta }: { b: Of<'costs'> | Of<'needs'>; onCta: () => void }
 const cellIcon: Record<Cell, string> = { yes: 'fas fa-check', partly: 'fas fa-circle-half-stroke', no: 'fas fa-xmark' };
 const cellLabel: Record<Cell, string> = { yes: 'sim', partly: 'em parte', no: 'não' };
 
-export function CompareTable({ title, subtitle, columns, rows }: { title: string; subtitle: string; columns: string[]; rows: { label: string; values: Cell[] }[] }) {
+export function CompareTable({ title, subtitle, columns, rows, footer }: { title: string; subtitle: string; columns: string[]; rows: { label: string; values: Cell[] }[]; footer?: ReactNode }) {
   const tuliuIndex = columns.findIndex((c) => c.toLowerCase().startsWith('tuliu'));
   return (
     <section className="lp-section" id="comparativo">
@@ -289,6 +292,7 @@ export function CompareTable({ title, subtitle, columns, rows }: { title: string
           <span className="cell-partly"><i className="fas fa-circle-half-stroke"></i> em parte</span>
           <span className="cell-no"><i className="fas fa-xmark"></i> não</span>
         </div>
+        {footer}
       </div>
     </section>
   );

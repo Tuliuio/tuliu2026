@@ -2,6 +2,7 @@ import logo from '../assets/logo.svg';
 import { useLanguage } from '../context/LanguageContext';
 import { useLinkProps } from '../context/NavContext';
 import { landingGroups, landings } from '../data/landings';
+import LanguageSelector from './LanguageSelector';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -37,9 +38,12 @@ export default function Footer() {
             <a {...link('/learn')}>Aprenda</a>
           </nav>
         </div>
-        <p className="footer-copy">
-          &copy; {new Date().getFullYear()} {t.footer.copy}
-        </p>
+        <div className="footer-bottom">
+          <p className="footer-copy">
+            &copy; {new Date().getFullYear()} {t.footer.copy}
+          </p>
+          <LanguageSelector />
+        </div>
       </div>
     </footer>
   );
