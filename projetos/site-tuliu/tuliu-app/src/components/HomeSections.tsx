@@ -5,6 +5,7 @@ import qualityImg from '../assets/card-qualidade.jpg';
 import { CasesStrip, CompareTable, Expert, Marquee, RenderBlock } from './landing/blocks';
 
 const SERVICES_A = [
+  { icon: 'fas fa-gem', label: 'Identidade de marca' },
   { icon: 'fas fa-laptop-code', label: 'Site sob medida' },
   { icon: 'fas fa-magnifying-glass', label: 'SEO' },
   { icon: 'fas fa-wand-magic-sparkles', label: 'SEO para IA' },
@@ -92,19 +93,21 @@ export function HomeCompare() {
     <CompareTable
       title="O trabalho de uma agência. O preço e a velocidade da IA."
       subtitle="Agências fazem trabalho bom, mas custam tempo e dinheiro. Ferramentas são rápidas e baratas, mas te deixam sozinho. A Tuliu entrega os dois ao mesmo tempo."
-      columns={['Tuliu', 'Agência de marketing', 'Wix, Squarespace', 'Lovable, Framer', 'Canva + você']}
+      columns={['Tuliu', 'Agência de marketing', 'ChatGPT + você', 'Wix, Lovable, Framer', 'Freelancer']}
       rows={[
-        { label: 'Preço de entrada baixo', values: ['yes', 'no', 'yes', 'yes', 'yes'] },
-        { label: 'Site com design sob medida', values: ['yes', 'yes', 'partly', 'yes', 'no'] },
-        { label: 'SEO, conteúdo e anúncios', values: ['yes', 'yes', 'no', 'no', 'partly'] },
-        { label: 'Feito 100% por você', values: ['yes', 'yes', 'no', 'no', 'no'] },
+        { label: 'Preço de entrada baixo', values: ['yes', 'no', 'yes', 'yes', 'partly'] },
+        { label: 'Site com design sob medida', values: ['yes', 'yes', 'no', 'partly', 'yes'] },
+        { label: 'SEO, conteúdo e anúncios', values: ['yes', 'yes', 'partly', 'no', 'partly'] },
+        { label: 'Feito por você, do início ao fim', values: ['yes', 'yes', 'no', 'no', 'partly'] },
+        { label: 'Especialista revisando cada entrega', values: ['yes', 'yes', 'no', 'no', 'partly'] },
         { label: 'Otimizado toda semana', values: ['yes', 'partly', 'no', 'no', 'no'] },
-        { label: 'No ar rápido, sem orçamento', values: ['yes', 'no', 'partly', 'yes', 'yes'] },
-        { label: 'Agentes de IA e automações', values: ['yes', 'partly', 'no', 'partly', 'no'] },
+        { label: 'No ar rápido, sem orçamento', values: ['yes', 'no', 'partly', 'yes', 'no'] },
+        { label: 'Agentes de IA e automações', values: ['yes', 'partly', 'partly', 'no', 'no'] },
         { label: 'Insights cruzando todos os dados', values: ['yes', 'partly', 'no', 'no', 'no'] },
       ]}
       footer={
         <div className="lp-compare-links">
+          <a {...link('/alternativa-chatgpt')}>vs ChatGPT</a>
           <a {...link('/alternativa-agencia-de-marketing')}>vs agência</a>
           <a {...link('/alternativa-lovable')}>vs Lovable</a>
           <a {...link('/alternativa-framer')}>vs Framer</a>

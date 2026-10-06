@@ -21,14 +21,16 @@ import ResetPasswordPage from './components/ResetPasswordPage';
 import OnboardingPage from './components/OnboardingPage';
 import LandingPage from './components/landing/LandingPage';
 import { setMeta } from './lib/meta';
-import LeadFormModal from './components/LeadFormModal';
+import DiagnosticPage from './components/DiagnosticPage';
+import ProposalAccessPage from './components/ProposalAccessPage';
+import { diagHref } from './lib/diag';
 import { FinalBand, Related } from './components/landing/blocks';
 import { ServicesMarquee, DuoCards, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
 import { landingBySlug } from './data/landings';
 import { NavContext } from './context/NavContext';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding' | 'landing';
+type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding' | 'landing' | 'diagnostico' | 'proposta';
 
 const HOME_TITLE = 'Tuliu | Seu time de marketing completo, feito com IA e especialistas';
 const HOME_DESCRIPTION = 'Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação. IA executa, especialistas aprovam. A partir de R$97/mês.';
@@ -42,7 +44,6 @@ function App() {
     const slug = slugFromPath(window.location.pathname);
     return landingBySlug[slug] ? slug : null;
   });
-  const [homeLeadOpen, setHomeLeadOpen] = useState(false);
   const { session, loading, client } = useAuth();
 
 
@@ -77,7 +78,8 @@ function App() {
 
   // Navegação por caminho, usada pelas landing pages, menu e rodapé
   const go = (href: string) => {
-    const [path, hash] = href.split('#');
+    const [pathWithQuery, hash] = href.split('#');
+    const [path] = pathWithQuery.split('?');
     const slug = slugFromPath(path);
     if (landingBySlug[slug]) {
       setLandingSlug(slug);
@@ -86,6 +88,10 @@ function App() {
       window.scrollTo(0, 0);
     } else if (slug === '') {
       navigate('home', hash || undefined);
+    } else if (slug === 'diagnostico' || slug === 'proposta') {
+      setCurrentPage(slug);
+      window.history.pushState({ page: slug }, '', pathWithQuery);
+      window.scrollTo(0, 0);
     } else if (slug === 'cases' || slug === 'learn' || slug === 'login') {
       navigate(slug);
     } else {
@@ -125,6 +131,10 @@ function App() {
       setCurrentPage('cases');
     } else if (pathname === '/learn') {
       setCurrentPage('learn');
+    } else if (pathname === '/diagnostico') {
+      setCurrentPage('diagnostico');
+    } else if (pathname === '/proposta') {
+      setCurrentPage('proposta');
     } else if (landingBySlug[slugFromPath(pathname)]) {
       setCurrentPage('landing');
     } else {
@@ -241,11 +251,14 @@ function App() {
               hrefs={['marketing-para-pequenas-empresas', 'marketing-para-b2b', 'marketing-para-saude', 'marketing-para-prestadores-de-servico']}
             />
             <FAQ />
-            <FinalBand onCta={() => setHomeLeadOpen(true)} />
-            <LeadFormModal isOpen={homeLeadOpen} onClose={() => setHomeLeadOpen(false)} source="home-final" />
+            <FinalBand onCta={() => go(diagHref('home-final'))} />
           </>
         ) : currentPage === 'landing' && landingSlug && landingBySlug[landingSlug] ? (
           <LandingPage landing={landingBySlug[landingSlug]} />
+        ) : currentPage === 'diagnostico' ? (
+          <DiagnosticPage />
+        ) : currentPage === 'proposta' ? (
+          <ProposalAccessPage />
         ) : currentPage === 'cases' ? (
           <CasesPage />
         ) : currentPage === 'learn' ? (

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import LeadFormModal from './LeadFormModal';
+import { useGo } from '../context/NavContext';
+import { diagHref } from '../lib/diag';
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
-  const [leadPlan, setLeadPlan] = useState<'starter' | 'business' | null>(null);
   const { t } = useLanguage();
 
-  const openLeadForm = (plan: 'starter' | 'business') => setLeadPlan(plan);
+  const go = useGo();
+  const openLeadForm = (plan: 'starter' | 'business') => go(diagHref('pricing', plan));
 
   return (
     <>
@@ -114,13 +115,6 @@ export default function Pricing() {
       </div>
     </section>
 
-    <LeadFormModal
-      isOpen={leadPlan !== null}
-      onClose={() => setLeadPlan(null)}
-      source="pricing"
-      planInterest={leadPlan}
-      planLabel={leadPlan === 'business' ? t.pricing.businessDisplayName : leadPlan === 'starter' ? t.pricing.starterDisplayName : null}
-    />
     </>
   );
 }

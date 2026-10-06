@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useGo } from '../context/NavContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 
@@ -7,6 +8,7 @@ interface LoginPageProps {
 }
 
 export default function LoginPage({ onNavigateToHome }: LoginPageProps) {
+  const go = useGo();
   const [isLogin, setIsLogin] = useState(true);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -279,6 +281,19 @@ export default function LoginPage({ onNavigateToHome }: LoginPageProps) {
               </button>
             </div>
           )}
+
+        {/* Atalho para quem recebeu uma proposta: circula pelo site antes de abri-la */}
+        <div className="login-proposal">
+          <span className="login-proposal-or">ou</span>
+          <button type="button" className="login-proposal-btn" onClick={() => go('/proposta')}>
+            <span className="login-proposal-icon"><i className="fas fa-file-signature"></i></span>
+            <span className="login-proposal-text">
+              <strong>Recebi uma proposta</strong>
+              <small>Acesse a proposta criada para o seu negócio</small>
+            </span>
+            <i className="fas fa-arrow-right"></i>
+          </button>
+        </div>
 
         <p style={styles.footer}>
           Protegido pela segurança de ponta da Tuliu

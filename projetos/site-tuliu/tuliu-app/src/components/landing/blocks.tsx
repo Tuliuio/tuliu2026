@@ -49,7 +49,7 @@ export function LandingHero({ hero, onCta }: { hero: Landing['hero']; onCta: () 
   const link = useLinkProps();
   return (
     <section className="lp-hero">
-      <div className="container lp-hero-grid">
+      <div className="container-wide lp-hero-grid">
         <div className="lp-hero-copy">
           <span className="lp-hero-eyebrow"><i className="fas fa-circle"></i>{hero.eyebrow}</span>
           <h1>

@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { MouseEvent } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { useLinkProps } from '../context/NavContext';
+import { useGo, useLinkProps } from '../context/NavContext';
 import { landingGroups, landings, navIcons } from '../data/landings';
-import LeadFormModal from './LeadFormModal';
+import { diagHref } from '../lib/diag';
 import logo from '../assets/logo.svg';
 
 type NavPage = 'home' | 'cases' | 'learn' | 'dashboard' | 'admin' | 'landing';
@@ -16,10 +15,10 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [leadOpen, setLeadOpen] = useState(false);
-  const { t } = useLanguage();
+  const go = useGo();
   const link = useLinkProps();
 
   // Detecta se o header está sobre um fundo escuro ou claro, para trocar a cor do logo e do menu
@@ -65,6 +64,11 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
     };
   }, [currentPage]);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   const closeAll = () => {
     setOpenMenu(null);
     setIsMobileMenuOpen(false);
@@ -82,16 +86,17 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
     };
   };
 
-  const onDark = overDark && !isMobileMenuOpen;
+  // Com o menu do celular aberto, o painel é escuro: logo e ícones ficam claros
+  const onDark = isMobileMenuOpen || overDark;
   const activeGroup = landingGroups.find((g) => g.group === openMenu);
 
   return (
     <header
-      className={`navbar${scrolled ? ' scrolled' : ''}${onDark ? ' on-hero' : ''}${openMenu ? ' menu-open' : ''}`}
+      className={`navbar${scrolled ? ' scrolled' : ''}${onDark ? ' on-hero' : ''}${openMenu ? ' menu-open' : ''}${isMobileMenuOpen ? ' mobile-open' : ''}`}
       role="banner"
       onMouseLeave={() => setOpenMenu(null)}
     >
-      <div className="container">
+      <div className="container-wide">
         <nav className="navbar-inner" aria-label="Navegação principal">
           <button
             className="navbar-logo"
@@ -124,7 +129,7 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
 
           <div className="navbar-cta" onMouseEnter={() => setOpenMenu(null)}>
             <button className="nav-login" onClick={onOpenLogin}>Entrar</button>
-            <button className="nav-cta" onClick={() => setLeadOpen(true)}>
+            <button className="nav-cta" onClick={() => { closeAll(); go(diagHref('navbar')); }}>
               Diagnóstico grátis <i className="fas fa-chevron-right"></i>
             </button>
           </div>
@@ -132,7 +137,7 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
           <button
             className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Abrir menu"
+            aria-label={isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={isMobileMenuOpen}
           >
             <span></span>
@@ -166,31 +171,51 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
         </div>
       )}
 
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} role="navigation" aria-label="Menu mobile">
-        {landingGroups.map(({ group, label }) => (
-          <div key={group} className="mobile-group">
-            <span className="mobile-group-label">{label}</span>
-            {landings.filter((l) => l.group === group).map((l) => (
-              <a key={l.slug} className="mobile-menu-anchor" {...navLink(`/${l.slug}`)}>
-                <i className={navIcons[l.slug]} aria-hidden="true"></i> {l.navLabel}
-              </a>
-            ))}
-          </div>
-        ))}
-        <a className="mobile-menu-anchor" {...navLink('/cases')}>Resultados</a>
-        <a className="mobile-menu-anchor" {...navLink('/#precos')}>Preços</a>
-        <a className="mobile-menu-anchor" {...navLink('/sobre')}>Sobre</a>
-        <div className="mobile-actions">
-          <button className="nav-cta" onClick={() => { closeAll(); setLeadOpen(true); }}>
+      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} role="navigation" aria-label="Menu mobile" aria-hidden={!isMobileMenuOpen}>
+        <div className="mm-scroll">
+          {landingGroups.map(({ group, label, title }) => {
+            const expanded = mobileGroup === group;
+            return (
+              <div key={group} className={`mm-group${expanded ? ' open' : ''}`}>
+                <button className="mm-group-btn" aria-expanded={expanded} onClick={() => setMobileGroup(expanded ? null : group)}>
+                  <span>
+                    <strong>{label}</strong>
+                    <small>{title}</small>
+                  </span>
+                  <i className="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div className="mm-items">
+                  <div className="mm-items-inner">
+                  {landings.filter((l) => l.group === group).map((l) => (
+                    <a key={l.slug} className="mm-item" tabIndex={expanded ? 0 : -1} {...navLink(`/${l.slug}`)}>
+                      <span className="mm-icon"><i className={navIcons[l.slug]} aria-hidden="true"></i></span>
+                      <span className="mm-text">
+                        <strong>{l.navLabel}</strong>
+                        <small>{l.navDesc}</small>
+                      </span>
+                    </a>
+                  ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <nav className="mm-links" aria-label="Páginas">
+            <a {...navLink('/cases')}>Resultados <i className="fas fa-arrow-right"></i></a>
+            <a {...navLink('/#precos')}>Preços <i className="fas fa-arrow-right"></i></a>
+            <a {...navLink('/sobre')}>Sobre <i className="fas fa-arrow-right"></i></a>
+          </nav>
+        </div>
+        <div className="mm-actions">
+          <button className="mm-cta" onClick={() => { closeAll(); go(diagHref('navbar-mobile')); }}>
             Diagnóstico grátis <i className="fas fa-arrow-right"></i>
           </button>
-          <button className="mobile-login" onClick={() => { closeAll(); onOpenLogin(); }}>
-            <i className="far fa-user"></i> {t.nav.account}
+          <button className="mm-login" onClick={() => { closeAll(); onOpenLogin(); }}>
+            <i className="far fa-user"></i> Entrar
           </button>
         </div>
       </div>
 
-      <LeadFormModal isOpen={leadOpen} onClose={() => setLeadOpen(false)} source="navbar" />
     </header>
   );
 }

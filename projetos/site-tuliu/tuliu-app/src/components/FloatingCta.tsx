@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import LeadFormModal from './LeadFormModal';
+import { useGo } from '../context/NavContext';
+import { diagHref } from '../lib/diag';
 
 // Barra flutuante de conversão: aparece ao rolar para baixo depois da hero
 // e se esconde quando o visitante rola para cima.
 export default function FloatingCta({ source }: { source: string }) {
   const [visible, setVisible] = useState(false);
-  const [leadOpen, setLeadOpen] = useState(false);
+  const go = useGo();
   const lastY = useRef(0);
 
   useEffect(() => {
@@ -31,14 +32,13 @@ export default function FloatingCta({ source }: { source: string }) {
     <>
       <div className={`floating-cta${visible ? ' show' : ''}`} aria-hidden={!visible}>
         <div className="floating-cta-text">
-          <strong>Tuliu</strong>
-          <span><em>A partir de R$97/mês</em> · sem fidelidade</span>
+          <strong>Planos a partir de <em>R$97/mês</em></strong>
+          <span>Sem fidelidade, sem taxa de criação</span>
         </div>
-        <button type="button" tabIndex={visible ? 0 : -1} onClick={() => setLeadOpen(true)}>
+        <button type="button" tabIndex={visible ? 0 : -1} onClick={() => go(diagHref(`floating-${source}`))}>
           <span className="fc-long">Quero meu diagnóstico</span><span className="fc-short">Diagnóstico grátis</span> <i className="fas fa-arrow-right"></i>
         </button>
       </div>
-      <LeadFormModal isOpen={leadOpen} onClose={() => setLeadOpen(false)} source={`floating-${source}`} />
     </>
   );
 }

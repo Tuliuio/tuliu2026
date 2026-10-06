@@ -64,6 +64,7 @@ const marketCosts: Block = {
 const expertQuote = 'A IA executa o trabalho de um time inteiro, todos os dias, muito mais do que uma pessoa conseguiria. A gente define a estratégia e aprova cada mudança. Você ganha a velocidade da IA com um humano cuidando da qualidade.';
 
 const COMPARE_LABELS: Record<string, string> = {
+  'alternativa-chatgpt': 'Fazendo tudo com o ChatGPT? Veja a comparação',
   'alternativa-agencia-de-marketing': 'Comparando com uma agência? Veja a comparação',
   'alternativa-lovable': 'Usando Lovable? Veja a comparação',
   'alternativa-framer': 'Desenhando no Framer? Veja a comparação',
@@ -421,6 +422,70 @@ export const landings: Landing[] = [
     ],
   },
   {
+    slug: 'identidade-de-marca',
+    group: 'servico',
+    navLabel: 'Identidade de marca',
+    navDesc: 'Marca pronta em dias, para quem está começando',
+    metaTitle: 'Identidade de marca rápida para negócios novos | Tuliu',
+    metaDescription: 'Logo, cores, tipografia, site e posts para Instagram em até 7 dias. Identidade de marca rápida e acessível para quem está começando um negócio.',
+    hero: {
+      eyebrow: 'Identidade de marca',
+      title: 'Sua marca pronta em dias,',
+      highlight: 'para começar a vender logo.',
+      subtitle: 'Quem está abrindo um negócio não pode esperar meses nem gastar o que não tem. A Tuliu cria a identidade da sua marca com IA e direção de especialistas: logo, cores, tipografia, site e posts para o Instagram, prontos em até 7 dias.',
+      ticker: {
+        title: 'Sua marca tomando forma',
+        items: ['Território da marca definido', 'Símbolo e logotipo desenhados', 'Paleta e tipografia escolhidas', 'Site no ar na nova identidade', '18 posts prontos para o Instagram', 'Cartão e assinatura de e-mail'],
+      },
+    },
+    blocks: [
+      {
+        type: 'features',
+        title: 'Tudo que uma marca nova precisa para começar.',
+        subtitle: 'Uma identidade enxuta e bem feita, pensada para colocar o negócio na rua rápido. Sem processos de meses, sem relatórios de cem páginas.',
+        items: [
+          { icon: 'fas fa-pen-nib', title: 'Símbolo e logotipo', desc: 'Todas as versões e cores, com cessão total dos direitos de uso por contrato.' },
+          { icon: 'fas fa-swatchbook', title: 'Guia da marca', desc: 'Paleta, tipografia, tom de voz e regras de uso, num guia direto ao ponto.' },
+          { icon: 'fas fa-file-export', title: 'Arquivos finais', desc: 'SVG, PNG e PDF prontos para usar, mais favicon e avatar para as redes.' },
+          { icon: 'fas fa-laptop-code', title: 'Site na nova identidade', desc: 'Site de até 10 páginas no ar, preparado para o Google e para as IAs.' },
+          { icon: 'fab fa-instagram', title: 'Posts para o Instagram', desc: '18 posts e carrosséis prontos, mais modelos editáveis e link de bio.' },
+          { icon: 'fas fa-id-card', title: 'Papelaria digital', desc: 'Cartão de visita, assinatura de e-mail, papel timbrado e modelos.' },
+        ],
+      },
+      {
+        type: 'reasons',
+        title: 'Por que uma identidade rápida faz sentido no começo.',
+        subtitle: 'Uma oferta exclusiva, pensada para quem precisa sair do papel com baixo custo.',
+        items: [
+          { title: 'Seu negócio precisa existir antes de ser perfeito', desc: 'No começo, o que importa é ter uma marca profissional para vender, abrir conta, postar e ser encontrado. Ajustes finos vêm com o tempo e com os clientes.' },
+          { title: 'IA acelera, especialista garante a qualidade', desc: 'A IA explora caminhos visuais em horas. Nosso time de direção escolhe, refina e entrega o que tem cara de marca de verdade.' },
+          { title: 'Tudo conversa desde o primeiro dia', desc: 'Logo, site e posts nascem juntos, na mesma identidade. Nada de remendar peças feitas por fornecedores diferentes.' },
+          { title: 'Valor fechado e parcelado', desc: 'Você sabe quanto vai pagar antes de começar, com parcelamento no cartão ou no Pix e entrega em até 7 dias após a confirmação.' },
+        ],
+        aside: { title: 'E quando você precisa de mais', text: 'Para empresas já estabelecidas que precisam de um reposicionamento profundo, com pesquisa, estratégia e plataforma de marca completa, indicamos um projeto de branding com nossa parceira Mira Brand Studio.' },
+      },
+      { type: 'steps', title: 'Da ideia à marca no ar.', items: [
+        { title: 'Conversa sobre o negócio', desc: 'Você conta o que vende, para quem e o que quer transmitir.' },
+        { title: 'Território e caminhos', desc: 'A IA explora possibilidades e nosso time define a direção da marca.' },
+        { title: 'Você navega pela marca', desc: 'Antes de decidir, você vê a identidade aplicada no site e nos posts.' },
+        { title: 'Tudo entregue e no ar', desc: 'Arquivos, guia, site e posts prontos em até 7 dias após a confirmação.' },
+      ] },
+      { type: 'cases', title: 'Marcas que começaram com a Tuliu.', subtitle: 'Identidade e presença digital caminhando juntas.', ids: ['mira-brand-studio'] },
+      { type: 'related', title: 'Depois da marca, o crescimento.', hrefs: ['criar-site-com-ia', 'conteudo-com-ia', 'terceirizar-marketing'] },
+      {
+        type: 'faq',
+        title: 'Sobre a identidade de marca.',
+        items: [
+          { q: 'Para quem é esse serviço?', a: 'Para quem está começando um negócio novo, ou para quem nunca teve uma marca profissional e precisa de uma rápido, sem gastar o que um projeto completo de branding custa.' },
+          { q: 'Em quanto tempo fica pronto?', a: 'Em até 7 dias após a confirmação, com rodadas de ajuste incluídas.' },
+          { q: 'Os direitos da marca ficam comigo?', a: 'Sim. Você recebe a cessão total dos direitos de uso por contrato escrito.' },
+          { q: 'Posso ver antes de pagar?', a: 'Em muitos casos, sim: você navega pela identidade aplicada antes de decidir. Na conversa a gente explica como funciona para o seu caso.' },
+          { q: 'É a mesma coisa que um projeto de branding?', a: 'Não. É uma identidade enxuta e rápida, feita para colocar o negócio na rua. Projetos de branding completos, com pesquisa e estratégia aprofundadas, são outro tipo de trabalho.' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'agentes-de-ia',
     group: 'servico',
     navLabel: 'Agentes de IA e automações',
@@ -548,6 +613,38 @@ export const landings: Landing[] = [
       },
     ],
   },
+  alt({
+    slug: 'alternativa-chatgpt',
+    tool: 'ChatGPT',
+    navDesc: 'A IA escreve. Quem decide, publica e mede?',
+    title: 'O ChatGPT escreve.',
+    highlight: 'A Tuliu faz o marketing acontecer.',
+    subtitle: 'Com o ChatGPT qualquer um gera um texto, uma ideia de post ou um rascunho de site em segundos. O que ele não faz é decidir o que importa, colocar no ar, acompanhar os números e corrigir a rota toda semana. A Tuliu usa a mesma IA, mas com um time fazendo o trabalho por você.',
+    needsSubtitle: 'A IA ficou barata e é igual para todo mundo. O que separa quem cresce de quem fica parado é a execução.',
+    needs: [
+      { tag: 'estratégia', title: 'Saber o que pedir', desc: 'Resposta boa depende de pergunta boa. Sem estratégia e sem dados, o ChatGPT devolve o óbvio que o seu concorrente também recebe.' },
+      { tag: 'execução', title: 'Colocar no ar', desc: 'O texto pronto ainda precisa virar página, post, anúncio ou e-mail. Publicar, configurar e integrar continua sendo trabalho seu.' },
+      { tag: 'contínuo', title: 'Fazer toda semana', desc: 'Marketing funciona com constância. Um prompt resolve uma tarde. Quem faz o próximo, e o outro, e o outro?' },
+      { tag: 'dados', title: 'Medir e corrigir', desc: 'O ChatGPT não vê seu Google Ads, seu Search Console nem seus leads. Sem dados, não dá para saber o que está funcionando.' },
+      { tag: 'qualidade', title: 'Um olhar experiente', desc: 'IA erra com confiança. Um especialista percebe o que está fora do tom, fora da lei ou simplesmente não vende.' },
+      { tag: 'tempo', title: 'Suas noites', desc: 'Fazer sozinho com IA ainda é fazer sozinho. O tempo que você passa escrevendo prompts sai do seu negócio.' },
+    ],
+    needsSummary: 'O ChatGPT é uma ferramenta incrível. Mas ferramenta não é time: alguém ainda precisa pensar, executar, publicar e medir.',
+    toolWins: [
+      { label: 'Gera textos e ideias na hora', values: ['yes', 'yes'] },
+      { label: 'Custo muito baixo por mês', values: ['yes', 'partly'] },
+      { label: 'Você controla cada palavra', values: ['yes', 'partly'] },
+    ],
+    whenBetter: [
+      'Continue só com o ChatGPT se você gosta de colocar a mão na massa, tem tempo de verdade para isso e já sabe exatamente o que precisa fazer no seu marketing. Ele vai acelerar muito o seu trabalho.',
+      'A Tuliu é para quem quer o resultado e não o trabalho: um time que usa a mesma IA, decide com base nos seus dados, coloca no ar e melhora toda semana, enquanto você cuida do negócio.',
+    ],
+    faq: [
+      { q: 'A Tuliu usa o ChatGPT?', a: 'Usamos os melhores modelos de IA do mercado, incluindo os da OpenAI, Anthropic e Google, escolhidos para cada tarefa. A diferença é que existe um time decidindo, revisando e executando por você.' },
+      { q: 'Posso continuar usando o ChatGPT?', a: 'Claro. Muitos clientes usam para ideias do dia a dia. A Tuliu cuida da operação: site, conteúdo, anúncios e atendimento rodando de forma constante.' },
+      { q: 'Por que pagar se a IA é quase de graça?', a: 'Porque a IA é a parte barata. O que custa é o tempo e o conhecimento para transformar a IA em resultado toda semana. É isso que a Tuliu entrega, a partir de R$97 por mês.' },
+    ],
+  }),
   alt({
     slug: 'alternativa-lovable',
     tool: 'Lovable',
@@ -912,7 +1009,9 @@ export const navIcons: Record<string, string> = {
   'gestao-de-trafego-com-ia': 'fas fa-bullseye',
   'criar-site-com-ia': 'fas fa-laptop-code',
   'conteudo-com-ia': 'fas fa-photo-film',
+  'identidade-de-marca': 'fas fa-gem',
   'agentes-de-ia': 'fas fa-robot',
+  'alternativa-chatgpt': 'fas fa-comment-dots',
   'alternativa-agencia-de-marketing': 'fas fa-building',
   'alternativa-lovable': 'fas fa-heart',
   'alternativa-framer': 'fas fa-vector-square',

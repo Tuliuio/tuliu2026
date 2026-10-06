@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { Landing } from '../../data/landingTypes';
-import LeadFormModal from '../LeadFormModal';
+import { useGo } from '../../context/NavContext';
+import { diagHref } from '../../lib/diag';
 import { FinalBand, LandingHero, RenderBlock } from './blocks';
 import { setMeta } from '../../lib/meta';
 
 export default function LandingPage({ landing }: { landing: Landing }) {
-  const [leadOpen, setLeadOpen] = useState(false);
-  const openLead = () => setLeadOpen(true);
+  const go = useGo();
+  const openLead = () => go(diagHref(`lp-${landing.slug}`));
 
   useEffect(() => {
     setMeta(landing.metaTitle, landing.metaDescription);
@@ -17,7 +18,6 @@ export default function LandingPage({ landing }: { landing: Landing }) {
       <LandingHero hero={landing.hero} onCta={openLead} />
       {landing.blocks.map((b, i) => <RenderBlock key={`${landing.slug}-${i}`} b={b} onCta={openLead} />)}
       <FinalBand onCta={openLead} />
-      <LeadFormModal isOpen={leadOpen} onClose={() => setLeadOpen(false)} source={`lp-${landing.slug}`} />
     </div>
   );
 }

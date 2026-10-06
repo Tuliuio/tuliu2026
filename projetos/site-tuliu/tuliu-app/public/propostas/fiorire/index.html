@@ -115,21 +115,36 @@ footer{border-top-color:var(--line)}
   .card{padding:22px}
   .btn{width:100%}
 }
+
+/* Header com logo oficial e retorno ao site */
+.brand-logo{height:44px;width:auto;display:block;margin:-6px 0 -6px -10px}
+.nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:#fff;background:var(--ink);border-radius:999px;padding:9px 16px;transition:background .2s,transform .2s}
+.back:hover{background:#241f38;transform:translateY(-1px)}
+.svc{color:#3b1a6b;background:linear-gradient(120deg,#efe7ff 0%,#fbe4ff 100%);border-color:rgba(168,85,247,.25)}
+.svc svg{color:#8b5cf6}
+.fast{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.fast .card{background:linear-gradient(160deg,#fff 0%,#faf7ff 100%)}
+.fast b{display:block;font-family:var(--display);font-size:clamp(26px,3vw,34px);font-weight:500;letter-spacing:-.04em;line-height:1.05;margin-bottom:8px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.note{margin-top:16px;font-size:14px;color:var(--txt);background:#fff;border:1px dashed #d8cdfa;border-radius:18px;padding:16px 20px}
+@media (max-width:860px){.fast{grid-template-columns:1fr}.brand-logo{height:38px}}
+@media (max-width:600px){.nav{flex-wrap:nowrap}.nav-right .pill{display:none}.back{padding:8px 13px;font-size:11px}}
 </style>
 </head>
 <body>
 
 <div class="wrap nav">
-  <a class="brand" href="#"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="20" fill="#0a071a"/><circle cx="50" cy="50" r="45" fill="none" stroke="#fff" stroke-width="31"/><circle cx="74" cy="50" r="21" fill="#fff"/></svg>Tuliu</a>
-  <span class="pill"><span class="dot"></span>Proposta exclusiva · Suelen Lodetti</span>
+  <a class="brand" href="https://tuliu.io" aria-label="Tuliu"><img src="img/tuliu-logo.svg" alt="Tuliu" class="brand-logo"></a>
+  <div class="nav-right"><span class="pill"><span class="dot"></span>Proposta exclusiva · Suelen Lodetti</span><a class="back" href="https://tuliu.io"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Voltar ao site</a></div>
 </div>
 
 <!-- HERO -->
 <header class="wrap hero">
   <div>
-    <span class="pill">Identidade de marca pronta</span>
+    <span class="pill svc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg>Identidade de marca</span>
     <h1 style="margin-top:22px">Suelen, esta <span class="grad">Fiorire</span> é para você.</h1>
     <p class="lead">Criamos uma identidade completa para a sua marca: território, símbolo, logotipo, site e peças para Instagram. Você pode navegar por ela. Se fizer sentido, ela passa a ser sua.</p>
+    <p style="margin-top:12px;font-size:15px;color:var(--txt2)">Uma identidade rápida e acessível, ideal para quem está começando um negócio novo.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
       <a class="btn" href="#acesso">Quero conhecer a minha marca</a>
     </div>
@@ -138,7 +153,7 @@ footer{border-top-color:var(--line)}
     <img src="img/retrato.jpg" alt="">
     <div class="in">
       <div class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
-      <small style="font-size:15px;color:#fff;font-weight:600">Sua marca está pronta</small><small>Brand book completo · acesso após o aceite dos termos</small>
+      <small style="font-size:15px;color:#fff;font-weight:600">Sua marca está pronta</small><small>Identidade completa · acesso após o aceite dos termos</small>
     </div>
   </div>
 </header>
@@ -146,11 +161,11 @@ footer{border-top-color:var(--line)}
 <!-- O QUE ESTÁ INCLUSO -->
 <section class="wrap">
   <h2>Tudo pronto para a Fiorire trabalhar.</h2>
-  <p class="lead">Estratégia, identidade e aplicações. Você navega por tudo antes de decidir.</p>
+  <p class="lead">O essencial de uma marca bem feito, pronto em até 7 dias e com baixo custo. Você navega por tudo antes de decidir.</p>
   <div class="grid4 g5">
     <div class="card"><div class="ic"><span>01</span></div><h3>Marca completa</h3><p>Símbolo, logotipo e todas as versões, com direitos de uso.</p></div>
     <div class="card"><div class="ic"><span>02</span></div><h3>Arquivos finais</h3><p>SVG, PNG e PDF em todas as versões e cores. Favicon e avatar.</p></div>
-    <div class="card"><div class="ic"><span>03</span></div><h3>Brand system</h3><p>Estratégia, paleta, tipografia, tom de voz e regras de uso.</p></div>
+    <div class="card"><div class="ic"><span>03</span></div><h3>Guia da marca</h3><p>Paleta, tipografia, tom de voz e regras de uso, num guia direto ao ponto. Ideal para quem está começando um negócio novo.</p></div>
     <div class="card"><div class="ic"><span>04</span></div><h3>Site com até 10 páginas</h3><p>Site da Fiorire pronto e no ar, na nova identidade.</p></div>
     <div class="card star"><div class="ic"><span>05</span></div><h3>GEO e SEO</h3><p>Preparado para ser encontrado no Google e indicado por IAs como ChatGPT e Gemini.</p></div>
     <div class="card"><div class="ic"><span>06</span></div><h3>18 posts para Instagram</h3><p>Posts e carrosséis prontos, mais modelos editáveis.</p></div>
@@ -159,6 +174,12 @@ footer{border-top-color:var(--line)}
     <div class="card"><div class="ic"><span>09</span></div><h3>Domínio incluso</h3><p>Endereço próprio da Fiorire, registrado e configurado.</p></div>
     <div class="card"><div class="ic"><span>10</span></div><h3>Hospedagem e e-mails</h3><p>Site hospedado e <span class="ph">[N]</span> contas de e-mail profissional.</p></div>
   </div>
+  <div class="fast">
+    <div class="card"><b>Até 7 dias</b><p>Da confirmação à marca entregue, com site e posts prontos. IA acelera, especialistas garantem a qualidade.</p></div>
+    <div class="card"><b>Feita para começar</b><p>Pensada para quem está abrindo um negócio e precisa de uma marca profissional para vender desde já.</p></div>
+    <div class="card"><b>Oferta exclusiva</b><p>Um formato enxuto e de baixo custo, adaptado para quem precisa fazer rápido sem abrir mão de uma marca bonita.</p></div>
+  </div>
+  <p class="note">Esta é uma identidade de marca enxuta e rápida, não um projeto de branding completo. Projetos com pesquisa, estratégia aprofundada e plataforma de marca levam meses e custam bem mais. Aqui o foco é colocar a Fiorire na rua com tudo que ela precisa para começar.</p>
 </section>
 
 <!-- OFERTA E GARANTIAS -->
@@ -212,7 +233,7 @@ footer{border-top-color:var(--line)}
   <div class="card" style="padding:36px">
     <h3>Termos de acesso (resumo)</h3>
     <ul class="list" style="margin-top:10px">
-      <li>O acesso ao brand book é pessoal, confidencial e intransferível.</li>
+      <li>O acesso à identidade de marca é pessoal, confidencial e intransferível.</li>
       <li>A identidade visual pertence à Tuliu até a aquisição. Copiar, compartilhar, reproduzir ou adaptar sem aquisição viola estes termos e a Lei 9.610/98.</li>
       <li>Registramos data, hora, endereço IP e páginas acessadas, apenas para proteção da obra, conforme a nossa <span class="ph">[política de privacidade]</span>.</li>
       <li>O aceite não gera cobrança. A compra só acontece se você escolher adquirir, no checkout.</li>
@@ -222,7 +243,7 @@ footer{border-top-color:var(--line)}
 </section>
 
 <div class="wrap"><footer>
-  <span>Criado com tecnologia Tuliu e direção especializada humana.</span>
+  <span>Criado com tecnologia Tuliu e direção especializada humana. <a href="https://tuliu.io">tuliu.io</a></span>
   <span>© 2026 Tuliu. Todos os direitos reservados.</span>
 </footer></div>
 

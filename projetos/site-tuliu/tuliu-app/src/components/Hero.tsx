@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import heroPoster from '../assets/hero-loop-poster.jpg';
 import heroLoop from '../assets/hero-loop.mp4';
-import LeadFormModal from './LeadFormModal';
+import { useGo } from '../context/NavContext';
+import { diagHref } from '../lib/diag';
 
 export default function Hero() {
   const { t } = useLanguage();
-  const [showLeadForm, setShowLeadForm] = useState(false);
+  const go = useGo();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Retoma o loop se o navegador pausou o vídeo (troca de aba, economia de energia)
@@ -25,7 +26,7 @@ export default function Hero() {
         <img className="hero-v2-still" src={heroPoster} alt="" />
       </div>
 
-      <div className="container">
+      <div className="container-wide">
         <div className="hero-v2-content">
           <h1 className="hero-v2-title fade-in fade-in-delay-1" id="hero-heading">
             {t.hero.titleLine1}{' '}
@@ -36,7 +37,7 @@ export default function Hero() {
           <p className="hero-v2-sub fade-in fade-in-delay-2">{t.hero.subtitle}</p>
 
           <div className="hero-v2-actions fade-in fade-in-delay-3">
-            <button type="button" className="pill-btn pill-light" onClick={() => setShowLeadForm(true)}>
+            <button type="button" className="pill-btn pill-light" onClick={() => go(diagHref('hero'))}>
               {t.hero.cta} <i className="fas fa-arrow-right"></i>
             </button>
             <a href="#precos" className="pill-btn pill-ghost">
@@ -56,11 +57,6 @@ export default function Hero() {
         <span><strong>Revisão humana</strong> em cada entrega</span>
       </div>
 
-      <LeadFormModal
-        isOpen={showLeadForm}
-        onClose={() => setShowLeadForm(false)}
-        source="hero"
-      />
     </section>
   );
 }
