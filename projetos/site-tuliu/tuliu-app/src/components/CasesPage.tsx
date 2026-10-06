@@ -58,6 +58,12 @@ export default function CasesPage() {
                     <h2 className="case-card-client">{caseStudy.client}</h2>
                     <span className="badge">{caseStudy.sector}</span>
                   </div>
+                  {caseStudy.metrics[0] && (
+                    <div className="case-card-headline-stat">
+                      <strong>{caseStudy.metrics[0].value}</strong>
+                      <span>{caseStudy.metrics[0].label}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Challenge & Solution Blocks */}

@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import heroVisual from '../assets/hero-visual-night.png';
+import LeadFormModal from './LeadFormModal';
 
 export default function Hero() {
   const { t } = useLanguage();
+  const [showLeadForm, setShowLeadForm] = useState(false);
   return (
     <section className="hero" aria-labelledby="hero-heading">
       <div className="hero-visual" aria-hidden="true">
@@ -28,12 +31,17 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions fade-in fade-in-delay-3">
-            <a href="#precos" className="btn-motion btn-motion-on-dark">
+            <button type="button" className="btn-motion btn-motion-on-dark" onClick={() => setShowLeadForm(true)}>
               <span className="btn-motion-circle" aria-hidden="true"></span>
               <span className="btn-motion-icon" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
               <span className="btn-motion-label">{t.hero.cta}</span>
+            </button>
+
+            <a href="#precos" className="hero-price-teaser">
+              <strong>{t.hero.priceTeaser}</strong>
+              <span>{t.hero.priceTeaserLink}</span>
             </a>
           </div>
 
@@ -42,6 +50,12 @@ export default function Hero() {
           </p>
         </div>
       </div>
+
+      <LeadFormModal
+        isOpen={showLeadForm}
+        onClose={() => setShowLeadForm(false)}
+        source="hero"
+      />
     </section>
   );
 }

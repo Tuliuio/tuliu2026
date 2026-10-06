@@ -5,10 +5,9 @@ import { ToastProvider } from './components/Toast';
 import Navbar from './components/Navbar';
 import DashboardNavbar from './components/DashboardNavbar';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import Integrations from './components/Integrations';
+import Included from './components/Included';
 import Pricing from './components/Pricing';
-import FinalCTA from './components/FinalCTA';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import CasesPage from './components/CasesPage';
 import LearnPage from './components/LearnPage';
@@ -19,13 +18,30 @@ import LoadingScreen from './components/LoadingScreen';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
 import ResetPasswordPage from './components/ResetPasswordPage';
 import OnboardingPage from './components/OnboardingPage';
+import LandingPage from './components/landing/LandingPage';
+import { setMeta } from './lib/meta';
+import LeadFormModal from './components/LeadFormModal';
+import { FinalBand, Related } from './components/landing/blocks';
+import { ServicesMarquee, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
+import { landingBySlug } from './data/landings';
+import { NavContext } from './context/NavContext';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding';
+type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding' | 'landing';
+
+const HOME_TITLE = 'Tuliu | Seu time de marketing completo, feito com IA e especialistas';
+const HOME_DESCRIPTION = 'Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação. IA executa, especialistas aprovam. A partir de R$97/mês.';
+
+const slugFromPath = (pathname: string) => pathname.replace(/^\/+|\/+$/g, '');
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [scrollToAnchor, setScrollToAnchor] = useState<string | null>(null);
+  const [landingSlug, setLandingSlug] = useState<string | null>(() => {
+    const slug = slugFromPath(window.location.pathname);
+    return landingBySlug[slug] ? slug : null;
+  });
+  const [homeLeadOpen, setHomeLeadOpen] = useState(false);
   const { session, loading, client } = useAuth();
 
 
@@ -58,10 +74,39 @@ function App() {
     }
   };
 
+  // Navegação por caminho, usada pelas landing pages, menu e rodapé
+  const go = (href: string) => {
+    const [path, hash] = href.split('#');
+    const slug = slugFromPath(path);
+    if (landingBySlug[slug]) {
+      setLandingSlug(slug);
+      setCurrentPage('landing');
+      window.history.pushState({ page: 'landing' }, '', `/${slug}`);
+      window.scrollTo(0, 0);
+    } else if (slug === '') {
+      navigate('home', hash || undefined);
+    } else if (slug === 'cases' || slug === 'learn' || slug === 'login') {
+      navigate(slug);
+    } else {
+      window.location.href = href;
+    }
+  };
+
+  // Título e descrição da home (landing pages definem os próprios)
+  useEffect(() => {
+    if (currentPage === 'home') setMeta(HOME_TITLE, HOME_DESCRIPTION);
+  }, [currentPage]);
+
   // Parse initial URL and handle browser back button
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       const page = (event.state?.page as Page) || 'home';
+      const slug = slugFromPath(window.location.pathname);
+      if (landingBySlug[slug]) {
+        setLandingSlug(slug);
+        setCurrentPage('landing');
+        return;
+      }
       setCurrentPage(page);
     };
 
@@ -79,6 +124,8 @@ function App() {
       setCurrentPage('cases');
     } else if (pathname === '/learn') {
       setCurrentPage('learn');
+    } else if (landingBySlug[slugFromPath(pathname)]) {
+      setCurrentPage('landing');
     } else {
       setCurrentPage('home');
     }
@@ -162,6 +209,7 @@ function App() {
   return (
     <LanguageProvider>
       <ToastProvider>
+      <NavContext.Provider value={go}>
       {currentPage === 'dashboard' || currentPage === 'admin' ? (
         <DashboardNavbar
           currentPage={currentPage}
@@ -178,11 +226,24 @@ function App() {
         {currentPage === 'home' ? (
           <>
             <Hero />
-            <Features />
-            <Integrations />
+            <ServicesMarquee />
+            <HomeMachine />
+            <BehindTheScenes />
+            <HomeCases />
+            <HomeCompare />
             <Pricing />
-            <FinalCTA />
+            <Included />
+            <Related
+              title="Marketing feito para o seu tipo de negócio."
+              subtitle="Cada mercado compra de um jeito. A máquina é a mesma, a estratégia muda."
+              hrefs={['marketing-para-pequenas-empresas', 'marketing-para-b2b', 'marketing-para-saude', 'marketing-para-prestadores-de-servico']}
+            />
+            <FAQ />
+            <FinalBand onCta={() => setHomeLeadOpen(true)} />
+            <LeadFormModal isOpen={homeLeadOpen} onClose={() => setHomeLeadOpen(false)} source="home-final" />
           </>
+        ) : currentPage === 'landing' && landingSlug && landingBySlug[landingSlug] ? (
+          <LandingPage landing={landingBySlug[landingSlug]} />
         ) : currentPage === 'cases' ? (
           <CasesPage />
         ) : currentPage === 'learn' ? (
@@ -201,6 +262,7 @@ function App() {
       </main>
       {currentPage !== 'login' && currentPage !== 'reset-password' && currentPage !== 'onboarding' && <Footer />}
       <FloatingWhatsAppButton />
+      </NavContext.Provider>
       </ToastProvider>
     </LanguageProvider>
   );

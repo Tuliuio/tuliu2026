@@ -469,6 +469,31 @@ body {
 
 .hero-actions {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hero-price-teaser {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.hero-price-teaser strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hero-price-teaser span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .hero-microcopy {
@@ -637,6 +662,92 @@ body {
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* =============================================
+    PROOF SECTION
+============================================= */
+.proof {
+  padding: 90px 0;
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.proof-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.proof-quote {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 500;
+  color: #1A1A1A;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  margin: 22px 0 18px;
+}
+
+.proof-author {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.proof-author strong {
+  color: #111;
+}
+
+.proof-metrics {
+  display: flex;
+  gap: 44px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #EBEBEB;
+}
+
+.proof-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.proof-metric-value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.5px;
+}
+
+.proof-metric-label {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+  max-width: 170px;
+  line-height: 1.4;
+}
+
+.proof-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6366f1;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .proof-metrics {
+    gap: 28px;
+  }
 }
 
 /* =============================================
@@ -1019,11 +1130,75 @@ body {
 }
 
 /* =============================================
+    INCLUDED SECTION
+============================================= */
+.included {
+  padding: 100px 0;
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.included-item {
+  background: #ffffff;
+  border: 1px solid #E8E8E8;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.included-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #F0F0F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 14px;
+}
+
+.included-item h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+
+.included-item p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .included-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .included-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
     INTEGRATIONS SECTION
 ============================================= */
 .integrations {
   padding: 100px 0;
-  background: #ffffff;
+  background: #FAFAFA;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -1125,7 +1300,7 @@ body {
 ============================================= */
 .pricing {
   padding: 100px 0;
-  background: #FAFAFA;
+  background: #ffffff;
   position: relative;
   z-index: 1;
 }
@@ -1401,8 +1576,36 @@ body {
 .plan-subtitle {
   font-size: 14px;
   color: #888;
-  margin-bottom: 28px;
+  margin-bottom: 10px;
   margin-top: 4px;
+}
+
+.plan-agency-cost {
+  font-size: 12px;
+  color: #999;
+  margin: 0 0 24px;
+}
+
+.plan-agency-cost strong {
+  color: #555;
+  font-weight: 600;
+}
+
+.plan-agency-cost-on-dark {
+  color: rgba(255,255,255,0.5);
+}
+
+.plan-agency-cost-on-dark strong {
+  color: rgba(255,255,255,0.85);
+}
+
+.pricing-disclaimer {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  max-width: 640px;
+  margin: 40px auto 0;
+  line-height: 1.6;
 }
 
 .pricing-card.featured .plan-subtitle {
@@ -1441,6 +1644,71 @@ body {
 
 .plan-btn {
   width: 100%;
+}
+
+/* =============================================
+    FAQ SECTION
+============================================= */
+.faq {
+  padding: 100px 0;
+  background: #FAFAFA;
+  position: relative;
+  z-index: 1;
+}
+
+.faq .section-header {
+  margin-bottom: 40px;
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid #E8E8E8;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+
+.faq-item.open {
+  border-color: #D8D8D8;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 20px 24px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+}
+
+.faq-question i {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: #6366f1;
+}
+
+.faq-answer {
+  margin: 0;
+  padding: 0 24px 20px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.65;
 }
 
 /* =============================================
@@ -2014,6 +2282,34 @@ body {
   align-items: center;
   gap: 16px;
   margin-bottom: 28px;
+}
+
+.case-card-headline-stat {
+  margin-left: auto;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card-headline-stat strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.5px;
+}
+
+.case-card-headline-stat span {
+  font-size: 11px;
+  color: #999;
+  max-width: 160px;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .case-card-headline-stat {
+    display: none;
+  }
 }
 
 .case-card-icon {

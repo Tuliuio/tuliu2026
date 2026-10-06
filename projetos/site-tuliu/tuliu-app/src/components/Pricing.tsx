@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import CheckoutRedirectModal from './CheckoutRedirectModal';
+import LeadFormModal from './LeadFormModal';
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
-  const [checkoutPlan, setCheckoutPlan] = useState<'starter' | 'business' | null>(null);
+  const [leadPlan, setLeadPlan] = useState<'starter' | 'business' | null>(null);
   const { t } = useLanguage();
 
-  const openCheckout = (plan: 'starter' | 'business') => setCheckoutPlan(plan);
+  const openLeadForm = (plan: 'starter' | 'business') => setLeadPlan(plan);
 
   return (
     <>
@@ -50,6 +50,7 @@ export default function Pricing() {
               <span className="period">{isAnnual ? t.pricing.perYear : t.pricing.perMonth}</span>
             </div>
             <p className="plan-subtitle">{t.pricing.starterSubtitle}</p>
+            <p className="plan-agency-cost">{t.pricing.agencyCostLabel}: <strong>{t.pricing.starterAgencyCost}</strong></p>
             <hr className="plan-divider" />
             <ul className="plan-features" role="list">
               {t.pricing.starterFeatures.map((feature, i) => (
@@ -58,7 +59,7 @@ export default function Pricing() {
             </ul>
             <button
               className="btn btn-outline plan-btn"
-              onClick={() => openCheckout('starter')}
+              onClick={() => openLeadForm('starter')}
             >
               {t.pricing.starterBtn}
             </button>
@@ -74,6 +75,7 @@ export default function Pricing() {
               <span className="period">{isAnnual ? t.pricing.perYear : t.pricing.perMonth}</span>
             </div>
             <p className="plan-subtitle">{t.pricing.businessSubtitle}</p>
+            <p className="plan-agency-cost plan-agency-cost-on-dark">{t.pricing.agencyCostLabel}: <strong>{t.pricing.businessAgencyCost}</strong></p>
             <hr className="plan-divider" />
             <ul className="plan-features" role="list">
               {t.pricing.businessFeatures.map((feature, i) => (
@@ -82,7 +84,7 @@ export default function Pricing() {
             </ul>
             <button
               className="btn btn-white plan-btn"
-              onClick={() => openCheckout('business')}
+              onClick={() => openLeadForm('business')}
             >
               {t.pricing.businessBtn}
             </button>
@@ -107,23 +109,17 @@ export default function Pricing() {
             </a>
           </article>
         </div>
+
+        <p className="pricing-disclaimer fade-in fade-in-delay-3">{t.pricing.disclaimer}</p>
       </div>
     </section>
 
-    <CheckoutRedirectModal
-      isOpen={checkoutPlan !== null}
-      onClose={() => setCheckoutPlan(null)}
-      plan={checkoutPlan ?? 'starter'}
-      isAnnual={isAnnual}
-      currency={t.pricing.currency}
-      price={
-        checkoutPlan === 'business'
-          ? (isAnnual ? t.pricing.businessAnnual : t.pricing.businessMonthly)
-          : (isAnnual ? t.pricing.starterAnnual : t.pricing.starterMonthly)
-      }
-      period={isAnnual ? t.pricing.perYear : t.pricing.perMonth}
-      planDisplayName={checkoutPlan === 'business' ? t.pricing.businessDisplayName : t.pricing.starterDisplayName}
-      planDisplayDesc={checkoutPlan === 'business' ? t.pricing.businessSubtitle : t.pricing.starterSubtitle}
+    <LeadFormModal
+      isOpen={leadPlan !== null}
+      onClose={() => setLeadPlan(null)}
+      source="pricing"
+      planInterest={leadPlan}
+      planLabel={leadPlan === 'business' ? t.pricing.businessDisplayName : leadPlan === 'starter' ? t.pricing.starterDisplayName : null}
     />
     </>
   );

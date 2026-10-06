@@ -7,13 +7,47 @@ export const translations = {
       account: "Minha conta"
     },
     hero: {
-      badge: "Feito para quem empreende",
-      titleLine1: "Assuma o marketing da sua empresa sem cair",
-      titleLine2: "no operacional.",
-      subtitle: "A Tuliu implementa a tecnologia que faz o seu marketing acontecer: conteúdo, edição de vídeos, landing pages, integrações de pagamento, agentes de IA e automações. Você lidera as decisões. A gente executa nos bastidores.",
-      microcopy: "Sem equipe técnica. Sem depender de agência. Sem se perder no operacional.",
+      badge: "Agências são lentas e caras",
+      titleLine1: "Um time de marketing completo,",
+      titleLine2: "pelo preço de uma ferramenta.",
+      subtitle: "Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação, que melhora toda semana com base nos seus dados. A IA executa, especialistas aprovam. Você assume o marketing sem cair no operacional.",
+      microcopy: "Sem fidelidade. Sem taxa de criação. Tudo resolvido por WhatsApp.",
       videoLabel: "Veja o que entregamos",
-      cta: "Quero assumir meu marketing"
+      cta: "Quero meu diagnóstico gratuito",
+      priceTeaser: "A partir de R$97/mês",
+      priceTeaserLink: "Ver preços sem letra miúda"
+    },
+    proof: {
+      badge: "Prova real",
+      linkCases: "Ver todos os cases"
+    },
+    leadForm: {
+      title: "Vamos entender seu marketing",
+      subtitle: "Conta um pouco sobre o seu negócio. Nosso time monta um diagnóstico gratuito e te chama no WhatsApp com os próximos passos.",
+      planLabel: "Plano de interesse",
+      nameLabel: "Nome completo",
+      namePlaceholder: "Seu nome",
+      whatsappLabel: "WhatsApp",
+      whatsappPlaceholder: "(00) 00000-0000",
+      handleLabel: "Site ou Instagram do seu negócio",
+      handlePlaceholder: "@seunegocio ou seusite.com.br",
+      emailLabel: "E-mail (opcional)",
+      emailPlaceholder: "voce@empresa.com.br",
+      challengeLabel: "Qual seu maior desafio com marketing hoje?",
+      challengePlaceholder: "Selecione uma opção",
+      challengeOptions: [
+        "Não tenho tempo para cuidar do marketing",
+        "Preciso de um site ou domínio profissional",
+        "Preciso de conteúdo e tráfego pago rodando de verdade",
+        "Quero automatizar o atendimento com IA",
+        "Ainda não sei por onde começar"
+      ],
+      btnSubmit: "Quero meu diagnóstico gratuito",
+      btnLoading: "Enviando...",
+      successTitle: "Recebemos suas informações",
+      successDesc: "Nosso time vai olhar com calma para o seu negócio e te chama no WhatsApp com o diagnóstico. Geralmente respondemos em até 1 dia útil.",
+      errorFallback: "Não conseguimos enviar agora. Tente novamente ou chama a gente no WhatsApp.",
+      footer: "Sem compromisso. Você decide os próximos passos."
     },
     features: {
       badge: "Idealizado por humanos, potencializado pela IA",
@@ -28,6 +62,21 @@ export const translations = {
 
       cta: "Ver como funciona na prática"
     },
+    included: {
+      badge: "Sem letra miúda",
+      title: "Tudo incluso, do primeiro dia",
+      subtitle: "Todo plano Tuliu já sai com a base pronta. O que muda de um plano para outro é o volume, não o que está incluso.",
+      items: [
+        { icon: "fas fa-globe", title: "Domínio e SSL", desc: "Registro, DNS e certificado sempre ativos. Você não toca em nada técnico." },
+        { icon: "fas fa-laptop-code", title: "Site publicado", desc: "Criado, hospedado e mantido pela Tuliu do início ao fim." },
+        { icon: "fas fa-envelope", title: "E-mail profissional", desc: "Contas de e-mail com o domínio da sua empresa, prontas pra usar." },
+        { icon: "fas fa-chart-line", title: "Rastreamento e relatórios", desc: "Você sabe de onde vêm seus resultados, sem precisar entender de analytics." },
+        { icon: "fab fa-whatsapp", title: "Suporte via WhatsApp", desc: "Fala direto com o time, sem abrir chamado e sem fila de espera." },
+        { icon: "fas fa-plug", title: "Integrações do seu stack", desc: "CRM, pagamentos e comunicação conectados, sem manual." },
+        { icon: "fas fa-robot", title: "Agentes de IA", desc: "Atendem, vendem e automatizam tarefas no seu site (a partir do Business)." },
+        { icon: "fas fa-bolt", title: "Automações de marketing", desc: "Conteúdo, campanhas e fluxos de trabalho rodando nos bastidores." }
+      ]
+    },
     integrations: {
       title: "Conectamos as ferramentas que você já usa",
       subtitle: "Nós fazemos as integrações por você. Seu CRM, comunicação, pagamentos e produtividade tudo conectado, configurado e funcionando sem que você precise abrir um manual.",
@@ -36,6 +85,10 @@ export const translations = {
     pricing: {
       badge: "Investimentos claros",
       title: "Preços diretos, sem letras miúdas",
+      agencyCostLabel: "Numa agência tradicional",
+      starterAgencyCost: "a partir de R$800/mês",
+      businessAgencyCost: "a partir de R$3.000/mês",
+      disclaimer: "*Valor de referência, baseado no custo médio de montar essa mesma estrutura com freelancers ou agência no Brasil. A Tuliu entrega o mesmo escopo por uma fração do preço.",
       monthly: "Mensal",
       annual: "Anual",
       save: "Economize 14%",
@@ -56,7 +109,7 @@ export const translations = {
         "Rastreamento básico",
         "Suporte via WhatsApp"
       ],
-      starterBtn: "Começar agora",
+      starterBtn: "Quero esse plano",
       popularBadge: "Mais popular",
       businessSubtitle: "Infraestrutura completa, sem depender de TI",
       businessFeatures: [
@@ -68,7 +121,7 @@ export const translations = {
         "Integrações com ferramentas do seu stack",
         "Suporte prioritário via WhatsApp"
       ],
-      businessBtn: "Começar agora",
+      businessBtn: "Quero esse plano",
       enterpriseBadge: "Enterprise",
       consult: "Sob consulta",
       consultDesc: "Para operações digitais complexas",
@@ -81,6 +134,20 @@ export const translations = {
         "Gerente de conta dedicado"
       ],
       enterpriseBtn: "Falar com especialista"
+    },
+    faq: {
+      badge: "Perguntas frequentes",
+      title: "Antes de você perguntar",
+      items: [
+        { q: "Preciso trocar meu site atual?", a: "Não. A Tuliu pode assumir a manutenção do site que você já tem ou construir um novo do zero. Você decide." },
+        { q: "Quem faz o trabalho, a IA ou um humano?", a: "Os dois. A IA executa as tarefas repetitivas, como conteúdo, campanhas e atendimento, e um time humano de sucesso do cliente supervisiona e ajusta tudo antes de ir para o ar." },
+        { q: "Como funciona o suporte?", a: "Direto pelo WhatsApp. Sem abrir chamado, sem fila de atendimento e sem depender de agência externa." },
+        { q: "Tem fidelidade?", a: "Não. Os planos são mensais ou anuais, sem contrato de fidelidade. Você cancela quando quiser." },
+        { q: "O diagnóstico gratuito tem algum compromisso?", a: "Nenhum. Você conta sobre o seu negócio, nosso time devolve um panorama real de onde estão as oportunidades, sem obrigação de contratar." },
+        { q: "Preciso ter equipe técnica pra isso funcionar?", a: "Não, esse é o ponto principal. A Tuliu assume toda a parte técnica pra você focar em fazer o negócio crescer." },
+        { q: "Como a Tuliu cobra tão menos que uma agência?", a: "A IA faz a parte operacional que numa agência consome horas de várias pessoas. Nosso time fica com estratégia e revisão, que é onde o olhar humano faz diferença. Você paga pelo resultado, não pelas horas." },
+        { q: "A verba de anúncios está inclusa?", a: "Não. A verba vai direto para o Google e a Meta, no seu cartão e nas suas contas. O plano cobre o trabalho de criar, gerenciar e otimizar as campanhas." }
+      ]
     },
     checkoutModal: {
       title: "Checkout seguro",
@@ -129,13 +196,47 @@ export const translations = {
       account: "My account"
     },
     hero: {
-      badge: "Built for founders",
-      titleLine1: "Own your company's marketing without",
-      titleLine2: "drowning in operations.",
-      subtitle: "Tuliu implements the technology that makes your marketing happen: content, video editing, landing pages, payment integrations, AI agents, and automations. You lead the decisions. We execute behind the scenes.",
-      microcopy: "No technical team. No agency dependency. No getting lost in operations.",
+      badge: "Agencies are slow and expensive",
+      titleLine1: "A complete marketing team,",
+      titleLine2: "for the price of a tool.",
+      subtitle: "Website, SEO, content, video, paid ads, AI agents and automations in one operation that improves every week based on your data. AI does the work, experts approve it. You own your marketing without drowning in operations.",
+      microcopy: "No lock-in. No setup fee. Everything handled over WhatsApp.",
       videoLabel: "See what we deliver",
-      cta: "I want to own my marketing"
+      cta: "I want my free diagnosis",
+      priceTeaser: "From $19/mo",
+      priceTeaserLink: "See pricing, no fine print"
+    },
+    proof: {
+      badge: "Real proof",
+      linkCases: "See all cases"
+    },
+    leadForm: {
+      title: "Let's understand your marketing",
+      subtitle: "Tell us a bit about your business. Our team puts together a free diagnosis and reaches out on WhatsApp with next steps.",
+      planLabel: "Plan of interest",
+      nameLabel: "Full name",
+      namePlaceholder: "Your name",
+      whatsappLabel: "WhatsApp",
+      whatsappPlaceholder: "+1 (000) 000-0000",
+      handleLabel: "Your business website or Instagram",
+      handlePlaceholder: "@yourbusiness or yoursite.com",
+      emailLabel: "Email (optional)",
+      emailPlaceholder: "you@company.com",
+      challengeLabel: "What's your biggest marketing challenge today?",
+      challengePlaceholder: "Select an option",
+      challengeOptions: [
+        "I don't have time to handle marketing",
+        "I need a professional website or domain",
+        "I need content and paid traffic actually running",
+        "I want to automate support with AI",
+        "I don't know where to start yet"
+      ],
+      btnSubmit: "I want my free diagnosis",
+      btnLoading: "Sending...",
+      successTitle: "We received your information",
+      successDesc: "Our team will take a close look at your business and reach out on WhatsApp with your diagnosis. We usually reply within 1 business day.",
+      errorFallback: "We couldn't send this right now. Try again or message us on WhatsApp.",
+      footer: "No commitment. You decide the next steps."
     },
     features: {
       badge: "Envisioned by humans, powered by AI",
@@ -149,6 +250,21 @@ export const translations = {
       card3Desc: "We develop and deploy intelligent agents on your website and internal systems, ready to support, sell, and automate.",
       cta: "See how it works in practice"
     },
+    included: {
+      badge: "No fine print",
+      title: "Everything included, from day one",
+      subtitle: "Every Tuliu plan already ships with the full foundation. What changes between plans is volume, not what's included.",
+      items: [
+        { icon: "fas fa-globe", title: "Domain and SSL", desc: "Registration, DNS and certificate always active. You don't touch anything technical." },
+        { icon: "fas fa-laptop-code", title: "Published website", desc: "Built, hosted and maintained by Tuliu from start to finish." },
+        { icon: "fas fa-envelope", title: "Professional email", desc: "Email accounts on your company's domain, ready to use." },
+        { icon: "fas fa-chart-line", title: "Tracking and reports", desc: "You know where your results come from, no analytics degree needed." },
+        { icon: "fab fa-whatsapp", title: "WhatsApp support", desc: "Talk directly to the team, no tickets and no waiting in line." },
+        { icon: "fas fa-plug", title: "Your stack, integrated", desc: "CRM, payments and communication connected, no manual required." },
+        { icon: "fas fa-robot", title: "AI agents", desc: "Support, sell and automate tasks on your site (from Business up)." },
+        { icon: "fas fa-bolt", title: "Marketing automations", desc: "Content, campaigns and workflows running behind the scenes." }
+      ]
+    },
     integrations: {
       title: "We connect the tools you already use",
       subtitle: "We handle the integrations for you. Your CRM, communications, payments, and productivity all connected, configured, and working without you needing to read a manual.",
@@ -157,6 +273,10 @@ export const translations = {
     pricing: {
       badge: "Clear investment",
       title: "Straightforward pricing, no fine print",
+      agencyCostLabel: "At a traditional agency",
+      starterAgencyCost: "from $400/mo",
+      businessAgencyCost: "from $1,500/mo",
+      disclaimer: "*Reference value, based on the average cost of building this same setup with freelancers or an agency. Tuliu delivers the same scope for a fraction of the price.",
       monthly: "Monthly",
       annual: "Annually",
       save: "Save 14%",
@@ -177,7 +297,7 @@ export const translations = {
         "Basic tracking",
         "WhatsApp support"
       ],
-      starterBtn: "Get started",
+      starterBtn: "I want this plan",
       popularBadge: "Most popular",
       businessSubtitle: "Complete infrastructure, no IT dependency",
       businessFeatures: [
@@ -189,7 +309,7 @@ export const translations = {
         "Integrations with your tool stack",
         "Priority WhatsApp support"
       ],
-      businessBtn: "Get started",
+      businessBtn: "I want this plan",
       enterpriseBadge: "Enterprise",
       consult: "Custom pricing",
       consultDesc: "For complex digital operations",
@@ -202,6 +322,20 @@ export const translations = {
         "Dedicated account manager"
       ],
       enterpriseBtn: "Talk to an expert"
+    },
+    faq: {
+      badge: "Frequently asked",
+      title: "Before you ask",
+      items: [
+        { q: "Do I need to switch my current website?", a: "No. Tuliu can take over maintenance of the site you already have, or build a new one from scratch. You decide." },
+        { q: "Who does the work, AI or a human?", a: "Both. AI handles the repetitive tasks, like content, campaigns and support, and a human customer success team reviews and adjusts everything before it goes live." },
+        { q: "How does support work?", a: "Directly on WhatsApp. No tickets, no waiting in line, no relying on an outside agency." },
+        { q: "Is there a minimum contract?", a: "No. Plans are monthly or annual, with no lock-in contract. Cancel whenever you want." },
+        { q: "Does the free diagnosis come with any commitment?", a: "None. You tell us about your business, our team hands back a real picture of where the opportunities are, with no obligation to hire us." },
+        { q: "Do I need a technical team for this to work?", a: "No, that's the whole point. Tuliu takes over the technical side so you can focus on growing the business." },
+        { q: "How is Tuliu so much cheaper than an agency?", a: "AI handles the operational work that eats up hours of several people at an agency. Our team focuses on strategy and review, where a human eye makes the difference." },
+        { q: "Is ad spend included?", a: "No. Ad spend goes straight to Google and Meta, on your card and in your accounts. The plan covers creating, managing and optimizing the campaigns." }
+      ]
     },
     checkoutModal: {
       title: "Secure checkout",
