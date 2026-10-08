@@ -18,6 +18,16 @@ export default function CasesPage() {
   const go = useGo();
   const openLead = () => go(diagHref('cases'));
 
+  // Rola até o case sem passar pelo roteador, que trataria o "#" como link para a home
+  const goToCase = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+    history.replaceState(null, '', `#${id}`);
+  };
+
   useEffect(() => {
     setMeta(
       'Resultados | Tuliu',
@@ -44,7 +54,7 @@ export default function CasesPage() {
 
           <ul className="cs-logos" aria-label="Clientes">
             {cases.map((c) => (
-              <li key={c.id}><a href={`#${c.id}`}><img src={c.logo} alt={c.client} style={{ '--s': c.logoScale ?? 1 } as React.CSSProperties} /></a></li>
+              <li key={c.id}><a href={`#${c.id}`} onClick={(e) => goToCase(e, c.id)}><img src={c.logo} alt={c.client} style={{ '--s': c.logoScale ?? 1 } as React.CSSProperties} /></a></li>
             ))}
           </ul>
         </div>
