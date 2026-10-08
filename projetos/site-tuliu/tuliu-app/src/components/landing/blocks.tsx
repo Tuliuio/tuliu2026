@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { PriceContext } from '../../context/PriceContext';
 import type { ReactNode } from 'react';
+import type React from 'react';
 import type { Block, Cell, Landing } from '../../data/landingTypes';
 import { cases } from '../../data/cases';
 import { landingBySlug } from '../../data/landings';
@@ -417,13 +418,14 @@ export function CasesStrip({ title, subtitle, ids }: { title: string; subtitle: 
     <section className="lp-section lp-soft">
       <div className="container">
         <Header eyebrow="Resultados reais" title={title} subtitle={subtitle} />
-        <div className="lp-cases">
+        <div className="lp-cases" data-n={Math.min(list.length, 4)}>
           {list.map((c) => (
             <article key={c.id} className="lp-case">
+              <img className="lp-case-logo" src={c.logo} alt={c.client} loading="lazy" style={{ '--s': c.logoScale ?? 1 } as React.CSSProperties} />
               <span className="lp-case-sector"><i className={c.icon}></i> {c.sector}</span>
-              <h3>{c.client}</h3>
+              <h3>{c.headline}</h3>
               <ul>
-                {c.metrics.slice(1).map((m) => <li key={m.label}>{m.value} {m.label}</li>)}
+                {c.metrics.slice(1, 3).map((m) => <li key={m.label}>{m.value} {m.label}</li>)}
               </ul>
               <div className="lp-case-metric">
                 <strong>{c.metrics[0].value}</strong>

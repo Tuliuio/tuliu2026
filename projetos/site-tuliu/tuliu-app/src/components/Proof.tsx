@@ -7,7 +7,7 @@ interface ProofProps {
 
 export default function Proof({ onNavigate }: ProofProps) {
   const { t } = useLanguage();
-  const featured = cases.find((c) => c.id === 'vita-brasil') ?? cases[0];
+  const featured = cases.find((c) => c.id === 'vital-brasil') ?? cases[0];
   const testimonial = featured.testimonial;
 
   if (!testimonial) return null;

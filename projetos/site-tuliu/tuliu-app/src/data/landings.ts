@@ -316,7 +316,7 @@ export const landings: Landing[] = [
       },
       machine('Uma máquina que aprende com cada real investido.', 'A IA junta os dados de anúncio, site e atendimento e encontra onde a verba está escorrendo. Depois ajusta, com aprovação de um gestor de tráfego.'),
       volume('Quanta otimização acontece de verdade?', 'R$1.500+ por mês, fora a verba', 'A partir de R$497 por mês, fora a verba'),
-      { type: 'cases', title: 'Tráfego pago rodando de verdade.', subtitle: 'Empresas que deixaram de depender de um gestor sozinho.', ids: ['vita-brasil', 'oralrad'] },
+      { type: 'cases', title: 'Tráfego pago rodando de verdade.', subtitle: 'Empresas que deixaram de depender de um gestor sozinho.', ids: ['scienco-dairy-tech', 'procardiaco'] },
       { type: 'related', title: 'Outras frentes da máquina.', hrefs: ['seo-feito-por-ia', 'conteudo-com-ia', 'agentes-de-ia'] },
       {
         type: 'faq',
@@ -411,7 +411,7 @@ export const landings: Landing[] = [
         ],
       },
       volume('Quanto conteúdo sai de verdade?', 'R$2.000+ por mês'),
-      { type: 'cases', title: 'Conteúdo rodando com IA.', subtitle: 'Empresas que deixaram de depender de inspiração para postar.', ids: ['vita-brasil', 'mira-brand-studio'] },
+      { type: 'cases', title: 'Conteúdo rodando com IA.', subtitle: 'Empresas que deixaram de depender de inspiração para postar.', ids: ['vital-brasil', 'poliforte'] },
       { type: 'related', title: 'Outras frentes da máquina.', hrefs: ['gestao-de-trafego-com-ia', 'seo-feito-por-ia', 'agentes-de-ia'] },
       {
         type: 'faq',
@@ -473,7 +473,7 @@ export const landings: Landing[] = [
         { title: 'Você navega pela marca', desc: 'Antes de decidir, você vê a identidade aplicada no site e nos posts.' },
         { title: 'Tudo entregue e no ar', desc: 'Arquivos, guia, site e posts prontos em até 7 dias após a confirmação.' },
       ] },
-      { type: 'cases', title: 'Marcas que começaram com a Tuliu.', subtitle: 'Identidade e presença digital caminhando juntas.', ids: ['mira-brand-studio'] },
+      { type: 'cases', title: 'Marcas com presença à altura.', subtitle: 'Identidade visual aplicada em todos os canais, do vídeo ao display.', ids: ['poliforte'] },
       { type: 'related', title: 'Depois da marca, o crescimento.', hrefs: ['criar-site-com-ia', 'conteudo-com-ia', 'terceirizar-marketing'] },
       {
         type: 'faq',
@@ -518,7 +518,7 @@ export const landings: Landing[] = [
           { icon: 'fas fa-shield-halved', title: 'Supervisão humana', desc: 'Nosso time acompanha as conversas e ajusta o agente continuamente.' },
         ],
       },
-      { type: 'cases', title: 'Agentes e automações em produção.', subtitle: 'Processos que deixaram de ser manuais.', ids: ['vita-brasil', 'oralrad'] },
+      { type: 'cases', title: 'Agentes e automações em produção.', subtitle: 'Processos que deixaram de ser manuais.', ids: ['procardiaco', 'scienco-dairy-tech'] },
       { type: 'related', title: 'Outras frentes da máquina.', hrefs: ['gestao-de-trafego-com-ia', 'criar-site-com-ia', 'terceirizar-marketing'] },
       {
         type: 'faq',
@@ -965,7 +965,7 @@ export const landings: Landing[] = [
           { icon: 'fas fa-chart-column', title: 'Pedidos que você consegue contar', desc: 'Cada pedido cai no seu e-mail e nos números, por serviço e por origem. Você sabe quanto custa um lead.' },
         ],
       },
-      { type: 'cases', title: 'Empresas B2B, pedidos reais.', subtitle: 'Operações que dependem de orçamento e relacionamento.', ids: ['mira-brand-studio', 'oralrad'] },
+      { type: 'cases', title: 'Empresas B2B, pedidos reais.', subtitle: 'Operações que dependem de orçamento e relacionamento.', ids: ['scienco-dairy-tech', 'poliforte'] },
       { type: 'faq', title: 'Sobre marketing para B2B.', items: [
         { q: 'Não podemos colocar preço no site.', a: 'Não precisa, e geralmente atrapalha tentar. Uma faixa de preço, um ponto de partida ou um exemplo de projeto parecido já mantém a pessoa lendo. Nada é o que faz ela ir embora.' },
         { q: 'Nosso ciclo de venda é de seis meses. Dá pra medir?', a: 'A gente mede o pedido, não a assinatura, porque é a parte que o marketing controla. Registramos de onde veio cada pedido, então meses depois você ainda sabe qual página trouxe o negócio.' },
@@ -1001,7 +1001,7 @@ export const landings: Landing[] = [
           { icon: 'fas fa-laptop-medical', title: 'Processos digitais', desc: 'Requisições, orçamentos e formulários online no lugar do papel.' },
         ],
       },
-      { type: 'cases', title: 'Saúde rodando com a Tuliu.', subtitle: 'Laboratórios e clínicas que modernizaram a operação.', ids: ['oralrad', 'vita-brasil'] },
+      { type: 'cases', title: 'Saúde rodando com a Tuliu.', subtitle: 'Laboratórios e clínicas que modernizaram a operação.', ids: ['procardiaco', 'vital-brasil'] },
       { type: 'faq', title: 'Sobre marketing para saúde.', items: [
         { q: 'Vocês respeitam as regras do CFM, CFO e outros conselhos?', a: 'Sim. O conteúdo é educativo, sem promessa de resultado e sem antes e depois proibido. Você aprova o que quiser antes de publicar.' },
         { q: 'O agente de IA pode dar orientação médica?', a: 'Não. Ele responde dúvidas administrativas, valores, horários e agenda. Qualquer questão clínica vai para a sua equipe.' },
