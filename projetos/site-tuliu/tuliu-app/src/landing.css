@@ -1513,6 +1513,20 @@
 .hero-v2-still { display: none; }
 @media (prefers-reduced-motion: reduce) { .hero-v2-still { display: block; } }
 
+/* Mobile: visual na largura toda e bordas esfumaçadas, para o vídeo não aparecer como uma caixa */
+@media (max-width: 1024px) {
+  .hero-v2-visual { width: 100%; }
+  .hero-v2-visual video,
+  .hero-v2-visual img {
+    object-position: 94% 50%;
+    mask-image: radial-gradient(ellipse 62% 58% at 50% 50%, #000 52%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 50%, #000 52%, transparent 100%);
+  }
+}
+@media (max-width: 767px) {
+  .hero-v2-visual { height: 340px; }
+}
+
 /* =============================================
     HEADER ALINHADO ÀS LATERAIS (mesma largura dos blocos largos)
 ============================================= */
