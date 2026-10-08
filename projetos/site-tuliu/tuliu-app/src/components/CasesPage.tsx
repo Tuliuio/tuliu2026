@@ -11,7 +11,7 @@ const TOTALS = [
   { value: '1,7 mi', label: 'exibições de anúncios' },
   { value: '+40 mil', label: 'cliques de clientes em potencial' },
   { value: '-24%', label: 'no custo por conversa de venda na Scienco' },
-  { value: '4', label: 'setores diferentes, uma operação só' },
+  { value: '6', label: 'setores diferentes, uma operação só' },
 ];
 
 export default function CasesPage() {
@@ -21,7 +21,7 @@ export default function CasesPage() {
   useEffect(() => {
     setMeta(
       'Resultados | Tuliu',
-      'Cases reais da Tuliu: tráfego pago, sites, vídeo e campanhas completas para empresas de biotecnologia, saúde e construção. Números medidos, não promessas.',
+      'Cases reais da Tuliu: tráfego pago, sites, vídeo, apps e campanhas completas para empresas de biotecnologia, saúde, construção, tecnologia, indústria e gastronomia. Números medidos, não promessas.',
     );
   }, []);
 
@@ -35,7 +35,7 @@ export default function CasesPage() {
               Negócios reais, <span className="lp-gradient-text">resultados medidos.</span>
             </h1>
             <p className="lp-hero-sub">
-              Biotecnologia, saúde e construção industrial. Setores diferentes, a mesma operação: tráfego, site, conteúdo e vídeo rodando juntos, com cada número vindo direto das contas de anúncio.
+              Biotecnologia, saúde, construção, tecnologia, indústria e gastronomia. Setores diferentes, a mesma operação: tráfego, site, conteúdo e vídeo rodando juntos, com cada número vindo direto das contas de anúncio.
             </p>
             <div className="lp-hero-actions">
               <CtaButton label="Quero meu diagnóstico gratuito" onClick={openLead} />
@@ -60,7 +60,7 @@ export default function CasesPage() {
               </div>
             ))}
           </div>
-          <p className="cs-note">Soma dos anúncios no Meta e no Google dos clientes abaixo, só no período em que a Tuliu opera cada conta, até outubro de 2026.</p>
+          <p className="cs-note">Soma dos anúncios no Meta e no Google dos clientes abaixo que rodam mídia paga com a gente, só no período em que a Tuliu opera cada conta, até outubro de 2026.</p>
         </div>
       </section>
 

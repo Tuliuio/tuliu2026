@@ -473,7 +473,7 @@ export const landings: Landing[] = [
         { title: 'Você navega pela marca', desc: 'Antes de decidir, você vê a identidade aplicada no site e nos posts.' },
         { title: 'Tudo entregue e no ar', desc: 'Arquivos, guia, site e posts prontos em até 7 dias após a confirmação.' },
       ] },
-      { type: 'cases', title: 'Marcas com presença à altura.', subtitle: 'Identidade visual aplicada em todos os canais, do vídeo ao display.', ids: ['poliforte'] },
+      { type: 'cases', title: 'Marcas com presença à altura.', subtitle: 'Identidade visual aplicada em todos os canais, do cardápio ao display.', ids: ['cruz-de-malta', 'poliforte'] },
       { type: 'related', title: 'Depois da marca, o crescimento.', hrefs: ['criar-site-com-ia', 'conteudo-com-ia', 'terceirizar-marketing'] },
       {
         type: 'faq',
@@ -920,7 +920,7 @@ export const landings: Landing[] = [
         ],
       },
       marketCosts,
-      { type: 'cases', title: 'Pequenas empresas, números reais.', subtitle: 'Não é teoria. São empresas como a sua.' },
+      { type: 'cases', title: 'Pequenas empresas, números reais.', subtitle: 'Não é teoria. São empresas como a sua.', ids: ['cruz-de-malta', 'vital-brasil', 'procardiaco'] },
       { type: 'faq', title: 'Sobre marketing para pequenas empresas.', items: [
         { q: 'Minha empresa é muito pequena para isso?', a: 'O plano Starter foi feito justamente para quem está começando: site, domínio, e-mail e a base digital rodando por R$97 por mês.' },
         { q: 'Preciso entender de marketing?', a: 'Não. Você conhece seu negócio, a gente traduz isso em marketing. Suas decisões são sobre o negócio, não sobre ferramenta.' },
@@ -965,7 +965,7 @@ export const landings: Landing[] = [
           { icon: 'fas fa-chart-column', title: 'Pedidos que você consegue contar', desc: 'Cada pedido cai no seu e-mail e nos números, por serviço e por origem. Você sabe quanto custa um lead.' },
         ],
       },
-      { type: 'cases', title: 'Empresas B2B, pedidos reais.', subtitle: 'Operações que dependem de orçamento e relacionamento.', ids: ['scienco-dairy-tech', 'poliforte'] },
+      { type: 'cases', title: 'Empresas B2B, pedidos reais.', subtitle: 'Operações que dependem de orçamento e relacionamento.', ids: ['scienco-dairy-tech', 'sparz', 'poliforte'] },
       { type: 'faq', title: 'Sobre marketing para B2B.', items: [
         { q: 'Não podemos colocar preço no site.', a: 'Não precisa, e geralmente atrapalha tentar. Uma faixa de preço, um ponto de partida ou um exemplo de projeto parecido já mantém a pessoa lendo. Nada é o que faz ela ir embora.' },
         { q: 'Nosso ciclo de venda é de seis meses. Dá pra medir?', a: 'A gente mede o pedido, não a assinatura, porque é a parte que o marketing controla. Registramos de onde veio cada pedido, então meses depois você ainda sabe qual página trouxe o negócio.' },

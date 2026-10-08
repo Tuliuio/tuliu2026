@@ -413,7 +413,8 @@ export function Expert({ title, quote }: { title: string; quote: string }) {
 /* ---------- CASES ---------- */
 export function CasesStrip({ title, subtitle, ids }: { title: string; subtitle: string; ids?: string[] }) {
   const link = useLinkProps();
-  const list = ids ? cases.filter((c) => ids.includes(c.id)) : cases;
+  // Sem ids, mostra os quatro primeiros cases (os que têm números de mídia)
+  const list = ids ? cases.filter((c) => ids.includes(c.id)) : cases.slice(0, 4);
   return (
     <section className="lp-section lp-soft">
       <div className="container">

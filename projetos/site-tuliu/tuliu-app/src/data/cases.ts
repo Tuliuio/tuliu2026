@@ -2,6 +2,9 @@ import logoDairyTech from '../assets/clientes/dairy-tech.svg';
 import logoProcardiaco from '../assets/clientes/procardiaco.webp';
 import logoVitalBrasil from '../assets/clientes/vital-brasil.svg';
 import logoPoliforte from '../assets/clientes/poliforte.png';
+import logoSparz from '../assets/clientes/sparz.png';
+import logoAdapto from '../assets/clientes/adapto.svg';
+import logoCruzDeMalta from '../assets/clientes/cruz-de-malta.png';
 
 export interface Metric {
   value: string;
@@ -124,5 +127,66 @@ export const cases: CaseStudy[] = [
       { value: '26', label: 'banners de display em 13 tamanhos, mais o VT em 3 cortes' },
     ],
     source: 'Estrutura, rastreamento e peças entregues pela Tuliu em 2026.',
+  },
+  {
+    id: 'sparz',
+    client: 'Sparz',
+    sector: 'Tecnologia · Redes 4G/5G',
+    location: 'Brasil',
+    icon: 'fas fa-tower-cell',
+    logo: logoSparz,
+    headline: 'Uma empresa de tecnologia com site à altura do produto, em três idiomas.',
+    challenge:
+      'A Sparz desenvolve o core de redes 4G e 5G privativas, uma tecnologia brasileira para provedores e empresas de setores como indústria, mineração, agro e energia. Produto complexo, venda consultiva e clientes fora do Brasil: o site precisava explicar bem cada solução, falar com cada setor e gerar contatos qualificados em mais de um idioma.',
+    solution:
+      'A Tuliu construiu o site do zero, com uma página para cada solução e para cada setor atendido, em português, inglês e espanhol. Cada contato do formulário chega ao time comercial e segue direto para o WhatsApp. Montamos também dois ambientes, um de homologação e outro de produção, para que toda mudança seja revisada e aprovada antes de ir ao ar.',
+    services: ['Site sob medida', 'Três idiomas', 'Páginas por solução e setor', 'Captação de leads', 'Homologação e produção'],
+    metrics: [
+      { value: '3', label: 'idiomas no mesmo site: português, inglês e espanhol' },
+      { value: '12', label: 'páginas dedicadas: 4 soluções e 8 setores atendidos' },
+      { value: '2', label: 'ambientes, para aprovar cada mudança antes de publicar' },
+    ],
+    source: 'Projeto entregue pela Tuliu em 2026.',
+  },
+  {
+    id: 'adapto',
+    client: 'Adapto',
+    sector: 'Indústria · Impressão 3D',
+    location: 'São José/SC',
+    icon: 'fas fa-cube',
+    logo: logoAdapto,
+    headline: 'Impressão 3D para empresas, explicada em um site e em vídeo.',
+    challenge:
+      'A Adapto faz manufatura aditiva, a impressão 3D aplicada a peças e soluções para empresas. Para quem não conhece a tecnologia, é difícil entender o que dá para fazer e por onde começar. A marca precisava de uma presença que mostrasse o processo e transformasse curiosidade em pedido de orçamento.',
+    solution:
+      'A Tuliu criou o site da Adapto com o processo explicado em três passos, para quem é a solução e um formulário de contato direto. Para as redes, produzimos um Reel em motion design com os cases da empresa e trilha original, feito para mostrar em segundos o que a impressão 3D resolve no dia a dia de uma empresa.',
+    services: ['Site sob medida', 'Motion design', 'Edição de vídeo', 'Trilha original', 'Hospedagem e domínio'],
+    metrics: [
+      { value: '3 passos', label: 'para o cliente entender o processo, do pedido à entrega' },
+      { value: '1 Reel', label: 'em motion design com os cases da Adapto e trilha própria' },
+      { value: 'Site + vídeo', label: 'na mesma linguagem visual, do site às redes' },
+    ],
+    source: 'Projeto entregue pela Tuliu em 2026.',
+  },
+  {
+    id: 'cruz-de-malta',
+    client: 'Restaurante Cruz de Malta',
+    sector: 'Gastronomia',
+    location: 'Pelotas/RS',
+    icon: 'fas fa-utensils',
+    logo: logoCruzDeMalta,
+    logoScale: 1.9,
+    headline: 'Um restaurante de 1967 com o próprio canal de pedidos, sem depender de plataforma.',
+    challenge:
+      'Servindo Pelotas à mesa desde 1967, o Cruz de Malta passou por uma reformulação completa da marca. Os pedidos de entrega dependiam de uma plataforma de terceiros, e a nova identidade precisava chegar também ao digital: ao Instagram, ao cardápio e ao jeito de pedir.',
+    solution:
+      'Junto com a Mira Brand Studio, que criou a nova marca, a Tuliu desenvolveu o canal digital do restaurante. Um link na bio com pedido, reserva e mapa, e um app de pedidos próprio com o cardápio completo, fotos, carrinho e fechamento direto no WhatsApp da casa, já com a mensagem formatada. O cardápio é conferido automaticamente a cada publicação, e a hospedagem é cuidada por nós.',
+    services: ['App de pedidos', 'Link na bio', 'Cardápio digital', 'Pedido pelo WhatsApp', 'Hospedagem'],
+    metrics: [
+      { value: '176', label: 'pratos no cardápio digital, organizados em 18 categorias' },
+      { value: '119', label: 'fotos de pratos no app de pedidos' },
+      { value: '0', label: 'intermediários entre o cliente e a cozinha: o pedido cai no WhatsApp da casa' },
+    ],
+    source: 'Projeto entregue pela Tuliu em 2026, com a marca da Mira Brand Studio.',
   },
 ];
