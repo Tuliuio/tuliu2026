@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <a className="footer-logo" aria-label="Tuliu, início" {...link('/')}>
-              <img src={logo} alt="Tuliu Logo" height="36" />
+              <img src={logo} alt="Tuliu Logo" height="26" />
             </a>
             <p>Seu time de marketing completo, feito com IA e aprovado por especialistas.</p>
             <a className="footer-wa" href="https://wa.me/554840426597" target="_blank" rel="noopener noreferrer">

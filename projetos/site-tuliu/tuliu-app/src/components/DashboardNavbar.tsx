@@ -62,7 +62,7 @@ export default function DashboardNavbar({ onNavigate, currentPage }: DashboardNa
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           aria-label="Tuliu Dashboard"
         >
-          <img src={logo} alt="Tuliu Logo" height="40" />
+          <img src={logo} alt="Tuliu Logo" height="28" />
         </button>
 
         {/* Navigation Tabs - Center */}

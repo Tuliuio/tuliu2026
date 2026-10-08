@@ -19,7 +19,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         </button>
 
         <div className="login-logo">
-          <img src={logo} alt="Tuliu Logo" height="40" />
+          <img src={logo} alt="Tuliu Logo" height="28" />
         </div>
 
         <h3 className="login-title">{t.login.title}</h3>

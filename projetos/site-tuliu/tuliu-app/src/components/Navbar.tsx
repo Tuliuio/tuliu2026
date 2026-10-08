@@ -107,7 +107,7 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
             }}
             aria-label="Tuliu, início"
           >
-            <img src={logo} alt="Tuliu Logo" height="40" />
+            <img src={logo} alt="Tuliu Logo" height="28" />
           </button>
 
           <ul className="navbar-links nav-pill" role="list">
