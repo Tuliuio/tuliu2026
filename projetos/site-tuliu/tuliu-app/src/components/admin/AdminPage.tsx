@@ -3,7 +3,9 @@ import AdminLayout from './AdminLayout';
 import AdminDashboard from './AdminDashboard';
 import AdminClientsPage from './AdminClientsPage';
 import ActivationRequestsPage from './ActivationRequestsPage';
-type AdminSection = 'dashboard' | 'clients' | 'activation-requests';
+import AdminUpdatesPage from './AdminUpdatesPage';
+import AdminCampaignsPage from './AdminCampaignsPage';
+type AdminSection = 'dashboard' | 'clients' | 'activation-requests' | 'updates' | 'campaigns';
 
 export default function AdminPage() {
   const [currentSection, setCurrentSection] = useState<AdminSection>('dashboard');
@@ -13,6 +15,8 @@ export default function AdminPage() {
       {currentSection === 'dashboard' && <AdminDashboard />}
       {currentSection === 'activation-requests' && <ActivationRequestsPage />}
       {currentSection === 'clients' && <AdminClientsPage />}
+      {currentSection === 'updates' && <AdminUpdatesPage />}
+      {currentSection === 'campaigns' && <AdminCampaignsPage />}
     </AdminLayout>
   );
 }

@@ -33,7 +33,7 @@ export default function ClientOverview({ assets }: ClientOverviewProps) {
       <div style={{ marginBottom: '16px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
           <span style={{ fontSize: '13px', fontWeight: 600, color: '#333' }}>
-            {icon} {label}
+            <i className={icon} aria-hidden="true" style={{ color: "var(--lp-violet)", marginRight: 6 }}></i>{label}
           </span>
           <span style={{ fontSize: '12px', color: '#666' }}>
             {current} {isUnlimited ? '/ ∞' : `/ ${limit}`}
@@ -82,22 +82,22 @@ export default function ClientOverview({ assets }: ClientOverviewProps) {
         {/* Domínios */}
         <div>
           <h3 style={{ margin: '0 0 16px 0', fontSize: '14px', fontWeight: 600 }}>Infraestrutura</h3>
-          <UsageBar label="Domínios" current={domains} limit={limits.domains} icon="🌐" />
-          <UsageBar label="Sites/Apps" current={sites} limit={limits.sites} icon="💻" />
+          <UsageBar label="Domínios" current={domains} limit={limits.domains} icon="fas fa-globe" />
+          <UsageBar label="Sites/Apps" current={sites} limit={limits.sites} icon="fas fa-laptop-code" />
         </div>
 
         {/* Comunicação */}
         <div>
           <h3 style={{ margin: '0 0 16px 0', fontSize: '14px', fontWeight: 600 }}>Comunicação</h3>
-          <UsageBar label="E-mails" current={emails} limit={limits.emails} icon="📧" />
+          <UsageBar label="E-mails" current={emails} limit={limits.emails} icon="fas fa-envelope" />
         </div>
 
         {/* Automação */}
         {(limits.automations === 'unlimited' || limits.automations > 0) && (
           <div>
             <h3 style={{ margin: '0 0 16px 0', fontSize: '14px', fontWeight: 600 }}>Automação & IA</h3>
-            <UsageBar label="Automações" current={automations} limit={limits.automations} icon="⚙️" />
-            <UsageBar label="Agentes IA" current={agents} limit={limits.agents} icon="🤖" />
+            <UsageBar label="Automações" current={automations} limit={limits.automations} icon="fas fa-gears" />
+            <UsageBar label="Agentes IA" current={agents} limit={limits.agents} icon="fas fa-robot" />
           </div>
         )}
       </div>

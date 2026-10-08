@@ -8,6 +8,8 @@ interface AdminLayoutProps {
 
 const MENU_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: 'fa-chart-line' },
+  { id: 'updates', label: 'Novidades', icon: 'fa-paper-plane' },
+  { id: 'campaigns', label: 'Campanhas', icon: 'fa-bullhorn' },
   { id: 'activation-requests', label: 'Solicitações', icon: 'fa-bell' },
   { id: 'clients', label: 'Clientes', icon: 'fa-users' },
 ];

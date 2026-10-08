@@ -58,7 +58,7 @@ export default function AgentsSection() {
       {/* Header */}
       <div style={{ marginBottom: '40px' }}>
         <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
-          🤖 Agentes de IA
+          <i className="fas fa-robot" aria-hidden="true" style={{ color: "var(--lp-violet)", marginRight: 10 }}></i>Agentes de IA
         </h1>
         <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
           Implante agentes inteligentes para atender clientes, responder perguntas e automatizar processos

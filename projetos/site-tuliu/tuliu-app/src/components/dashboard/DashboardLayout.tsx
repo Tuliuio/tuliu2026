@@ -7,10 +7,11 @@ import SupportModal from './SupportModal';
 
 interface DashboardLayoutProps {
   children: (section: string, onNavigate: (section: string) => void) => ReactNode;
+  initialSection?: string;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const [currentSection, setCurrentSection] = useState('overview');
+export default function DashboardLayout({ children, initialSection = 'overview' }: DashboardLayoutProps) {
+  const [currentSection, setCurrentSection] = useState(initialSection);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);

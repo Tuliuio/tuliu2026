@@ -7,14 +7,17 @@ import AssetSection from './AssetSection';
 import ClientOverview from './ClientOverview';
 import AutomationsSection from './AutomationsSection';
 import AgentsSection from './AgentsSection';
+import { ActivityProvider, useActivity } from './ActivityContext';
+import { ActivityFeed, CampaignsSection } from './ActivitySections';
 
 interface AssetTypeInfo {
   type: string;
   label: string;
 }
 
-function DashboardContent({ section }: { section: string }) {
+function DashboardContent({ section, focusId, onNavigate }: { section: string; focusId: string | null; onNavigate: (section: string) => void }) {
   const { client } = useAuth();
+  const { unreadCount, campaigns } = useActivity();
   const [assets, setAssets] = useState<Asset[]>([]);
   const [assetStatuses, setAssetStatuses] = useState<Record<string, Asset['status']>>({});
   const [requestModalOpen, setRequestModalOpen] = useState(false);
@@ -254,15 +257,34 @@ function DashboardContent({ section }: { section: string }) {
   if (section === 'overview') {
     return (
       <>
-        <div style={{ padding: '40px' }}>
+        <div className="pn-page" style={{ maxWidth: 'none' }}>
           {/* Header */}
-          <div style={{ marginBottom: '40px' }}>
-            <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
-              Olá, {company.split(' ')[0] || 'Usuário'}!
-            </h1>
-            <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
-              Aqui está toda a sua infraestrutura digital centralizada.
-            </p>
+          <div className="pn-head">
+            <span className="pn-eyebrow">Seu painel</span>
+            <h1 className="pn-title">Olá, {company.split(' ')[0] || 'Usuário'}!</h1>
+            <p className="pn-sub">O que a Tuliu está fazendo por você, e toda a sua estrutura digital, num lugar só.</p>
+          </div>
+
+          {(unreadCount > 0 || campaigns.length > 0) && (
+            <div className="pn-highlight">
+              <div>
+                <strong>
+                  {unreadCount > 0
+                    ? `${unreadCount} ${unreadCount === 1 ? 'novidade' : 'novidades'} desde a sua última visita`
+                    : 'Tudo em dia por aqui'}
+                </strong>
+                <span>
+                  {campaigns.filter((c) => c.stage !== 'concluida').length} {campaigns.filter((c) => c.stage !== 'concluida').length === 1 ? 'frente de trabalho em andamento' : 'frentes de trabalho em andamento'}
+                </span>
+              </div>
+              <button type="button" className="pn-btn" onClick={() => onNavigate('campaigns')}>
+                Ver campanhas <i className="fas fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          )}
+
+          <div style={{ marginBottom: '56px' }}>
+            <ActivityFeed limit={4} onSeeAll={() => onNavigate('activity')} />
           </div>
 
           {/* Client Overview */}
@@ -370,6 +392,23 @@ function DashboardContent({ section }: { section: string }) {
     );
   }
 
+  if (section === 'activity') {
+    return (
+      <div className="pn-page">
+        <div className="pn-head">
+          <span className="pn-eyebrow">Acontecendo agora</span>
+          <h1 className="pn-title">Tudo o que a Tuliu fez por você.</h1>
+          <p className="pn-sub">Entregas, campanhas, relatórios e o que precisa da sua aprovação, do mais recente para o mais antigo.</p>
+        </div>
+        <ActivityFeed focusId={focusId} />
+      </div>
+    );
+  }
+
+  if (section === 'campaigns') {
+    return <CampaignsSection />;
+  }
+
   if (section === 'automations') {
     return (
       <>
@@ -399,7 +438,7 @@ function DashboardContent({ section }: { section: string }) {
     };
 
     const assetType = assetTypeMap[section];
-    const iconMap = { domain: '🌐', website: '💻', webapp: '📱', email: '📧', integration: '🔌' };
+    const iconMap = { domain: 'fas fa-globe', website: 'fas fa-laptop-code', webapp: 'fas fa-mobile-screen', email: 'fas fa-envelope', integration: 'fas fa-plug' };
     const labelMap = { domain: 'Domínios', website: 'Websites', webapp: 'Web Apps', email: 'E-mails', integration: 'Integrações' };
 
     return (
@@ -407,7 +446,7 @@ function DashboardContent({ section }: { section: string }) {
         <div style={{ padding: '40px' }}>
           <div style={{ marginBottom: '40px' }}>
             <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
-              {iconMap[assetType]} {labelMap[assetType]}
+              <i className={iconMap[assetType]} aria-hidden="true" style={{ marginRight: 10, color: 'var(--lp-violet)' }}></i>{labelMap[assetType]}
             </h1>
             <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
               Gerencie seus {labelMap[assetType].toLowerCase()}
@@ -449,10 +488,22 @@ function DashboardContent({ section }: { section: string }) {
   );
 }
 
+/** Card aberto pelo link do WhatsApp: tuliu.io/dashboard?atualizacao=<id> */
+function readFocusFromUrl(): string | null {
+  const fromUrl = new URLSearchParams(window.location.search).get('atualizacao');
+  const id = fromUrl ?? sessionStorage.getItem('tuliu_atualizacao');
+  sessionStorage.removeItem('tuliu_atualizacao');
+  if (fromUrl) window.history.replaceState(window.history.state, '', '/dashboard');
+  return id;
+}
+
 export default function DashboardPage() {
+  const [focusId] = useState(readFocusFromUrl);
   return (
-    <DashboardLayout>
-      {(currentSection) => <DashboardContent section={currentSection} />}
-    </DashboardLayout>
+    <ActivityProvider>
+      <DashboardLayout initialSection={focusId ? 'activity' : 'overview'}>
+        {(currentSection, onNavigate) => <DashboardContent section={currentSection} focusId={focusId} onNavigate={onNavigate} />}
+      </DashboardLayout>
+    </ActivityProvider>
   );
 }

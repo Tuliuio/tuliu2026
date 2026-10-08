@@ -58,7 +58,7 @@ export default function AutomationsSection() {
       {/* Header */}
       <div style={{ marginBottom: '40px' }}>
         <h1 style={{ margin: '0 0 8px 0', fontSize: '32px', fontWeight: 800 }}>
-          ⚙️ Automações
+          <i className="fas fa-gears" aria-hidden="true" style={{ color: "var(--lp-violet)", marginRight: 10 }}></i>Automações
         </h1>
         <p style={{ margin: 0, fontSize: '16px', color: '#666' }}>
           Crie fluxos automáticos para gerenciar seus domínios, e-mails e sites

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
+import { useActivity } from './ActivityContext';
 
 interface DashboardSidebarProps {
   currentSection: string;
@@ -13,10 +14,13 @@ interface MenuItem {
   icon: string;
   count?: number;
   badge?: string;
+  /** Destaca o contador (novidades não lidas) */
+  highlight?: boolean;
 }
 
 export default function DashboardSidebar({ currentSection, onNavigate }: DashboardSidebarProps) {
   const { client } = useAuth();
+  const { unreadCount, campaigns } = useActivity();
   const [assetCounts, setAssetCounts] = useState<Record<string, number>>({});
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
@@ -61,7 +65,9 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
   }, [client]);
 
   const MENU_ITEMS: MenuItem[] = [
-    { id: 'overview', label: 'Dashboard', icon: 'fa-chart-line' },
+    { id: 'overview', label: 'Visão geral', icon: 'fa-house' },
+    { id: 'activity', label: 'Acontecendo agora', icon: 'fa-bell', count: unreadCount, highlight: true },
+    { id: 'campaigns', label: 'Campanhas', icon: 'fa-bullhorn', count: campaigns.filter((c) => c.stage !== 'concluida').length },
     { id: 'domains', label: 'Domínios', icon: 'fa-globe', count: assetCounts.domains || 0 },
     { id: 'websites', label: 'Websites', icon: 'fa-laptop-code', count: assetCounts.websites || 0 },
     { id: 'webapps', label: 'Web Apps', icon: 'fa-mobile-alt', count: assetCounts.webapps || 0 },
@@ -145,18 +151,19 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
               </span>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                {item.count && item.count > 0 && (
+                {!!item.count && item.count > 0 && (
                   <span style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     minWidth: '20px',
                     height: '20px',
-                    background: isActive ? '#e5e7eb' : '#f3f4f6',
+                    padding: '0 6px',
+                    background: item.highlight ? 'var(--lp-grad)' : isActive ? '#e5e7eb' : '#f3f4f6',
                     borderRadius: '10px',
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: '#666',
+                    color: item.highlight ? '#fff' : '#666',
                   }}>
                     {item.count}
                   </span>
@@ -220,7 +227,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
           Plano {client?.plan?.name}
         </p>
         <p style={{ margin: 0, color: '#666', fontSize: '11px' }}>
-          {isProPlan ? '✓ Automações e IA desbloqueadas' : 'Upgrade para desbloquear automações e IA'}
+          {isProPlan ? <><i className="fas fa-check" aria-hidden="true"></i> Automações e IA desbloqueadas</> : 'Upgrade para desbloquear automações e IA'}
         </p>
       </div>
 
@@ -253,7 +260,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
             onClick={(e) => e.stopPropagation()}
           >
             <h2 style={{ margin: '0 0 16px 0', fontSize: '28px', fontWeight: 700 }}>
-              🚀 {selectedFeature}
+              <i className="fas fa-rocket" aria-hidden="true" style={{ color: 'var(--lp-violet)', marginRight: 8 }}></i>{selectedFeature}
             </h2>
             <p style={{ margin: '0 0 24px 0', fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
               A funcionalidade de <strong>{selectedFeature.toLowerCase()}</strong> está disponível apenas nos planos <strong>Business</strong> e <strong>Enterprise</strong>.

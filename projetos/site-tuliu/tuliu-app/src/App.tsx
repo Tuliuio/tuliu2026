@@ -120,6 +120,9 @@ function App() {
     // Parse initial URL on first load
     const pathname = window.location.pathname;
     if (pathname === '/dashboard') {
+      // Link de novidade vindo do WhatsApp: guarda o card para abrir depois do login
+      const focus = new URLSearchParams(window.location.search).get('atualizacao');
+      if (focus) sessionStorage.setItem('tuliu_atualizacao', focus);
       setCurrentPage('dashboard');
     } else if (pathname === '/admin') {
       setCurrentPage('admin');
@@ -189,6 +192,14 @@ function App() {
 
   useEffect(() => {
     console.log('[App] Rendering with loading:', loading, 'session:', !!session, 'currentPage:', currentPage);
+  }, [loading, session, currentPage]);
+
+  // Área logada sem sessão (ex.: link do WhatsApp com o cliente deslogado): manda para o login
+  useEffect(() => {
+    if (!loading && !session && (currentPage === 'dashboard' || currentPage === 'admin')) {
+      setCurrentPage('login');
+      window.history.replaceState({ page: 'login' }, '', '/login');
+    }
   }, [loading, session, currentPage]);
 
   // Auto-navigate based on user role when logged in
