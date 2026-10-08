@@ -974,6 +974,23 @@ export const landings: Landing[] = [
     },
     blocks: [
       {
+        type: 'origin',
+        eyebrow: 'Por que Tuliu',
+        title: 'Novos elementos para um novo momento.',
+        element: { number: 69, symbol: 'Tm', name: 'Túlio', mass: '168,934', family: 'Terras raras' },
+        paragraphs: [
+          'O nome Tuliu vem do túlio, thulium em inglês: o elemento 69 da tabela periódica. Ele faz parte das terras raras, um grupo de 17 elementos que quase ninguém conhece pelo nome, mas que está dentro de quase toda tecnologia que mudou o mundo nas últimas décadas. Celular, fibra ótica, motor elétrico, laser de cirurgia.',
+          'O próprio túlio ganhou esse nome por causa de Thule, como os antigos chamavam a terra mais distante do mapa. O ponto onde o mundo conhecido terminava e começava o que ainda não tinha nome.',
+          'É desse lugar que a Tuliu nasce. A IA mudou o jeito de fazer marketing e o manual antigo não dá mais conta. Um momento novo pede elementos novos: tecnologia, dados e especialistas combinados numa operação que antes não existia.',
+          'E assim como você não precisa entender de terras raras para usar um celular, também não precisa entender de IA para ter um marketing que funciona. A tecnologia fica nos bastidores. Você assume o marketing do seu negócio e cresce sem cair no operacional.',
+        ],
+        pillars: [
+          { title: 'Novos elementos', desc: 'IA, dados e gente experiente trabalhando juntos, como uma liga que fica mais forte do que cada parte sozinha.' },
+          { title: 'Novas tecnologias', desc: 'Cada avanço que vale a pena entra na operação. Você não precisa acompanhar nenhum deles para se beneficiar.' },
+          { title: 'Uma nova era', desc: 'Pequenas e médias empresas com acesso ao que antes só uma grande empresa conseguia pagar.' },
+        ],
+      },
+      {
         type: 'prose',
         title: 'A agência tradicional é o manual de ontem.',
         paragraphs: [

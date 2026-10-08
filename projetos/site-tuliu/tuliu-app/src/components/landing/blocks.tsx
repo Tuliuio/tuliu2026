@@ -338,6 +338,38 @@ function Prose({ b }: { b: Of<'prose'> }) {
   );
 }
 
+/* ---------- ORIGEM DO NOME ---------- */
+function Origin({ b }: { b: Of<'origin'> }) {
+  const { number, symbol, name, mass, family } = b.element;
+  return (
+    <section className="lp-section lp-origin">
+      <div className="container">
+        <div className="lp-origin-grid">
+          <div className="lp-element" aria-label={`Elemento ${number}, ${name}, símbolo ${symbol}`}>
+            <span className="lp-element-num">{number}</span>
+            <span className="lp-element-family">{family}</span>
+            <span className="lp-element-symbol">{symbol}</span>
+            <span className="lp-element-name">{name}</span>
+            <span className="lp-element-mass">{mass}</span>
+          </div>
+          <div>
+            <Header eyebrow={b.eyebrow} title={b.title} />
+            {b.paragraphs.map((p, i) => <p key={i} className="lp-prose">{p}</p>)}
+          </div>
+        </div>
+        <div className="lp-origin-pillars">
+          {b.pillars.map((p) => (
+            <div key={p.title}>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- STEPS ---------- */
 function Steps({ b }: { b: Of<'steps'> }) {
   return (
@@ -516,6 +548,7 @@ export function RenderBlock({ b, onCta }: { b: Block; onCta: () => void }) {
     case 'expert': return <Expert {...b} />;
     case 'cases': return <CasesStrip {...b} />;
     case 'prose': return <Prose b={b} />;
+    case 'origin': return <Origin b={b} />;
     case 'features': return <Features b={b} />;
     case 'related': return <Related {...b} />;
     case 'faq': return <Faq {...b} />;

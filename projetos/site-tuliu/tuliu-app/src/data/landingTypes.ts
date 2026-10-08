@@ -20,6 +20,7 @@ export type Block =
   | { type: 'expert'; title: string; quote: string }
   | { type: 'cases'; title: string; subtitle: string; ids?: string[] }
   | { type: 'prose'; title: string; paragraphs: string[]; link?: { label: string; href: string } }
+  | { type: 'origin'; eyebrow: string; title: string; paragraphs: string[]; element: { number: number; symbol: string; name: string; mass: string; family: string }; pillars: { title: string; desc: string }[] }
   | { type: 'features'; title: string; subtitle?: string; items: IconCard[] }
   | { type: 'needs'; title: string; subtitle: string; items: { title: string; tag: string; desc: string }[]; summary: string }
   | { type: 'related'; title: string; subtitle?: string; hrefs: string[] }
