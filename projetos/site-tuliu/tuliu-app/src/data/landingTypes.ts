@@ -31,6 +31,8 @@ export interface Landing {
   group: LandingGroup;
   navLabel: string;
   navDesc: string;
+  /** Destaque no menu (comparações principais) */
+  featured?: boolean;
   metaTitle: string;
   metaDescription: string;
   /** Preço de entrada exibido na página (padrão: R$97/mês, o Starter) */

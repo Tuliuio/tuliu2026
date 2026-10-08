@@ -152,10 +152,10 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
           <div className="mega-card">
             <div className="mega-grid">
               {landings.filter((l) => l.group === activeGroup.group).map((l) => (
-                <a key={l.slug} className="mega-item" {...navLink(`/${l.slug}`)}>
+                <a key={l.slug} className={`mega-item${l.featured ? ' is-featured' : ''}`} {...navLink(`/${l.slug}`)}>
                   <i className={navIcons[l.slug] ?? 'fas fa-circle'} aria-hidden="true"></i>
                   <span>
-                    <strong>{l.navLabel}</strong>
+                    <strong>{l.navLabel}{l.featured && <em className="nav-badge">Mais comparado</em>}</strong>
                     <small>{l.navDesc}</small>
                   </span>
                 </a>
@@ -190,7 +190,7 @@ export default function Navbar({ onOpenLogin, currentPage, onNavigate }: NavbarP
                     <a key={l.slug} className="mm-item" tabIndex={expanded ? 0 : -1} {...navLink(`/${l.slug}`)}>
                       <span className="mm-icon"><i className={navIcons[l.slug]} aria-hidden="true"></i></span>
                       <span className="mm-text">
-                        <strong>{l.navLabel}</strong>
+                        <strong>{l.navLabel}{l.featured && <em className="nav-badge">Mais comparado</em>}</strong>
                         <small>{l.navDesc}</small>
                       </span>
                     </a>
