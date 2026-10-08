@@ -27,10 +27,10 @@ export default function DashboardLayout({ children, initialSection = 'overview' 
   }, []);
 
   return (
-    <div style={{ display: 'flex', background: '#ffffff' }}>
+    <div className="pn-shell" style={{ display: 'flex', background: '#ffffff' }}>
       <DashboardSidebar currentSection={currentSection} onNavigate={handleNavigate} />
 
-      <main style={{
+      <main className="pn-main" style={{
         flex: 1,
         overflowY: 'auto',
         height: 'calc(100vh - 70px)',

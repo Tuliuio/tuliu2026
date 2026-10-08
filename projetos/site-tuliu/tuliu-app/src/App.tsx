@@ -286,7 +286,8 @@ function App() {
           session ? <AdminPage /> : null
         ) : null}
       </main>
-      {currentPage !== 'login' && currentPage !== 'reset-password' && currentPage !== 'onboarding' && <Footer />}
+      {/* Rodapé do site fica fora das áreas logadas (painel e admin) */}
+      {!['login', 'reset-password', 'onboarding', 'dashboard', 'admin'].includes(currentPage) && <Footer />}
       {(currentPage === 'home' || currentPage === 'landing') && <FloatingCta key={landingSlug ?? currentPage} source={currentPage === 'landing' ? landingSlug ?? 'landing' : 'home'} />}
       <FloatingWhatsAppButton />
       </NavContext.Provider>

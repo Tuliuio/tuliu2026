@@ -16,9 +16,10 @@ const MENU_ITEMS = [
 
 export default function AdminLayout({ children, currentSection, onNavigate }: AdminLayoutProps) {
   return (
-    <div style={{ display: 'flex', minHeight: 'calc(100vh - 70px)' }}>
+    <div className="pn-shell" style={{ display: 'flex', minHeight: 'calc(100vh - 70px)' }}>
       {/* Sidebar */}
       <aside
+        className="pn-sidebar"
         style={{
           width: '240px',
           background: '#ffffff',
@@ -30,8 +31,9 @@ export default function AdminLayout({ children, currentSection, onNavigate }: Ad
           overflowY: 'auto',
         }}
       >
-        <div style={{ padding: '0 12px' }}>
+        <div className="pn-sidebar-main" style={{ padding: '0 12px' }}>
           <p
+            className="pn-menu-label"
             style={{
               margin: '0 0 12px 0',
               fontSize: '11px',
@@ -44,7 +46,7 @@ export default function AdminLayout({ children, currentSection, onNavigate }: Ad
           >
             Administração
           </p>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <nav className="pn-menu-nav" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {MENU_ITEMS.map((item) => {
               const isActive = currentSection === item.id;
               return (
@@ -87,7 +89,7 @@ export default function AdminLayout({ children, currentSection, onNavigate }: Ad
       </aside>
 
       {/* Content */}
-      <main style={{ flex: 1, padding: '40px', background: '#fafafa', overflowY: 'auto' }}>
+      <main className="pn-main pn-main-admin" style={{ flex: 1, padding: '40px', background: '#fafafa', overflowY: 'auto' }}>
         {children}
       </main>
 

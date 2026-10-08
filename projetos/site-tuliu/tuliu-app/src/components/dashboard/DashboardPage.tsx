@@ -154,6 +154,9 @@ function DashboardContent({ section, focusId, onNavigate }: { section: string; f
   }
 
   const { company, plan } = client;
+  // Primeiro nome da pessoa; se o nome for um e-mail ou vazio, usa a empresa
+  const personName = (client.name ?? '').trim().split(/\s+/)[0];
+  const greetingName = personName && !personName.includes('@') && personName !== 'User' ? personName : company.trim() || 'tudo bem';
 
   // Request Activation Modal Component
   const requestModal = requestModalOpen && selectedAssetType && (
@@ -261,7 +264,7 @@ function DashboardContent({ section, focusId, onNavigate }: { section: string; f
           {/* Header */}
           <div className="pn-head">
             <span className="pn-eyebrow">Seu painel</span>
-            <h1 className="pn-title">Olá, {company.split(' ')[0] || 'Usuário'}!</h1>
+            <h1 className="pn-title">Olá, {greetingName}!</h1>
             <p className="pn-sub">O que a Tuliu está fazendo por você, e toda a sua estrutura digital, num lugar só.</p>
           </div>
 

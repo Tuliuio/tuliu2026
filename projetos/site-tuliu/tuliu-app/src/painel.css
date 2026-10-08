@@ -148,3 +148,27 @@
   .pn-update { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
   .pn-campaigns { grid-template-columns: 1fr; }
 }
+
+/* ---------- Celular: menu lateral vira faixa horizontal no topo ---------- */
+@media (max-width: 900px) {
+  .pn-shell { flex-direction: column !important; min-height: 0 !important; }
+  .pn-shell > .pn-main { height: auto !important; overflow: visible !important; }
+  .pn-shell > .pn-main-admin { padding: 0 !important; }
+  .pn-sidebar {
+    width: 100% !important; height: auto !important;
+    flex-direction: row !important; align-items: center;
+    padding: 8px 0 !important; gap: 4px;
+    overflow-x: auto !important; overflow-y: hidden !important;
+    border-right: 0 !important; border-bottom: 1px solid #ebe9f2;
+    position: sticky !important; top: 70px !important; z-index: 20; background: #fff !important;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .pn-sidebar::-webkit-scrollbar { display: none; }
+  .pn-sidebar-main, .pn-sidebar-support { display: flex; flex: 0 0 auto; padding: 0 0 0 12px !important; margin: 0 !important; border: 0 !important; }
+  .pn-sidebar-support { padding-right: 12px !important; }
+  .pn-menu-group { margin: 0 !important; }
+  .pn-menu-label, .pn-sidebar-plan { display: none !important; }
+  .pn-menu-nav { flex-direction: row !important; gap: 4px !important; }
+  .pn-menu-nav > button { flex: 0 0 auto; white-space: nowrap; padding: 8px 12px !important; }
+  .pn-menu-nav > button > span { gap: 8px !important; }
+}

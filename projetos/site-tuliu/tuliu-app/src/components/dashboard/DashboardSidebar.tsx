@@ -85,9 +85,9 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
   const isProPlan = ['business', 'enterprise'].includes(client?.plan?.tier?.toLowerCase() || '');
 
   const MenuGroup = ({ items, label }: { items: typeof MENU_ITEMS; label: string }) => (
-    <div style={{ marginBottom: '32px' }}>
+    <div className="pn-menu-group" style={{ marginBottom: '32px' }}>
       {label && (
-        <p style={{
+        <p className="pn-menu-label" style={{
           margin: '0 0 12px 0',
           fontSize: '11px',
           fontWeight: 700,
@@ -99,7 +99,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
           {label}
         </p>
       )}
-      <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+      <nav className="pn-menu-nav" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         {items.map((item) => {
           const isActive = currentSection === item.id;
           const hasNoPerm = item.badge && !isProPlan;
@@ -192,7 +192,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
   );
 
   return (
-    <aside style={{
+    <aside className="pn-sidebar" style={{
       width: '240px',
       background: '#ffffff',
       borderRight: '1px solid #E5E7EB',
@@ -205,17 +205,17 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
       top: '70px',
     }}>
       {/* Main Menu */}
-      <div style={{ padding: '0 12px' }}>
+      <div className="pn-sidebar-main" style={{ padding: '0 12px' }}>
         <MenuGroup items={MENU_ITEMS} label="Menu" />
       </div>
 
       {/* Support Menu */}
-      <div style={{ padding: '0 12px', marginTop: 'auto', borderTop: '1px solid #E5E7EB', paddingTop: '20px' }}>
+      <div className="pn-sidebar-support" style={{ padding: '0 12px', marginTop: 'auto', borderTop: '1px solid #E5E7EB', paddingTop: '20px' }}>
         <MenuGroup items={SUPPORT_ITEMS} label="" />
       </div>
 
       {/* Plan Info */}
-      <div style={{
+      <div className="pn-sidebar-plan" style={{
         padding: '16px 12px',
         margin: '20px 12px 0 12px',
         background: '#f3f4f6',
