@@ -40,6 +40,20 @@ export default function DiagnosticPage() {
   const toggle = (opt: string) =>
     setChallenges((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
 
+  // Mensagem pronta com o resumo do diagnóstico, para o lead chegar ao WhatsApp da Tuliu
+  const leadWhatsAppUrl = () => {
+    const lines = [
+      'Oi! Acabei de pedir meu diagnóstico gratuito no site da Tuliu.',
+      `Nome: ${name}`,
+      `WhatsApp: ${whatsapp}`,
+      handle && `Site/Instagram: ${handle}`,
+      planLabel && `Plano de interesse: ${planLabel}`,
+      challenges.length > 0 && `Preciso de: ${challenges.join('; ')}`,
+      note.trim() && `Mais detalhes: ${note.trim()}`,
+    ].filter(Boolean);
+    return `${WHATSAPP_URL}?text=${encodeURIComponent(lines.join('\n'))}`;
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (challenges.length === 0 && !note.trim()) {
@@ -107,8 +121,8 @@ export default function DiagnosticPage() {
               <div className="diag-success-icon"><i className="fas fa-check"></i></div>
               <h2>{f.successTitle}</h2>
               <p>{f.successDesc}</p>
-              <a className="pill-btn pill-dark" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-whatsapp"></i> Falar agora no WhatsApp
+              <a className="pill-btn pill-dark" href={leadWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-whatsapp"></i> Adiantar pelo WhatsApp
               </a>
               <a className="diag-back" {...link('/')}>Voltar para o site</a>
             </div>
