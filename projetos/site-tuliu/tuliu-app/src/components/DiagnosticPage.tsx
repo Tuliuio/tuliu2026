@@ -3,6 +3,7 @@ import type { FormEvent } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useLinkProps } from '../context/NavContext';
 import { setMeta } from '../lib/meta';
+import { trackConversion } from '../lib/ads';
 
 const SUPABASE_URL = 'https://dojjedejwpwzvqoomtsj.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvamplZGVqd3B3enZxb29tdHNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxMDc4ODMsImV4cCI6MjA1ODY4Mzg4M30.oewMMwFCBBX-5OcSTADnj5wlMwvNFiMLFovDcT5UMYA';
@@ -70,6 +71,7 @@ export default function DiagnosticPage() {
       });
       if (!res.ok) throw new Error(f.errorFallback);
       setSuccess(true);
+      trackConversion('lead');
       window.scrollTo(0, 0);
     } catch (err: unknown) {
       setError((err as Error).message || f.errorFallback);

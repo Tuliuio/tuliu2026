@@ -5,6 +5,9 @@ import './landing.css'
 import './painel.css'
 import App from './App.tsx'
 import { AuthProvider } from './context/AuthContext'
+import { trackWhatsAppClicks } from './lib/ads'
+
+trackWhatsAppClicks()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

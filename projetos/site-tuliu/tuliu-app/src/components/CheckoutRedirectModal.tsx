@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { trackConversion } from '../lib/ads';
 
 const SUPABASE_URL = 'https://dojjedejwpwzvqoomtsj.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvamplZGVqd3B3enZxb29tdHNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxMDc4ODMsImV4cCI6MjA1ODY4Mzg4M30.oewMMwFCBBX-5OcSTADnj5wlMwvNFiMLFovDcT5UMYA';
@@ -38,6 +39,7 @@ export default function CheckoutRedirectModal({ isOpen, onClose, plan, isAnnual,
       });
       const data = await res.json();
       if (!res.ok || !data.url) throw new Error(data.error || m.errorFallback);
+      trackConversion('checkout');
       window.open(data.url, '_blank');
       onClose();
     } catch (err: unknown) {
