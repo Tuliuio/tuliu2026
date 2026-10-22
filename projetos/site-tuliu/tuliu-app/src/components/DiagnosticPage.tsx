@@ -4,9 +4,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useLinkProps } from '../context/NavContext';
 import { setMeta } from '../lib/meta';
 import { trackConversion } from '../lib/ads';
+import { supabase } from '../lib/supabase';
 
-const SUPABASE_URL = 'https://dojjedejwpwzvqoomtsj.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvamplZGVqd3B3enZxb29tdHNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxMDc4ODMsImV4cCI6MjA1ODY4Mzg4M30.oewMMwFCBBX-5OcSTADnj5wlMwvNFiMLFovDcT5UMYA';
 const WHATSAPP_URL = 'https://wa.me/554840426597';
 
 const PLAN_LABELS: Record<string, string> = { starter: 'Plano Starter', business: 'Plano Business' };
@@ -31,6 +30,7 @@ export default function DiagnosticPage() {
   const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [sendFailed, setSendFailed] = useState(false);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -64,31 +64,26 @@ export default function DiagnosticPage() {
     setError('');
     const mainChallenge = [challenges.join('; '), note.trim()].filter(Boolean).join(' | ');
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          Prefer: 'return=minimal',
-        },
-        body: JSON.stringify({
-          name,
-          whatsapp,
-          business_handle: handle,
-          email: email || null,
-          main_challenge: mainChallenge,
-          plan_interest: plan,
-          source,
-          language,
-        }),
+      // Mesmo cliente (chave publishable) do resto do site
+      const { error: insertError } = await supabase.from('leads').insert({
+        name,
+        whatsapp,
+        business_handle: handle,
+        email: email || null,
+        main_challenge: mainChallenge,
+        plan_interest: plan,
+        source,
+        language,
       });
-      if (!res.ok) throw new Error(f.errorFallback);
+      if (insertError) throw insertError;
       setSuccess(true);
       trackConversion('lead');
       window.scrollTo(0, 0);
     } catch (err: unknown) {
-      setError((err as Error).message || f.errorFallback);
+      // Sem o "Failed to fetch" cru: mostra a mensagem amigável e o atalho pelo WhatsApp
+      console.error('[diagnostico] falha ao gravar lead', err);
+      setError(f.errorFallback);
+      setSendFailed(true);
     } finally {
       setLoading(false);
     }
@@ -175,6 +170,11 @@ export default function DiagnosticPage() {
               </label>
 
               {error && <p className="diag-error"><i className="fas fa-circle-exclamation"></i> {error}</p>}
+              {sendFailed && (
+                <a className="pill-btn pill-dark" href={leadWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-whatsapp"></i> Enviar meu diagnóstico pelo WhatsApp
+                </a>
+              )}
 
               <button type="submit" className="pill-btn pill-dark diag-submit" disabled={loading}>
                 {loading ? <><i className="fas fa-spinner fa-spin"></i> {f.btnLoading}</> : <>{f.btnSubmit} <i className="fas fa-arrow-right"></i></>}
