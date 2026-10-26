@@ -91,8 +91,8 @@ export function HomeCompare() {
   const link = useLinkProps();
   return (
     <CompareTable
-      title="O trabalho de uma agência. O preço e a velocidade da IA."
-      subtitle="Agências fazem trabalho bom, mas custam tempo e dinheiro. Ferramentas são rápidas e baratas, mas te deixam sozinho. A Tuliu entrega os dois ao mesmo tempo."
+      title="Um time de marketing com IA. Sozinho ou junto com o seu."
+      subtitle="Agências e times internos trazem estratégia e conhecimento do negócio. Ferramentas são rápidas, mas te deixam sozinho. A Tuliu pode ser a operação completa ou o reforço de quem já cuida do seu marketing."
       columns={['Tuliu', 'Agência de marketing', 'ChatGPT + você', 'Wix, Lovable, Framer', 'Freelancer']}
       rows={[
         { label: 'Preço de entrada baixo', values: ['yes', 'no', 'yes', 'yes', 'partly'] },
@@ -108,7 +108,8 @@ export function HomeCompare() {
       footer={
         <div className="lp-compare-links">
           <a {...link('/alternativa-chatgpt')}>vs ChatGPT</a>
-          <a {...link('/alternativa-agencia-de-marketing')}>vs agência</a>
+          <a {...link('/alternativa-agencia-de-marketing')}>com ou sem agência</a>
+          <a {...link('/para-gestores-de-trafego')}>para gestores de tráfego</a>
           <a {...link('/alternativa-lovable')}>vs Lovable</a>
           <a {...link('/alternativa-framer')}>vs Framer</a>
           <a {...link('/alternativa-wix')}>vs Wix e Squarespace</a>

@@ -44,7 +44,7 @@ const volume = (title = 'Quanto marketing acontece de verdade?', agency = 'R$2.5
   subtitle: 'Fazer sozinho, contratar uma agência ou deixar a Tuliu operar. A diferença é quanto acontece de fato a cada mês, e quanto isso custa.',
   options: [
     { label: 'Você mesmo', level: 1, price: 'De graça, mas custa suas noites', desc: 'Você tem as ferramentas, mas não tem tempo nem dados para fazer direito. A maior parte fica na lista de tarefas.' },
-    { label: 'Uma agência', level: 3, price: agency, desc: 'Gente boa, mas lenta, cara e dividida entre vários fornecedores. Cada mudança vira orçamento.' },
+    { label: 'Uma agência', level: 3, price: agency, desc: 'Estratégia, criação e um time dedicado. Faz muito sentido em projetos maiores, com investimento e prazos à altura.' },
     { label: 'Tuliu', level: 5, price: tuliuPrice, desc: 'O trabalho de um time de marketing inteiro, executado toda semana, com um único ponto de contato. A IA faz, um especialista aprova.', recommended: true },
   ],
 });
@@ -219,13 +219,13 @@ export const landings: Landing[] = [
     group: 'servico',
     navLabel: 'Terceirizar o marketing',
     navDesc: 'Um time inteiro, um valor fixo, um contato',
-    metaTitle: 'Terceirizar o marketing digital sem agência cara | Tuliu',
+    metaTitle: 'Terceirizar o marketing digital com um valor fixo | Tuliu',
     metaDescription: 'Terceirize site, SEO, conteúdo e tráfego pago para uma só empresa. IA e especialistas por um valor mensal fixo, a partir de R$97/mês.',
     hero: {
       eyebrow: 'Terceirizar o marketing',
       title: 'Terceirize todo o seu marketing para uma só empresa,',
-      highlight: 'sem pagar preço de agência.',
-      subtitle: 'Fazer o marketing sozinho custa noites que você não tem. Agência entrega qualidade, mas cobra caro e anda devagar. A Tuliu faz o trabalho de um time completo de marketing, com IA e especialistas, por um valor mensal fixo.',
+      highlight: 'por um valor mensal fixo.',
+      subtitle: 'Fazer o marketing sozinho custa noites que você não tem. Contratar e coordenar vários fornecedores pesa no bolso e na agenda. A Tuliu faz o trabalho de um time completo de marketing, com IA e especialistas, por um valor mensal fixo.',
       ticker: {
         title: 'Máquina de marketing, ao vivo',
         items: ['Landing page no ar · /servicos', 'Carrossel publicado · Instagram', 'Anúncio otimizado · Google Ads', 'Vídeo editado · Reels', 'Títulos reescritos · 12 páginas', 'Agente de IA ajustado · WhatsApp'],
@@ -293,7 +293,7 @@ export const landings: Landing[] = [
     hero: {
       eyebrow: 'Tráfego pago',
       title: 'Anúncios que se ajustam toda semana,',
-      highlight: 'sem gestor caro.',
+      highlight: 'com IA e gestor de tráfego juntos.',
       subtitle: 'A maioria das campanhas morre do mesmo jeito: alguém sobe, ninguém olha, a verba vai embora. A Tuliu cria suas campanhas no Google e na Meta, conecta cada anúncio à página certa e ajusta lances, públicos e criativos com base no que vende.',
       ticker: {
         title: 'Campanhas rodando, toda semana',
@@ -316,7 +316,7 @@ export const landings: Landing[] = [
       },
       machine('Uma máquina que aprende com cada real investido.', 'A IA junta os dados de anúncio, site e atendimento e encontra onde a verba está escorrendo. Depois ajusta, com aprovação de um gestor de tráfego.'),
       volume('Quanta otimização acontece de verdade?', 'R$1.500+ por mês, fora a verba', 'A partir de R$497 por mês, fora a verba'),
-      { type: 'cases', title: 'Tráfego pago rodando de verdade.', subtitle: 'Empresas que deixaram de depender de um gestor sozinho.', ids: ['scienco-dairy-tech', 'procardiaco'] },
+      { type: 'cases', title: 'Tráfego pago rodando de verdade.', subtitle: 'IA e gestores de tráfego trabalhando juntos, com página e criativo acompanhando.', ids: ['scienco-dairy-tech', 'procardiaco'] },
       { type: 'related', title: 'Outras frentes da máquina.', hrefs: ['seo-feito-por-ia', 'conteudo-com-ia', 'agentes-de-ia'] },
       {
         type: 'faq',
@@ -326,6 +326,7 @@ export const landings: Landing[] = [
           { q: 'Qual verba mínima vocês recomendam?', a: 'Depende do mercado e da cidade. No diagnóstico a gente estima quanto faz sentido investir para ter dados suficientes e começar a otimizar.' },
           { q: 'As contas ficam no meu nome?', a: 'Sempre. Você é dono das contas de anúncio, do pixel e dos dados. A gente acessa como parceiro.' },
           { q: 'Vocês fazem os criativos?', a: 'Sim. Imagens, carrosséis e vídeos curtos entram no trabalho, produzidos com IA e revisados pelo nosso time.' },
+          { q: 'Já tenho um gestor de tráfego. A Tuliu substitui?', a: 'Não precisa. A gente pode cuidar só do que vem antes e depois do clique (landing pages, criativos, rastreamento e atendimento) enquanto o seu gestor segue com a mídia. Veja a página Para gestores de tráfego, no menu Para quem.' },
         ],
       },
     ],
@@ -542,41 +543,41 @@ export const landings: Landing[] = [
     metaTitle: 'Alternativa à agência de marketing: site e marketing em um só | Tuliu',
     metaDescription: 'Para ter site você paga uma agência. Para crescer, outra. A Tuliu faz o trabalho das duas, com IA e especialistas, por um valor mensal fixo.',
     hero: {
-      eyebrow: 'Agências vs Tuliu',
-      title: 'A alternativa à agência de marketing:',
-      highlight: 'site e marketing em um só lugar.',
-      subtitle: 'Para ter um site bom você paga uma agência. Para crescer depois, outra. A Tuliu faz o trabalho das duas, com IA e especialistas, por um valor mensal fixo.',
+      eyebrow: 'Agência ou Tuliu?',
+      title: 'Agência, Tuliu ou as duas juntas:',
+      highlight: 'o que faz sentido pro seu momento.',
+      subtitle: 'Agências fazem um trabalho que a IA não substitui: estratégia, criação e relacionamento. A Tuliu resolve outra parte, a execução contínua de site, SEO, conteúdo e anúncios por um valor fixo. Para algumas empresas é a solução inteira. Para outras, um reforço ao time ou à agência que já existe.',
     },
     blocks: [
       {
         type: 'features',
-        title: 'Todas as alternativas a uma agência, por quem faz o trabalho.',
+        title: 'Os caminhos possíveis, por quem faz o trabalho.',
         subtitle: 'A pergunta raramente é se a agência é boa. É qual parte do trabalho você entrega, e o que volta pra sua mesa depois.',
         items: [
           { icon: 'fas fa-user', title: 'Você mesmo, com ferramentas de IA', desc: 'ChatGPT pros textos, Canva pros posts, um construtor pro site. Barato em reais, caro em noites. Só funciona enquanto sobra tempo.' },
           { icon: 'fas fa-id-badge', title: 'Analista de marketing CLT', desc: 'Alguém que conhece seu negócio de perto. Mas custa salário, encargos e contratação, e raramente faz site ou tráfego.' },
           { icon: 'fas fa-laptop-code', title: 'Freelancer de site', desc: 'Entrega o site por um valor único, às vezes melhor que agência. Depois acabou: conteúdo, SEO e manutenção voltam pra você.' },
           { icon: 'fas fa-bullhorn', title: 'Freelancer de tráfego ou social media', desc: 'Cuida de uma frente, algumas horas por semana. Não mexe no site, e você vira o gerente de todos.' },
-          { icon: 'fas fa-building', title: 'Agência full service', desc: 'Tudo sob um teto, com estratégia e time. Mas custa milhares por mês, orçamento por mudança e dias a semanas de espera.' },
-          { icon: 'fas fa-bolt', title: 'Tuliu', desc: 'O trabalho de uma agência de site e de uma agência de marketing, por um valor fixo e sem taxa de criação. Uma mensagem, no ar no mesmo dia.' },
+          { icon: 'fas fa-building', title: 'Agência full service', desc: 'Tudo sob um teto, com estratégia, criação e um time que vive a sua marca. É o caminho mais completo, e por isso o investimento mais alto.' },
+          { icon: 'fas fa-bolt', title: 'Tuliu', desc: 'Execução contínua de site e marketing por um valor fixo, sem taxa de criação. Sozinha ou ao lado da sua agência ou time interno.' },
         ],
       },
       {
         type: 'costs',
-        title: 'Quanto uma agência custa de verdade.',
-        subtitle: 'Agências fazem trabalho bom. Mas a conta raramente é uma linha só, e raramente é pequena.',
+        title: 'Quanto custa cada caminho.',
+        subtitle: 'Valores de referência do mercado brasileiro, para você comparar com clareza.',
         items: [
           { tag: 'valor único', title: 'Criar o site', desc: 'Uma agência cobra de R$5.000 a R$20.000 por um site sob medida. E de novo a cada grande mudança.' },
           { tag: 'mensal', title: 'Mensalidade de marketing', desc: 'SEO, conteúdo e tráfego por agência costumam custar de R$2.500 a R$8.000 por mês.' },
-          { tag: 'prazo', title: 'Esperar pelas pessoas', desc: 'Uma mudança passa por atendimento, planejamento e orçamento. Dias a semanas, não uma mensagem.' },
+          { tag: 'processo', title: 'Planejamento e aprovações', desc: 'Projetos passam por atendimento, planejamento e orçamento. É o que garante cuidado, e também o que alonga o prazo.' },
           { tag: 'fragmentado', title: 'Dividido entre fornecedores', desc: 'Agência de site, de SEO, redator, gestor de tráfego: você paga e briefa cada um separado.' },
         ],
-        summary: 'Some tudo: milhares no site, mais a mensalidade, mais o seu tempo coordenando fornecedores.',
+        summary: 'Quando o projeto pede esse nível de dedicação, vale cada real. Para a execução do dia a dia, existe um caminho mais leve, que também pode rodar junto com a sua agência.',
       },
       {
         type: 'table',
         title: 'Agência vs Tuliu, linha a linha.',
-        subtitle: 'Sem truque: a agência ganha de verdade em algumas linhas. A diferença é preço, velocidade e ter tudo num só lugar.',
+        subtitle: 'Sem truque: a agência ganha de verdade em algumas linhas. Por isso, muitas vezes, a melhor resposta é usar as duas.',
         columns: ['Agência de marketing', 'Agência de sites', 'Tuliu'],
         rows: [
           { label: 'Faz o seu site', values: ['partly', 'yes', 'yes'] },
@@ -593,12 +594,14 @@ export const landings: Landing[] = [
       },
       {
         type: 'when',
-        title: 'Quando uma agência é a melhor escolha.',
+        title: 'Quando escolher uma agência, e quando usar as duas.',
         paragraphs: [
-          'Agência não é ruim, é outra coisa. Escolha uma agência se você tem um projeto grande e complexo (e-commerce com centenas de produtos, portal de membros, aplicativo), quer um processo de estratégia profundo com gente vivendo a sua marca por meses, ou espera um time dedicado presencialmente.',
-          'A Tuliu é a alternativa para quem quer o trabalho de uma agência de marketing e de sites, mas sem orçamento por mudança, sem prazo de semanas, sem conta de milhares por mês e sem gerenciar fornecedores.',
+          'Agência e Tuliu resolvem coisas diferentes. Escolha uma agência se você tem um projeto grande e complexo (e-commerce com centenas de produtos, portal de membros, aplicativo), quer um processo de estratégia profundo com gente vivendo a sua marca por meses, ou espera um time dedicado presencialmente.',
+          'A Tuliu faz sentido para quem precisa de execução contínua (site, landing pages, SEO, conteúdo e anúncios) por um valor fixo e sem orçamento por mudança.',
+          'E muitas vezes a resposta não é escolher. A Tuliu trabalha junto com agências, times internos e gestores de tráfego: eles cuidam da estratégia, da marca e da mídia, a gente assume a execução do dia a dia. Cada um no que faz melhor.',
         ],
         links: [
+          { label: 'É gestor de tráfego ou tem uma agência? Veja como trabalhamos juntos', href: '/para-gestores-de-trafego' },
           { label: 'Decidindo se terceiriza o marketing? Veja o guia', href: '/terceirizar-marketing' },
           { label: 'Pensando em contratar só a hospedagem? Veja a comparação', href: '/alternativa-hostinger' },
           { label: 'Prefere um site feito com IA? Veja a comparação', href: '/criar-site-com-ia' },
@@ -612,8 +615,8 @@ export const landings: Landing[] = [
         items: [
           { q: 'Quanto custa uma agência de marketing por mês?', a: 'Uma mensalidade para SEO, conteúdo e tráfego costuma ficar entre R$2.500 e R$8.000, fora o site, que sai de R$5.000 a R$20.000. Na Tuliu é um valor fixo a partir de R$97 por mês.' },
           { q: 'Como a Tuliu consegue cobrar tão menos?', a: 'A IA faz a parte operacional que numa agência consome horas de várias pessoas. Nosso time fica com estratégia e revisão, que é onde o olhar humano faz diferença.' },
-          { q: 'Tenho contrato com uma agência. Posso migrar?', a: 'Pode. A gente usa seu site, seus textos e sua marca como base. O contrato atual pode simplesmente terminar enquanto a gente prepara tudo.' },
-          { q: 'Vocês fazem white label para agências?', a: 'Sim. Agências podem usar a Tuliu nos bastidores e entregar com a própria marca. Fale com a gente no WhatsApp.' },
+          { q: 'Já tenho uma agência. Preciso escolher?', a: 'Não. A Tuliu pode assumir só uma parte, como site, landing pages e SEO, enquanto sua agência segue com estratégia, criação e mídia. Se preferir concentrar tudo com a gente, também dá: usamos seu site, seus textos e sua marca como base.' },
+          { q: 'Vocês trabalham com agências?', a: 'Sim, e é um dos nossos usos favoritos. Agências e gestores de tráfego usam a Tuliu nos bastidores, com a própria marca, ou indicam a gente para os clientes. Veja a página Para gestores de tráfego, no menu Para quem.' },
         ],
       },
     ],
@@ -974,7 +977,7 @@ export const landings: Landing[] = [
         paragraphs: [
           'Você já tem a mesma IA que as grandes empresas. O ChatGPT custa cem reais, não cem mil. A inteligência ficou barata e é igual para todo mundo, então não é na ferramenta que você fica para trás.',
           'O que uma grande empresa tem e você não tem não é uma ferramenta mais esperta. É um departamento de marketing: gente que opera tudo isso todo dia, em cima dos dados da própria empresa. Para a pequena empresa, o gargalo nunca foi a ferramenta ou a ideia. É a execução.',
-          'Até agora, comprar essa execução pronta significava pagar preço de agência. Por isso a gente construiu o departamento, não mais uma ferramenta, num preço de pequena empresa.',
+          'Até agora, comprar essa execução pronta significava montar um time ou coordenar vários fornecedores. Por isso a gente construiu o departamento, não mais uma ferramenta, num preço de pequena empresa.',
         ],
       },
       volume('Quanto marketing acontece de verdade?', 'a partir de R$3.000 por mês'),
@@ -1115,19 +1118,94 @@ export const landings: Landing[] = [
     ],
   },
 
+  {
+    slug: 'para-gestores-de-trafego',
+    group: 'segmento',
+    navLabel: 'Gestores de tráfego e agências',
+    navDesc: 'Tudo que acontece antes e depois do clique',
+    metaTitle: 'Para gestores de tráfego e agências: landing pages, criativos e rastreamento | Tuliu',
+    metaDescription: 'A Tuliu cuida de site, landing pages, criativos, rastreamento e atendimento dos seus clientes, para as suas campanhas converterem mais. Trabalhe junto ou indique.',
+    hero: {
+      eyebrow: 'Para gestores de tráfego e agências',
+      title: 'Você cuida da mídia.',
+      highlight: 'A gente cuida do resto.',
+      subtitle: 'Campanha boa perde força em página lenta, criativo cansado e lead que espera horas por resposta. A Tuliu assume site, landing pages, criativos, rastreamento e atendimento dos seus clientes, para as suas campanhas converterem mais. E quando um cliente precisa de mais do que tráfego, você tem pra quem indicar.',
+      ticker: {
+        title: 'Ao lado das suas campanhas',
+        items: ['Landing page no ar · campanha nova', 'Pixel e conversões revisados', 'Criativos renovados · 6 variações', 'Formulário encurtado · 7 para 4 campos', 'Lead respondido em 15s · WhatsApp', 'Página por público · remarketing'],
+      },
+    },
+    blocks: [
+      {
+        type: 'prose',
+        title: 'O gargalo quase nunca é a campanha.',
+        paragraphs: [
+          'Você ajusta lance, público e criativo. Mas o clique cai numa página genérica, com formulário de nove campos, e o lead espera horas por uma resposta. O resultado ruim aparece no seu relatório, mesmo quando o problema não está na mídia.',
+          'Montar site, landing page e automação para cada cliente tira tempo da sua especialidade. E indicar qualquer fornecedor coloca a sua reputação na mão de outra pessoa. A Tuliu existe para ser esse braço: rápido, previsível e alinhado com o que você está rodando.',
+        ],
+      },
+      {
+        type: 'features',
+        title: 'O que a Tuliu faz ao lado do seu tráfego.',
+        subtitle: 'Tudo que acontece antes e depois do clique, no ritmo das suas campanhas.',
+        items: [
+          { icon: 'fas fa-file-lines', title: 'Uma landing page por campanha', desc: 'Cada anúncio ganha a página que responde exatamente o que ele prometeu. No ar em dias, ajustada no mesmo dia.' },
+          { icon: 'fas fa-photo-film', title: 'Criativos em volume', desc: 'Imagens, carrosséis e vídeos curtos no padrão da marca do cliente, renovados antes de cansar o público.' },
+          { icon: 'fas fa-crosshairs', title: 'Rastreamento redondo', desc: 'Pixel, API de conversões, GA4 e Tag Manager configurados. Você otimiza com dado confiável, não com achismo.' },
+          { icon: 'fas fa-gauge-high', title: 'Página rápida e testada', desc: 'Velocidade no celular, formulários curtos e testes A/B de chamada. Mais conversão com a mesma verba.' },
+          { icon: 'fas fa-robot', title: 'Lead respondido na hora', desc: 'Um agente de IA atende no WhatsApp em segundos, qualifica e passa o lead quente para o cliente.' },
+          { icon: 'fas fa-magnifying-glass-chart', title: 'SEO que complementa a mídia', desc: 'O orgânico cresce ao lado do pago. Com o tempo, o cliente depende menos de cada clique comprado.' },
+        ],
+      },
+      {
+        type: 'steps',
+        title: 'Três jeitos de trabalhar com a gente.',
+        items: [
+          { title: 'Em conjunto', desc: 'Você segue com Google e Meta Ads. A gente cuida de site, páginas, criativos e atendimento, num grupo de WhatsApp com você e o cliente. Cada um no que faz melhor.' },
+          { title: 'Indicação', desc: 'Um cliente seu precisa de site, conteúdo ou automação? Indique a Tuliu. A mídia continua com você, o cliente ganha uma operação que converte, e a parceria fica combinada com você desde o início.' },
+          { title: 'Nos bastidores, com a sua marca', desc: 'Para agências: a Tuliu executa em white label e você entrega como parte do seu serviço, sem aumentar o time fixo.' },
+        ],
+      },
+      {
+        type: 'reasons',
+        title: 'Por que gestores e agências trabalham com a Tuliu.',
+        items: [
+          { title: 'A mídia continua sua', desc: 'Quando entramos junto com um gestor, nosso papel é página, criativo, dados e atendimento. A conta de anúncio e a relação com o cliente seguem com você.' },
+          { title: 'Velocidade de mídia, não de projeto', desc: 'Campanha nova pede página nova esta semana, não daqui a um mês. A gente trabalha no ritmo de quem testa toda semana.' },
+          { title: 'Um valor que cabe na proposta', desc: 'Planos a partir de R$97 por mês. Fácil de incluir no seu orçamento ou de recomendar sem pesar no bolso do cliente.' },
+          { title: 'Sua reputação protegida', desc: 'Especialistas revisam cada entrega. Indicar a Tuliu é indicar uma operação que você não precisa ficar vigiando.' },
+        ],
+        aside: { title: 'E se o cliente só precisa de tráfego?', text: 'Então ele fica só com você. A Tuliu faz sentido quando o resultado depende do que vem depois do clique: site, página, conteúdo e atendimento.' },
+      },
+      { type: 'cases', title: 'Campanhas que convertem mais.', subtitle: 'Quando página, criativo e atendimento acompanham a mídia.', ids: ['scienco-dairy-tech', 'procardiaco'] },
+      { type: 'related', title: 'O que a gente faz pelos seus clientes.', hrefs: ['criar-site-com-ia', 'conteudo-com-ia', 'agentes-de-ia'] },
+      {
+        type: 'faq',
+        title: 'Sobre trabalhar com a Tuliu.',
+        items: [
+          { q: 'A Tuliu vai tentar pegar a gestão de tráfego do meu cliente?', a: 'Não. Quando entramos por indicação ou junto com um gestor, a mídia é dele. Isso fica combinado com você antes de qualquer conversa com o cliente.' },
+          { q: 'Como funciona a indicação?', a: 'Você apresenta o cliente, a gente faz o diagnóstico e alinha tudo com você antes de propor. Fale com a gente no WhatsApp para conhecer as condições de parceria.' },
+          { q: 'Preciso dar acesso às contas de anúncio?', a: 'Normalmente não. Para landing pages e rastreamento pedimos acesso ao site, ao Tag Manager e ao GA4. A conta de anúncio segue com você.' },
+          { q: 'Vocês fazem white label?', a: 'Sim. Agências podem usar a Tuliu nos bastidores e entregar com a própria marca.' },
+          { q: 'Tenho uma agência, não trabalho sozinho. Serve?', a: 'Serve. Agências usam a Tuliu para dar conta de site, landing pages, conteúdo e automações sem aumentar o time fixo.' },
+        ],
+      },
+    ],
+  },
+
   /* ---------------- SOBRE ---------------- */
   {
     slug: 'sobre',
     group: 'sobre',
     navLabel: 'Sobre a Tuliu',
-    navDesc: 'A agência, repensada',
-    metaTitle: 'Sobre a Tuliu | A agência de marketing, repensada com IA',
-    metaDescription: 'A Tuliu construiu uma operação de marketing com IA que faz o trabalho de uma agência tradicional. Mais rápida, melhor e por uma fração do preço.',
+    navDesc: 'Marketing com IA e especialistas',
+    metaTitle: 'Sobre a Tuliu | Operação de marketing com IA e especialistas',
+    metaDescription: 'A Tuliu construiu uma operação de marketing com IA que executa site, SEO, conteúdo e anúncios toda semana, sozinha ou ao lado do seu time ou agência.',
     hero: {
       eyebrow: 'Sobre a Tuliu',
-      title: 'A agência,',
-      highlight: 'repensada.',
-      subtitle: 'A gente construiu uma operação de marketing com IA que assume o trabalho de uma agência tradicional. Mais rápida, melhor e por uma fração do preço. A IA roda a máquina. Os especialistas mantêm ela afiada.',
+      title: 'O marketing,',
+      highlight: 'com novos elementos.',
+      subtitle: 'A gente construiu uma operação de marketing com IA que executa toda semana o que antes exigia um time inteiro. Ela pode ser o seu marketing completo ou o reforço de quem já cuida dele. A IA roda a máquina. Os especialistas mantêm ela afiada.',
     },
     blocks: [
       {
@@ -1149,9 +1227,9 @@ export const landings: Landing[] = [
       },
       {
         type: 'prose',
-        title: 'A agência tradicional é o manual de ontem.',
+        title: 'Um jeito novo de operar o marketing.',
         paragraphs: [
-          'Ferramentas de fazer sozinho te dão o controle, mas também a responsabilidade. Na agência, você paga por hora. Na Tuliu, a experiência fica no comando, junto com uma tecnologia que acelera o trabalho.',
+          'Ferramentas de fazer sozinho te dão o controle, mas também a responsabilidade. Times internos e agências trazem experiência e estratégia, e a IA multiplica o que eles conseguem entregar. Na Tuliu, a experiência fica no comando, junto com uma tecnologia que acelera o trabalho.',
           'Desde 2020 a Tuliu já entregou mais de 100 projetos digitais. Hoje a operação inteira gira em volta da IA, para entregar a pequenas e médias empresas o que antes só uma grande empresa conseguia pagar.',
         ],
       },
@@ -1162,7 +1240,7 @@ export const landings: Landing[] = [
           { icon: 'fas fa-users', title: 'Time grande, preço pequeno', desc: 'SEO, conteúdo, design, análise de dados, tráfego e testes. O trabalho de um departamento inteiro, em uma assinatura.' },
           { icon: 'fas fa-microchip', title: 'Feito para IA desde o início', desc: 'Não são ferramentas antigas com IA colada depois. A operação foi construída para absorver cada avanço novo.' },
           { icon: 'fas fa-chart-simple', title: 'Dados, não achismo', desc: 'Cada melhoria vem de números reais: comportamento, posições de busca, taxa de conversão.' },
-          { icon: 'fas fa-arrows-rotate', title: 'Melhor todo mês, não uma vez', desc: 'A agência tradicional entrega e acabou. A gente continua trabalhando no seu marketing mesmo quando você não pede nada.' },
+          { icon: 'fas fa-arrows-rotate', title: 'Melhor todo mês, não uma vez', desc: 'Marketing não termina na entrega. A gente continua trabalhando no seu marketing mesmo quando você não pede nada.' },
         ],
       },
       { type: 'expert', title: 'A IA faz o trabalho. O time mantém afiado.', quote: expertQuote },
@@ -1199,5 +1277,6 @@ export const navIcons: Record<string, string> = {
   'marketing-para-b2b': 'fas fa-handshake',
   'marketing-para-saude': 'fas fa-stethoscope',
   'marketing-para-prestadores-de-servico': 'fas fa-screwdriver-wrench',
+  'para-gestores-de-trafego': 'fas fa-chart-line',
   sobre: 'fas fa-circle-info',
 };

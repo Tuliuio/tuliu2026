@@ -7,7 +7,7 @@ export const translations = {
       account: "Minha conta"
     },
     hero: {
-      badge: "Agências de marketing são lentas e caras",
+      badge: "Seu time de marketing, com IA",
       titleLine1: "Um time de marketing completo,",
       titleLine2: "pelo preço de uma",
       titleHighlight: "ferramenta.",
@@ -159,11 +159,12 @@ export const translations = {
       items: [
         { q: "Preciso trocar meu site atual?", a: "Não. A Tuliu pode assumir a manutenção do site que você já tem ou construir um novo do zero. Você decide." },
         { q: "Quem faz o trabalho, a IA ou um humano?", a: "Os dois. A IA executa as tarefas repetitivas, como conteúdo, campanhas e atendimento, e um time humano de sucesso do cliente supervisiona e ajusta tudo antes de ir para o ar." },
-        { q: "Como funciona o suporte?", a: "Direto pelo WhatsApp. Sem abrir chamado, sem fila de atendimento e sem depender de agência externa." },
+        { q: "Como funciona o suporte?", a: "Direto pelo WhatsApp. Sem abrir chamado, sem fila de atendimento e sem intermediários." },
         { q: "Tem fidelidade?", a: "Não. Os planos são mensais ou anuais, sem contrato de fidelidade. Você cancela quando quiser." },
         { q: "O diagnóstico gratuito tem algum compromisso?", a: "Nenhum. Você conta sobre o seu negócio, nosso time devolve um panorama real de onde estão as oportunidades, sem obrigação de contratar." },
         { q: "Preciso ter equipe técnica pra isso funcionar?", a: "Não, esse é o ponto principal. A Tuliu assume toda a parte técnica pra você focar em fazer o negócio crescer." },
-        { q: "Como a Tuliu cobra tão menos que uma agência?", a: "A IA faz a parte operacional que numa agência consome horas de várias pessoas. Nosso time fica com estratégia e revisão, que é onde o olhar humano faz diferença. Você paga pelo resultado, não pelas horas." },
+        { q: "Já tenho agência ou time de marketing. A Tuliu serve pra mim?", a: "Serve. A Tuliu pode assumir a execução contínua (site, landing pages, SEO, criativos e automações) enquanto seu time ou agência segue com estratégia e criação. Agências e gestores de tráfego também trabalham com a gente como parceiros." },
+        { q: "Como a Tuliu consegue um valor tão acessível?", a: "A IA faz a parte operacional que normalmente consome horas de várias pessoas. Nosso time fica com estratégia e revisão, que é onde o olhar humano faz diferença. Você paga pelo resultado, não pelas horas." },
         { q: "A verba de anúncios está inclusa?", a: "Não. A verba vai direto para o Google e a Meta, no seu cartão e nas suas contas. O plano cobre o trabalho de criar, gerenciar e otimizar as campanhas." }
       ]
     },
