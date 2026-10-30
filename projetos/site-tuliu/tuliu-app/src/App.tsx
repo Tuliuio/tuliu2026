@@ -23,6 +23,7 @@ import LandingPage from './components/landing/LandingPage';
 import { setMeta } from './lib/meta';
 import DiagnosticPage from './components/DiagnosticPage';
 import ProposalAccessPage from './components/ProposalAccessPage';
+import ThankYouPage from './components/ThankYouPage';
 import { diagHref } from './lib/diag';
 import { FinalBand, Related } from './components/landing/blocks';
 import { ServicesMarquee, DuoCards, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
@@ -30,7 +31,7 @@ import { landingBySlug } from './data/landings';
 import { NavContext } from './context/NavContext';
 import './index.css';
 
-type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding' | 'landing' | 'diagnostico' | 'proposta';
+type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding' | 'landing' | 'diagnostico' | 'proposta' | 'obrigado';
 
 const HOME_TITLE = 'Tuliu | Um time de marketing completo, pelo preço de uma ferramenta';
 const HOME_DESCRIPTION = 'Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação. IA executa, especialistas aprovam. A partir de R$97/mês.';
@@ -88,7 +89,7 @@ function App() {
       window.scrollTo(0, 0);
     } else if (slug === '') {
       navigate('home', hash || undefined);
-    } else if (slug === 'diagnostico' || slug === 'proposta') {
+    } else if (slug === 'diagnostico' || slug === 'proposta' || slug === 'obrigado') {
       setCurrentPage(slug);
       window.history.pushState({ page: slug }, '', pathWithQuery);
       window.scrollTo(0, 0);
@@ -138,6 +139,8 @@ function App() {
       setCurrentPage('diagnostico');
     } else if (pathname === '/proposta') {
       setCurrentPage('proposta');
+    } else if (pathname === '/obrigado') {
+      setCurrentPage('obrigado');
     } else if (landingBySlug[slugFromPath(pathname)]) {
       setCurrentPage('landing');
     } else {
@@ -270,6 +273,8 @@ function App() {
           <DiagnosticPage />
         ) : currentPage === 'proposta' ? (
           <ProposalAccessPage />
+        ) : currentPage === 'obrigado' ? (
+          <ThankYouPage />
         ) : currentPage === 'cases' ? (
           <CasesPage />
         ) : currentPage === 'learn' ? (

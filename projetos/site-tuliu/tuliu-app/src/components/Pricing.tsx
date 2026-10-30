@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { useGo } from '../context/NavContext';
-import { diagHref } from '../lib/diag';
+import CheckoutRedirectModal from './CheckoutRedirectModal';
 
 const WHATSAPP_ENTERPRISE = 'https://wa.me/554840426597?text=Oi!%20Quero%20conhecer%20o%20plano%20Enterprise%20da%20Tuliu.';
 
@@ -22,8 +21,8 @@ export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
   const { t } = useLanguage();
   const p = t.pricing;
-  const go = useGo();
-  const choose = (plan: 'starter' | 'business') => go(diagHref('pricing', plan));
+  const [checkoutPlan, setCheckoutPlan] = useState<'starter' | 'business' | null>(null);
+  const choose = (plan: 'starter' | 'business') => setCheckoutPlan(plan);
 
   return (
     <section className="pl" id="precos" aria-labelledby="pricing-heading">
@@ -98,6 +97,22 @@ export default function Pricing() {
 
         <p className="pl-disclaimer">{p.disclaimer}</p>
       </div>
+
+      {checkoutPlan && (
+        <CheckoutRedirectModal
+          isOpen
+          onClose={() => setCheckoutPlan(null)}
+          plan={checkoutPlan}
+          isAnnual={isAnnual}
+          currency={p.currency}
+          price={checkoutPlan === 'starter'
+            ? (isAnnual ? p.starterAnnual : p.starterMonthly)
+            : (isAnnual ? p.businessAnnual : p.businessMonthly)}
+          period={isAnnual ? p.perYear : p.perMonth}
+          planDisplayName={checkoutPlan === 'starter' ? 'Starter' : 'Business'}
+          planDisplayDesc={checkoutPlan === 'starter' ? p.starterSubtitle : p.businessSubtitle}
+        />
+      )}
     </section>
   );
 }

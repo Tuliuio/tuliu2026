@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { trackConversion } from '../lib/ads';
 
 const SUPABASE_URL = 'https://dojjedejwpwzvqoomtsj.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvamplZGVqd3B3enZxb29tdHNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxMDc4ODMsImV4cCI6MjA1ODY4Mzg4M30.oewMMwFCBBX-5OcSTADnj5wlMwvNFiMLFovDcT5UMYA';
+const SUPABASE_ANON_KEY = 'sb_publishable_3F6KIrSQU3K6p_ho6ChqFw_Ws49Bd2v';
 
 interface CheckoutRedirectModalProps {
   isOpen: boolean;
@@ -40,27 +41,27 @@ export default function CheckoutRedirectModal({ isOpen, onClose, plan, isAnnual,
       const data = await res.json();
       if (!res.ok || !data.url) throw new Error(data.error || m.errorFallback);
       trackConversion('checkout');
-      window.open(data.url, '_blank');
-      onClose();
+      // Mesma aba: ao pagar, o ASAAS devolve o cliente para /obrigado
+      window.location.assign(data.url);
     } catch (err: unknown) {
       setError((err as Error).message || m.errorFallback);
-    } finally {
       setLoading(false);
     }
   };
 
-  return (
+  // Portal no body: a seção de preços cria um contexto de empilhamento que prenderia o modal
+  return createPortal(
     <div
       style={{
         position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        zIndex: 9999, padding: '24px',
+        zIndex: 2147483000, padding: '24px', overflowY: 'auto',
       }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div style={{
         background: 'white', borderRadius: '20px', padding: '40px',
-        maxWidth: '440px', width: '100%', position: 'relative',
+        maxWidth: '440px', width: '100%', position: 'relative', margin: 'auto',
         boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
         fontFamily: 'Inter, sans-serif', textAlign: 'center',
       }}>
@@ -158,7 +159,7 @@ export default function CheckoutRedirectModal({ isOpen, onClose, plan, isAnnual,
           ) : (
             <>
               {m.btnProceed}
-              <i className="fas fa-arrow-up-right-from-square" style={{ fontSize: '13px' }}></i>
+              <i className="fas fa-arrow-right" style={{ fontSize: '13px' }}></i>
             </>
           )}
         </button>
@@ -168,6 +169,7 @@ export default function CheckoutRedirectModal({ isOpen, onClose, plan, isAnnual,
           {m.footer}
         </p>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
