@@ -123,12 +123,12 @@ export const translations = {
       starterBtn: "Começar pelo Starter",
       popularBadge: "Mais escolhido",
       businessTag: "Para crescer",
-      businessSubtitle: "Seu marketing rodando todo mês: site, tráfego e SEO trabalhando juntos.",
+      businessSubtitle: "Seu marketing rodando todo mês: site, conteúdo e SEO trabalhando juntos.",
       businessFeatures: [
         "Tudo do Starter, e mais:",
         "Site sob medida com landing pages por serviço",
-        "Gestão de tráfego pago no Google Ads e Meta Ads",
-        "Criativos para anúncios renovados todo mês",
+        "Gestão de conteúdo para redes sociais",
+        "Manutenção da presença digital: Google, perfis e site",
         "SEO e SEO para IA otimizados toda semana",
         "Relatório mensal de resultados",
         "Suporte prioritário via WhatsApp"
@@ -142,6 +142,8 @@ export const translations = {
       consultDesc: "Seu sistema operacional de marketing completo.",
       enterpriseFeatures: [
         "Tudo do Business, e mais:",
+        "Gestão de tráfego pago no Google Ads e Meta Ads",
+        "Performance e escala com testes e otimização contínuos",
         "Conteúdo contínuo com calendário editorial",
         "Motion design e edição de vídeos",
         "Copy para anúncios, páginas e e-mails",
@@ -330,12 +332,12 @@ export const translations = {
       starterBtn: "Start with Starter",
       popularBadge: "Most chosen",
       businessTag: "To grow",
-      businessSubtitle: "Your marketing running every month: website, ads and SEO working together.",
+      businessSubtitle: "Your marketing running every month: website, content and SEO working together.",
       businessFeatures: [
         "Everything in Starter, plus:",
         "Custom website with landing pages per service",
-        "Paid ads management on Google Ads and Meta Ads",
-        "Ad creatives refreshed every month",
+        "Social media content management",
+        "Digital presence upkeep: Google, profiles and website",
         "SEO and AI search optimized every week",
         "Monthly results report",
         "Priority WhatsApp support"
@@ -349,6 +351,8 @@ export const translations = {
       consultDesc: "Your complete marketing operating system.",
       enterpriseFeatures: [
         "Everything in Business, plus:",
+        "Paid ads management on Google Ads and Meta Ads",
+        "Performance and scale with continuous testing and optimization",
         "Ongoing content with an editorial calendar",
         "Motion design and video editing",
         "Copy for ads, pages and email",

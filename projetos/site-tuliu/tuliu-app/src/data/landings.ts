@@ -209,7 +209,7 @@ export const landings: Landing[] = [
           { q: 'Em quanto tempo vejo resultado?', a: 'SEO é cumulativo. As primeiras melhorias técnicas e de título costumam mostrar efeito em semanas. Ganhar posições em palavras disputadas leva meses. O que muda com a Tuliu é que algo acontece toda semana, então o resultado vem mais cedo.' },
           { q: 'Preciso trocar meu site?', a: 'Não. A gente pode otimizar o site que você já tem, ou construir um novo se ele estiver segurando o seu crescimento. Você decide.' },
           { q: 'Vocês mexem no meu Google Search Console?', a: 'Com o seu acesso, sim. É de lá que vêm os dados que guiam a IA. Você continua dono de todas as contas.' },
-          { q: 'Quanto custa?', a: 'O SEO semanal faz parte do plano Business, a partir de R$497 por mês, junto com site sob medida e gestão de tráfego. Sem fidelidade.' },
+          { q: 'Quanto custa?', a: 'O SEO semanal faz parte do plano Business, a partir de R$497 por mês, junto com site sob medida e conteúdo para redes sociais. Sem fidelidade.' },
         ],
       },
     ],
@@ -253,7 +253,7 @@ export const landings: Landing[] = [
         chips: ['Site e landing pages', 'SEO', 'SEO para IA', 'Conteúdo e vídeos', 'Google Ads', 'Meta Ads', 'Agentes de IA', 'Automações', 'Hospedagem e manutenção'],
         cards: [
           { icon: 'fas fa-layer-group', title: 'Uma empresa no lugar de quatro', desc: 'Sem coordenar agência de site, agência de SEO, redator e gestor de tráfego. Tudo num lugar só.' },
-          { icon: 'fas fa-receipt', title: 'Um valor mensal fixo', desc: 'Sem taxa de criação, sem cobrança por hora. Planos a partir de R$97 por mês, com site, tráfego e SEO juntos a partir de R$497.' },
+          { icon: 'fas fa-receipt', title: 'Um valor mensal fixo', desc: 'Sem taxa de criação, sem cobrança por hora. Planos a partir de R$97 por mês, com site, conteúdo e SEO juntos a partir de R$497.' },
           { icon: 'fab fa-whatsapp', title: 'Um contato no WhatsApp', desc: 'Você manda o que precisa, por texto ou áudio, e a gente coloca no ar. Como falar com o seu próprio time.' },
         ],
       },
