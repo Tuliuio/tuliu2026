@@ -9,8 +9,8 @@ export const translations = {
     hero: {
       badge: "Seu time de marketing, com IA",
       titleLine1: "Um time de marketing completo,",
-      titleLine2: "pelo preço de uma",
-      titleHighlight: "ferramenta.",
+      titleLine2: "para o seu negócio",
+      titleHighlight: "crescer.",
       subtitle: "Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação, que melhora toda semana com base nos seus dados. A IA executa, especialistas aprovam. Você assume o marketing sem cair no operacional.",
       microcopy: "Sem fidelidade, sem taxa de criação, tudo por WhatsApp.",
       videoLabel: "Veja o que entregamos",
@@ -219,8 +219,8 @@ export const translations = {
     hero: {
       badge: "Marketing agencies are slow and expensive",
       titleLine1: "A complete marketing team,",
-      titleLine2: "for the price of a",
-      titleHighlight: "tool.",
+      titleLine2: "to help your business",
+      titleHighlight: "grow.",
       subtitle: "Website, SEO, content, video, paid ads, AI agents and automations in one operation that improves every week based on your data. AI does the work, experts approve it. You own your marketing without drowning in operations.",
       microcopy: "No lock-in, no setup fee, everything over WhatsApp.",
       videoLabel: "See what we deliver",
