@@ -9,6 +9,7 @@ import AutomationsSection from './AutomationsSection';
 import AgentsSection from './AgentsSection';
 import { ActivityProvider, useActivity } from './ActivityContext';
 import { ActivityFeed, CampaignsSection } from './ActivitySections';
+import PaymentsSection from './PaymentsSection';
 
 interface AssetTypeInfo {
   type: string;
@@ -410,6 +411,10 @@ function DashboardContent({ section, focusId, onNavigate }: { section: string; f
 
   if (section === 'campaigns') {
     return <CampaignsSection />;
+  }
+
+  if (section === 'payments') {
+    return client ? <PaymentsSection clientId={client.id} /> : null;
   }
 
   if (section === 'automations') {

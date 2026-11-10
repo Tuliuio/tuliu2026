@@ -67,6 +67,7 @@ export default function DashboardSidebar({ currentSection, onNavigate }: Dashboa
   const MENU_ITEMS: MenuItem[] = [
     { id: 'overview', label: 'Visão geral', icon: 'fa-house' },
     { id: 'activity', label: 'Acontecendo agora', icon: 'fa-bell', count: unreadCount, highlight: true },
+    { id: 'payments', label: 'Pagamentos', icon: 'fa-wallet' },
     { id: 'campaigns', label: 'Campanhas', icon: 'fa-bullhorn', count: campaigns.filter((c) => c.stage !== 'concluida').length },
     { id: 'domains', label: 'Domínios', icon: 'fa-globe', count: assetCounts.domains || 0 },
     { id: 'websites', label: 'Websites', icon: 'fa-laptop-code', count: assetCounts.websites || 0 },

@@ -12,6 +12,7 @@ const MENU_ITEMS = [
   { id: 'campaigns', label: 'Campanhas', icon: 'fa-bullhorn' },
   { id: 'activation-requests', label: 'Solicitações', icon: 'fa-bell' },
   { id: 'clients', label: 'Clientes', icon: 'fa-users' },
+  { id: 'payments', label: 'Pagamentos', icon: 'fa-wallet' },
 ];
 
 export default function AdminLayout({ children, currentSection, onNavigate }: AdminLayoutProps) {
