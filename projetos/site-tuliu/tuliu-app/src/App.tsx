@@ -26,7 +26,7 @@ import ProposalAccessPage from './components/ProposalAccessPage';
 import ThankYouPage from './components/ThankYouPage';
 import { diagHref } from './lib/diag';
 import { FinalBand, Related } from './components/landing/blocks';
-import { ServicesMarquee, DuoCards, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
+import { PlatformsStrip, ServicesMarquee, DuoCards, HomeMachine, BehindTheScenes, HomeCases, HomeCompare } from './components/HomeSections';
 import { landingBySlug } from './data/landings';
 import { NavContext } from './context/NavContext';
 import './index.css';
@@ -251,6 +251,7 @@ function App() {
         {currentPage === 'home' ? (
           <>
             <Hero />
+            <PlatformsStrip />
             <ServicesMarquee />
             <DuoCards />
             <HomeMachine />

@@ -3,6 +3,37 @@ import { machine } from '../data/landings';
 import speedImg from '../assets/card-velocidade.jpg';
 import qualityImg from '../assets/card-qualidade.jpg';
 import { CasesStrip, CompareTable, Expert, Marquee, RenderBlock } from './landing/blocks';
+import logoMeta from '../assets/plataformas/meta.svg';
+import logoGoogle from '../assets/plataformas/google.svg';
+import logoHostinger from '../assets/plataformas/hostinger.svg';
+import logoAnthropic from '../assets/plataformas/anthropic.svg';
+import logoSalesforce from '../assets/plataformas/salesforce.svg';
+import logoSupabase from '../assets/plataformas/supabase.svg';
+
+/* Plataformas com que a operação trabalha todo dia. `badge` só para parceria
+   que a Tuliu tem de fato: Hostinger Partner (nov/2026). Meta Tech Provider
+   entra quando a verificação da empresa for aprovada. */
+const PLATFORMS: { name: string; logo: string; badge?: string }[] = [
+  { name: 'Meta', logo: logoMeta },
+  { name: 'Google', logo: logoGoogle },
+  { name: 'Hostinger', logo: logoHostinger, badge: 'Partner' },
+  { name: 'Anthropic', logo: logoAnthropic },
+  { name: 'Salesforce', logo: logoSalesforce },
+  { name: 'Supabase', logo: logoSupabase },
+];
+
+export function PlatformsStrip() {
+  return (
+    <section className="platforms" aria-label="Plataformas com que trabalhamos">
+      <p className="platforms-label">Powered by the world’s leading platforms</p>
+      <ul className="platforms-row">
+        {PLATFORMS.map((p) => (
+          <li key={p.name}><img src={p.logo} alt="" aria-hidden="true" /><span>{p.name}</span>{p.badge && <em className="platforms-badge">{p.badge}</em>}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 const SERVICES_A = [
   { icon: 'fas fa-gem', label: 'Identidade de marca' },
