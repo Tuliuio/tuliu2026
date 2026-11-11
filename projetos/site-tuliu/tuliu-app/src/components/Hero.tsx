@@ -51,11 +51,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-v2-stats" aria-label="Números da Tuliu">
-        <span><strong>+100</strong> projetos entregues</span>
-        <span><strong>Desde 2020</strong> no digital</span>
-        <span><strong>Revisão humana</strong> em cada entrega</span>
-      </div>
 
     </section>
   );

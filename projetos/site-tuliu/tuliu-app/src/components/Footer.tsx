@@ -19,6 +19,11 @@ export default function Footer() {
             <a className="footer-wa" href="https://wa.me/554840426597" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-whatsapp"></i> {t.footer.help} Chama no WhatsApp
             </a>
+            <div className="footer-social">
+              <a href="https://www.instagram.com/tuliu.io/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Tuliu (@tuliu.io)">
+                <i className="fab fa-instagram"></i><span>@tuliu.io</span>
+              </a>
+            </div>
           </div>
           {landingGroups.map(({ group, label }) => (
             <nav key={group} className="footer-col" aria-label={label}>

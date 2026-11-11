@@ -2102,3 +2102,31 @@
   .cs-panel-list li { grid-template-columns: 96px 1fr; }
   .cs-quote { padding: 24px 22px; }
 }
+
+/* ---------- Convite do WhatsApp (balão sobre o botão flutuante) ---------- */
+.wa-invite {
+  position: fixed; right: 24px; bottom: 98px; z-index: 999; width: 290px;
+  background: #0b0a10; color: #fff; border: 1px solid rgba(192, 132, 252, .28); border-radius: 20px;
+  padding: 18px 18px 16px; box-shadow: 0 24px 60px -20px rgba(76, 29, 149, .55);
+  animation: wa-invite-in .45s cubic-bezier(.16, 1, .3, 1) both;
+}
+.wa-invite::after { content: ''; position: absolute; right: 22px; bottom: -7px; width: 14px; height: 14px; background: #0b0a10; border-right: 1px solid rgba(192, 132, 252, .28); border-bottom: 1px solid rgba(192, 132, 252, .28); transform: rotate(45deg); }
+.wa-invite-tag { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+.wa-invite-tag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 3px rgba(74, 222, 128, .18); }
+.wa-invite p { margin: 10px 0 14px; font-family: var(--font-display); font-size: 18px; line-height: 1.25; letter-spacing: -0.02em; }
+.wa-invite a { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #0a071a; border-radius: 999px; padding: 10px 16px; font-size: 14px; font-weight: 600; text-decoration: none; transition: transform .2s ease; }
+.wa-invite a:hover { transform: translateX(2px); }
+.wa-invite-close { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .08); color: rgba(255, 255, 255, .7); cursor: pointer; display: grid; place-items: center; font-size: 13px; }
+.wa-invite-close:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+@keyframes wa-invite-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (max-width: 767px) {
+  .wa-invite { right: 16px; left: 16px; width: auto; bottom: 84px; }
+  body.cta-visible .wa-invite { bottom: 150px; }
+}
+@media (prefers-reduced-motion: reduce) { .wa-invite { animation: none; } }
+
+/* ---------- Instagram no rodapé ---------- */
+.footer-social { display: flex; gap: 10px; margin-top: 12px; }
+.footer-social a { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: inherit; opacity: .75; text-decoration: none; transition: opacity .2s ease; }
+.footer-social a:hover { opacity: 1; }
+.footer-social i { font-size: 18px; }
