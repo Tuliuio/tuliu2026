@@ -84,7 +84,7 @@ export function BehindTheScenes() {
 }
 
 export function HomeCases() {
-  return <CasesStrip title="Você também pode crescer." subtitle="Negócios reais operando com a Tuliu. Ao vivo, todos os dias." />;
+  return <CasesStrip title="Você também pode crescer." subtitle="Negócios reais operando com a Tuliu. Ao vivo, todos os dias." ids={['casa-campo', 'costao-estaleirinho', 'scienco-dairy-tech', 'procardiaco', 'vital-brasil', 'poliforte']} />;
 }
 
 export function HomeCompare() {

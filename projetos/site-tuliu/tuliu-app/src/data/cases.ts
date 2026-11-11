@@ -5,6 +5,8 @@ import logoPoliforte from '../assets/clientes/poliforte.png';
 import logoSparz from '../assets/clientes/sparz.png';
 import logoAdapto from '../assets/clientes/adapto.svg';
 import logoCruzDeMalta from '../assets/clientes/cruz-de-malta.png';
+import logoCasaCampo from '../assets/clientes/casa-campo.png';
+import logoCostao from '../assets/clientes/costao-estaleirinho.svg';
 
 export interface Metric {
   value: string;
@@ -38,6 +40,48 @@ export interface CaseStudy {
 }
 
 export const cases: CaseStudy[] = [
+  {
+    id: 'casa-campo',
+    client: 'Parque Casa Campo',
+    sector: 'Turismo · Parque e eventos',
+    location: 'Itajaí/SC',
+    icon: 'fas fa-seedling',
+    logo: logoCasaCampo,
+    logoScale: 1.7,
+    headline: 'Um parque de 60 mil m² chegando à inauguração com público já formado.',
+    challenge:
+      'O Parque Casa Campo reúne jardins temáticos, a maior coleção de cactos do Brasil, eventos e hospedagem num só lugar, entre Itajaí, Brusque e Blumenau. Com a abertura marcada para novembro de 2026, era preciso apresentar uma marca nova, explicar a dimensão do projeto e formar público antes de o portão abrir.',
+    solution:
+      'Junto com a Mira Brand Studio, que redesenhou a marca, a Tuliu cuida do digital e das peças da inauguração: conteúdo e Reels para o Instagram, campanhas no Meta Ads para levar gente ao perfil e vender ingressos, convite digital, folders, outdoors e sinalização. Cada campanha é ajustada pelo custo de cada visita e de cada compra iniciada.',
+    services: ['Tráfego pago no Meta', 'Conteúdo e Reels', 'Campanha de inauguração', 'Outdoors e folders', 'Marca com a Mira'],
+    metrics: [
+      { value: 'R$0,22', label: 'por visita ao perfil do Instagram, com mais de 3.500 visitas' },
+      { value: '85 mil', label: 'exibições dos anúncios nos primeiros 10 dias' },
+      { value: '5,1%', label: 'de quem vê o anúncio clica nele, na campanha principal' },
+    ],
+    source: 'Meta Ads, de 1º a 11 de novembro de 2026, nas campanhas de pré-inauguração.',
+  },
+  {
+    id: 'costao-estaleirinho',
+    client: 'Costão Estaleirinho · Costão do Santinho',
+    sector: 'Hotelaria · Resort',
+    location: 'Balneário Camboriú/SC',
+    icon: 'fas fa-umbrella-beach',
+    logo: logoCostao,
+    logoScale: 1.5,
+    headline: 'Uma Black Friday de resort com Lista VIP e cada cadastro direto no Salesforce.',
+    challenge:
+      'O Costão Estaleirinho, do grupo Costão do Santinho, precisava de uma Black Friday em duas etapas: antes, encher uma Lista VIP de interessados; na semana da campanha, revelar os benefícios e levar cada pessoa a um consultor. Tudo dentro das regras de segurança da TI e com cada conversão medida.',
+    solution:
+      'A Tuliu entregou as duas landing pages, pré-Black e Semana Black, com conteúdo, design, desenvolvimento e páginas de obrigado. Os formulários gravam direto no Salesforce, e o rastreamento no GTM e no GA4 mede cadastros, interação com as caixas-surpresa, rolagem e cliques no consultor, sem que nome, e-mail ou celular entrem nos eventos.',
+    services: ['Landing pages', 'Integração com Salesforce', 'GTM e GA4', 'Conteúdo e design', 'Homologação com a TI'],
+    metrics: [
+      { value: '2 fases', label: 'na mesma campanha: Lista VIP antes, revelação e venda na semana' },
+      { value: '6', label: 'eventos de conversão medidos no GTM e no GA4' },
+      { value: '0', label: 'dados pessoais nos eventos de rastreamento' },
+    ],
+    source: 'Projeto entregue pela Tuliu em novembro de 2026.',
+  },
   {
     id: 'scienco-dairy-tech',
     client: 'Scienco Biotech · Dairy Tech',

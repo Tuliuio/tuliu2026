@@ -413,8 +413,9 @@ export function Expert({ title, quote }: { title: string; quote: string }) {
 /* ---------- CASES ---------- */
 export function CasesStrip({ title, subtitle, ids }: { title: string; subtitle: string; ids?: string[] }) {
   const link = useLinkProps();
-  // Sem ids, mostra os quatro primeiros cases (os que têm números de mídia)
-  const list = ids ? cases.filter((c) => ids.includes(c.id)) : cases.slice(0, 4);
+  // Sem ids, mostra os quatro cases com números de mídia de sempre
+  const pick = ids ?? ['scienco-dairy-tech', 'procardiaco', 'vital-brasil', 'poliforte'];
+  const list = pick.map((id) => cases.find((c) => c.id === id)).filter((c): c is (typeof cases)[number] => Boolean(c));
   return (
     <section className="lp-section lp-soft">
       <div className="container">
@@ -422,17 +423,19 @@ export function CasesStrip({ title, subtitle, ids }: { title: string; subtitle: 
         <div className="lp-cases" data-n={Math.min(list.length, 4)}>
           {list.map((c) => (
             <article key={c.id} className="lp-case">
-              <img className="lp-case-logo" src={c.logo} alt={c.client} loading="lazy" style={{ '--s': c.logoScale ?? 1 } as React.CSSProperties} />
-              <span className="lp-case-sector"><i className={c.icon}></i> {c.sector}</span>
+              <div className="lp-case-top">
+                <img className="lp-case-logo" src={c.logo} alt={c.client} loading="lazy" style={{ '--s': c.logoScale ?? 1 } as React.CSSProperties} />
+                <span className="lp-case-place">{c.location}</span>
+              </div>
+              <span className="lp-case-sector"><i aria-hidden="true"></i>{c.sector}</span>
               <h3>{c.headline}</h3>
-              <ul>
-                {c.metrics.slice(1, 3).map((m) => <li key={m.label}>{m.value} {m.label}</li>)}
-              </ul>
               <div className="lp-case-metric">
                 <strong>{c.metrics[0].value}</strong>
                 <span>{c.metrics[0].label}</span>
               </div>
-              {c.testimonial && <p className="lp-case-quote">"{c.testimonial.quote}"<span> {c.testimonial.author}, {c.testimonial.role}</span></p>}
+              <ul>
+                {c.metrics.slice(1, 3).map((m) => <li key={m.label}><b>{m.value}</b> {m.label}</li>)}
+              </ul>
             </article>
           ))}
         </div>
