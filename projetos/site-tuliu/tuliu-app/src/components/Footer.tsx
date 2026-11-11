@@ -15,7 +15,7 @@ export default function Footer() {
             <a className="footer-logo" aria-label="Tuliu, início" {...link('/')}>
               <img src={logo} alt="Tuliu Logo" height="26" />
             </a>
-            <p>Seu time de marketing completo, feito com IA e aprovado por especialistas.</p>
+            <p>Seu time de marketing completo, feito com IA e liderado por especialistas.</p>
             <a className="footer-wa" href="https://wa.me/554840426597" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-whatsapp"></i> {t.footer.help} Chama no WhatsApp
             </a>

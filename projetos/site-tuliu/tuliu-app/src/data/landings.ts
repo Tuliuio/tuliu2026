@@ -139,8 +139,8 @@ export const landings: Landing[] = [
     group: 'servico',
     navLabel: 'SEO feito por IA',
     navDesc: 'Seu site subindo no Google, otimizado toda semana',
-    metaTitle: 'SEO feito por IA, aprovado por especialistas | Tuliu',
-    metaDescription: 'A IA analisa seus dados do Google todo dia e otimiza seu site. Especialistas aprovam cada mudança. No plano Business, a partir de R$497/mês.',
+    metaTitle: 'SEO feito por IA, liderado por especialistas | Tuliu',
+    metaDescription: 'A IA analisa seus dados do Google todo dia e otimiza seu site. Especialistas lideram cada mudança. No plano Business, a partir de R$497/mês.',
     priceFrom: 'R$497/mês',
     hero: {
       eyebrow: 'SEO com IA',

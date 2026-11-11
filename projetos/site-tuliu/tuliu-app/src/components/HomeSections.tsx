@@ -138,7 +138,7 @@ export function DuoCards() {
           </article>
           <article className="duo-card duo-light">
             <img src={qualityImg} alt="" aria-hidden="true" />
-            <span className="duo-label"><i className="far fa-circle"></i> Aprovado por especialistas</span>
+            <span className="duo-label"><i className="far fa-circle"></i> Liderado por especialistas</span>
             <strong className="duo-word">Qualidade</strong>
           </article>
         </div>

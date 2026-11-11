@@ -34,7 +34,7 @@ import './index.css';
 type Page = 'home' | 'cases' | 'learn' | 'login' | 'dashboard' | 'admin' | 'reset-password' | 'onboarding' | 'landing' | 'diagnostico' | 'proposta' | 'obrigado';
 
 const HOME_TITLE = 'Tuliu | Um time de marketing completo para o seu negócio crescer';
-const HOME_DESCRIPTION = 'Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação. IA executa, especialistas aprovam. A partir de R$97/mês.';
+const HOME_DESCRIPTION = 'Site, SEO, conteúdo, vídeos, tráfego pago, agentes de IA e automações em uma só operação. IA executa, especialistas lideram. A partir de R$97/mês.';
 
 const slugFromPath = (pathname: string) => pathname.replace(/^\/+|\/+$/g, '');
 
